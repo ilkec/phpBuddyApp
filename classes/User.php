@@ -1,15 +1,19 @@
 <?php
 
+include_once(__DIR__ . "/Db.php");
 class User
 {
+    private $id;
     private $firstname;
     private $lastname;
     private $email;
+    private $password; 
     private $games;
     private $films;
     private $muziek;
     private $locatie;
     private $boeken;
+    
 
     /**
      * Get the value of firstname
@@ -170,4 +174,73 @@ class User
 
         return $this;
     }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    
+    public function getAll(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare('select * from users where id = :userid'); //: verwijst naar een placeholder waar later info in zal worden gestopt
+        $userid = $this->getId();
+        $statement->bindParam(":userid", $userid);
+        $result = $statement->execute();
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);//alle resultaten krijgen
+        return $users;
+    }
+
+    public function update(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email where id = :userid");
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $email = $this->getEmail();
+        $userid = $this->getId();
+        $statement->bindValue(':firstname', $firstname);//we willen op een bepaalde plaats een variabele binden
+        $statement->bindValue(':lastname', $lastname);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':userid', $userid);
+
+        $result = $statement->execute();
+
+        return $result;
+
+    }
+
 }
