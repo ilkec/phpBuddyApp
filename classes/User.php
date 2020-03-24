@@ -226,7 +226,7 @@ class User
         return $users;
     }
 
-    public function update()
+    public function updateSettings()
     {
         $conn = Db::getConnection();
         $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email where id = :userid");
