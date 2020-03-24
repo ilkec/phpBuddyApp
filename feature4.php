@@ -55,11 +55,11 @@ include_once(__DIR__ . "/classes/Db.php");
                 if (empty($_POST['games']) || empty($_POST['films']) || empty($_POST['muziek']) || empty($_POST['locatie']) || empty($_POST['boeken'])) {
                     echo "<h3>Gelieve alle velden in te vullen.</h3>";
                 } else {
-                    $games = $_POST['games'];
-                    $films = $_POST['films'];
-                    $muziek = $_POST['muziek'];
-                    $locatie = $_POST['locatie'];
-                    $boeken = $_POST['boeken'];
+                    $games = htmlspecialchars($_POST['games']);
+                    $films = htmlspecialchars($_POST['films']);
+                    $muziek = htmlspecialchars($_POST['muziek']);
+                    $locatie = htmlspecialchars($_POST['locatie']);
+                    $boeken = htmlspecialchars($_POST['boeken']);
                 }
             } ?>
 
