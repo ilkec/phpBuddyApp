@@ -8,6 +8,7 @@ class User
     private $lastname;
     private $email;
     private $password;
+    private $profilePicture;
     private $games;
     private $films;
     private $muziek;
@@ -215,6 +216,26 @@ class User
         return $this;
     }
 
+     /**
+     * Get the value of profilePicture
+     */ 
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * Set the value of profilePicture
+     *
+     * @return  self
+     */ 
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
     public function getAll()
     {
         $conn = Db::getConnection();
@@ -229,18 +250,22 @@ class User
     public function updateSettings()
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email where id = :userid");
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture where id = :userid");
         $firstname = $this->getFirstname();
         $lastname = $this->getLastname();
         $email = $this->getEmail();
         $userid = $this->getId();
+        $profilePicture = $this->getProfilePicture();
         $statement->bindValue(':firstname', $firstname); //we willen op een bepaalde plaats een variabele binden
         $statement->bindValue(':lastname', $lastname);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':userid', $userid);
+        $statement->bindValue(':profilePicture', $profilePicture);
 
         $result = $statement->execute();
 
         return $result;
     }
+
+   
 }
