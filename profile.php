@@ -18,7 +18,7 @@ if(!empty($_POST)){
             $user->setLastname($_POST['lastname']);
             echo $user->getEmail();
             
-            $user->update();
+            $user->updateSettings();
 
             
         } 
