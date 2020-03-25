@@ -333,5 +333,41 @@ class User
     return $result;
   }
 
+  public function saveUser()
+  {
+    $conn = Db::getConnection(); 
+    $statement=$conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");
+
+    $firstname=$this->getFirstname();
+    $lastname=$this->getLastname();
+    $email=$this->getEmail();
+    $birthday=$this->getBirthday();
+    $gender=$this->getGender();
+    $password=$this->getPassword();
+    $confPassword=$this->getConfPassword();
+    $register=date("d-m-Y");
+    $regex="@student.thomasmore.be";
+    $dif=date_diff(date_create($birthday),date_create($register)); //Geeft het verschil tussen 2 datums
+    $userAge = $dif->format('%y'); //Geeft verschil terug als jaar.
+
+    /*if(empty($email)||empty($firstname)||empty($lastname)||empty($birthday)||empty($gender)||empty($password)||empty($confPassword)){
+      
+      echo "Inputs are empty";
+
+    }*/
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
 
 }
