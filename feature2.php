@@ -1,10 +1,10 @@
 <?php
 	function canLogin($email, $password){
-        $conn = new mysqli("localhost", "root", "", "tempDatabase");
+        $conn = new mysqli("localhost", "root", "", "buddyapp");
         $email = $conn->real_escape_string($email);
-        $query = "select * from users where email = '$email'";
-        $result = $conn->query($query);
-        $user = $result->fetch_assoc();
+		$query = "select * from users where email = '$email'";
+		$result = $conn->query($query);
+		$user = $result->fetch_assoc();
         if(password_verify($password, $user['password'])){
             return true;
         }else{
@@ -48,6 +48,18 @@
     <title>Document</title>
 </head>
 <body>
-    
+<form action="" method="post">
+        <h2 form__title>Sign up for an account</h2>
+        <?php if( isset($error) ): ?>
+            <p>
+                <?php echo $error; ?>
+            </p>
+        <?php endif; ?>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Log in">
+    </form>
 </body>
 </html>
