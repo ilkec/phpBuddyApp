@@ -12,8 +12,10 @@ if(!empty($_POST)){
     $user->setConfPassword($_POST['confPassword']);
     $user->saveUser();
     $success = "Your account has been created successfully";
+    
   }catch(\Throwable $th) {
     $error=$th->getMessage();
+   
   }
 }
 
@@ -33,7 +35,7 @@ if(!empty($_POST)){
     <!-----------------------------Navbar------------------------------>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <div class="container-fluid"> <a class="navbar-brand" href="#">MyBuddyApp</a>
-        <ul class="nav justify-content-end"> <a class="nav-link" href="#">Login</a> </ul>
+        <ul class="nav justify-content-end"> <a class="nav-link" href="feature2.php">Login</a> </ul>
       </div>
     </nav>
     <!------------------------Error-message------------------------->
