@@ -357,7 +357,7 @@ class User
     return $users;
   }
 
-  public function updateSettings()
+public function updateSettings()
     {
         $conn = Db::getConnection();
         $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture, description = :description, password = :password where id = :userid");
@@ -396,9 +396,9 @@ class User
         //var_dump($hash);
         echo $hash . "<br>";
         echo $oldPassword . "<br>";
-        /*if($users->num_rows !=1){
+        if($users->num_rows !=1){
             return false;
-        }*/
+        }
         if(password_verify($oldPassword, $hash)){   //gaat het password n^x encrypten en vergelijken met de hash
             return true; //checkPassword functie wil weten of het true is
         }
@@ -409,23 +409,21 @@ class User
     }
 
   public function saveUser(){
-    //$conn=new PDO('mysql:host=localhost;dbname=myBuddyApp;port=8889;',"root","root"); 
-    $conn = Db::getConnection();  
-    $statement=$conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");  
-
-
-
+   $conn = Db::getConnection();  
+  $statement=$conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");
     
-    $firstname=$this->getFirstname();
-    $lastname=$this->getLastname();
-    $email=$this->getEmail();
-    $birthday=$this->getBirthday();
-    $gender=$this->getGender();
-    $password=$this->getPassword();
-    $confPassword=$this->getConfPassword();
-    $register=date("d-m-Y");
-    $regex="@student.thomasmore.be";
-    $dif=date_diff(date_create($birthday),date_create($register)); 
+   
+    
+    $firstname = $this->getFirstname();
+    $lastname = $this->getLastname();
+    $email = $this->getEmail();
+    $birthday = $this->getBirthday();
+    $gender = $this->getGender();
+    $password = $this->getPassword();
+    $confPassword = $this->getConfPassword();
+    $register = date("d-m-Y");
+    $regex = "@student.thomasmore.be";
+    $dif = date_diff(date_create($birthday),date_create($register)); 
     $userAge = $dif->format('%y');  
 
     $stmt = $conn->prepare( "select 1 from users where `email` = ?");
@@ -449,7 +447,6 @@ class User
           if($password !== $confPassword){
             throw new Exception("Password doesn't match!");
           }else{
-
             if($found){
               throw new Exception("This email already exists!");
               return false;
@@ -463,12 +460,11 @@ class User
               $statement->bindValue(":gender",$gender);
               $statement->bindValue(":password",$password);
               $statement->bindValue(":register",$register);
-
-
-
               $result = $statement->execute();
-
+              header("Location: feature4.php");
+              var_dump($result);
               return $result;
+              
             }
 
 
@@ -479,14 +475,6 @@ class User
 
 
     }
-
-
-
-
-
-
-
-
   }
 
     function canLogin($email, $password){
