@@ -356,11 +356,21 @@ class User
     $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
     return $users;
   }
+public function updatePicture(){
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("update users set picture = :profilePicture where id = :userid");
+        $userid = $this->getId();
+        $profilePicture = $this->getProfilePicture();
+        $statement->bindValue(':userid', $userid);
+        $statement->bindValue(':profilePicture', $profilePicture);
+        $result = $statement->execute();
 
-public function updateSettings()
+        return $result;
+  }
+public function updateProfile()
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture, description = :description, password = :password where id = :userid");
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, description = :description, password = :password where id = :userid");
         $firstname = $this->getFirstname();
         $lastname = $this->getLastname();
         $email = $this->getEmail();
@@ -372,7 +382,7 @@ public function updateSettings()
         $statement->bindValue(':lastname', $lastname);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':userid', $userid);
-        $statement->bindValue(':profilePicture', $profilePicture);
+        
         $statement->bindValue(':description', $description);
         $statement->bindValue(':password', $passwordNew);
 
