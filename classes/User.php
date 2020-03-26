@@ -1,15 +1,20 @@
 <?php
 
+include_once(__DIR__ . "/Db.php");
 class User
 {
+    private $id;
     private $firstname;
     private $lastname;
     private $email;
+    private $password;
+    private $profilePicture;
     private $games;
     private $films;
     private $muziek;
     private $locatie;
     private $boeken;
+
 
     /**
      * Get the value of firstname
@@ -170,4 +175,97 @@ class User
 
         return $this;
     }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+     /**
+     * Get the value of profilePicture
+     */ 
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * Set the value of profilePicture
+     *
+     * @return  self
+     */ 
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getAll()
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare('select * from users where id = :userid'); //: verwijst naar een placeholder waar later info in zal worden gestopt
+        $userid = $this->getId();
+        $statement->bindParam(":userid", $userid);
+        $result = $statement->execute();
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
+        return $users;
+    }
+
+    public function updateSettings()
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture where id = :userid");
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $email = $this->getEmail();
+        $userid = $this->getId();
+        $profilePicture = $this->getProfilePicture();
+        $statement->bindValue(':firstname', $firstname); //we willen op een bepaalde plaats een variabele binden
+        $statement->bindValue(':lastname', $lastname);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':userid', $userid);
+        $statement->bindValue(':profilePicture', $profilePicture);
+
+        $result = $statement->execute();
+
+        return $result;
+    }
+
+   
 }
