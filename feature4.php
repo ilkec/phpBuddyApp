@@ -61,6 +61,8 @@ include_once(__DIR__ . "/classes/Db.php");
                     $user->setMuziek(htmlspecialchars($_POST['muziek']));
                     $user->setLocatie(htmlspecialchars($_POST['locatie']));
                     $user->setBoeken(htmlspecialchars($_POST['boeken']));
+
+                    header('Location:profile.php');
                 }
             } ?>
 
