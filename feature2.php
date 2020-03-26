@@ -1,11 +1,10 @@
 <?php
-<<<<<<< HEAD
 	function canLogin($email, $password){
-        $conn = new mysqli("localhost", "root", "", "buddyapp");
+        $conn = Db::getConnection();
         $email = $conn->real_escape_string($email);
 		$query = "select * from users where email = '$email'";
 		$result = $conn->query($query);
-		$user = $result->fetch_assoc();
+		$user = $result->fetch(PDO::FETCH_ASSOC);
         if(password_verify($password, $user['password'])){
             return true;
         }else{
@@ -15,6 +14,7 @@
 	
 	if(!empty($_POST)){
 		
+		$user = new User();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
@@ -35,44 +35,12 @@
 		else{
 			// indien leeg: error genereren.
 			$error = "Email and password are required";
-=======
-function canLogin($email, $password)
-{
-	$conn = new mysqli("localhost", "root", "", "tempDatabase");
-	$email = $conn->real_escape_string($email);
-	$query = "select * from users where email = '$email'";
-	$result = $conn->query($query);
-	$user = $result->fetch_assoc();
-	if (password_verify($password, $user['password'])) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-if (!empty($_POST)) {
-
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-
-
-	if (!empty($email) && !empty($password)) {
-
-		if (canLogin($email, $password)) {
-
-			session_start();
-			$_SESSION['user'] = $email;
-
-			header("Location: index.php");
-		} else {
-			$error = "Email and password don't match";
->>>>>>> a74127dadcbb111da82cefc79275a17cb37cbba3
 		}
 	} else {
 		// indien leeg: error genereren.
 		$error = "Email and password are required";
 	}
-}
+
 ?>
 
 
