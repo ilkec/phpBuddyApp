@@ -1,6 +1,6 @@
 <?php
 
-include_once(__DIR__ . "/Db.php");
+include_once(__DIR__ ."/Db.php");
 class User
 {
   private $id;
@@ -333,11 +333,14 @@ class User
     return $result;
   }
 
-  public function saveUser()
-  {
-    $conn = Db::getConnection(); 
-    $statement=$conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");
+  public function saveUser(){
+    //$conn=new PDO('mysql:host=localhost;dbname=myBuddyApp;port=8889;',"root","root"); 
+    $conn = Db::getConnection();  
+    $statement=$conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");  
 
+
+
+    
     $firstname=$this->getFirstname();
     $lastname=$this->getLastname();
     $email=$this->getEmail();
@@ -347,14 +350,64 @@ class User
     $confPassword=$this->getConfPassword();
     $register=date("d-m-Y");
     $regex="@student.thomasmore.be";
-    $dif=date_diff(date_create($birthday),date_create($register)); //Geeft het verschil tussen 2 datums
-    $userAge = $dif->format('%y'); //Geeft verschil terug als jaar.
+    $dif=date_diff(date_create($birthday),date_create($register)); 
+    $userAge = $dif->format('%y');  
 
-    /*if(empty($email)||empty($firstname)||empty($lastname)||empty($birthday)||empty($gender)||empty($password)||empty($confPassword)){
-      
-      echo "Inputs are empty";
+    $stmt = $conn->prepare( "select 1 from users where `email` = ?");
+    $stmt->execute([$email]);
+    $found = $stmt->fetchColumn();  
 
-    }*/
+
+    if(empty($email)||empty($firstname)||empty($lastname)||empty($birthday)||empty($gender)||empty($password)||empty($confPassword)){
+      throw new Exception("All fields are required");
+      //var_dump( $dif);
+      //var_dump( $userAge);
+      return false;
+    }else{
+
+      if(strpos($email,$regex) == false){
+        throw new Exception("Please enter a valid email!");
+      }else{
+        if($userAge < "18"){
+          throw new Exception("This birthday invalid!");
+        }else{
+          if($password !== $confPassword){
+            throw new Exception("Password doesn't match!");
+          }else{
+
+            if($found){
+              throw new Exception("This email already exists!");
+              return false;
+            }else{
+              $pass = $this->getPassword();
+              $password = password_hash($pass,PASSWORD_DEFAULT,['cost'=>13]);
+              $statement->bindValue(":firstname",$firstname );
+              $statement->bindValue(":lastname",$lastname );
+              $statement->bindValue(":email",$email);
+              $statement->bindValue(":birthday",$birthday);
+              $statement->bindValue(":gender",$gender);
+              $statement->bindValue(":password",$password);
+              $statement->bindValue(":register",$register);
+
+
+
+              $result = $statement->execute();
+
+              return $result;
+            }
+
+
+          }
+
+        }  
+      }
+
+
+    }
+
+
+
+
 
 
 
