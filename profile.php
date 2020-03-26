@@ -5,7 +5,7 @@ include_once(__DIR__ . '/classes/Db.php');
 
 
 $user = new User();
-$user->setId(1);
+$user->setId(4);
 $getAllUser = $user->getAll();
 
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
@@ -15,7 +15,7 @@ $getAllUser = $user->getAll();
     $passwordDatabase = $getAllUser[0]['password'];
     $profilePicture = $getAllUser[0]['picture'];
 
-if(!empty($_POST)){
+if(!empty($_POST['updateProfile'])){
 
    /* if($passwordcheck == true){*/
         try {
@@ -28,9 +28,9 @@ if(!empty($_POST)){
                     $user->setEmail($_POST['email']);
                     $user->setFirstname($_POST['firstname']);
                     $user->setLastname($_POST['lastname']);
-                    $user->setProfilePicture($_FILES["fileUpload"]["name"]);
+                    //$user->setProfilePicture($_FILES["fileUpload"]["name"]);
                     $user->setDescription($_POST['profileText']);
-                    $user->updateSettings();
+                    $user->updateProfile();
 
                 }else{
                     // + velden oud wachtwoord en nieuw wachtwoord leegmaken in form
@@ -47,10 +47,10 @@ if(!empty($_POST)){
                     $user->setEmail($_POST['email']);
                     $user->setFirstname($_POST['firstname']);
                     $user->setLastname($_POST['lastname']);
-                    $user->setProfilePicture($_FILES["fileUpload"]["name"]);
+                    //$user->setProfilePicture($_FILES["fileUpload"]["name"]);
                     $user->setDescription($_POST['profileText']);
                     $user->setPasswordNew($passwordDatabase);
-                    $user->updateSettings();
+                    $user->updateProfile();
             }
 
 
@@ -68,6 +68,12 @@ if(!empty($_POST)){
 
         
        
+
+    }
+
+    if(!empty($_POST['updatePhoto'])){
+        $user->setProfilePicture($_FILES["fileUpload"]["name"]);
+        
         $upload_dir = __DIR__ . "/uploads/";
         
         $upload_file = $upload_dir . basename($_FILES["fileUpload"]["name"]);
@@ -94,18 +100,18 @@ if(!empty($_POST)){
         // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
-                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $errorPhoto = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
         }}
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $upload_file)) {
-                echo "The file ". basename( $_FILES["fileUpload"]["name"]). " has been uploaded.";
+                $errorPhoto = "The file ". basename( $_FILES["fileUpload"]["name"]). " has been uploaded.";
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                $errorPhoto =  "Sorry, there was an error uploading your file.";
             }
         }
-
+        $user->updatePicture();
        
 
     }
@@ -156,19 +162,31 @@ if(!empty($_POST)){
     <div class="bg">
         <h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
-            
             <div class="form__field mt-2">
-    
                 <img src="<?php if($getAllUser[0]['picture'] === ""){
                     echo "uploads/sdgs-12.jpg";
                     } else{
                         echo "uploads/" . $getAllUser[0]['picture'];} ?>" alt="profiel foto" class="profilePicture">
                 <input  type="file" name="fileUpload" class="btn mb-3" id="fileUpload">
-                <div id="errorMessageUpload"><?php ?></div>
+                <?php if(isset($errorPhoto)):?>
+				<div class="form__error">
+					<p>
+						<?php echo $errorPhoto; ?>
+					</p>
+				</div>
+				<?php endif; ?>
+                
+                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePhoto"> 
             </div>
+        </form>
+
+        <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
+            
+            
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
-                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"></textarea>
+                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser[0]['description'];?>
+                </textarea>
             </div>
             <div class="form_field mt-2">
                 <label for="firstname">Voornaam</label>
@@ -199,7 +217,7 @@ if(!empty($_POST)){
 				<?php endif; ?>
             <div class="form_field mt-2">
                 <input type="button" value="Cancel" class="btn btn-secondary mb-3" id="btnCancel">   
-                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan"> 
+                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile"> 
             </div>
         </form>
     </div>
