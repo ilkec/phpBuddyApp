@@ -506,7 +506,6 @@ public function updateProfile()
 
     function canLogin($email, $password){
         $conn = Db::getConnection();
-        $email = $conn->real_escape_string($email);
         $query = "select * from users where email = '$email'";
         $result = $conn->query($query);
         $user = $result->fetch(PDO::FETCH_ASSOC);
