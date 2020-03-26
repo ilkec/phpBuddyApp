@@ -9,6 +9,12 @@ $user->setId(4);
 $getAllUser = $user->getAll();
 
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
+    //// stap 2) zet rond elke stap bv if(!empty($_POST['email])  {  $email = $_post  })
+    //// als je sommige velden verplicht maakt kan je die buiten if zetten
+    //// geen else want niet invullen is ok, dat mag -> dan nemen we gewoon de waarde van stap  (wat er al in database zit)
+    ////stap 3 verwijder alle onnodige code voor duidelijk -> setters en getter van passwordOld en passwordDatabase nog ergens gebruikt? tip: F3 en geef de naam in en kijk in alle files waar deze naam voorkomt
+    //// stap 4 al gedaan, update, MAAR let wel op dat alle bv: $user-setEmail($_post['email]) in if statements zitten (stap2)
+
     $firstname = $getAllUser[0]['firstname'];
     $lastname = $getAllUser[0]['lastname'];
     $email = $getAllUser[0]['email'];
@@ -16,59 +22,18 @@ $getAllUser = $user->getAll();
     $profilePicture = $getAllUser[0]['picture'];
 
 if(!empty($_POST['updateProfile'])){
-
-   /* if($passwordcheck == true){*/
         try {
-            if(!empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
-                $password = password_hash($_POST['passwordNew'], PASSWORD_DEFAULT, ['cost' => 14]);
-                $user->setPasswordNew($password);
-                $oldPassword = $_POST['passwordOld'];
-
-                if($user->checkPassword($oldPassword) == true){
-                    $user->setEmail($_POST['email']);
+            
                     $user->setFirstname($_POST['firstname']);
                     $user->setLastname($_POST['lastname']);
-                    //$user->setProfilePicture($_FILES["fileUpload"]["name"]);
                     $user->setDescription($_POST['profileText']);
                     $user->updateProfile();
-
-                }else{
-                    // + velden oud wachtwoord en nieuw wachtwoord leegmaken in form
-                    $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
-                }
-            }
-
-            if(empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
-                // + veld nieuw wachtwoord leegtmaken in form
-                $error = "Oud wachtwoord moet ingevuld zijn voor u een nieuw wachtwoord kan instellen";
-            }
-
-            if(empty($_POST['passwordOld']) && empty($_POST['passwordNew'])){
-                    $user->setEmail($_POST['email']);
-                    $user->setFirstname($_POST['firstname']);
-                    $user->setLastname($_POST['lastname']);
-                    //$user->setProfilePicture($_FILES["fileUpload"]["name"]);
-                    $user->setDescription($_POST['profileText']);
-                    $user->setPasswordNew($passwordDatabase);
-                    $user->updateProfile();
-            }
-
-
-            //// stap 2) zet rond elke stap bv if(!empty($_POST['email])  {  $email = $_post  })
-            //// als je sommige velden verplicht maakt kan je die buiten if zetten
-            //// geen else want niet invullen is ok, dat mag -> dan nemen we gewoon de waarde van stap  (wat er al in database zit)
-            ////stap 3 verwijder alle onnodige code voor duidelijk -> setters en getter van passwordOld en passwordDatabase nog ergens gebruikt? tip: F3 en geef de naam in en kijk in alle files waar deze naam voorkomt
-           //// stap 4 al gedaan, update, MAAR let wel op dat alle bv: $user-setEmail($_post['email]) in if statements zitten (stap2)
            
           
         } 
         catch (\Throwable $th) {
                 $error = $th->getMessage();
         }
-
-        
-       
-
     }
 
     if(!empty($_POST['updatePhoto'])){
@@ -90,7 +55,6 @@ if(!empty($_POST['updateProfile'])){
                 $uploadOk = 0;
             }
         }
-    
         // Check file size
         if ($_FILES["fileUpload"]["size"] > 500000) {
             $errorUpload = "Sorry, your file is too large.";
@@ -112,9 +76,48 @@ if(!empty($_POST['updateProfile'])){
             }
         }
         $user->updatePicture();
-       
+    }
+
+
+
+    if(!empty($_POST['updatePassword'])){
+        if(!empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
+            $password = password_hash($_POST['passwordNew'], PASSWORD_DEFAULT, ['cost' => 14]);
+            $user->setPasswordNew($password);
+            $oldPassword = $_POST['passwordOld'];
+            if($user->checkPassword($oldPassword) == true){
+                $user->updateProfile();
+            }else{
+                $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
+            }
+        }
+
+        if(empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
+            $error = "Oud wachtwoord moet ingevuld zijn voor u een nieuw wachtwoord kan instellen";
+        }
+
+        $user->updatePassword();
 
     }
+
+    if(!empty($_POST['updateEmail'])){
+        if(!empty($_POST['passwordEmail']) && !empty($_POST['email'])){
+            $passwordEmail = $_POST['passwordEmail'];
+            if($user->checkPassword($passwordEmail) == true){
+                $user->setEmail($_POST['email']);
+                $user->updateEmail();
+
+            }else{
+                // + velden oud wachtwoord en nieuw wachtwoord leegmaken in form
+                $error = "Wachtwoord is niet correct. Gelieve opnieuw te proberen.";
+            }
+        }
+
+        if(empty($_POST['passwordEmail']) && !empty($_POST['email'])){
+            // + veld nieuw wachtwoord leegtmaken in form
+            $error = "Wachtwoord moet ingevuld zijn voor u een nieuw emailadres kan instellen";
+        }
+}
 
     $getAllUser = $user->getAll();
     
@@ -138,6 +141,7 @@ if(!empty($_POST['updateProfile'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Profile</title>
     <style>
         
@@ -160,8 +164,10 @@ if(!empty($_POST['updateProfile'])){
 </head>
 <body>
     <div class="bg">
-        <h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>
+       <!--<h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>-->
+        <!-------form picture------>
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
+        <h3>Profielfoto toevoegen</h3>
             <div class="form__field mt-2">
                 <img src="<?php if($getAllUser[0]['picture'] === ""){
                     echo "uploads/sdgs-12.jpg";
@@ -179,10 +185,9 @@ if(!empty($_POST['updateProfile'])){
                 <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePhoto"> 
             </div>
         </form>
-
+            <!-------form algemeen------>
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
-            
-            
+        <h3>Persoonlijke gegevens</h3>
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
                 <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser[0]['description'];?>
@@ -196,17 +201,39 @@ if(!empty($_POST['updateProfile'])){
                 <label for="lastname">Achternaam</label>
                 <input class="form-control"  type="text"value="<?php  echo $getAllUser[0]['lastname'];?>" name="lastname" id="lastname">
             </div>
+            
+            <div class="form_field mt-2">
+                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile"> 
+            </div>
+        </form>
+            <!-------form email------>
+        <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
+        <h3>Emailadres wijzigen</h3>
             <div class="form_field mt-2">
                 <label for="email">Emailadres</label>
                 <input class="form-control" type="text" value="<?php  echo $getAllUser[0]['email'];?>" name="email" id="email">
             </div>
             <div class="form_field mt-2">
+                <label for="passwordNew">Wachtwoord</label>
+                <input class="form-control"  type="password" placeholder="Wachtwoord" name="passwordEmail" id="passwordEmail">
+            </div>
+            <div>
+            <input type="submit" value="Emailadres wijzigen" class="btn btn-primary mb-3" id="btnOpslaan" name="updateEmail">
+            </div>
+        </form>
+        <!-------form wachtwoord------>
+        <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
+        <h3>Wachtwoord wijzigen</h3>
+        <div class="form_field mt-2">
                 <label for="passwordOld">Oud wachtwoord</label>
                 <input class="form-control"  type="password" placeholder="oud wachtwoord" name="passwordOld" id="passwordOld">
             </div>
             <div class="form_field mt-2">
                 <label for="passwordNew">Nieuw wachtwoord</label>
                 <input class="form-control"  type="password" placeholder="nieuw wachtwoord" name="passwordNew" id="passwordNew">
+            </div>
+            <div>
+            <input type="submit" value="Wachtwoord wijzigen" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePassword">
             </div>
             <?php if(isset($error)):?>
 				<div class="form__error">
@@ -215,10 +242,6 @@ if(!empty($_POST['updateProfile'])){
 					</p>
 				</div>
 				<?php endif; ?>
-            <div class="form_field mt-2">
-                <input type="button" value="Cancel" class="btn btn-secondary mb-3" id="btnCancel">   
-                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile"> 
-            </div>
         </form>
     </div>
     

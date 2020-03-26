@@ -15,6 +15,7 @@
 				
 				session_start();
 				$_SESSION['user'] = $email;
+				var_dump($_SESSION['user']);
 
 				header("Location: feature4.php");
 			}

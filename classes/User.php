@@ -367,27 +367,44 @@ public function updatePicture(){
 
         return $result;
   }
+  public function updatePassword(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update users set password = :password where id = :userid");
+    $userid = $this->getId();
+    $passwordNew = $this->getPasswordNew();
+    $statement->bindValue(':userid', $userid);
+    $statement->bindValue(':password', $passwordNew);
+    $result = $statement->execute();
+
+    return $result;
+}
+public function updateEmail(){
+      $conn = Db::getConnection();
+      $statement = $conn->prepare("update users set email = :email where id = :userid");
+      $userid = $this->getId();
+      $email = $this->getEmail();
+      $statement->bindValue(':userid', $userid);
+      $statement->bindValue(':email', $email);
+      $result = $statement->execute();
+
+      return $result;
+}
 public function updateProfile()
     {
         $conn = Db::getConnection();
-        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, description = :description, password = :password where id = :userid");
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, description = :description where id = :userid");
         $firstname = $this->getFirstname();
         $lastname = $this->getLastname();
-        $email = $this->getEmail();
-        $userid = $this->getId();
-        $profilePicture = $this->getProfilePicture();
         $description = $this->getDescription();
-        $passwordNew = $this->getPasswordNew();
+        $userid = $this->getId();
+
         $statement->bindValue(':firstname', $firstname); //we willen op een bepaalde plaats een variabele binden
         $statement->bindValue(':lastname', $lastname);
-        $statement->bindValue(':email', $email);
         $statement->bindValue(':userid', $userid);
         
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':password', $passwordNew);
-
         $result = $statement->execute();
-
+       
         return $result;
     }
 
@@ -406,7 +423,7 @@ public function updateProfile()
         //var_dump($hash);
         echo $hash . "<br>";
         echo $oldPassword . "<br>";
-        if($users->num_rows !=1){
+        if($users->rowCount() !=1){
             return false;
         }
         if(password_verify($oldPassword, $hash)){   //gaat het password n^x encrypten en vergelijken met de hash
