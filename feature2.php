@@ -1,6 +1,6 @@
 <?php
 	
-	include_once(__DIR__."/classes/User.php");
+	include_once("User.php");
 	
 	if(!empty($_POST)){
 		
@@ -16,7 +16,7 @@
 				session_start();
 				$_SESSION['user'] = $email;
 
-				header("Location: feature4.php");
+				header("Location: profile.php");
 			}
 			else{
 				$error = "Email and password don't match";
@@ -45,7 +45,6 @@
 </head>
 
 <body>
-	
 <form action="" method="post">
         <h2 form__title>Sign up for an account</h2>
         <?php if( isset($error) ): ?>
