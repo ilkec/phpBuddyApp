@@ -1,16 +1,6 @@
 <?php
-	function canLogin($email, $password){
-        $conn = Db::getConnection();
-        $email = $conn->real_escape_string($email);
-		$query = "select * from users where email = '$email'";
-		$result = $conn->query($query);
-		$user = $result->fetch(PDO::FETCH_ASSOC);
-        if(password_verify($password, $user['password'])){
-            return true;
-        }else{
-            return false;
-        }
-    }
+	
+	include_once("User.php");
 	
 	if(!empty($_POST)){
 		
@@ -21,7 +11,7 @@
 		
 		if(!empty($email) && !empty($password)){
 			
-			if(canLogin($email, $password)){
+			if($user->canLogin($email, $password)){
 				
 				session_start();
 				$_SESSION['user'] = $email;
