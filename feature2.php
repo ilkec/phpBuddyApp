@@ -45,7 +45,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+	
 <form action="" method="post">
         <h2 form__title>Sign up for an account</h2>
         <?php if( isset($error) ): ?>
@@ -59,9 +59,6 @@
         <input type="password" id="password" name="password">
         <input type="submit" value="Log in">
     </form>
-=======
-
->>>>>>> a74127dadcbb111da82cefc79275a17cb37cbba3
 </body>
 
 </html>
