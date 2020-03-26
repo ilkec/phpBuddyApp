@@ -8,25 +8,66 @@ $user = new User();
 $user->setId(1);
 $getAllUser = $user->getAll();
 
+    //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
+    $firstname = $getAllUser[0]['firstname'];
+    $lastname = $getAllUser[0]['lastname'];
+    $email = $getAllUser[0]['email'];
+    $passwordDatabase = $getAllUser[0]['password'];
+    $profilePicture = $getAllUser[0]['picture'];
 
 if(!empty($_POST)){
-    /*if(empty($_POST['password'])){*/
-        try {
-            
-            $user->setEmail($_POST['email']);
-            $user->setFirstname($_POST['firstname']);
-            $user->setLastname($_POST['lastname']);
-            $user->setProfilePicture($_FILES["fileUpload"]["name"]);
-           // echo $user->getEmail();
-            
-            $user->updateSettings();
 
-            
+   /* if($passwordcheck == true){*/
+        try {
+            if(!empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
+                $password = password_hash($_POST['passwordNew'], PASSWORD_DEFAULT, ['cost' => 14]);
+                $user->setPasswordNew($password);
+                $oldPassword = $_POST['passwordOld'];
+
+                if($user->checkPassword($oldPassword) == true){
+                    $user->setEmail($_POST['email']);
+                    $user->setFirstname($_POST['firstname']);
+                    $user->setLastname($_POST['lastname']);
+                    $user->setProfilePicture($_FILES["fileUpload"]["name"]);
+                    $user->setDescription($_POST['profileText']);
+                    $user->updateSettings();
+
+                }else{
+                    // + velden oud wachtwoord en nieuw wachtwoord leegmaken in form
+                    $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
+                }
+            }
+
+            if(empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
+                // + veld nieuw wachtwoord leegtmaken in form
+                $error = "Oud wachtwoord moet ingevuld zijn voor u een nieuw wachtwoord kan instellen";
+            }
+
+            if(empty($_POST['passwordOld']) && empty($_POST['passwordNew'])){
+                    $user->setEmail($_POST['email']);
+                    $user->setFirstname($_POST['firstname']);
+                    $user->setLastname($_POST['lastname']);
+                    $user->setProfilePicture($_FILES["fileUpload"]["name"]);
+                    $user->setDescription($_POST['profileText']);
+                    $user->setPasswordNew($passwordDatabase);
+                    $user->updateSettings();
+            }
+
+
+            //// stap 2) zet rond elke stap bv if(!empty($_POST['email])  {  $email = $_post  })
+            //// als je sommige velden verplicht maakt kan je die buiten if zetten
+            //// geen else want niet invullen is ok, dat mag -> dan nemen we gewoon de waarde van stap  (wat er al in database zit)
+            ////stap 3 verwijder alle onnodige code voor duidelijk -> setters en getter van passwordOld en passwordDatabase nog ergens gebruikt? tip: F3 en geef de naam in en kijk in alle files waar deze naam voorkomt
+           //// stap 4 al gedaan, update, MAAR let wel op dat alle bv: $user-setEmail($_post['email]) in if statements zitten (stap2)
+           
+          
         } 
         catch (\Throwable $th) {
                 $error = $th->getMessage();
         }
 
+        
+       
         $upload_dir = __DIR__ . "/uploads/";
         
         $upload_file = $upload_dir . basename($_FILES["fileUpload"]["name"]);
@@ -39,29 +80,25 @@ if(!empty($_POST)){
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                $errorUpload = "File is not an image.";
                 $uploadOk = 0;
             }
         }
     
-        
-        
         // Check file size
         if ($_FILES["fileUpload"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
+            $errorUpload = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
+        if($getAllUser[0]['picture'] === ""){
         // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+        }}
         // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-        } else {
+        if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $upload_file)) {
                 echo "The file ". basename( $_FILES["fileUpload"]["name"]). " has been uploaded.";
             } else {
@@ -69,7 +106,11 @@ if(!empty($_POST)){
             }
         }
 
+       
+
     }
+
+    $getAllUser = $user->getAll();
     
    
 
@@ -101,10 +142,13 @@ if(!empty($_POST)){
             margin:10px;
         }
         .profilePicture{
-            width: 100px;
-            height: 100px;
-            background-color: grey;
+            width: 180px;
+            height: 180px;
+            /*background-color: grey;*/
+
         }
+
+
 
     </style>
 </head>
@@ -114,10 +158,13 @@ if(!empty($_POST)){
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
             
             <div class="form__field mt-2">
-                <div class="profilePicture"><?php echo $getAllUser[0]['picture'] ?>
-                </div>
+    
+                <img src="<?php if($getAllUser[0]['picture'] === ""){
+                    echo "uploads/sdgs-12.jpg";
+                    } else{
+                        echo "uploads/" . $getAllUser[0]['picture'];} ?>" alt="profiel foto" class="profilePicture">
                 <input  type="file" name="fileUpload" class="btn mb-3" id="fileUpload">
-
+                <div id="errorMessageUpload"><?php ?></div>
             </div>
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
@@ -135,11 +182,21 @@ if(!empty($_POST)){
                 <label for="email">Emailadres</label>
                 <input class="form-control" type="text" value="<?php  echo $getAllUser[0]['email'];?>" name="email" id="email">
             </div>
-            <!--<div class="form_field mt-2">
-                <label for="password">Wachtwoord</label>
-                <input class="form-control"  type="password" placeholder="nieuw wachtwoord" name="password" id="password">
-            </div>--->
-    
+            <div class="form_field mt-2">
+                <label for="passwordOld">Oud wachtwoord</label>
+                <input class="form-control"  type="password" placeholder="oud wachtwoord" name="passwordOld" id="passwordOld">
+            </div>
+            <div class="form_field mt-2">
+                <label for="passwordNew">Nieuw wachtwoord</label>
+                <input class="form-control"  type="password" placeholder="nieuw wachtwoord" name="passwordNew" id="passwordNew">
+            </div>
+            <?php if(isset($error)):?>
+				<div class="form__error">
+					<p>
+						<?php echo $error; ?>
+					</p>
+				</div>
+				<?php endif; ?>
             <div class="form_field mt-2">
                 <input type="button" value="Cancel" class="btn btn-secondary mb-3" id="btnCancel">   
                 <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan"> 

@@ -11,12 +11,18 @@ class User
   private $gender;
   private $password;
   private $confPassword;
+  private $passwordNew;
+  private $description;
   private $profilePicture;
   private $games;
   private $films;
   private $muziek;
   private $locatie;
   private $boeken;
+
+
+  
+  
 
 
   /**
@@ -301,6 +307,44 @@ class User
 
     return $this;
   }
+   /**
+   * Get the value of passwordNew
+   */ 
+  public function getPasswordNew()
+  {
+    return $this->passwordNew;
+  }
+
+  /**
+   * Set the value of passwordNew
+   *
+   * @return  self
+   */ 
+  public function setPasswordNew($passwordNew)
+  {
+    $this->passwordNew = $passwordNew;
+
+    return $this;
+  }
+   /**
+   * Get the value of description
+   */ 
+  public function getDescription()
+  {
+    return $this->description;
+  }
+
+  /**
+   * Set the value of description
+   *
+   * @return  self
+   */ 
+  public function setDescription($description)
+  {
+    $this->description = $description;
+
+    return $this;
+  }
 
   public function getAll()
   {
@@ -314,24 +358,55 @@ class User
   }
 
   public function updateSettings()
-  {
-    $conn = Db::getConnection();
-    $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture where id = :userid");
-    $firstname = $this->getFirstname();
-    $lastname = $this->getLastname();
-    $email = $this->getEmail();
-    $userid = $this->getId();
-    $profilePicture = $this->getProfilePicture();
-    $statement->bindValue(':firstname', $firstname); //we willen op een bepaalde plaats een variabele binden
-    $statement->bindValue(':lastname', $lastname);
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':userid', $userid);
-    $statement->bindValue(':profilePicture', $profilePicture);
+    {
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname= :lastname, email = :email, picture = :profilePicture, description = :description, password = :password where id = :userid");
+        $firstname = $this->getFirstname();
+        $lastname = $this->getLastname();
+        $email = $this->getEmail();
+        $userid = $this->getId();
+        $profilePicture = $this->getProfilePicture();
+        $description = $this->getDescription();
+        $passwordNew = $this->getPasswordNew();
+        $statement->bindValue(':firstname', $firstname); //we willen op een bepaalde plaats een variabele binden
+        $statement->bindValue(':lastname', $lastname);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':userid', $userid);
+        $statement->bindValue(':profilePicture', $profilePicture);
+        $statement->bindValue(':description', $description);
+        $statement->bindValue(':password', $passwordNew);
 
-    $result = $statement->execute();
+        $result = $statement->execute();
 
-    return $result;
-  }
+        return $result;
+    }
+
+    public function checkPassword($oldPassword){
+      
+        $conn = Db::getConnection();
+        $statement = $conn->prepare("select * from users where id = :userid");
+        $userid = $this->getId();
+        $statement->bindParam(":userid", $userid);
+        $result = $statement->execute();
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC); 
+        $hash = $users[0]['password'];
+  
+        //$hash = $this->getPasswordDatabase(); //niet nodig denk ik, hierboven haal je hash al uit databank (lijn 338) dus waarom speciaal extra functie die hetzelfde doet?
+        //$passwordOld = $this->getPasswordOld();
+        //var_dump($hash);
+        echo $hash . "<br>";
+        echo $oldPassword . "<br>";
+        /*if($users->num_rows !=1){
+            return false;
+        }*/
+        if(password_verify($oldPassword, $hash)){   //gaat het password n^x encrypten en vergelijken met de hash
+            return true; //checkPassword functie wil weten of het true is
+        }
+        else{
+            return false;
+        }     
+        
+    }
 
   public function saveUser(){
     //$conn=new PDO('mysql:host=localhost;dbname=myBuddyApp;port=8889;',"root","root"); 
@@ -426,14 +501,6 @@ class User
         return false;
     }
 }
-
-
-
-
-
-
-
-
 
 
 }
