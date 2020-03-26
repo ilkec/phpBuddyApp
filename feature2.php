@@ -16,7 +16,7 @@
 				session_start();
 				$_SESSION['user'] = $email;
 
-				header("Location: index.php");
+				header("Location: feature4.php");
 			}
 			else{
 				$error = "Email and password don't match";
