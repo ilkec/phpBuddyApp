@@ -5,7 +5,7 @@ include_once(__DIR__ . '/classes/Db.php');
 
 
 $user = new User();
-$user->setId(4);
+$user->setId(5);
 $getAllUser = $user->getAll();
 
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
@@ -21,7 +21,7 @@ $getAllUser = $user->getAll();
     $passwordDatabase = $getAllUser[0]['password'];
     $profilePicture = $getAllUser[0]['picture'];
 
-if(!empty($_POST['updateProfile'])){
+    if(!empty($_POST['updateProfile'])){
         try {
             
                     $user->setFirstname($_POST['firstname']);
@@ -86,7 +86,7 @@ if(!empty($_POST['updateProfile'])){
             $user->setPasswordNew($password);
             $oldPassword = $_POST['passwordOld'];
             if($user->checkPassword($oldPassword) == true){
-                $user->updateProfile();
+                $user->updatePassword();
             }else{
                 $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
             }
@@ -95,8 +95,11 @@ if(!empty($_POST['updateProfile'])){
         if(empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])){
             $error = "Oud wachtwoord moet ingevuld zijn voor u een nieuw wachtwoord kan instellen";
         }
+        if(empty($_POST['passwordOld']) && empty($_POST['passwordNew'])){
+            $error = "Je kan geen wachtwoord wijzigen. Gelieve de juiste velden in te vullen.";
+        }
 
-        $user->updatePassword();
+       
 
     }
 
