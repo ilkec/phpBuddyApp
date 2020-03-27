@@ -5,17 +5,20 @@ include_once(__DIR__ . '/classes/Db.php');
 
 
 $user = new User();
-$user->setId(1);
-$getAllUser = $user->getAll();
 session_start();
+$user->setEmail($_SESSION['user']);
+$databaseId = $user->getDatabaseId();
+$user->setId($databaseId);
+$getAllUser = $user->getAll();
+
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
     //// stap 2) zet rond elke stap bv if(!empty($_POST['email])  {  $email = $_post  })
     //// als je sommige velden verplicht maakt kan je die buiten if zetten
     //// geen else want niet invullen is ok, dat mag -> dan nemen we gewoon de waarde van stap  (wat er al in database zit)
     ////stap 3 verwijder alle onnodige code voor duidelijk -> setters en getter van passwordOld en passwordDatabase nog ergens gebruikt? tip: F3 en geef de naam in en kijk in alle files waar deze naam voorkomt
     //// stap 4 al gedaan, update, MAAR let wel op dat alle bv: $user-setEmail($_post['email]) in if statements zitten (stap2)
-    $sessionId = $_SESSION['user'] = $getAllUser['id'];
-        var_dump($sessionId);
+    
+       
     $firstname = $getAllUser['firstname'];
     $lastname = $getAllUser['lastname'];
     $email = $getAllUser['email'];
@@ -173,7 +176,7 @@ session_start();
         <h3>Profielfoto toevoegen</h3>
             <div class="form__field mt-2">
                 <img src="<?php if($getAllUser['picture'] === ""){
-                    echo "uploads/sdgs-12.jpg";
+                    echo "uploads/profilePic.png";
                     } else{
                         echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
                 <input  type="file" name="fileUpload" class="btn mb-3" id="fileUpload">

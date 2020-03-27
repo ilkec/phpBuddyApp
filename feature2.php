@@ -10,15 +10,18 @@
 		$password = $_POST['password'];
 		$getAllUser = $user->getAll();
 		
+		
 		if(!empty($email) && !empty($password)){
 			
 			if($user->canLogin($email, $password)){	
 				//$user->setEmail($email);
 				//$user->setPassword($password);
 				session_start();
-				$_SESSION['user'] = $email;
 				
-				var_dump($_SESSION['user']);
+				$_SESSION['user'] = $email;
+				$user->setEmail($_SESSION['user'] );
+				
+				
 
 				header("Location: profile.php");
 			}
