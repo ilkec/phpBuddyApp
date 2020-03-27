@@ -24,7 +24,6 @@ session_start();
 
     if(!empty($_POST['updateProfile'])){
         try {
-            
                     $user->setFirstname($_POST['firstname']);
                     $user->setLastname($_POST['lastname']);
                     $user->setDescription($_POST['profileText']);
