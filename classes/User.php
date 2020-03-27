@@ -426,15 +426,8 @@ class User
     $users = $statement->fetch(PDO::FETCH_ASSOC);
     $hash = $users['password'];
 
-
-    //$hash = $this->getPasswordDatabase(); //niet nodig denk ik, hierboven haal je hash al uit databank (lijn 338) dus waarom speciaal extra functie die hetzelfde doet?
-    //$passwordOld = $this->getPasswordOld();
-    //var_dump($hash);
-    echo $hash . "<br>";
-    echo $oldPassword . "<br>";
-    /*if($users->rowCount() !=1){
-            return false;
-        }*/
+    //echo $hash . "<br>";
+    //echo $oldPassword . "<br>";
     if (password_verify($oldPassword, $hash)) {   //gaat het password n^x encrypten en vergelijken met de hash
       return true; //checkPassword functie wil weten of het true is
     } else {
@@ -447,8 +440,6 @@ class User
     $conn = Db::getConnection();
 
     $statement = $conn->prepare("insert into users (firstname,lastname,email,birthday,gender,password,register) values(:firstname,:lastname, :email, :birthday, :gender, :password, :register)");
-
-
 
     $firstname = $this->getFirstname();
     $lastname = $this->getLastname();
@@ -507,7 +498,6 @@ class User
     }
   }
 
-<<<<<<< HEAD
   public function getDatabaseId(){
     $conn = Db::getConnection();
     $statement = $conn->prepare('select id from users where email = :email');
@@ -515,31 +505,23 @@ class User
     $statement->bindValue(':email', $email);
     $result = $statement->execute();
     $userId = $statement->fetch(PDO::FETCH_ASSOC);
-  var_dump($userId);
-
-    
+    return $result;
 
   }
 
-  public function canLogin($email, $password){
   
-=======
-  public function canLogin($email, $password)
-  {
+  
+  public function canLogin($email, $password){
 
->>>>>>> 9bb63c6e9abb30e447a98f9a3d2c0818580c6172
     $conn = Db::getConnection();
     $statement = $conn->prepare('select * from users where email = :email');
-    //$email = $this->getEmail();
-    //$password = $this->getPassword();
-    echo $email;
-
+    //echo $email;
     $statement->bindParam(':email', $email);
     $result = $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     
-    var_dump($result);
-    var_dump($user);
+    //var_dump($result);
+    //var_dump($user);
 
     $hash = $user["password"];
     if (password_verify($password, $hash)) {
