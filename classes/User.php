@@ -16,9 +16,9 @@ class User
   private $profilePicture;
   private $games;
   private $films;
-  private $muziek;
-  private $locatie;
-  private $boeken;
+  private $music;
+  private $location;
+  private $books;
 
 
 
@@ -167,61 +167,61 @@ class User
   }
 
   /**
-   * Get the value of muziek
+   * Get the value of music
    */
-  public function getMuziek()
+  public function getMusic()
   {
-    return $this->muziek;
+    return $this->music;
   }
 
   /**
-   * Set the value of muziek
+   * Set the value of music
    *
    * @return  self
    */
-  public function setMuziek($muziek)
+  public function setMusic($music)
   {
-    $this->muziek = $muziek;
+    $this->music = $music;
 
     return $this;
   }
 
   /**
-   * Get the value of locatie
+   * Get the value of location
    */
-  public function getLocatie()
+  public function getLocation()
   {
-    return $this->locatie;
+    return $this->location;
   }
 
   /**
-   * Set the value of locatie
+   * Set the value of location
    *
    * @return  self
    */
-  public function setLocatie($locatie)
+  public function setLocation($location)
   {
-    $this->locatie = $locatie;
+    $this->location = $location;
 
     return $this;
   }
 
   /**
-   * Get the value of boeken
+   * Get the value of books
    */
-  public function getBoeken()
+  public function getBooks()
   {
-    return $this->boeken;
+    return $this->books;
   }
 
   /**
-   * Set the value of boeken
+   * Set the value of books
    *
    * @return  self
    */
-  public function setBoeken($boeken)
+  public function setBooks($books)
   {
-    $this->boeken = $boeken;
+    $this->books = $books;
 
     return $this;
   }
@@ -533,26 +533,27 @@ class User
     }
   }
 
-  public function saveInterests(){
+  public function saveInterests()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :userid");
 
     $games = $this->getGames();
     $films = $this->getFilms();
-    $muziek = $this->getMuziek();
-    $locatie = $this->getLocatie();
-    $boeken = $this->getBoeken();
+    $music = $this->getMusic();
+    $location = $this->getLocation();
+    $books = $this->getBooks();
     $userId = $this->getId();
 
     $statement->bindValue(":games", $games);
     $statement->bindValue(":films", $films);
-    $statement->bindValue(":music", $muziek);
-    $statement->bindValue(":location", $locatie);
-    $statement->bindValue(":books", $boeken);
+    $statement->bindValue(":music", $music);
+    $statement->bindValue(":location", $location);
+    $statement->bindValue(":books", $books);
     $statement->bindValue(":userId", $userId);
     $result = $statement->execute();
     //var_dump($result);
-    
+
     return $result;
   }
 }
