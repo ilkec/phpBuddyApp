@@ -345,6 +345,7 @@ class User
 
     return $this;
   }
+  
 
   public function getAll()
   {
@@ -508,6 +509,19 @@ public function updateProfile()
     }
   }
 
+  public function getDatabaseId(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select id from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userId = $statement->fetch(PDO::FETCH_ASSOC);
+  var_dump($userId);
+
+    
+
+  }
+
   public function canLogin($email, $password){
   
     $conn = Db::getConnection();
@@ -519,6 +533,7 @@ public function updateProfile()
     $statement->bindParam(':email', $email);
     $result = $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
+    
     var_dump($result);
     var_dump($user);
      
