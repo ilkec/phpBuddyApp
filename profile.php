@@ -5,21 +5,22 @@ include_once(__DIR__ . '/classes/Db.php');
 
 
 $user = new User();
-$user->setId(5);
+$user->setId(1);
 $getAllUser = $user->getAll();
-
+session_start();
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
     //// stap 2) zet rond elke stap bv if(!empty($_POST['email])  {  $email = $_post  })
     //// als je sommige velden verplicht maakt kan je die buiten if zetten
     //// geen else want niet invullen is ok, dat mag -> dan nemen we gewoon de waarde van stap  (wat er al in database zit)
     ////stap 3 verwijder alle onnodige code voor duidelijk -> setters en getter van passwordOld en passwordDatabase nog ergens gebruikt? tip: F3 en geef de naam in en kijk in alle files waar deze naam voorkomt
     //// stap 4 al gedaan, update, MAAR let wel op dat alle bv: $user-setEmail($_post['email]) in if statements zitten (stap2)
-
-    $firstname = $getAllUser[0]['firstname'];
-    $lastname = $getAllUser[0]['lastname'];
-    $email = $getAllUser[0]['email'];
-    $passwordDatabase = $getAllUser[0]['password'];
-    $profilePicture = $getAllUser[0]['picture'];
+    $sessionId = $_SESSION['user'] = $getAllUser['id'];
+        var_dump($sessionId);
+    $firstname = $getAllUser['firstname'];
+    $lastname = $getAllUser['lastname'];
+    $email = $getAllUser['email'];
+    $passwordDatabase = $getAllUser['password'];
+    $profilePicture = $getAllUser['picture'];
 
     if(!empty($_POST['updateProfile'])){
         try {
@@ -28,7 +29,7 @@ $getAllUser = $user->getAll();
                     $user->setLastname($_POST['lastname']);
                     $user->setDescription($_POST['profileText']);
                     $user->updateProfile();
-           
+
           
         } 
         catch (\Throwable $th) {
@@ -86,7 +87,7 @@ $getAllUser = $user->getAll();
             $user->setPasswordNew($password);
             $oldPassword = $_POST['passwordOld'];
             if($user->checkPassword($oldPassword) == true){
-                $user->updatePassword();
+                 $user->updatePassword();
             }else{
                 $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
             }
@@ -172,10 +173,10 @@ $getAllUser = $user->getAll();
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
         <h3>Profielfoto toevoegen</h3>
             <div class="form__field mt-2">
-                <img src="<?php if($getAllUser[0]['picture'] === ""){
+                <img src="<?php if($getAllUser['picture'] === ""){
                     echo "uploads/sdgs-12.jpg";
                     } else{
-                        echo "uploads/" . $getAllUser[0]['picture'];} ?>" alt="profiel foto" class="profilePicture">
+                        echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
                 <input  type="file" name="fileUpload" class="btn mb-3" id="fileUpload">
                 <?php if(isset($errorPhoto)):?>
 				<div class="form__error">
@@ -193,16 +194,16 @@ $getAllUser = $user->getAll();
         <h3>Persoonlijke gegevens</h3>
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
-                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser[0]['description'];?>
+                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description'];?>
                 </textarea>
             </div>
             <div class="form_field mt-2">
                 <label for="firstname">Voornaam</label>
-                <input  class="form-control" type="text" value="<?php  echo $getAllUser[0]['firstname'];?>" name="firstname" id="firstname">
+                <input  class="form-control" type="text" value="<?php  echo $getAllUser['firstname'];?>" name="firstname" id="firstname">
             </div>
             <div class="form_field mt-2">
                 <label for="lastname">Achternaam</label>
-                <input class="form-control"  type="text"value="<?php  echo $getAllUser[0]['lastname'];?>" name="lastname" id="lastname">
+                <input class="form-control"  type="text"value="<?php  echo $getAllUser['lastname'];?>" name="lastname" id="lastname">
             </div>
             
             <div class="form_field mt-2">
@@ -214,7 +215,7 @@ $getAllUser = $user->getAll();
         <h3>Emailadres wijzigen</h3>
             <div class="form_field mt-2">
                 <label for="email">Emailadres</label>
-                <input class="form-control" type="text" value="<?php  echo $getAllUser[0]['email'];?>" name="email" id="email">
+                <input class="form-control" type="text" value="<?php  echo $getAllUser['email'];?>" name="email" id="email">
             </div>
             <div class="form_field mt-2">
                 <label for="passwordNew">Wachtwoord</label>
