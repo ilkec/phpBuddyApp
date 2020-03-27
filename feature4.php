@@ -56,7 +56,9 @@ include_once(__DIR__ . "/classes/Db.php");
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
                 <?php if (!empty($_POST)) {
-                    if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['muziek']) || !empty($_POST['locatie']) || !empty($_POST['boeken'])) {
+                    if (empty($_POST['games']) || empty($_POST['films']) || empty($_POST['muziek']) || empty($_POST['locatie']) || empty($_POST['boeken'])) {
+                        echo "<h3>Gelieve alle velden in te vullen.</h3>";
+                    } else {
 
                         try {
                             $user = new User();
@@ -71,8 +73,6 @@ include_once(__DIR__ . "/classes/Db.php");
                         } catch (\Throwable $th) {
                             $error = $th->getMessage();
                         }
-                    } else {
-                        echo "<h3>Gelieve alle velden in te vullen.</h3>";
                     }
                 } ?>
 
