@@ -347,7 +347,7 @@ class User
 
     return $this;
   }
-  
+
 
   public function getAll()
   {
@@ -507,27 +507,20 @@ class User
     }
   }
 
-<<<<<<< HEAD
-  public function getDatabaseId(){
+  public function getDatabaseId()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select id from users where email = :email');
     $email = $this->getEmail();
     $statement->bindValue(':email', $email);
     $result = $statement->execute();
     $userId = $statement->fetch(PDO::FETCH_ASSOC);
-  var_dump($userId);
-
-    
-
+    var_dump($userId);
   }
 
-  public function canLogin($email, $password){
-  
-=======
   public function canLogin($email, $password)
   {
 
->>>>>>> 9bb63c6e9abb30e447a98f9a3d2c0818580c6172
     $conn = Db::getConnection();
     $statement = $conn->prepare('select * from users where email = :email');
     //$email = $this->getEmail();
@@ -537,7 +530,7 @@ class User
     $statement->bindParam(':email', $email);
     $result = $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
-    
+
     var_dump($result);
     var_dump($user);
 
