@@ -4,9 +4,38 @@ include_once(__DIR__ . "/classes/User.php");
 include_once(__DIR__ . "/classes/Db.php");
 
 
+$user = new User();
+
+session_start();
+$user->setEmail($_SESSION['user']);
+$databaseId = $user->getDatabaseId();
+$user->setId($databaseId['id']);
+
+
+
+if (!empty($_POST)) {
+  if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['muziek']) || !empty($_POST['locatie']) || !empty($_POST['boeken'])) {
+
+      try {
+        
+          $user->setGames($_POST['games']);
+          $user->setFilms($_POST['films']);
+          $user->setMuziek($_POST['muziek']);
+          $user->setLocatie($_POST['locatie']);
+          $user->setBoeken($_POST['boeken']);
+          $user->setId($databaseId['id']);
+    
+          $user->saveInterests();
+          //header('Location:profile.php');
+      } catch (\Throwable $th) {
+          $error = $th->getMessage();
+      }
+  } else {
+      echo "<h3>Gelieve alle velden in te vullen.</h3>";
+  }
+} 
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +54,7 @@ include_once(__DIR__ . "/classes/Db.php");
                 <?php echo $error ?>
             <?php endif; ?>
             <h2 class="container mt-5 w-25"> Vervolledig u profiel </h2>
-            <form class="container w-25 border border-primary rounded" action="feature4.php" method="post">
+            <form class="container w-25 border border-primary rounded" action="" method="post">
                 <div class="form__field mt-2">
                     <label for="Games">Games</label>
                     <input class="form-control" type="text" id="Games" name="games" placeholder="Vul u favoriete game in">
@@ -55,26 +84,7 @@ include_once(__DIR__ . "/classes/Db.php");
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
-                <?php if (!empty($_POST)) {
-                    if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['muziek']) || !empty($_POST['locatie']) || !empty($_POST['boeken'])) {
-
-                        try {
-                            $user = new User();
-                            $user->setGames(htmlspecialchars($_POST['games']));
-                            $user->setFilms(htmlspecialchars($_POST['films']));
-                            $user->setMuziek(htmlspecialchars($_POST['muziek']));
-                            $user->setLocatie(htmlspecialchars($_POST['locatie']));
-                            $user->setBoeken(htmlspecialchars($_POST['boeken']));
-
-                            $user->saveInterests();
-                            header('Location:profile.php');
-                        } catch (\Throwable $th) {
-                            $error = $th->getMessage();
-                        }
-                    } else {
-                        echo "<h3>Gelieve alle velden in te vullen.</h3>";
-                    }
-                } ?>
+                
 
             </form>
             </div>

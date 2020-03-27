@@ -533,8 +533,7 @@ class User
     }
   }
 
-  public function saveInterests()
-  {
+  public function saveInterests(){
     $conn = Db::getConnection();
     $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :userid");
 
@@ -543,16 +542,17 @@ class User
     $muziek = $this->getMuziek();
     $locatie = $this->getLocatie();
     $boeken = $this->getBoeken();
-    $userid = $this->getId();
+    $userId = $this->getId();
 
     $statement->bindValue(":games", $games);
     $statement->bindValue(":films", $films);
     $statement->bindValue(":music", $muziek);
     $statement->bindValue(":location", $locatie);
     $statement->bindValue(":books", $boeken);
-    $statement->bindValue(":userId", $userid);
+    $statement->bindValue(":userId", $userId);
     $result = $statement->execute();
-    echo($result);
+    //var_dump($result);
+    
     return $result;
   }
 }
