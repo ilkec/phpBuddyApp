@@ -505,7 +505,9 @@ class User
     $statement->bindValue(':email', $email);
     $result = $statement->execute();
     $userId = $statement->fetch(PDO::FETCH_ASSOC);
-    return $result;
+    return $userId;
+    //var_dump($userId);
+
 
   }
 
@@ -534,23 +536,23 @@ class User
   public function saveInterests()
   {
     $conn = Db::getConnection();
-
-    $statement = $conn->prepare("insert into users (games, films, music, location, books) values (:games, :films, :music, :location, :books)");
+    $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :userid");
 
     $games = $this->getGames();
     $films = $this->getFilms();
     $muziek = $this->getMuziek();
     $locatie = $this->getLocatie();
     $boeken = $this->getBoeken();
+    $userid = $this->getId();
 
     $statement->bindValue(":games", $games);
     $statement->bindValue(":films", $films);
     $statement->bindValue(":music", $muziek);
     $statement->bindValue(":location", $locatie);
     $statement->bindValue(":books", $boeken);
-
+    $statement->bindValue(":userId", $userid);
     $result = $statement->execute();
-
+    echo($result);
     return $result;
   }
 }

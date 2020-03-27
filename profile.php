@@ -8,7 +8,8 @@ $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
-$user->setId($databaseId);
+$user->setId($databaseId['id']);
+var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
 
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
@@ -63,7 +64,7 @@ $getAllUser = $user->getAll();
             $errorUpload = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
-        if($getAllUser[0]['picture'] === ""){
+        if($getAllUser['picture'] === ""){
         // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
@@ -115,13 +116,13 @@ $getAllUser = $user->getAll();
 
             }else{
                 // + velden oud wachtwoord en nieuw wachtwoord leegmaken in form
-                $error = "Wachtwoord is niet correct. Gelieve opnieuw te proberen.";
+                $errorEmail = "Wachtwoord is niet correct. Gelieve opnieuw te proberen.";
             }
         }
 
         if(empty($_POST['passwordEmail']) && !empty($_POST['email'])){
             // + veld nieuw wachtwoord leegtmaken in form
-            $error = "Wachtwoord moet ingevuld zijn voor u een nieuw emailadres kan instellen";
+            $errorEmail = "Wachtwoord moet ingevuld zijn voor u een nieuw emailadres kan instellen";
         }
 }
 
@@ -226,6 +227,13 @@ $getAllUser = $user->getAll();
             <div>
             <input type="submit" value="Emailadres wijzigen" class="btn btn-primary mb-3" id="btnOpslaan" name="updateEmail">
             </div>
+            <?php if(isset($errorEmail)):?>
+				<div class="form__error">
+					<p>
+						<?php echo $errorEmail; ?>
+					</p>
+				</div>
+				<?php endif; ?>
         </form>
         <!-------form wachtwoord------>
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
