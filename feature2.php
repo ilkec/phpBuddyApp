@@ -1,20 +1,23 @@
 <?php
 	
-	include_once("User.php");
+	include_once(__DIR__ .'/classes/User.php');
+	include_once(__DIR__ . '/classes/Db.php');
 	
 	if(!empty($_POST)){
 		
 		$user = new User();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-
+		$getAllUser = $user->getAll();
 		
 		if(!empty($email) && !empty($password)){
 			
-			if($user->canLogin($email, $password)){
-				
+			if($user->canLogin($email, $password)){	
+				//$user->setEmail($email);
+				//$user->setPassword($password);
 				session_start();
 				$_SESSION['user'] = $email;
+				
 				var_dump($_SESSION['user']);
 
 				header("Location: profile.php");
