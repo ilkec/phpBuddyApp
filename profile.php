@@ -9,7 +9,7 @@ session_start();
 $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
-var_dump($databaseId['id']);
+//var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
 
     //// stap 1) maak je variabele voor alle data in te stoppen bv $email= $getAllUser[0]['email']
@@ -32,8 +32,6 @@ $getAllUser = $user->getAll();
                     $user->setLastname($_POST['lastname']);
                     $user->setDescription($_POST['profileText']);
                     $user->updateProfile();
-
-          
         } 
         catch (\Throwable $th) {
                 $error = $th->getMessage();
@@ -49,19 +47,19 @@ $getAllUser = $user->getAll();
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($upload_file,PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) {
+        if(isset($_POST["updatePhoto"])) {
             $check = getimagesize($_FILES["fileUpload"]["tmp_name"]);
             if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
+                //"File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
-                $errorUpload = "File is not an image.";
+                $errorPhoto = "File is not an image.";
                 $uploadOk = 0;
             }
         }
         // Check file size
         if ($_FILES["fileUpload"]["size"] > 500000) {
-            $errorUpload = "Sorry, your file is too large.";
+            $errorPhoto = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
         if($getAllUser['picture'] === ""){
@@ -197,8 +195,7 @@ $getAllUser = $user->getAll();
         <h3>Persoonlijke gegevens</h3>
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
-                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description'];?>
-                </textarea>
+                <textarea  class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description'];?></textarea>
             </div>
             <div class="form_field mt-2">
                 <label for="firstname">Voornaam</label>
