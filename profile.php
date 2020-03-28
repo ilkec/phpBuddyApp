@@ -25,6 +25,7 @@ $getAllUser = $user->getAll();
     $email = $getAllUser['email'];
     $passwordDatabase = $getAllUser['password'];
     $profilePicture = $getAllUser['picture'];
+
     if( isset($_SESSION['user']) ) {
     if(!empty($_POST['updateProfile'])){
         try {
@@ -177,7 +178,7 @@ $getAllUser = $user->getAll();
         <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
         <h3>Profielfoto toevoegen</h3>
             <div class="form__field mt-2">
-                <img src="<?php if($getAllUser['picture'] === ""){
+                <img src="<?php if($getAllUser['picture'] === NULL){
                     echo "uploads/profilePic.png";
                     } else{
                         echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
