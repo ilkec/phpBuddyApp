@@ -536,7 +536,7 @@ class User
   public function saveInterests()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update users set (games, films, music, location, books) values (:games, :films, :music, :location, :books) where id = :id");
+    $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :id");
 
     $id = $this->getId();
     $id->setId();
@@ -562,6 +562,5 @@ class User
 
     // return $id; //
     return $result;
-    header('Location:profile.php');
   }
 }
