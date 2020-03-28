@@ -2,6 +2,11 @@
 	
 	include_once(__DIR__ .'/classes/User.php');
 	include_once(__DIR__ . '/classes/Db.php');
+
+	
+	
+
+
 	
 	if(!empty($_POST)){
 		
@@ -10,7 +15,11 @@
 		$password = $_POST['password'];
 		$getAllUser = $user->getAll();
 		
-		
+		$games = $getAllUser['games'];
+		$films = $getAllUser['films'];
+		$location = $getAllUser['location'];
+		$music = $getAllUser['music'];
+		$books = $getAllUser['books'];
 		if(!empty($email) && !empty($password)){
 			
 			if($user->canLogin($email, $password)){	
@@ -21,9 +30,13 @@
 				$_SESSION['user'] = $email;
 				$user->setEmail($_SESSION['user'] );
 				
-				
+				if($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL){
+					header("Location: feature4.php");
+				}else{
+					header("Location: profile.php");
+				}
 
-				header("Location: profile.php");
+				
 			}
 			else{
 				$error = "Email and password don't match";

@@ -488,7 +488,7 @@ class User
               $statement->bindValue(":password", $password);
               $statement->bindValue(":register", $register);
               $result = $statement->execute();
-              header("Location: feature4.php");
+              //header("Location: feature4.php");
               var_dump($result);
               return $result;
             }
