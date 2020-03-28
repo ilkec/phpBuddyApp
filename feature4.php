@@ -7,9 +7,9 @@ include_once(__DIR__ . "/classes/Db.php");
 $user = new User();
 
 session_start();
-// $user->setEmail($_SESSION['user']); //
-// $databaseId = $user->getDatabaseId(); //
-// $user->setId($databaseId['id']); //
+$user->setEmail($_SESSION['user']);
+$databaseId = $user->getDatabaseId();
+$user->setId($databaseId['id']);
 
 
 if (!empty($_POST)) {
@@ -22,7 +22,7 @@ if (!empty($_POST)) {
             $user->setMusic($_POST['music']);
             $user->setLocation($_POST['location']);
             $user->setBooks($_POST['books']);
-            // $user->setId($databaseId['id']);//
+            $user->setId($databaseId['id']);
 
             $user->saveInterests();
             header('Location:profile.php');

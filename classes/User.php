@@ -538,29 +538,23 @@ class User
     $conn = Db::getConnection();
     $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :id");
 
-    // $id = $this->getId();
-    // $id->setId();
-
     $games = $this->getGames();
     $films = $this->getFilms();
     $music = $this->getMusic();
     $location = $this->getLocation();
     $books = $this->getBooks();
-    // $userId = $this->getId(); //
-    // $id = $this->getId(); //
+    $id = $this->getId();
 
     $statement->bindValue(":games", $games);
     $statement->bindValue(":films", $films);
     $statement->bindValue(":music", $music);
     $statement->bindValue(":location", $location);
     $statement->bindValue(":books", $books);
-    // $statement->bindValue(":userId", $userId); //
-    // $id->bindValue(":id", $id); //
+    $statement->bindValue(":id", $id);
 
     $result = $statement->execute();
     //var_dump($result);
 
-    // return $id; //
     return $result;
   }
 }
