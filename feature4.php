@@ -12,7 +12,6 @@ $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
 
-/* 
 if (!empty($_POST)) {
     if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['music']) || !empty($_POST['location']) || !empty($_POST['books'])) {
 
@@ -23,10 +22,10 @@ if (!empty($_POST)) {
             $user->setMusic($_POST['music']);
             $user->setLocation($_POST['location']);
             $user->setBooks($_POST['books']);
-            $user->setId($databaseId['id']);
+            // $user->setId($databaseId['id']);//
 
             $user->saveInterests();
-            //header('Location:profile.php');
+            header('Location:profile.php');
         } catch (\Throwable $th) {
             $error = $th->getMessage();
         }
@@ -34,7 +33,7 @@ if (!empty($_POST)) {
         echo "<h3>Gelieve alle velden in te vullen.</h3>";
     }
 }
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -84,9 +83,9 @@ if (!empty($_POST)) {
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
-                
-               
-                
+
+
+
 
             </form>
             </div>
