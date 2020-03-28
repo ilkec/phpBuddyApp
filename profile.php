@@ -25,7 +25,7 @@ $getAllUser = $user->getAll();
     $email = $getAllUser['email'];
     $passwordDatabase = $getAllUser['password'];
     $profilePicture = $getAllUser['picture'];
-
+    if( isset($_SESSION['user']) ) {
     if(!empty($_POST['updateProfile'])){
         try {
                     $user->setFirstname($_POST['firstname']);
@@ -122,6 +122,9 @@ $getAllUser = $user->getAll();
             // + veld nieuw wachtwoord leegtmaken in form
             $errorEmail = "Wachtwoord moet ingevuld zijn voor u een nieuw emailadres kan instellen";
         }
+    }
+}else{
+    header("Location: feature2.php");
 }
 
     $getAllUser = $user->getAll();
