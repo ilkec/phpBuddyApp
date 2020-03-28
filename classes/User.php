@@ -538,8 +538,8 @@ class User
     $conn = Db::getConnection();
     $statement = $conn->prepare("update users set games = :games, films = :films, music = :music, location = :location, books = :books where id = :id");
 
-    $id = $this->getId();
-    $id->setId();
+    // $id = $this->getId();
+    // $id->setId();
 
     $games = $this->getGames();
     $films = $this->getFilms();

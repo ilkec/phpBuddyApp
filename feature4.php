@@ -8,8 +8,8 @@ $user = new User();
 
 session_start();
 // $user->setEmail($_SESSION['user']); //
-$databaseId = $user->getDatabaseId();
-$user->setId($databaseId['id']);
+// $databaseId = $user->getDatabaseId(); //
+// $user->setId($databaseId['id']); //
 
 
 if (!empty($_POST)) {
