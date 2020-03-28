@@ -7,13 +7,13 @@ include_once(__DIR__ . "/classes/Db.php");
 $user = new User();
 
 session_start();
-// $user->setEmail($_SESSION['user']);
+$user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
-
+if( isset($_SESSION['user'])) {
 if (!empty($_POST)) {
-    if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['music']) || !empty($_POST['location']) || !empty($_POST['books'])) {
+    if (!empty($_POST['games']) && !empty($_POST['films']) && !empty($_POST['music']) && !empty($_POST['location']) && !empty($_POST['books'])) {
 
         try {
 
@@ -22,8 +22,6 @@ if (!empty($_POST)) {
             $user->setMusic($_POST['music']);
             $user->setLocation($_POST['location']);
             $user->setBooks($_POST['books']);
-            $user->setId($databaseId['id']);
-
             $user->saveInterests();
             header('Location:profile.php');
         } catch (\Throwable $th) {
@@ -32,6 +30,9 @@ if (!empty($_POST)) {
     } else {
         echo "<h3>Gelieve alle velden in te vullen.</h3>";
     }
+}
+} else{
+    header("Location: feature2.php");
 }
 
 ?>
