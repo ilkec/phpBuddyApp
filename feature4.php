@@ -84,26 +84,9 @@ if (!empty($_POST)) {
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
-                <?php if (!empty($_POST)) {
-                    if (empty($_POST['games']) || empty($_POST['films']) || empty($_POST['music']) || empty($_POST['location']) || empty($_POST['books'])) {
-                        echo "<h3>Gelieve alle velden in te vullen.</h3>";
-                    } else {
-
-                        try {
-                            // $user = new User(); //
-                            $user->setGames($_POST['games']);
-                            $user->setFilms($_POST['films']);
-                            $user->setMusic($_POST['music']);
-                            $user->setLocation($_POST['location']);
-                            $user->setBooks($_POST['books']);
-
-                            $user->saveInterests();
-                            header('Location:profile.php');
-                        } catch (\Throwable $th) {
-                            $error = $th->getMessage();
-                        }
-                    }
-                } ?>
+                
+               
+                
 
             </form>
             </div>
