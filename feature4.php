@@ -14,26 +14,26 @@ $user->setId($databaseId['id']);
 
 
 if (!empty($_POST)) {
-  if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['muziek']) || !empty($_POST['locatie']) || !empty($_POST['boeken'])) {
+    if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['music']) || !empty($_POST['location']) || !empty($_POST['books'])) {
 
-      try {
-        
-          $user->setGames($_POST['games']);
-          $user->setFilms($_POST['films']);
-          $user->setMuziek($_POST['muziek']);
-          $user->setLocatie($_POST['locatie']);
-          $user->setBoeken($_POST['boeken']);
-          $user->setId($databaseId['id']);
-    
-          $user->saveInterests();
-          //header('Location:profile.php');
-      } catch (\Throwable $th) {
-          $error = $th->getMessage();
-      }
-  } else {
-      echo "<h3>Gelieve alle velden in te vullen.</h3>";
-  }
-} 
+        try {
+
+            $user->setGames($_POST['games']);
+            $user->setFilms($_POST['films']);
+            $user->setMusic($_POST['music']);
+            $user->setLocation($_POST['location']);
+            $user->setBooks($_POST['books']);
+            $user->setId($databaseId['id']);
+
+            $user->saveInterests();
+            //header('Location:profile.php');
+        } catch (\Throwable $th) {
+            $error = $th->getMessage();
+        }
+    } else {
+        echo "<h3>Gelieve alle velden in te vullen.</h3>";
+    }
+}
 
 ?>
 
@@ -67,25 +67,26 @@ if (!empty($_POST)) {
 
 
                 <div class="form__field mt-2">
-                    <label for="Muziek">Muziek</label>
-                    <input class="form-control" type="text" id="Muziek" name="muziek" placeholder="Vul u favoriete artiest in">
+                    <label for="Music">Music</label>
+                    <input class="form-control" type="text" id="Music" name="music" placeholder="Vul u favoriete artiest in">
                 </div>
 
 
                 <div class="form__field mt-2">
-                    <label for="Locatie">Locatie</label>
-                    <input class="form-control" type="text" id="Locatie" name="locatie" placeholder="Vul u stad/dorp in">
+                    <label for="Location">Location</label>
+                    <input class="form-control" type="text" id="Location" name="location" placeholder="Vul u stad/dorp in">
                 </div>
 
 
                 <div class="form__field mt-2">
-                    <label for="Boeken">Boeken</label>
-                    <input class="form-control mb-3" type="text" id="Boeken" name="boeken" placeholder="Vul u favoriete schrijver in">
+                    <label for="Books">Books</label>
+                    <input class="form-control mb-3" type="text" id="Books" name="books" placeholder="Vul u favoriete schrijver in">
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
                 
                
+                
 
             </form>
             </div>
