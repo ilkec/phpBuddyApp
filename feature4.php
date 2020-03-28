@@ -99,7 +99,6 @@ if (!empty($_POST)) {
 
                             $user->saveInterests();
                             header('Location:profile.php');
-                            // header('Location:profile.php'); //
                         } catch (\Throwable $th) {
                             $error = $th->getMessage();
                         }
