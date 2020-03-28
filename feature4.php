@@ -7,12 +7,12 @@ include_once(__DIR__ . "/classes/Db.php");
 $user = new User();
 
 session_start();
-$user->setEmail($_SESSION['user']);
+// $user->setEmail($_SESSION['user']); //
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
 
-
+/* 
 if (!empty($_POST)) {
     if (!empty($_POST['games']) || !empty($_POST['films']) || !empty($_POST['music']) || !empty($_POST['location']) || !empty($_POST['books'])) {
 
@@ -34,7 +34,7 @@ if (!empty($_POST)) {
         echo "<h3>Gelieve alle velden in te vullen.</h3>";
     }
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +98,7 @@ if (!empty($_POST)) {
                             $user->setBooks($_POST['books']);
 
                             $user->saveInterests();
-                            header('Location:profile.php');
+                            // header('Location:profile.php'); //
                         } catch (\Throwable $th) {
                             $error = $th->getMessage();
                         }
