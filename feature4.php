@@ -11,7 +11,7 @@ $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
-if(isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
     if (!empty($_POST)) {
         if (!empty($_POST['games']) && !empty($_POST['films']) && !empty($_POST['music']) && !empty($_POST['location']) && !empty($_POST['books'])) {
 
@@ -31,7 +31,7 @@ if(isset($_SESSION['user'])) {
             echo "<h3>Gelieve alle velden in te vullen.</h3>";
         }
     }
-} else{
+} else {
     header("Location:feature2.php");
 }
 
@@ -56,31 +56,66 @@ if(isset($_SESSION['user'])) {
             <h2 class="container mt-5 w-25"> Vervolledig u profiel </h2>
             <form class="container w-25 border border-primary rounded" action="" method="post">
                 <div class="form__field mt-2">
-                    <label for="Games">Games</label>
-                    <input class="form-control" type="text" id="Games" name="games" placeholder="Vul u favoriete game in">
+                    <label for="Games">My favorite genre of games</label>
+                    <select class="form-control" type="text" id="Games" name="games">
+                        <option value="Adventure">Action</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Platforming">Platforming</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Shooter">Shooter</option>
+                        <option value="Sports">Sports</option>
+                        <option value="None">I don't play videogames</option>
+                    </select>
                 </div>
 
                 <div class="form__field mt-2">
-                    <label for="Films">Films</label>
-                    <input class="form-control" type="text" id="Films" name="films" placeholder="Vul u favoriete film in">
+                    <label for="Films">My favorite genre of films</label>
+                    <select class="form-control" type="text" id="Films" name="films">
+                        <option value="Action">Action</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Science fiction">Science fiction</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
                 </div>
 
 
                 <div class="form__field mt-2">
-                    <label for="Music">Music</label>
-                    <input class="form-control" type="text" id="Music" name="music" placeholder="Vul u favoriete artiest in">
+                    <label for="Music">My favorite music genre</label>
+                    <select class="form-control" type="text" id="Music" name="music">
+                        <option value="Country">Country</option>
+                        <option value="House">House</option>
+                        <option value="Jazz">Jazz</option>
+                        <option value="Klassiek">Klassiek</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Rap">Rap</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Techno">Techno</option>
+                    </select>
                 </div>
 
 
                 <div class="form__field mt-2">
                     <label for="Location">Location</label>
-                    <input class="form-control" type="text" id="Location" name="location" placeholder="Vul u stad/dorp in">
+                    <input class="form-control" type="text" id="Location" name="location" placeholder="What city/town do you live in ?">
                 </div>
 
 
                 <div class="form__field mt-2">
-                    <label for="Books">Books</label>
-                    <input class="form-control mb-3" type="text" id="Books" name="books" placeholder="Vul u favoriete schrijver in">
+                    <label for="Books">My favorite genre of books</label>
+                    <select class="form-control mb-3" type="text" id="Books" name="books">
+                        <option value="Action">Action</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Comics">Comics</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="History">History</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Science fiction">Science fiction</option>
+                    </select>
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Bevestigen" name="submit_button">
