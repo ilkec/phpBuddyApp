@@ -557,4 +557,30 @@ class User
 
     return $result;
   }
+
+
+  public function matchUser()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('SELECT * FROM users WHERE games = :games OR films = :films OR music = :music OR location = :location OR books = :books AND id != :id');
+
+    $games = $this->getGames();
+    $films = $this->getFilms();
+    $music = $this->getMusic();
+    $location = $this->getLocation();
+    $books = $this->getBooks();
+    $id = $this->getId();
+
+    $statement->bindValue(":games", $games);
+    $statement->bindValue(":films", $films);
+    $statement->bindValue(":music", $music);
+    $statement->bindValue(":location", $location);
+    $statement->bindValue(":books", $books);
+    $statement->bindValue(":id", $id);
+
+
+    $result = $statement->execute();
+    $users = $statement->fetch(PDO::FETCH_ASSOC);
+    return $users;
+  }
 }
