@@ -1,39 +1,47 @@
 <?php
-
-include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/classes/Db.php');
-
-
+	
+	include_once(__DIR__ .'/classes/User.php');
+	include_once(__DIR__ . '/classes/Db.php');
 
 
+	if(!empty($_POST)){
+		
+		$user = new User();
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
+		
+		
+		if(!empty($email) && !empty($password)){
+			
+			if($user->canLogin($email, $password)){	
+				//$user->setEmail($email);
+				//$user->setPassword($password);
+				session_start();
+				
+				$_SESSION['user'] = $email;
+				$user->setEmail($_SESSION['user']);
+				$databaseId = $user->getDatabaseId();
+				$user->setId($databaseId['id']);
+				
+				$getAllUser = $user->getAll();
+				$games = $getAllUser['games'];
+				$films = $getAllUser['films'];
+				$location = $getAllUser['location'];
+				$music = $getAllUser['music'];
+				$books = $getAllUser['books'];
+				var_dump($books);
+				
+				if(is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)){
+					header("Location: feature4.php");
+				}else{
+					header("Location: profile.php");
+				}
 
-
-if (!empty($_POST)) {
-
-	$user = new User();
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	$getAllUser = $user->getAll();
-
-	$games = $getAllUser['games'];
-	$films = $getAllUser['films'];
-	$location = $getAllUser['location'];
-	$music = $getAllUser['music'];
-	$books = $getAllUser['books'];
-	if (!empty($email) && !empty($password)) {
-
-		if ($user->canLogin($email, $password)) {
-			//$user->setEmail($email);
-			//$user->setPassword($password);
-			session_start();
-
-			$_SESSION['user'] = $email;
-			$user->setEmail($_SESSION['user']);
-
-			if ($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL) {
-				header("Location: feature4.php");
-			} else {
-				header("Location: feature7.php");
+				
+			}
+			else{
+				$error = "Email and password don't match";
 			}
 		} else {
 			$error = "Email and password don't match";
@@ -42,10 +50,7 @@ if (!empty($_POST)) {
 		// indien leeg: error genereren.
 		$error = "Email and password are required";
 	}
-} else {
-	// indien leeg: error genereren.
-	$error = "Email and password are required";
-}
+	
 
 ?>
 
