@@ -3,7 +3,7 @@
 include_once(__DIR__ . "/classes/User.php");
 include_once(__DIR__ . "/classes/Db.php");
 
-/*
+
 $user = new User();
 
 session_start();
@@ -11,9 +11,13 @@ $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
-$user->matchUser();
-*/
+$match = $user->matchUser();
 
+$games = $match['games'];
+$films = $match['films'];
+$music = $match['music'];
+$location = $match['location'];
+$books = $match['books'];
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +30,9 @@ $user->matchUser();
 </head>
 
 <body>
+    <?php
 
+    ?>
 </body>
 
 </html>
