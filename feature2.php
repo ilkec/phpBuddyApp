@@ -1,55 +1,51 @@
 <?php
-	
-	include_once(__DIR__ .'/classes/User.php');
-	include_once(__DIR__ . '/classes/Db.php');
 
-	
-	
+include_once(__DIR__ . '/classes/User.php');
+include_once(__DIR__ . '/classes/Db.php');
 
 
-	
-	if(!empty($_POST)){
-		
-		$user = new User();
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		$getAllUser = $user->getAll();
-		
-		$games = $getAllUser['games'];
-		$films = $getAllUser['films'];
-		$location = $getAllUser['location'];
-		$music = $getAllUser['music'];
-		$books = $getAllUser['books'];
-		if(!empty($email) && !empty($password)){
-			
-			if($user->canLogin($email, $password)){	
-				//$user->setEmail($email);
-				//$user->setPassword($password);
-				session_start();
-				
-				$_SESSION['user'] = $email;
-				$user->setEmail($_SESSION['user'] );
-				
-				if($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL){
-					header("Location: feature4.php");
-				}else{
-					header("Location: profile.php");
-				}
 
-				
+
+
+
+if (!empty($_POST)) {
+
+	$user = new User();
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$getAllUser = $user->getAll();
+
+	$games = $getAllUser['games'];
+	$films = $getAllUser['films'];
+	$location = $getAllUser['location'];
+	$music = $getAllUser['music'];
+	$books = $getAllUser['books'];
+	if (!empty($email) && !empty($password)) {
+
+		if ($user->canLogin($email, $password)) {
+			//$user->setEmail($email);
+			//$user->setPassword($password);
+			session_start();
+
+			$_SESSION['user'] = $email;
+			$user->setEmail($_SESSION['user']);
+
+			if ($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL) {
+				header("Location: feature4.php");
+			} else {
+				header("Location: feature7.php");
 			}
-			else{
-				$error = "Email and password don't match";
-			}
-		}
-		else{
-			// indien leeg: error genereren.
-			$error = "Email and password are required";
+		} else {
+			$error = "Email and password don't match";
 		}
 	} else {
 		// indien leeg: error genereren.
 		$error = "Email and password are required";
 	}
+} else {
+	// indien leeg: error genereren.
+	$error = "Email and password are required";
+}
 
 ?>
 
@@ -65,19 +61,19 @@
 </head>
 
 <body>
-<form action="" method="post">
-        <h2 form__title>Sign up for an account</h2>
-        <?php if( isset($error) ): ?>
-            <p>
-                <?php echo $error; ?>
-            </p>
-        <?php endif; ?>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-        <input type="submit" value="Log in">
-    </form>
+	<form action="" method="post">
+		<h2 form__title>Sign up for an account</h2>
+		<?php if (isset($error)) : ?>
+			<p>
+				<?php echo $error; ?>
+			</p>
+		<?php endif; ?>
+		<label for="email">Email</label>
+		<input type="text" id="email" name="email">
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password">
+		<input type="submit" value="Log in">
+	</form>
 </body>
 
 </html>

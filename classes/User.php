@@ -557,4 +557,13 @@ class User
 
     return $result;
   }
+
+  public function matchUser()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('SELECT * FROM users WHERE games = :games OR films = :films OR music = :music OR location = :location OR books = :books AND id != :id');
+
+    // $result = $statement->execute();
+    // var_dump($result);
+  }
 }
