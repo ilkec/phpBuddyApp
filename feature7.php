@@ -38,7 +38,21 @@ $foundmatch = $user->matchUser();
     ?>
     <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
     <?php
+    foreach ($match as $m) {
+        if ($match['games'] == $user->getGames()) {
+            echo $match['picture'] . "<br>";
+            echo $match['firstname'] . " ";
+            echo $match['lastname'] . "<br>";
+            echo "Deze persoon speelt ook graag" . " " . $match['games'] . "games";
+        }
 
+        if ($match['music'] == $user->getMusic()) {
+            echo $match['picture'] . "<br>";
+            echo $match['firstname'] . " ";
+            echo $match['lastname'] . "<br>";
+            echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek";
+        }
+    }
     ?>
 </body>
 
