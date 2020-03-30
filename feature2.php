@@ -13,13 +13,9 @@
 		$user = new User();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-		$getAllUser = $user->getAll();
 		
-		$games = $getAllUser['games'];
-		$films = $getAllUser['films'];
-		$location = $getAllUser['location'];
-		$music = $getAllUser['music'];
-		$books = $getAllUser['books'];
+		
+		
 		if(!empty($email) && !empty($password)){
 			
 			if($user->canLogin($email, $password)){	
@@ -28,9 +24,19 @@
 				session_start();
 				
 				$_SESSION['user'] = $email;
-				$user->setEmail($_SESSION['user'] );
+				$user->setEmail($_SESSION['user']);
+				$databaseId = $user->getDatabaseId();
+				$user->setId($databaseId['id']);
 				
-				if($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL){
+				$getAllUser = $user->getAll();
+				$games = $getAllUser['games'];
+				$films = $getAllUser['films'];
+				$location = $getAllUser['location'];
+				$music = $getAllUser['music'];
+				$books = $getAllUser['books'];
+				var_dump($books);
+				
+				if(is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)){
 					header("Location: feature4.php");
 				}else{
 					header("Location: profile.php");
@@ -50,6 +56,7 @@
 		// indien leeg: error genereren.
 		$error = "Email and password are required";
 	}
+	
 
 ?>
 
