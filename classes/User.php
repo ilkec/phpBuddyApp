@@ -562,25 +562,28 @@ class User
   public function matchUser()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare('SELECT * FROM users WHERE games = :games OR films = :films OR music = :music OR location = :location OR books = :books AND id != :id');
+    $statement = $conn->prepare('SELECT picture, firstname, lastname, games, films, music, location, books FROM users WHERE (games = :games OR films = :films OR music = :music OR location = :location OR books = :books) AND email != :email');
 
     $games = $this->getGames();
     $films = $this->getFilms();
     $music = $this->getMusic();
     $location = $this->getLocation();
     $books = $this->getBooks();
-    $id = $this->getId();
+    $email = $this->getEmail();
 
     $statement->bindValue(":games", $games);
     $statement->bindValue(":films", $films);
     $statement->bindValue(":music", $music);
     $statement->bindValue(":location", $location);
     $statement->bindValue(":books", $books);
-    $statement->bindValue(":id", $id);
+    $statement->bindValue(":email", $email);
 
 
-    $result = $statement->execute();
-    $users = $statement->fetch(PDO::FETCH_ASSOC);
+    $statement->execute();
+
+    // $result = $statement->fetchAll();
+    $users = $statement->fetchAll(PDO::FETCH_CLASS);
     return $users;
+    // return $result;
   }
 }

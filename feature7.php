@@ -11,13 +11,15 @@ $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 
-$match = $user->matchUser();
+$match = $user->getAll();
+$user->setGames($match['games']);
+$user->setFilms($match['films']);
+$user->setMusic($match['music']);
+$user->setLocation($match['location']);
+$user->setBooks($match['books']);
+$user->setEmail($match['email']);
 
-$games = $match['games'];
-$films = $match['films'];
-$music = $match['music'];
-$location = $match['location'];
-$books = $match['books'];
+$foundmatch = $user->matchUser();
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +32,11 @@ $books = $match['books'];
 </head>
 
 <body>
+    <?php
+    // var_dump($match);
+    var_dump($foundmatch);
+    ?>
+    <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
     <?php
 
     ?>
