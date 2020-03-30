@@ -1,14 +1,9 @@
 <?php
-<<<<<<< HEAD
 	
 	include_once(__DIR__ .'/classes/User.php');
 	include_once(__DIR__ . '/classes/Db.php');
 
-	
-	
 
-
-	
 	if(!empty($_POST)){
 		
 		$user = new User();
@@ -47,43 +42,6 @@
 			}
 			else{
 				$error = "Email and password don't match";
-=======
-
-include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/classes/Db.php');
-
-
-
-
-
-
-if (!empty($_POST)) {
-
-	$user = new User();
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	$getAllUser = $user->getAll();
-
-	$games = $getAllUser['games'];
-	$films = $getAllUser['films'];
-	$location = $getAllUser['location'];
-	$music = $getAllUser['music'];
-	$books = $getAllUser['books'];
-	if (!empty($email) && !empty($password)) {
-
-		if ($user->canLogin($email, $password)) {
-			//$user->setEmail($email);
-			//$user->setPassword($password);
-			session_start();
-
-			$_SESSION['user'] = $email;
-			$user->setEmail($_SESSION['user']);
-
-			if ($games === NULL && $books === NULL && $music === NULL && $location === NULL && $films === NULL) {
-				header("Location: feature4.php");
-			} else {
-				header("Location: feature7.php");
->>>>>>> 6cce8d4d2aaaaf2850da6ba368db6ab38fa48b88
 			}
 		} else {
 			$error = "Email and password don't match";
@@ -92,14 +50,7 @@ if (!empty($_POST)) {
 		// indien leeg: error genereren.
 		$error = "Email and password are required";
 	}
-<<<<<<< HEAD
 	
-=======
-} else {
-	// indien leeg: error genereren.
-	$error = "Email and password are required";
-}
->>>>>>> 6cce8d4d2aaaaf2850da6ba368db6ab38fa48b88
 
 ?>
 
