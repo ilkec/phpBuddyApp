@@ -34,33 +34,51 @@ $foundmatch = $user->matchUser();
 <body>
     <?php
     // var_dump($match);
-    var_dump($foundmatch);
+    // var_dump($foundmatch);
     ?>
     <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
-    <?php
-    foreach ($match as $m) {
-        if ($match['games'] == $user->getGames() && $user->getEmail() == $match['email']) {
-            echo $match['picture'] . "<br>";
-            echo $match['firstname'] . " ";
-            echo $match['lastname'] . "<br>";
-            echo "Deze persoon speelt ook graag" . " " . $match['games'] . "games";
-        }
+    <div>
+        <?php
+        foreach ($foundmatch as $m) {
 
-        if ($match['music'] == $user->getMusic() && $user->getEmail() != $match['email']) {
-            echo $match['picture'] . "<br>";
-            echo $match['firstname'] . " ";
-            echo $match['lastname'] . "<br>";
-            echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek";
+            if ($m['games'] == $user->getGames() && $m != $match['email']) {
+                echo "<div>";
+                echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
+                echo $m['firstname'] . " ";
+                echo $m['lastname'] . "<br>";
+                echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
+                echo "</div>";
+            } else
+                
+            if ($match['music'] == $user->getMusic() && $m != $match['email']) {
+                echo "<div>";
+                echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
+                echo $match['firstname'] . " ";
+                echo $match['lastname'] . "<br>";
+                echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek <br>";
+                echo "</div>";
+            } else
+                
+            if ($match['location'] == $user->getLocation() && $m != $match['email']) {
+                echo "<div>";
+                echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
+                echo $match['firstname'] . " ";
+                echo $match['lastname'] . "<br>";
+                echo "Deze persoon woont ook in" . " " . $match['location'] . "<br>";
+                echo "</div>";
+            } else
+                
+            if ($match['books'] == $user->getBooks() && $match['films'] == $user->getFilms() && $m != $match['email']) {
+                echo "<div>";
+                echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
+                echo $match['firstname'] . " ";
+                echo $match['lastname'] . "<br>";
+                echo "Deze persoon kijkt ook graag" . " " . $match['films'] . "films en leest ook graag" . " " . $match['books'] . "boeken" . "<br>";
+                echo "</div>";
+            }
         }
-
-        if ($match['location'] == $user->getLocation() && $user->getEmail() != $match['email']) {
-            echo $match['picture'] . "<br>";
-            echo $match['firstname'] . " ";
-            echo $match['lastname'] . "<br>";
-            echo "Deze persoon woont ook in" . " " . $match['location'];
-        }
-    }
-    ?>
+        ?>
+    </div>
 </body>
 
 </html>

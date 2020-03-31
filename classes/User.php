@@ -562,7 +562,7 @@ class User
   public function matchUser()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare('SELECT picture, firstname, lastname, games, films, music, location, books FROM users WHERE (games = :games OR films = :films OR music = :music OR location = :location OR books = :books) AND email != :email');
+    $statement = $conn->prepare('SELECT picture, firstname, lastname, games, films, music, location, books FROM users WHERE (games = :games OR films = :films OR music = :music OR location = :location OR books = :books) AND email <> :email');
 
     $games = $this->getGames();
     $films = $this->getFilms();
@@ -582,7 +582,7 @@ class User
     $statement->execute();
 
     // $result = $statement->fetchAll();
-    $users = $statement->fetchAll(PDO::FETCH_CLASS);
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $users;
     // return $result;
   }
