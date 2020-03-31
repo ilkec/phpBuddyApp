@@ -39,7 +39,7 @@ $foundmatch = $user->matchUser();
     <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
     <?php
     foreach ($match as $m) {
-        if ($match['games'] == $user->getGames()) {
+        if ($match['games'] == $user->getGames() && $user->getEmail() != $match['email']) {
             echo $match['picture'] . "<br>";
             echo $match['firstname'] . " ";
             echo $match['lastname'] . "<br>";
@@ -51,6 +51,13 @@ $foundmatch = $user->matchUser();
             echo $match['firstname'] . " ";
             echo $match['lastname'] . "<br>";
             echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek";
+        }
+
+        if ($match['location'] == $user->getLocation()) {
+            echo $match['picture'] . "<br>";
+            echo $match['firstname'] . " ";
+            echo $match['lastname'] . "<br>";
+            echo "Deze persoon woont ook in" . " " . $match['location'] . "location";
         }
     }
     ?>
