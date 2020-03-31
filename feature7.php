@@ -52,30 +52,30 @@ $foundmatch = $user->matchUser();
                     echo "</h5>";
                 } else
                 
-            if ($match['music'] == $user->getMusic() && $m != $match['email']) {
+            if ($m['music'] == $user->getMusic() && $m != $match['email']) {
                     echo "<h5>";
                     echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $match['firstname'] . " ";
-                    echo $match['lastname'] . "<br>";
-                    echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek <br>";
+                    echo $m['firstname'] . " ";
+                    echo $m['lastname'] . "<br>";
+                    echo "Deze persoon luistert ook graag" . " " . $m['music'] . "muziek <br>";
                     echo "</h5>";
                 } else
                 
-            if ($match['location'] == $user->getLocation() && $m != $match['email']) {
+            if ($m['location'] == $user->getLocation() && $m != $match['email']) {
                     echo "<h5>";
                     echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $match['firstname'] . " ";
-                    echo $match['lastname'] . "<br>";
-                    echo "Deze persoon woont ook in" . " " . $match['location'] . "<br>";
+                    echo $m['firstname'] . " ";
+                    echo $m['lastname'] . "<br>";
+                    echo "Deze persoon woont ook in" . " " . $m['location'] . "<br>";
                     echo "</h5>";
                 } else
                 
-            if ($match['books'] == $user->getBooks() && $match['films'] == $user->getFilms() && $m != $match['email']) {
+            if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m != $match['email']) {
                     echo "<h5>";
                     echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $match['firstname'] . " ";
-                    echo $match['lastname'] . "<br>";
-                    echo "Deze persoon kijkt ook graag" . " " . $match['films'] . "films en leest ook graag" . " " . $match['books'] . "boeken" . "<br>";
+                    echo $m['firstname'] . " ";
+                    echo $m['lastname'] . "<br>";
+                    echo "Deze persoon kijkt ook graag" . " " . $m['films'] . "films en leest ook graag" . " " . $m['books'] . "boeken" . "<br>";
                     echo "</h5>";
                 }
             }
