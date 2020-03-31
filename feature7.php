@@ -39,25 +39,25 @@ $foundmatch = $user->matchUser();
     <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
     <?php
     foreach ($match as $m) {
-        if ($match['games'] == $user->getGames() && $user->getEmail() != $match['email']) {
+        if ($match['games'] == $user->getGames() && $user->getEmail() == $match['email']) {
             echo $match['picture'] . "<br>";
             echo $match['firstname'] . " ";
             echo $match['lastname'] . "<br>";
             echo "Deze persoon speelt ook graag" . " " . $match['games'] . "games";
         }
 
-        if ($match['music'] == $user->getMusic()) {
+        if ($match['music'] == $user->getMusic() && $user->getEmail() != $match['email']) {
             echo $match['picture'] . "<br>";
             echo $match['firstname'] . " ";
             echo $match['lastname'] . "<br>";
             echo "Deze persoon luistert ook graag" . " " . $match['music'] . "muziek";
         }
 
-        if ($match['location'] == $user->getLocation()) {
+        if ($match['location'] == $user->getLocation() && $user->getEmail() != $match['email']) {
             echo $match['picture'] . "<br>";
             echo $match['firstname'] . " ";
             echo $match['lastname'] . "<br>";
-            echo "Deze persoon woont ook in" . " " . $match['location'] . "location";
+            echo "Deze persoon woont ook in" . " " . $match['location'];
         }
     }
     ?>
