@@ -8,14 +8,7 @@
     session_start();
 
     $databaseId = $user-> getDatabaseId();
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-        if (empty($_POST["choose"])) {
-            $chooseErr = "You need to make a choise";
-          } else {
-            $choose = test_input($_POST["choose"]);
-          }
-    }
+    
 
 
 
@@ -33,11 +26,12 @@
     </style>
 </head>
 <body>
-    <div class="images">
-        <img class="iab" src="img/iab.png" alt="" height="300px">
-        <img class="ihb" src="img/ihb.png" alt="" height="300px">
-        <input type="radio" name="Choose" <?php if (isset($choose) && $choose=="I am a buddy (1imd)") echo "checked";?> value="I am a buddy (1imd)">I am a buddy (1imd)
-        <input type="radio" name="Choose" <?php if (isset($choose) && $choose=="I search a buddy (2 & imd)") echo "checked";?> value="I search a buddy (2 & imd)">I search a buddy (2 & imd)
+    <div class="imageButton">
+        <form action="user.php">
+            
+            <input type="image" src="img/iab.png" alt="Submit" width="300px" >
+            <input type="image" src="img/ihb.png" alt="Submit" width="300px" >
+        </form>
             
     </div>
 </body>
