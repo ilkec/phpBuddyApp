@@ -19,6 +19,8 @@ class User
   private $music;
   private $location;
   private $books;
+  private $buddy;
+  private $leader;
 
 
 
@@ -347,6 +349,22 @@ class User
 
     return $this;
   }
+
+  public private get$Buddy() {
+		return this.$buddy;
+	}
+
+	public void set$Buddy(private $buddy) {
+		this.$buddy = $buddy;
+	}
+
+	public private get$Leader() {
+		return this.$leader;
+	}
+
+	public void set$Leader(private $leader) {
+		this.$leader = $leader;
+	}
 
 
   public function getAll()

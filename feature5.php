@@ -6,7 +6,20 @@
     $user = new User ();
 
     session_start();
+
+    $databaseId = $user-> getDatabaseId();
+
+    $buddy = ;
+    $lead = ;
+
     
+    $result = $connect_db->mysqli_query("SELECT * FROM matches WHERE matches_ibfk_1 = 'buddy' "); 
+    $result = $connect_db->mysqli_query("SELECT * FROM matches WHERE matches_ibfk_2 = 'help' "); 
+
+    
+    
+
+ 
 
 
 

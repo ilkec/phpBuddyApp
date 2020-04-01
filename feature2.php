@@ -47,7 +47,7 @@
 			$error = "Email and password don't match";
 		}
 	} else {
-		// indien leeg: error genereren.
+		
 		$error = "Email and password are required";
 	}
 	
