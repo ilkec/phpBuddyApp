@@ -247,6 +247,7 @@ class User
       }
     }
   }
+  
 
   /**
    * Get the value of password
@@ -349,6 +350,48 @@ class User
 
     return $this;
   }
+
+
+  /**
+   * Get the value of buddy
+   */
+  public function getBuddy()
+  {
+    return $this->buddy;
+  }
+
+  /**
+   * Set the value of buddy
+   *
+   * @return  self
+   */
+  public function setBuddy($buddy)
+  {
+    $this->buddy = $buddy;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of leader
+   */
+  public function getLeader()
+  {
+    return $this->leader;
+  }
+
+  /**
+   * Set the value of leader
+   * @return  self
+   */
+  public function setLeader($leader)
+  {
+    $this->leader = $leader;
+
+    return $this;
+  }
+
+
 
   
 

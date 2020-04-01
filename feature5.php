@@ -8,16 +8,15 @@
     session_start();
 
     $databaseId = $user-> getDatabaseId();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $buddy = ;
-    $lead = ;
+        if (empty($_POST["choose"])) {
+            $chooseErr = "You need to make a choise";
+          } else {
+            $choose = test_input($_POST["choose"]);
+          }
+    }
 
-    
-    $result = $connect_db->mysqli_query("SELECT * FROM matches WHERE matches_ibfk_1 = 'buddy' "); 
-    $result = $connect_db->mysqli_query("SELECT * FROM matches WHERE matches_ibfk_2 = 'help' "); 
-
-    
-    
 
 
 ?>
@@ -37,6 +36,9 @@
     <div class="images">
         <img class="iab" src="img/iab.png" alt="" height="300px">
         <img class="ihb" src="img/ihb.png" alt="" height="300px">
+        <input type="radio" name="Choose" <?php if (isset($choose) && $choose=="I am a buddy (1imd)") echo "checked";?> value="I am a buddy (1imd)">I am a buddy (1imd)
+        <input type="radio" name="Choose" <?php if (isset($choose) && $choose=="I search a buddy (2 & imd)") echo "checked";?> value="I search a buddy (2 & imd)">I search a buddy (2 & imd)
+            
     </div>
 </body>
 </html>
