@@ -5,7 +5,7 @@
     $user = new User();
     session_start();
     $databaseId = $user->getDatabaseId();
-    $user->setId($databaseId['id']);
+    $user->setId($databaseId);
 
 
     if(!empty($_POST)){
@@ -14,13 +14,16 @@
             $buddy = 0;
             $user->setBuddy($choice);
             $user->saveChoice();
+            header("Location: feature4.php");
         }
         else{
             $choice = "Looking for buddy";
             $buddy = 1;
             $user->setBuddy($choice);
             $user->saveChoice();
+            header("Location: feature4.php");
         }
+
     }
 
 ?>
