@@ -614,18 +614,10 @@ class User
     // return $result;
   }
 
-  public function saveMatch()
-  {
-    $conn = Db::getConnection();
-    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values (:id, :id)");
-    $result = $statement->execute();
-    return $result;
-  }
-
   public function saveChoice()
   {
     $conn = Db::getConnection();
-    $statement= $conn->prepare('update users set buddy = :buddy where id = :id');
+    $statement = $conn->prepare('update users set buddy = :buddy where id = :id');
 
     $buddy = $this->getBuddy();
     $id = $this->getId();
@@ -635,7 +627,4 @@ class User
 
     $statement->execute();
   }
-
 }
-
-
