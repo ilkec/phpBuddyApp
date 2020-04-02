@@ -64,7 +64,6 @@ if (isset($_SESSION['user'])) {
                         <option value="RPG">RPG</option>
                         <option value="Shooter">Shooter</option>
                         <option value="Sports">Sports</option>
-                        <option value="None">I don't play videogames</option>
                     </select>
                 </div>
 

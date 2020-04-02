@@ -3,6 +3,7 @@
 include_once(__DIR__ . "/classes/User.php");
 include_once(__DIR__ . "/classes/Db.php");
 
+$conn = Db::getConnection();
 
 $user = new User();
 
@@ -20,6 +21,8 @@ $user->setBooks($match['books']);
 $user->setEmail($match['email']);
 
 $foundmatch = $user->matchUser();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +53,11 @@ $foundmatch = $user->matchUser();
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
                     echo "</h5>";
+                    // $user->saveMatch();
+                    $id = $match['id'];
+                    $id2 = $m['id'];
+                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
+                    $statement->execute();
                 } else
                 
             if ($m['music'] == $user->getMusic() && $m != $match['email']) {
@@ -59,6 +67,11 @@ $foundmatch = $user->matchUser();
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon luistert ook graag" . " " . $m['music'] . "muziek <br>";
                     echo "</h5>";
+                    // $user->saveMatch();
+                    $id = $match['id'];
+                    $id2 = $m['id'];
+                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
+                    $statement->execute();
                 } else
                 
             if ($m['location'] == $user->getLocation() && $m != $match['email']) {
@@ -68,6 +81,11 @@ $foundmatch = $user->matchUser();
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon woont ook in" . " " . $m['location'] . "<br>";
                     echo "</h5>";
+                    // $user->saveMatch();
+                    $id = $match['id'];
+                    $id2 = $m['id'];
+                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
+                    $statement->execute();
                 } else
                 
             if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m != $match['email']) {
@@ -77,6 +95,11 @@ $foundmatch = $user->matchUser();
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon kijkt ook graag" . " " . $m['films'] . "films en leest ook graag" . " " . $m['books'] . "boeken" . "<br>";
                     echo "</h5>";
+                    // $user->saveMatch();
+                    $id = $match['id'];
+                    $id2 = $m['id'];
+                    $statement = $conn->prepare("INSERT INTO matches (user_id1, user_id2) values ($id, $id2)");
+                    $statement->execute();
                 }
             }
             ?>
