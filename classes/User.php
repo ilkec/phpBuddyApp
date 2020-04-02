@@ -20,7 +20,6 @@ class User
   private $location;
   private $books;
   private $buddy;
-  private $leader;
 
 
 
@@ -371,25 +370,6 @@ class User
     return $this;
   }
 
-  /**
-   * Get the value of leader
-   */
-  public function getLeader()
-  {
-    return $this->leader;
-  }
-
-  /**
-   * Set the value of leader
-   * @return  self
-   */
-  public function setLeader($leader)
-  {
-    $this->leader = $leader;
-
-    return $this;
-  }
-
 
 
 
@@ -641,4 +621,21 @@ class User
     $result = $statement->execute();
     return $result;
   }
+
+  public function saveChoice()
+  {
+    $conn = Db::getConnection();
+    $statement= $conn->prepare('update users set buddy = :buddy where id = :id');
+
+    $buddy = $this->getBuddy();
+    $id = $this->getId();
+
+    $statement->bindValue(":buddy", $buddy);
+    $statement->bindValue(":id", $id);
+
+    $statement->execute();
+  }
+
 }
+
+
