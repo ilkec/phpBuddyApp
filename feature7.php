@@ -104,6 +104,7 @@ $foundmatch = $user->matchUser();
             }
             ?>
         </div>
+        <a href="feature5.php" class="btn btn-primary">Mijn profiel</a>
     </div>
 </body>
 
