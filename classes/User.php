@@ -627,4 +627,20 @@ class User
 
     $statement->execute();
   }
+
+
+  public function showMatches(){
+    $conn = Db::getConnection();
+
+
+    $statement = $conn->prepare('select matches.id, user1.firstname as firstname1, user1.lastname as lastname1, user2.firstname as firstname2, user2.lastname as lastname2 from users as user1, users as user2, matches where matches.user_id1 = user1.id and matches.user_id2 = user2.id');
+    $result = $statement->execute();
+    $matches = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $matches;
+    var_dump($matches);
+  }
+
+
+
+
 }
