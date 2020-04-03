@@ -4,7 +4,6 @@
 
     $user = new User();
     session_start();
-    $user->setEmail($_SESSION['user']);
     $databaseId = $user->getDatabaseId();
     $user->setId($databaseId['id']);
 
@@ -24,11 +23,25 @@
     <title>Matches</title>
     <style>
         .card{
-            width: 18rem;
+            width: 500px;
             margin-bottom: 20px;
         }
         .wrapper{
             margin: 20px 0 0 20px;
+        }
+        .profilePicture{
+            width: 50px;
+            margin-left:auto;
+            margin-right:auto;
+
+        }
+        .card-body{
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;  
+        }
+        
+        p{
+            text-align: center;
         }
     </style>
 </head>
@@ -38,7 +51,15 @@
 <?php foreach($matches as $match) :?>
     <div class="card">
         <div class="card-body">
-            <?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?>  
+            <img src="<?php if($match['picture1'] === NULL){
+                    echo "uploads/profilePic.png";
+                    } else{
+                        echo "uploads/" . $match['picture1'];} ?>" alt="profiel foto" class="profilePicture">
+             <p><?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?>  </p>
+            <img src="<?php if($match['picture2'] === NULL){
+                    echo "uploads/profilePic.png";
+                    } else{
+                        echo "uploads/" . $match['picture2'];} ?>" alt="profiel foto" class="profilePicture">
         </div>
     </div>
     <?php  endforeach; ?> 
