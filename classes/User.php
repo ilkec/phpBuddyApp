@@ -637,7 +637,7 @@ class User
     $result = $statement->execute();
     $matches = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $matches;
-    var_dump($matches);
+    //var_dump($matches);
   }
 
 
