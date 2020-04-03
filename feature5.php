@@ -7,7 +7,7 @@
     $databaseId = $user->getDatabaseId();
     $user->setId($databaseId);
 
-
+    if (isset($_SESSION['user'])){
     if(!empty($_POST)){
         if(isset($_POST["iAmBuddy_x"])){
             $choice = "Volunteering for buddy";
@@ -24,6 +24,9 @@
             header("Location: feature4.php");
         }
 
+    }
+    } else{
+        header("Location: feature2.php");
     }
 
 ?>
