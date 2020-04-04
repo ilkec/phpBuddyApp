@@ -33,6 +33,16 @@ $user = new User();
     <title>Document</title>
 </head>
 <body>
+    <div class="buddy_match">
+
+    <?php 
     
+    foreach($matched as $bm){
+        if ($bm ['buddy'] == $user->getMatches_ibfk_1() )
+    }
+
+    ?>
+
+    </div>
 </body>
 </html>
