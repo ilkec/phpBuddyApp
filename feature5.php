@@ -14,14 +14,14 @@
             $buddy = 0;
             $user->setBuddy($choice);
             $user->saveChoice();
-            header("Location: feature4.php");
+            header("Location: profile.php");
         }
         else{
             $choice = "Looking for buddy";
             $buddy = 1;
             $user->setBuddy($choice);
             $user->saveChoice();
-            header("Location: feature4.php");
+            header("Location: profile.php");
         }
 
     }

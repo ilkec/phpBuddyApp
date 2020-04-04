@@ -1,56 +1,53 @@
 <?php
-	
-	include_once(__DIR__ .'/classes/User.php');
-	include_once(__DIR__ . '/classes/Db.php');
+
+include_once(__DIR__ . '/classes/User.php');
+include_once(__DIR__ . '/classes/Db.php');
 
 
-	if(!empty($_POST)){
-		
-		$user = new User();
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		
-		
-		
-		if(!empty($email) && !empty($password)){
-			
-			if($user->canLogin($email, $password)){	
-				//$user->setEmail($email);
-				//$user->setPassword($password);
-				session_start();
-				
-				$_SESSION['user'] = $email;
-				$user->setEmail($_SESSION['user']);
-				$databaseId = $user->getDatabaseId();
-				$user->setId($databaseId['id']);
-				
-				$getAllUser = $user->getAll();
-				$games = $getAllUser['games'];
-				$films = $getAllUser['films'];
-				$location = $getAllUser['location'];
-				$music = $getAllUser['music'];
-				$books = $getAllUser['books'];
-				var_dump($books);
-				
-				if(is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)){
-					header("Location: feature4.php");
-				}else{
-					header("Location: profile.php");
-				}
+if (!empty($_POST)) {
 
-				
-			}
-			else{
-				$error = "Email and password don't match";
+	$user = new User();
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+
+
+
+	if (!empty($email) && !empty($password)) {
+
+		if ($user->canLogin($email, $password)) {
+			//$user->setEmail($email);
+			//$user->setPassword($password);
+			session_start();
+
+			$_SESSION['user'] = $email;
+			$user->setEmail($_SESSION['user']);
+			$databaseId = $user->getDatabaseId();
+			$user->setId($databaseId['id']);
+
+			$getAllUser = $user->getAll();
+			$games = $getAllUser['games'];
+			$films = $getAllUser['films'];
+			$location = $getAllUser['location'];
+			$music = $getAllUser['music'];
+			$books = $getAllUser['books'];
+			var_dump($books);
+
+			if (is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)) {
+				header("Location: feature4.php");
+			} else {
+				header("Location: profile.php");
 			}
 		} else {
 			$error = "Email and password don't match";
 		}
 	} else {
-		
-		$error = "Email and password are required";
+		$error = "Email and password don't match";
 	}
-	
+} else {
+
+	$error = "Email and password are required";
+}
+
 
 ?>
 
@@ -66,7 +63,7 @@
 </head>
 
 <body>
-	<form action="" method="post">
+	<form class="container mt-5 w-30 border border-primary rounded" action="" method="post">
 		<h2 form__title>Sign up for an account</h2>
 		<?php if (isset($error)) : ?>
 			<p>
@@ -74,10 +71,10 @@
 			</p>
 		<?php endif; ?>
 		<label for="email">Email</label>
-		<input type="text" id="email" name="email">
+		<input class="form-control" type="text" id="email" name="email">
 		<label for="password">Password</label>
-		<input type="password" id="password" name="password">
-		<input type="submit" value="Log in">
+		<input class="form-control" type="password" id="password" name="password">
+		<input class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">
 	</form>
 </body>
 
