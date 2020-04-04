@@ -5,14 +5,19 @@ include_once(__DIR__ .'/classes/User.php');
 $user = new User();
 
 session_start();
-$user->setEmail(/*$_SESSION['user']*/"r0448877@student.thomasmore.be");
+$user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
-var_dump($databaseId);
+//var_dump($databaseId);
 $user->setId($databaseId['id']);
 //var_dump($databaseId['id']);
-$getAllUser = $user->getAll();
-var_dump($getAllUser);
 
+
+if( isset($_SESSION['user']) ) {
+$getAllUser = $user->getAll();
+//var_dump($getAllUser);
+}else{
+    header("Location: feature2.php");
+}
 
 
 ?>
@@ -26,39 +31,64 @@ var_dump($getAllUser);
 <style>
     .profilePicture{
         width: 150px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
+    .section-wrap{
+        width: 350px;
+        height: 95vh;
+        border: 1px solid blue;
+
+    }
+    .profile{
+        width: 308px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #settingsIcon{
+        width: 24px;
+        position: fixed;
+        top: 32px;
+        left: 308px;
+    }
+
+    
 </style>
 <body>
-<h3>Profiel</h3>
-            <div">
+    <section class="section-wrap">
+        <h2>Profiel</h2>
+        <a href="profileSettings.php"><img src="img/settings_icon.png" alt="settingsIcon" id="settingsIcon"></a>
+            <div class="picture-wrap">
                 <img src="<?php if($getAllUser['picture'] === NULL){
-                    echo "uploads/profilePic.png";
-                    } else{
-                        echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
-            
-				</div>
+                            echo "uploads/profilePic.png";
+                            } else{
+                             echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
+                        
             </div>
-        </form>
-            <!------profiel------->
-        
-            <div>
-                <h4>Korte beschrijving</h4>
-                <p><?php echo $getAllUser['description'];?></p>
-            </div>
-            <div>
-                <h4>Naam</h4>
-                <p><?php  echo $getAllUser['firstname'] . " " . $getAllUser['lastname'] ;?></p>
-            </div>
-            <div>
-                <h4>Interesses</h4>
-                <ul>
-                    <li><?php  echo $getAllUser['games'];?></li>
-                    <li><?php  echo $getAllUser['books'];?></li>
-                    <li><?php  echo $getAllUser['films'];?></li>
-                    <li><?php  echo $getAllUser['music'];?></li>
-                </ul>
+                        <!------profiel------->
+            <div class="profile"> 
+                 <div>
+                    <h3><?php  echo $getAllUser['firstname'] . " " . $getAllUser['lastname'] ;?></h3>
+                </div>  
+                <div>
+                    <h5>Korte beschrijving</h5>
+                    <p><?php echo $getAllUser['description'];?></p>
+                </div>
                 
+                <div>
+                    <h5>Interesses</h5>
+                     <ul>
+                         <li><?php  echo $getAllUser['games'];?></li>
+                        <li><?php  echo $getAllUser['books'];?></li>
+                        <li><?php  echo $getAllUser['films'];?></li>
+                        <li><?php  echo $getAllUser['music'];?></li>
+                    </ul>
+                            
+                </div>
             </div>
             
+    </section>           
 </body>
 </html>
