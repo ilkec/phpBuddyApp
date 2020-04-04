@@ -20,8 +20,7 @@ class User
   private $location;
   private $books;
   private $buddy;
-  private $setMatches_ibfk_1;
-  private $setMatches_ibfk_2;
+ 
 
 
 
@@ -372,48 +371,7 @@ class User
     return $this;
   }
 
-   /**
-   * Get the value of setMatches_ibfk_1
-   */
-  public function getSetMatches_ibfk_1()
-  {
-    return $this->setMatches_ibfk_1;
-  }
-
-  /**
-   * Set the value of setMatches_ibfk_1
-   *
-   * @return  self
-   */
-  public function setSetMatches_ibfk_1($setMatches_ibfk_1)
-  {
-    $this->setMatches_ibfk_1 = $setMatches_ibfk_1;
-
-    return $this;
-  }
-
-   /**
-   * Get the value of setMatches_ibfk_2
-   */
-  public function getSetMatches_ibfk_2()
-  {
-    return $this->setMatches_ibfk_2;
-  }
-
-  /**
-   * Set the value of setMatches_ibfk_2
-   *
-   * @return  self
-   */
-  public function setSetMatches_ibfk_2($setMatches_ibfk_2)
-  {
-    $this->setMatches_ibfk_2 = $setMatches_ibfk_2;
-
-    return $this;
-  }
-
-
-
+   
 
 
   public function getAll()
@@ -681,12 +639,6 @@ class User
     //var_dump($matches);
   }
 
-  public function setMatches_ibfk_1(){
-    $conn = Db::getConnection();
-  }
-
-  public function setMatches_ibfk_2(){
-    $conn = Db::getConnection();
-  }
+  
 
 }
