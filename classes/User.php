@@ -681,7 +681,12 @@ class User
     //var_dump($matches);
   }
 
+  public function setMatches_ibfk_1(){
+    $conn = Db::getConnection();
+  }
 
-
+  public function setMatches_ibfk_2(){
+    $conn = Db::getConnection();
+  }
 
 }
