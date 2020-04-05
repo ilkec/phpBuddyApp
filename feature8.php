@@ -31,6 +31,7 @@ if(!empty($_POST)){
     $user->setMessage($message);
     $user->setToUser($idReceiver);
     $user->setFromUser($databaseId['id']);
+    $user->setTime(date("Y-m-d H:i:s"));
     var_dump($message);
     $user->sendMessage();
 
@@ -57,9 +58,15 @@ if(!empty($_POST)){
     <style>
         .chatbox{
             height: 250px;
-            width: 500px;
-            background-color:aqua;
+            width: 460px;
+            padding: 20px;
+            background-color:mintcream;
             overflow: auto;
+        }
+        #chatpartner{
+            background-color:linen;
+            width: 460px;
+            padding: 20px;
         }
         #message{
             width: 450px;
@@ -69,6 +76,7 @@ if(!empty($_POST)){
     </style>
 </head>
 <body>
+    <div id="chatpartner"><?php echo "you are talking to " . $koekoek[0]['toUser'];?></div>
     <div class="chatbox">
         <?php foreach($koekoek as $piep) :?>
         <p><strong><?php echo $piep['fromUser'] . " "  ;?></strong><?php echo $piep['message'] ?></p>

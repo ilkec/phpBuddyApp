@@ -21,9 +21,12 @@ class User
   private $books;
   private $buddy;
 
+  
+  //variables used for message system
   private $message;
   private $fromUser;
   private $toUser;
+  private $time;
   
  
 
@@ -436,17 +439,38 @@ class User
 
     return $this;
   }
+    /**
+   * Get the value of time
+   */ 
+  public function getTime()
+  {
+    return $this->time;
+  }
+
+  /**
+   * Set the value of time
+   *
+   * @return  self
+   */ 
+  public function setTime($time)
+  {
+    $this->time = $time;
+
+    return $this;
+  }
 
   public function sendMessage(){
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare('insert into messages (from_user, to_user, message) values(:fromUser, :toUser, :message)');
+    $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time) values(:fromUser, :toUser, :message, :time)');
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $message = $this->getMessage();
+    $time = $this->getTime();
     $statement->bindValue(":fromUser", $fromUser);
     $statement->bindValue(":toUser", $toUser);
     $statement->bindValue(":message", $message);
+    $statement->bindValue(":time", $time);
     $result = $statement->execute();
 
     return $result;
@@ -457,7 +481,10 @@ class User
     public function messagesFromDatabase(){
       
     $conn = Db::getConnection();
-    $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser from users as user1, messages, users as user2 where from_user = :fromUser and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id');
+    
+    $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
+    from users as user1, messages, users as user2 
+    where (from_user = :fromUser  and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id) or (from_user = :toUser and to_user = :fromUser and messages.from_user = user1.id and messages.to_user = user2.id) ORDER BY date_time ASC');
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $statement->bindValue(":fromUser", $fromUser);
@@ -737,6 +764,8 @@ class User
   }
 
   
+
+
 
 
 

@@ -33,6 +33,11 @@ $foundmatch = $user->matchUser();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    #interestCard{
+        border: 1px solid blue;
+    }
+</style>
 </head>
 
 <body>
@@ -48,13 +53,19 @@ $foundmatch = $user->matchUser();
             foreach ($foundmatch as $m) {
 
                 if ($m['games'] == $user->getGames() && $m != $match['email']) {
+                    echo "<div id='interestCard'>";
                     echo "<h5>";
                     echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
                     echo $m['firstname'] . " ";
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
-                    echo "<a href='feature8.php'>Babbeltje doen?</a>";
                     echo "</h5>";
+                    echo "<form action='feature8.php' method='post' enctype='multipart/form-data'>
+                    <div class='form_field mt-2'>
+                        <input type='submit' value='babbeltje doen' class='btn btn-primary mb-3' id='babbelBtn' name='babbelBtn'> 
+                    </div>
+                    </form>";
+                    echo "</div>";
                     // $user->saveMatch();
                     $id = $match['id'];
                     $id2 = $m['id'];
