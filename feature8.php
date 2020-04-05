@@ -57,27 +57,32 @@ if(!empty($_POST)){
     <style>
         .chatbox{
             height: 250px;
-            width: 250px;
+            width: 500px;
             background-color:aqua;
+            overflow: auto;
         }
+        #message{
+            width: 450px;
+
+        }
+
     </style>
 </head>
 <body>
     <div class="chatbox">
         <?php foreach($koekoek as $piep) :?>
-        <p><?php echo $piep['fromUser'] . " " . $piep['message'] ?></p>
+        <p><strong><?php echo $piep['fromUser'] . " "  ;?></strong><?php echo $piep['message'] ?></p>
         <?php endforeach; ?>
     </div>
     <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
 
         <div class="mt-2">
-            <label for="message">Message</label>
-
-            <textarea class="form-control" type="text" placeholder="message" name="message" id="message"></textarea>
-        </div>
-        <div>
+            <textarea type="text" placeholder="message" name="message" id="message"></textarea>
             <input type="submit" value="send" class="btn btn-primary mb-3" id="btnOpslaan" name="sendMessage">
         </div>
+        
+            
+        
     </form>
 </body>
 </html>

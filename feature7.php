@@ -43,6 +43,7 @@ $foundmatch = $user->matchUser();
     <div class="container-fluid">
         <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
         <div class="row">
+            <a href=""></a>
             <?php
             foreach ($foundmatch as $m) {
 
@@ -52,6 +53,7 @@ $foundmatch = $user->matchUser();
                     echo $m['firstname'] . " ";
                     echo $m['lastname'] . "<br>";
                     echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
+                    echo "<a href='feature8.php'>Babbeltje doen?</a>";
                     echo "</h5>";
                     // $user->saveMatch();
                     $id = $match['id'];
