@@ -20,6 +20,11 @@ class User
   private $location;
   private $books;
   private $buddy;
+
+  private $message;
+  private $fromUser;
+  private $toUser;
+  
  
 
 
@@ -371,6 +376,98 @@ class User
     return $this;
   }
 
+  
+  /**
+   * Get the value of message
+   */ 
+  public function getMessage()
+  {
+    return $this->message;
+  }
+
+  /**
+   * Set the value of message
+   *
+   * @return  self
+   */ 
+  public function setMessage($message)
+  {
+    $this->message = $message;
+
+    return $this;
+  }
+  
+  /**
+   * Get the value of fromUser
+   */ 
+  public function getFromUser()
+  {
+    return $this->fromUser;
+  }
+
+  /**
+   * Set the value of fromUser
+   *
+   * @return  self
+   */ 
+  public function setFromUser($fromUser)
+  {
+    $this->fromUser = $fromUser;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of toUser
+   */ 
+  public function getToUser()
+  {
+    return $this->toUser;
+  }
+
+  /**
+   * Set the value of toUser
+   *
+   * @return  self
+   */ 
+  public function setToUser($toUser)
+  {
+    $this->toUser = $toUser;
+
+    return $this;
+  }
+
+  public function sendMessage(){
+
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('insert into messages (from_user, to_user, message) values(:fromUser, :toUser, :message)');
+    $fromUser = $this->getFromUser();
+    $toUser = $this->getToUser();
+    $message = $this->getMessage();
+    $statement->bindValue(":fromUser", $fromUser);
+    $statement->bindValue(":toUser", $toUser);
+    $statement->bindValue(":message", $message);
+    $result = $statement->execute();
+
+    return $result;
+    var_dump($result);
+
+    }
+
+    public function messagesFromDatabase(){
+      
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser from users as user1, messages, users as user2 where from_user = :fromUser and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id');
+    $fromUser = $this->getFromUser();
+    $toUser = $this->getToUser();
+    $statement->bindValue(":fromUser", $fromUser);
+    $statement->bindValue(":toUser", $toUser);
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
+    return $users;
+    var_dump($users);
+    }
+
    
 
 
@@ -640,5 +737,7 @@ class User
   }
 
   
+
+
 
 }
