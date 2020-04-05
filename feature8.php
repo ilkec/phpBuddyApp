@@ -1,6 +1,8 @@
 <?php 
 
 include_once(__DIR__ .'/classes/User.php');
+
+
 $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
@@ -8,10 +10,10 @@ $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 //var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
-
+var_dump($_SESSION['matchid']);
 $firstname = $getAllUser['firstname'];
-var_dump($firstname);
-var_dump($databaseId);
+//var_dump($firstname);
+//var_dump($databaseId);
 
 /*$user2 = new User();
 $user2->setId(14);
@@ -32,7 +34,7 @@ if(!empty($_POST)){
     $user->setToUser($idReceiver);
     $user->setFromUser($databaseId['id']);
     $user->setTime(date("Y-m-d H:i:s"));
-    var_dump($message);
+    //var_dump($message);
     $user->sendMessage();
 
     
@@ -42,7 +44,7 @@ if(!empty($_POST)){
     $user->setToUser($idReceiver);
     $user->setFromUser($databaseId['id']);
     $koekoek = $user->messagesFromDatabase();
-    var_dump($koekoek);
+    //var_dump($koekoek);
 
 
 
@@ -79,7 +81,7 @@ if(!empty($_POST)){
     <div id="chatpartner"><?php echo "you are talking to " . $koekoek[0]['toUser'];?></div>
     <div class="chatbox">
         <?php foreach($koekoek as $piep) :?>
-        <p><strong><?php echo $piep['fromUser'] . " "  ;?></strong><?php echo $piep['message'] ?></p>
+        <p><strong><?php echo $piep['fromUser'] . ": "  ;?></strong><?php echo $piep['message'] ?></p>
         <?php endforeach; ?>
     </div>
     <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">

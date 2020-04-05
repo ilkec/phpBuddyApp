@@ -50,57 +50,31 @@ $foundmatch = $user->matchUser();
         <div class="row text-center mr-2">
             <?php
             foreach ($foundmatch as $m) {
-
-<<<<<<< HEAD
-                if ($m['games'] == $user->getGames() && $m != $match['email']) {
-                    echo "<div id='interestCard'>";
-                    echo "<h5>";
-                    echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $m['firstname'] . " ";
-                    echo $m['lastname'] . "<br>";
-                    echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
-                    echo "</h5>";
-                    echo "<form action='feature8.php' method='post' enctype='multipart/form-data'>
-                    <div class='form_field mt-2'>
-                        <input type='submit' value='babbeltje doen' class='btn btn-primary mb-3' id='babbelBtn' name='babbelBtn'> 
-                    </div>
-                    </form>";
-                    echo "</div>";
-                    // $user->saveMatch();
-                    $id = $match['id'];
-                    $id2 = $m['id'];
-                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
-                    $statement->execute();
-=======
+              
                 if ($m['games'] == $user->getGames() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo $m['firstname'] . " " .  $m['lastname'] ?></h5>
                         <h5> Deze persoon speelt ook graag <?php echo $m['games'] ?> games. </h5>
+                        <?php $_SESSION['matchid'] = $m['id'] ?>
+                        <a href="feature8.php">babbeltje doen?</a>
                     </div>
                 <?php
->>>>>>> 137fff66cfa30deeb962a42927ae4f2380fefd68
-                } else
-                
-            if ($m['music'] == $user->getMusic() && $m['id'] != $match['id']) { ?>
+                } else if ($m['music'] == $user->getMusic() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
                         <h5> Deze persoon luistert ook graag <?php echo $m['music'] ?> muziek. </h5>
                     </div>
                 <?php
-                } else
-                
-            if ($m['location'] == $user->getLocation() && $m['id'] != $match['id']) { ?>
+                } else if ($m['location'] == $user->getLocation() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
                         <h5> Deze persoon woont ook in <?php echo $m['location'] ?> </h5>
                     </div>
                 <?php
-                } else
-                
-            if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m['id'] != $match['id']) { ?>
+                } else if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/ <?php echo $m['picture'] ?>">
                         <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?></h5>
