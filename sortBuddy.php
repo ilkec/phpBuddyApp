@@ -16,6 +16,17 @@ $user->setLastname($connectedUserlastname['lastname']);
 $userFullname =$connectedUserFirstname['firstname']." ". $connectedUserlastname['lastname'];
 $connectedUserPicture = $user->getConnectedUserPicture();
 $user->setProfilePicture($connectedUserPicture['picture']);
+$connectedUserGame = $user->getConnectedUserGame();
+$user->setGames($connectedUserGame['games']);
+$connectedUserBook = $user->getConnectedUserBook();
+$user->setBooks($connectedUserBook['books']);
+$connectedUserLocation = $user->getConnectedUserLocation();
+$user->setLocation($connectedUserLocation['location']);
+$connectedUserMovie = $user->getConnectedUserMovie();
+$user->setFilms($connectedUserMovie['films']);
+$connectedUserMusic = $user->getConnectedUserMusic();
+$user->setMusic($connectedUserMusic['music']);
+/*------------------------------END----------------------------------------------*/
 
 
 
@@ -51,19 +62,19 @@ if( isset($_SESSION['user']) ) {
     <div class="container-fluid box ">
       <form class="form-inline userForm"  method="post" >   
         <a href="" type="submit" name="bookBtn" id="book">
-          <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"></span></div>
+          <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book:  <span class="badge badge-dark"><?php echo $connectedUserBook['books']?></span></div>
         </a>
         <a href="" id="movie" type="submit" name="movieBtn" data-sortBy="movie">
-          <div class="type-select btn btn-primary movieBtn" data-value="user"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"></span> </div>
+          <div class="type-select btn btn-primary movieBtn" data-value="user"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films']?></span> </div>
         </a>
         <a href="" type="submit" name="musicBtn" id="music">
-          <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"></span></div>
+          <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music']?></span></div>
         </a>
         <a href="" id="game" type="submit" name="gameBtn">
-          <div class="type-select btn btn-primary gameBtn" data-value="3"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"></span></div>
+          <div class="type-select btn btn-primary gameBtn" data-value="3"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games']?></span></div>
         </a>
         <a href="" id="location" type="submit" name="locationBtn" data-sortBy="location">
-          <div class="type-select btn btn-primary" data-value="organization"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"></span></div>
+          <div class="type-select btn btn-primary" data-value="organization"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location']?></span></div>
         </a>
         <a href="" id="all" type="submit" name="showAllBtn" data-sortBy="showAllBtn">
           <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
