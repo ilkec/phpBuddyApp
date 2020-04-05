@@ -660,6 +660,105 @@ class User
 
 
   }
+  
+  
+   public function getConnectedUserFirstname()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select firstname from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userFirstname = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userFirstname;
+   var_dump($userFirstname);
+  }
+   public function getConnectedUserLastname()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select lastname from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userLastname = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userLastname;
+   var_dump($userLastname);
+  }
+  
+   public function getConnectedUserPicture()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select picture from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userPicture = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userPicture;
+   var_dump($userPicture);
+  }
+  
+   public function getConnectedUserGame()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select games from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userGame = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userGame;
+   var_dump($userGame);
+  }
+  
+  
+  public function getConnectedUserMovie()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select films from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userMovie = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userMovie;
+   var_dump($userMovie);
+  }
+  
+   public function getConnectedUserBook()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select books from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userBook = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userBook;
+   var_dump($userBook);
+  }
+  
+   public function getConnectedUserLocation()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select location from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userLocation = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userLocation;
+   var_dump($userLocation);
+  }
+  
+  public function getConnectedUserMusic()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select music from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userMusic = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userMusic;
+   var_dump($userMusic);
+  }
+  
+  
 
   public function canLogin($email, $password)
   {
