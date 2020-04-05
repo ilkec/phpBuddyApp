@@ -1,3 +1,25 @@
+<?php 
+include_once(__DIR__ .'/classes/User.php');
+include_once(__DIR__ . '/classes/Db.php');
+
+$user = new User();
+session_start();
+
+$user->setEmail($_SESSION['user']);
+$connectedUserEmail= $_SESSION['user'];
+
+
+
+if( isset($_SESSION['user']) ) {
+  $conn = Db::getConnection();
+
+  //$query = "select firstname from users where games = '$curentUserGame' and email != '$curntUserEmail'";
+  $query = "select firstname, lastname,picture from users where email != '$connectedUserEmail'";
+  
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +62,13 @@
       <div class="container-list">
         <div class="userContainer">
           <ul class="usersList">
-            
-            <li class="row"> <img src="" class="avatar">
-              <h2 class="user-name col-xs-5">firstname lastname</h2> </li>
-            
+             <?php foreach($conn->query($query) as $data): ?>
+            <li class="row"> <img src="<?php if($data['picture'] === NULL){
+  echo "uploads/profilePic.png ";
+} else{
+  echo "uploads/".$data['picture'];} ?>" class="avatar">
+              <h2 class="user-name col-xs-5"><?php echo $data['firstname']." ".$data['lastname']?></h2> </li>
+             <?php endforeach; ?>
           </ul>
         </div>
       </div>
