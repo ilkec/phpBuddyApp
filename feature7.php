@@ -40,66 +40,46 @@ $foundmatch = $user->matchUser();
     // var_dump($match);
     // var_dump($foundmatch);
     ?>
-    <div class="container-fluid">
+    <div class="container-fluid overflow-auto">
         <h1> Dit zijn je mogelijke matchen om buddy mee te worden.</h1>
-        <div class="row">
+        <div class="row text-center mr-2">
             <?php
             foreach ($foundmatch as $m) {
 
-                if ($m['games'] == $user->getGames() && $m != $match['email']) {
-                    echo "<h5>";
-                    echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $m['firstname'] . " ";
-                    echo $m['lastname'] . "<br>";
-                    echo "Deze persoon speelt ook graag" . " " . $m['games'] . "games <br>";
-                    echo "</h5>";
-                    // $user->saveMatch();
-                    $id = $match['id'];
-                    $id2 = $m['id'];
-                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
-                    $statement->execute();
+                if ($m['games'] == $user->getGames() && $m['id'] != $match['id']) { ?>
+                    <div class="col-md-4">
+                        <img src="uploads/<?php echo $m['picture'] ?>">
+                        <h5> <?php echo $m['firstname'] . " " .  $m['lastname'] ?></h5>
+                        <h5> Deze persoon speelt ook graag <?php echo $m['games'] ?> games. </h5>
+                    </div>
+                <?php
                 } else
                 
-            if ($m['music'] == $user->getMusic() && $m != $match['email']) {
-                    echo "<h5>";
-                    echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $m['firstname'] . " ";
-                    echo $m['lastname'] . "<br>";
-                    echo "Deze persoon luistert ook graag" . " " . $m['music'] . "muziek <br>";
-                    echo "</h5>";
-                    // $user->saveMatch();
-                    $id = $match['id'];
-                    $id2 = $m['id'];
-                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
-                    $statement->execute();
+            if ($m['music'] == $user->getMusic() && $m['id'] != $match['id']) { ?>
+                    <div class="col-md-4">
+                        <img src="uploads/<?php echo $m['picture'] ?>">
+                        <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
+                        <h5> Deze persoon luistert ook graag <?php echo $m['music'] ?> muziek. </h5>
+                    </div>
+                <?php
                 } else
                 
-            if ($m['location'] == $user->getLocation() && $m != $match['email']) {
-                    echo "<h5>";
-                    echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $m['firstname'] . " ";
-                    echo $m['lastname'] . "<br>";
-                    echo "Deze persoon woont ook in" . " " . $m['location'] . "<br>";
-                    echo "</h5>";
-                    // $user->saveMatch();
-                    $id = $match['id'];
-                    $id2 = $m['id'];
-                    $statement = $conn->prepare("INSERT INTO matches(user_id1, user_id2) values ($id, $id2)");
-                    $statement->execute();
+            if ($m['location'] == $user->getLocation() && $m['id'] != $match['id']) { ?>
+                    <div class="col-md-4">
+                        <img src="uploads/<?php echo $m['picture'] ?>">
+                        <h5> <?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
+                        <h5> Deze persoon woont ook in <?php echo $m['location'] ?> </h5>
+                    </div>
+                <?php
                 } else
                 
-            if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m != $match['email']) {
-                    echo "<h5>";
-                    echo "<img src=uploads/" . $m['picture'] . ">" . "<br>";
-                    echo $m['firstname'] . " ";
-                    echo $m['lastname'] . "<br>";
-                    echo "Deze persoon kijkt ook graag" . " " . $m['films'] . "films en leest ook graag" . " " . $m['books'] . "boeken" . "<br>";
-                    echo "</h5>";
-                    // $user->saveMatch();
-                    $id = $match['id'];
-                    $id2 = $m['id'];
-                    $statement = $conn->prepare("INSERT INTO matches (user_id1, user_id2) values ($id, $id2)");
-                    $statement->execute();
+            if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m['id'] != $match['id']) { ?>
+                    <div class="col-md-4">
+                        <img src="uploads/ <?php echo $m['picture'] ?>">
+                        <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?></h5>
+                        <h5> <br> Deze persoon kijkt ook graag <?php echo $m['films'] ?> films en leest ook graag <?php echo $m['books'] ?> boeken. <br> </h5>
+                    </div>
+            <?php
                 }
             }
             ?>
