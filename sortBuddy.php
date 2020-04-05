@@ -8,6 +8,15 @@ session_start();
 $user->setEmail($_SESSION['user']);
 $connectedUserEmail= $_SESSION['user'];
 
+/*------------------------------get-the-currently-logged-in-user-interest----------------------------------------------*/
+$connectedUserFirstname = $user->getConnectedUserFirstname();
+$user->setFirstname($connectedUserFirstname['firstname']);
+$connectedUserlastname = $user->getConnectedUserLastname();
+$user->setLastname($connectedUserlastname['lastname']);
+$userFullname =$connectedUserFirstname['firstname']." ". $connectedUserlastname['lastname'];
+$connectedUserPicture = $user->getConnectedUserPicture();
+$user->setProfilePicture($connectedUserPicture['picture']);
+
 
 
 if( isset($_SESSION['user']) ) {
@@ -35,7 +44,8 @@ if( isset($_SESSION['user']) ) {
     <!-----------------------------Navbar------------------------------>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <div class="container-fluid"> <a class="navbar-brand" href="#">MyBuddyApp</a>
-        <ul class="nav justify-content-end"> <a class="nav-link" href="">First name Lastname</a></ul>
+        <ul class="nav justify-content-end"> <a class="nav-link" href=""><img src="<?php if($connectedUserPicture['picture'] === NULL){ echo "uploads/profilePic.png";}else{
+  echo "uploads/".$connectedUserPicture['picture'];} ?>" class="avatar"><?php echo $connectedUserFirstname['firstname']." ".$connectedUserlastname['lastname']?></a></ul>
       </div>
     </nav>
     <div class="container-fluid box ">
