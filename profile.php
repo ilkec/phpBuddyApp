@@ -47,9 +47,7 @@ if (isset($_POST['return'])) {
 
     #settingsIcon {
         width: 40px;
-        position: fixed;
-        top: 52.5%;
-        left: 57.5%;
+       
     }
 </style>
 
