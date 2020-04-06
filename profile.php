@@ -54,7 +54,7 @@ if (isset($_POST['return'])) {
 <body>
     <img src="img/chairs.jpg" alt="chairs" id="profile-bg">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid"> <a class="navbar-brand" href="feature7.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
+        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
         </div>
     </nav>
     <section class="container-fluid">
