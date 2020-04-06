@@ -10,17 +10,27 @@ $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 //var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
-var_dump($_SESSION['matchid']);
+
 $firstname = $getAllUser['firstname'];
-//var_dump($firstname);
-//var_dump($databaseId);
 
-/*$user2 = new User();
-$user2->setId(14);
-$getAllUser2 = $user2->getAll();*/
+//$idReceiver = 14;
+  
+$receiver = new User();
+$receiver->setId($_SESSION['chatId']);
+$receiverInfo = $receiver->getAll();
+var_dump($receiverInfo);
+if(!empty($_POST['sendMessage'])){
+    $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
+    $user->setMessage($message);
+    $user->setToUser($_SESSION['chatId']);
+    $user->setFromUser($databaseId['id']);
+    $user->setTime(date("Y-m-d H:i:s"));
+    //var_dump($message);
+    $user->sendMessage();
 
-$idReceiver = 14;
-
+    
+    
+}
 //// 1. kijken wie de ingelogde gebruiker is, dit wordt de zender van het bericht (getAllUser['firstname']);
 //// 2. kijken wie de persoon in de buddysuggestie was, dit wordt de ontvanger van het bericht. (om te testen hardcoded in code zetten)
 //// 3. als er gesubmit wordt bericht van zender ophalen uit textarea (input) en setten in setMessage();
@@ -28,23 +38,12 @@ $idReceiver = 14;
 //// 5. berichten uit de databank halen waar het id van de user bij staat. deze berichten tonen in de 'chatbox'
 
 
-if(!empty($_POST)){
-    $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
-    $user->setMessage($message);
-    $user->setToUser($idReceiver);
+
+
+    $user->setToUser($_SESSION['chatId']);
     $user->setFromUser($databaseId['id']);
-    $user->setTime(date("Y-m-d H:i:s"));
-    //var_dump($message);
-    $user->sendMessage();
-
-    
-
-}
-
-    $user->setToUser($idReceiver);
-    $user->setFromUser($databaseId['id']);
-    $koekoek = $user->messagesFromDatabase();
-    //var_dump($koekoek);
+    $chatHistory = $user->messagesFromDatabase();
+    var_dump($chatHistory);
 
 
 
@@ -78,10 +77,10 @@ if(!empty($_POST)){
     </style>
 </head>
 <body>
-    <div id="chatpartner"><?php echo "you are talking to " . $koekoek[0]['toUser'];?></div>
+    <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname'] ;?></div>
     <div class="chatbox">
-        <?php foreach($koekoek as $piep) :?>
-        <p><strong><?php echo $piep['fromUser'] . ": "  ;?></strong><?php echo $piep['message'] ?></p>
+        <?php foreach($chatHistory as $chatMessage) :?>
+        <p><strong><?php echo $chatMessage['fromUser'] . ": "  ;?></strong><?php echo $chatMessage['message'] ?></p>
         <?php endforeach; ?>
     </div>
     <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">

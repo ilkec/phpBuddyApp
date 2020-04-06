@@ -22,6 +22,12 @@ $user->setEmail($match['email']);
 
 $foundmatch = $user->matchUser();
 
+if(!empty($_POST['btnTalk'])){
+    $idReceiver = $_POST['inputUserId'];
+    $_SESSION['chatId'] = $idReceiver;
+    header("Location: feature8.php");
+} 
+
 
 ?>
 
@@ -56,8 +62,11 @@ $foundmatch = $user->matchUser();
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo $m['firstname'] . " " .  $m['lastname'] ?></h5>
                         <h5> Deze persoon speelt ook graag <?php echo $m['games'] ?> games. </h5>
-                        <?php $_SESSION['matchid'] = $m['id'] ?>
-                        <a href="feature8.php">babbeltje doen?</a>
+                        <form action="" method="post">
+                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                        </form>
+                  
                     </div>
                 <?php
                 } else if ($m['music'] == $user->getMusic() && $m['id'] != $match['id']) { ?>
