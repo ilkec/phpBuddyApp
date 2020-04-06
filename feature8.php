@@ -18,7 +18,7 @@ $firstname = $getAllUser['firstname'];
 $receiver = new User();
 $receiver->setId($_SESSION['chatId']);
 $receiverInfo = $receiver->getAll();
-var_dump($receiverInfo);
+//var_dump($receiverInfo);
 if (!empty($_POST['sendMessage'])) {
     $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
     $user->setMessage($message);
@@ -40,7 +40,7 @@ if (!empty($_POST['sendMessage'])) {
 $user->setToUser($_SESSION['chatId']);
 $user->setFromUser($databaseId['id']);
 $chatHistory = $user->messagesFromDatabase();
-var_dump($chatHistory);
+//var_dump($chatHistory);
 
 
 
