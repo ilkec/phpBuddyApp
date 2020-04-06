@@ -14,13 +14,13 @@ if (isset($_SESSION['user'])) {
             $buddy = 0;
             $user->setBuddy($choice);
             $user->saveChoice();
-            header("Location: profile.php");
+            header("Location: sortBuddy.php");
         } else {
             $choice = "Looking for buddy";
             $buddy = 1;
             $user->setBuddy($choice);
             $user->saveChoice();
-            header("Location: profile.php");
+            header("Location: sortBuddy.php");
         }
     }
 } else {

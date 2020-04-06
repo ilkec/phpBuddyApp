@@ -23,7 +23,7 @@ if (isset($_SESSION['user'])) {
                 $user->setLocation($_POST['location']);
                 $user->setBooks($_POST['books']);
                 $user->saveInterests();
-                header('Location:feature7.php');
+                header('Location:feature5.php');
             } catch (\Throwable $th) {
                 $error = $th->getMessage();
             }
