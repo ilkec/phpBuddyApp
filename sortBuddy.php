@@ -37,6 +37,13 @@ if (isset($_SESSION['user'])) {
   $query = "select firstname, lastname,picture from users where email != '$connectedUserEmail'";
 }
 
+
+if (!empty($_POST['btnTalk'])) {
+    $idReceiver = $_POST['inputUserId'];
+    $_SESSION['chatId'] = $idReceiver;
+    header("Location: feature8.php");
+}
+
 ?>
 
 
