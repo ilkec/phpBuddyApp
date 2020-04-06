@@ -35,7 +35,7 @@ if (!empty($_POST)) {
 			if (is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)) {
 				header("Location: feature4.php");
 			} else {
-				header("Location: profile.php");
+				header("Location: feature7.php");
 			}
 		} else {
 			$error = "Email and password don't match";
