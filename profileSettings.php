@@ -256,7 +256,9 @@ $getAllUser = $user->getAll();
                     </p>
                 </div>
             <?php endif; ?>
+            <a href="profile.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Go back</a>
         </form>
+        
     </div>
 
 </body>
