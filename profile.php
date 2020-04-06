@@ -24,8 +24,8 @@ if (isset($_POST['return'])) {
     session_unset();
     session_destroy();
 
-        header("Location: feature2.php");
-        exit;	
+    header("Location: feature2.php");
+    exit;
 }
 
 
@@ -43,17 +43,13 @@ if (isset($_POST['return'])) {
 <style>
     .profilePicture {
         width: 150px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        position: fixed;
     }
 
     #settingsIcon {
-        width: 24px;
+        width: 40px;
         position: fixed;
-        top: 16.3%;
-        left: 50%;
+        top: 52.5%;
+        left: 57.5%;
     }
 </style>
 
@@ -89,10 +85,10 @@ if (isset($_POST['return'])) {
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
-                    <form action="" method="post">
-                        <input type="submit" name="return" value="logout">
+                    <form class="btn btn-primary" action="" method="post">
+                        <input class="btn btn-primary" type="submit" name="return" value="logout">
                     </form>
-                            
+
                 </div>
             </div>
         </div>
