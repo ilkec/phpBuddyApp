@@ -59,23 +59,27 @@ if (!empty($_POST)) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Document</title>
 </head>
 
-<body>
-	<form class="container mt-5 w-30 border border-primary rounded" action="" method="post">
-		<h2 form__title>Sign up for an account</h2>
-		<?php if (isset($error)) : ?>
-			<p>
-				<?php echo $error; ?>
-			</p>
-		<?php endif; ?>
-		<label for="email">Email</label>
-		<input class="form-control" type="text" id="email" name="email">
-		<label for="password">Password</label>
-		<input class="form-control" type="password" id="password" name="password">
-		<input class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">
-	</form>
+<body class="container-fluid bg-secondary">
+	<div class="row">
+		<img src="img/we-are-imd.jpg" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+		<form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
+			<h2 form__title>Sign up for an account</h2>
+			<?php if (isset($error)) : ?>
+				<p>
+					<?php echo $error; ?>
+				</p>
+			<?php endif; ?>
+			<label for="email">Email</label>
+			<input class="form-control" type="text" id="email" name="email">
+			<label for="password">Password</label>
+			<input class="form-control" type="password" id="password" name="password">
+			<input class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">
+		</form>
+	</div>
 </body>
 
 </html>

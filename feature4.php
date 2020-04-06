@@ -44,17 +44,19 @@ if (isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 
-<body>
-    <div class="bg">
+<body class="container-fluid bg-secondary">
+    <div class="row">
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
                 <?php echo $error ?>
             <?php endif; ?>
-            <h2 class="container mt-5 w-25"> Vervolledig u profiel </h2>
-            <form class="container w-25 border border-primary rounded" action="" method="post">
+            <img src="img/we-are-imd.jpg" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+            <form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
+                <h2> Vervolledig u profiel </h2>
                 <div class="form__field mt-2">
                     <label for="Games">My favorite genre of games</label>
                     <select class="form-control" type="text" id="Games" name="games">

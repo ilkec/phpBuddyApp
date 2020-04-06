@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-include_once(__DIR__ .'/classes/User.php');
+include_once(__DIR__ . '/classes/User.php');
 
 $user = new User();
 
@@ -12,10 +12,10 @@ $user->setId($databaseId['id']);
 //var_dump($databaseId['id']);
 
 
-if( isset($_SESSION['user']) ) {
-$getAllUser = $user->getAll();
-//var_dump($getAllUser);
-}else{
+if (isset($_SESSION['user'])) {
+    $getAllUser = $user->getAll();
+    //var_dump($getAllUser);
+} else {
     header("Location: feature2.php");
 }
 
@@ -23,72 +23,68 @@ $getAllUser = $user->getAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <style>
-    .profilePicture{
+    .profilePicture {
         width: 150px;
         display: block;
         margin-left: auto;
         margin-right: auto;
-    }
-    .section-wrap{
-        width: 350px;
-        height: 95vh;
-        border: 1px solid blue;
-
-    }
-    .profile{
-        width: 308px;
-        margin-left: auto;
-        margin-right: auto;
+        position: fixed;
     }
 
-    #settingsIcon{
+    #settingsIcon {
         width: 24px;
         position: fixed;
-        top: 32px;
-        left: 308px;
+        top: 16.3%;
+        left: 50%;
     }
-
-    
 </style>
+
 <body>
-    <section class="section-wrap">
-        <h2>Profiel</h2>
-        <a href="profileSettings.php"><img src="img/settings_icon.png" alt="settingsIcon" id="settingsIcon"></a>
-            <div class="picture-wrap">
-                <img src="<?php if($getAllUser['picture'] === NULL){
-                            echo "uploads/profilePic.png";
-                            } else{
-                             echo "uploads/" . $getAllUser['picture'];} ?>" alt="profiel foto" class="profilePicture">
-                        
+    <img src="img/chairs.jpg" alt="chairs" id="profile-bg">
+    <section class="container-fluid">
+        <div class="col-lg-6 col-md-6 profile-form">
+            <h2>Profiel</h2>
+            <a href="profileSettings.php"><img src="img/settings_icon.png" alt="settingsIcon" id="settingsIcon"></a>
+            <div>
+                <img src="<?php if ($getAllUser['picture'] === NULL) {
+                                echo "uploads/profilePic.png";
+                            } else {
+                                echo "uploads/" . $getAllUser['picture'];
+                            } ?>" alt="profiel foto" class="profilePicture">
+
             </div>
-                        <!------profiel------->
-            <div class="profile"> 
-                 <div>
-                    <h3><?php  echo $getAllUser['firstname'] . " " . $getAllUser['lastname'] ;?></h3>
-                </div>  
+            <!------profiel------->
+            <div id="p-interests">
+                <div>
+                    <h3><?php echo $getAllUser['firstname'] . " " . $getAllUser['lastname']; ?></h3>
+                </div>
                 <div>
                     <h5>Korte beschrijving</h5>
-                    <p><?php echo $getAllUser['description'];?></p>
+                    <p><?php echo $getAllUser['description']; ?></p>
                 </div>
-                
+
                 <div>
                     <h5>Interesses</h5>
-                     <ul>
-                         <li><?php  echo $getAllUser['games'];?></li>
-                        <li><?php  echo $getAllUser['books'];?></li>
-                        <li><?php  echo $getAllUser['films'];?></li>
-                        <li><?php  echo $getAllUser['music'];?></li>
+                    <ul>
+                        <li><?php echo $getAllUser['games']; ?></li>
+                        <li><?php echo $getAllUser['books']; ?></li>
+                        <li><?php echo $getAllUser['films']; ?></li>
+                        <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
-                            
+
                 </div>
             </div>
-            
-    </section>           
+        </div>
+    </section>
 </body>
+
 </html>

@@ -210,6 +210,44 @@ h5 {
     top: 110px;
 }
 
+/* --------------- Log in ---------------------*/
+#login-img {
+  background: url(/img/we-are-imd.jpg) center no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding-left: 0;
+}
+
+#login-form {
+  background-color: #6C757D;
+  justify-content: center;
+  border-color: #6C757D;
+  color: white;
+}
+
+/* ----------------- Profile ----------------------- */
+#profile-bg {
+  background-image: url(/img/chairs.jpg) center no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.7;
+}
+
+.profile-form {
+  justify-content: center;
+  position: absolute;
+  top: 15%;
+  left: 42%;
+  color: #0E0E0E;
+  font-weight: bold;
+}
+
+#p-interests {
+  justify-content: center;
+  position: absolute;
+  top: 13em;
+}
 
 
 /*----------------------Media-query-----------------------*/
