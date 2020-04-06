@@ -19,6 +19,15 @@ if (isset($_SESSION['user'])) {
     header("Location: feature2.php");
 }
 
+if (isset($_POST['return'])) {
+    session_start();
+    session_unset();
+    session_destroy();
+
+        header("Location: feature2.php");
+        exit;	
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -80,7 +89,10 @@ if (isset($_SESSION['user'])) {
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
-
+                    <form action="" method="post">
+                        <input type="submit" name="return" value="logout">
+                    </form>
+                            
                 </div>
             </div>
         </div>
