@@ -74,6 +74,10 @@ if(!empty($_POST['btnTalk'])){
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
                         <h5> Deze persoon luistert ook graag <?php echo $m['music'] ?> muziek. </h5>
+                        <form action="" method="post">
+                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                        </form>
                     </div>
                 <?php
                 } else if ($m['location'] == $user->getLocation() && $m['id'] != $match['id']) { ?>
@@ -81,6 +85,10 @@ if(!empty($_POST['btnTalk'])){
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
                         <h5> Deze persoon woont ook in <?php echo $m['location'] ?> </h5>
+                        <form action="" method="post">
+                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                        </form>
                     </div>
                 <?php
                 } else if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m['id'] != $match['id']) { ?>
@@ -88,6 +96,10 @@ if(!empty($_POST['btnTalk'])){
                         <img src="uploads/ <?php echo $m['picture'] ?>">
                         <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?></h5>
                         <h5> <br> Deze persoon kijkt ook graag <?php echo $m['films'] ?> films en leest ook graag <?php echo $m['books'] ?> boeken. <br> </h5>
+                        <form action="" method="post">
+                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                        </form>
                     </div>
             <?php
                 }
