@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("a").click(function (e) {
+  $(".interest").click(function (e) {
     e.preventDefault();
     let idBtn = $(this).attr('id');
     let list = $(".usersList");
