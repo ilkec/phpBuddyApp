@@ -91,6 +91,7 @@ if (isset($_POST['return'])) {
                     </ul>
                     <form class="btn btn-primary" action="" method="post">
                         <input class="btn btn-primary" type="submit" name="return" value="logout">
+                        <a href="sortBuddy.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Back</a>
                     </form>
 
                 </div>
