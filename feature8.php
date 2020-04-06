@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-include_once(__DIR__ .'/classes/User.php');
+include_once(__DIR__ . '/classes/User.php');
 
 
 $user = new User();
@@ -14,12 +14,12 @@ $getAllUser = $user->getAll();
 $firstname = $getAllUser['firstname'];
 
 //$idReceiver = 14;
-  
+
 $receiver = new User();
 $receiver->setId($_SESSION['chatId']);
 $receiverInfo = $receiver->getAll();
 var_dump($receiverInfo);
-if(!empty($_POST['sendMessage'])){
+if (!empty($_POST['sendMessage'])) {
     $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
     $user->setMessage($message);
     $user->setToUser($_SESSION['chatId']);
@@ -27,9 +27,6 @@ if(!empty($_POST['sendMessage'])){
     $user->setTime(date("Y-m-d H:i:s"));
     //var_dump($message);
     $user->sendMessage();
-
-    
-    
 }
 //// 1. kijken wie de ingelogde gebruiker is, dit wordt de zender van het bericht (getAllUser['firstname']);
 //// 2. kijken wie de persoon in de buddysuggestie was, dit wordt de ontvanger van het bericht. (om te testen hardcoded in code zetten)
@@ -40,10 +37,10 @@ if(!empty($_POST['sendMessage'])){
 
 
 
-    $user->setToUser($_SESSION['chatId']);
-    $user->setFromUser($databaseId['id']);
-    $chatHistory = $user->messagesFromDatabase();
-    var_dump($chatHistory);
+$user->setToUser($_SESSION['chatId']);
+$user->setFromUser($databaseId['id']);
+$chatHistory = $user->messagesFromDatabase();
+var_dump($chatHistory);
 
 
 
@@ -52,35 +49,38 @@ if(!empty($_POST['sendMessage'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .chatbox{
+        .chatbox {
             height: 250px;
             width: 460px;
             padding: 20px;
-            background-color:mintcream;
+            background-color: mintcream;
             overflow: auto;
         }
-        #chatpartner{
-            background-color:linen;
+
+        #chatpartner {
+            background-color: linen;
             width: 460px;
             padding: 20px;
         }
-        #message{
+
+        #message {
             width: 450px;
 
         }
-
     </style>
 </head>
+
 <body>
-    <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname'] ;?></div>
+    <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></div>
     <div class="chatbox">
-        <?php foreach($chatHistory as $chatMessage) :?>
-        <p><strong><?php echo $chatMessage['fromUser'] . ": "  ;?></strong><?php echo $chatMessage['message'] ?></p>
+        <?php foreach ($chatHistory as $chatMessage) : ?>
+            <p><strong><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
         <?php endforeach; ?>
     </div>
     <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
@@ -89,9 +89,10 @@ if(!empty($_POST['sendMessage'])){
             <textarea type="text" placeholder="message" name="message" id="message"></textarea>
             <input type="submit" value="send" class="btn btn-primary mb-3" id="btnOpslaan" name="sendMessage">
         </div>
-        
-            
-        
+
+
+
     </form>
 </body>
+
 </html>

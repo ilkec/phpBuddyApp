@@ -55,6 +55,10 @@ if (isset($_POST['return'])) {
 
 <body>
     <img src="img/chairs.jpg" alt="chairs" id="profile-bg">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid"> <a class="navbar-brand" href="feature7.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
+        </div>
+    </nav>
     <section class="container-fluid">
         <div class="col-lg-6 col-md-6 profile-form">
             <h2>Profiel</h2>
