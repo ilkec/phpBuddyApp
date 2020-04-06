@@ -20,7 +20,10 @@ $getAllUser = $user->getAll();
 }
 
 if (isset($_POST['return'])) {
-    $return = urldecode('$_SERVER'.$_POST['return']);
+    session_start();
+    session_unset();
+    session_destroy();
+
         header("Location: feature2.php");
         exit;	
 }
@@ -91,9 +94,8 @@ if (isset($_POST['return'])) {
                         <li><?php  echo $getAllUser['films'];?></li>
                         <li><?php  echo $getAllUser['music'];?></li>
                     </ul>
-                    <form action="feature2.php" method="post">
-                        <input name="return" type="hidden" value="<?php echo urlencode($_SERVER["PHP_SELF"]);?>" >
-                        <input type="submit" value="logout">
+                    <form action="" method="post">
+                        <input type="submit" name="return" value="logout">
                     </form>
                             
                 </div>
