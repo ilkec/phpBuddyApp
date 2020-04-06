@@ -28,8 +28,6 @@ $connectedUserMusic = $user->getConnectedUserMusic();
 $user->setMusic($connectedUserMusic['music']);
 /*------------------------------END----------------------------------------------*/
 
-
-
 if (isset($_SESSION['user'])) {
   $conn = Db::getConnection();
 
@@ -60,23 +58,9 @@ if (!empty($_POST['btnTalk'])) {
 <body>
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-<<<<<<< HEAD
-    <div class="container-fluid"> 
-      <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link" href="profile.php">
-      <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
-       echo "uploads/profilePic.png";
-      } else {
-      echo "uploads/" . $connectedUserPicture['picture'];
-      } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
-=======
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
-                                                                                    echo "uploads/profilePic.png";
-                                                                                  } else {
-                                                                                    echo "uploads/" . $connectedUserPicture['picture'];
-                                                                                  } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
->>>>>>> sortBuddy
+      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {echo "uploads/profilePic.png";} else {
+ echo "uploads/" . $connectedUserPicture['picture']; } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
   <div class="container-fluid box ">
