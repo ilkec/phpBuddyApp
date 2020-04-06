@@ -78,7 +78,8 @@ if (!empty($_POST)) {
 			<label for="password">Password</label>
 			<input class="form-control" type="password" id="password" name="password">
 			<input class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">
-		</form>
+			<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
+		
 	</div>
 </body>
 
