@@ -468,6 +468,19 @@ class User
     return $users;
   }
 
+  public function sendMatchRequest(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("insert into matches (user_id1, user_id2, buddy_match) values(:userId, :buddyId, false)");
+    $fromUser = $this->getFromUser();
+    $toUser = $this->getToUser();
+    $statement->bindValue(":userId", $fromUser);
+    $statement->bindValue(":buddyId", $toUser);
+    $result = $statement->execute();
+    var_dump($result);
+    return $result;
+
+  }
+
   public function sendMessage(){
 
     $conn = Db::getConnection();
@@ -483,7 +496,7 @@ class User
     $result = $statement->execute();
 
     return $result;
-    var_dump($result);
+  
 
     }
 
@@ -862,8 +875,6 @@ class User
 
   public function showMatches(){
     $conn = Db::getConnection();
-
-
     $statement = $conn->prepare('select matches.id, user1.picture as picture1, user1.firstname as firstname1, user1.lastname as lastname1, user2.picture as picture2, user2.firstname as firstname2, user2.lastname as lastname2 from users as user1, users as user2, matches where matches.user_id1 = user1.id and matches.user_id2 = user2.id');
     $result = $statement->execute();
     $matches = $statement->fetchAll(PDO::FETCH_ASSOC);

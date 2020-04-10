@@ -48,7 +48,7 @@ $query= "select id, firstname, lastname, picture, books, films, games,music,loca
       echo "<form action='' method='post' style='border:none; margin:0; padding:0; width:0;' >";
 
         echo "<input type='hidden' id='inputUserId' name='inputUserId' value='".$data['id']."'>";
-            echo "<input type='submit' value='Babbeltje doen?' class='btn btn-primary mb-3' id='btnTalk' name='btnTalk'> ";
+            echo "<input type='submit' value='Buddyverzoek sturen' class='btn btn-primary mb-3' id='btnTalk' name='btnTalk'> ";
   echo"</form>";
 echo "</li>";
       

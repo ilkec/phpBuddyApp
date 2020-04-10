@@ -8,6 +8,7 @@ session_start();
 $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
+
 //var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
 

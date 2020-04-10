@@ -7,6 +7,8 @@ session_start();
 
 $user->setEmail($_SESSION['user']);
 $connectedUserEmail = $_SESSION['user'];
+$databaseId = $user->getDatabaseId();
+
 
 /*------------------------------get-the-currently-logged-in-user-interest----------------------------------------------*/
 $connectedUserFirstname = $user->getConnectedUserFirstname();
@@ -42,6 +44,9 @@ if (isset($_SESSION['user'])) {
 if (!empty($_POST['btnTalk'])) {
     $idReceiver = $_POST['inputUserId'];
     $_SESSION['chatId'] = $idReceiver;
+    $user->setFromUser($databaseId['id']);
+    $user->setToUser($_SESSION['chatId']);
+    $user->sendMatchRequest();
     header("Location: feature8.php");
 }
 
@@ -77,7 +82,7 @@ if (!empty($_POST['btnTalk'])) {
   
   <div class="container-fluid box ">
   <div class="countUsers">
-    <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op het platform." ;?></p>
+    <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform." ;?></p>
     <p><?php echo $countMatches . " daarvan vonden al een buddy."?></p>
   </div> 
     <form class="form-inline userForm" method="post">
