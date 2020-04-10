@@ -1,4 +1,5 @@
-/*--------------------Nav-----------------------*/
+
+  /*--------------------Nav-----------------------*/
 .navbar-brand,
 .navbar a {
 color: white !important;
@@ -130,6 +131,14 @@ button.btn.btn-primary:hover {
 
 
 /*---------------------------------------------------Sort-buddy-style-------------------------------------------------------*/
+
+/*.countUsers {
+  width: 68%;
+  padding-top: 30px;
+  margin: 0px auto;
+
+}*/
+
 img.avatar {
     width: 50px;
     border-radius: 80% !important;

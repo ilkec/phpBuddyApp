@@ -459,6 +459,15 @@ class User
     return $this;
   }
 
+  public function countUsers(){
+
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select count(*) from users');
+    $result = $statement->execute();
+    $users = $statement->fetch(PDO::FETCH_ASSOC);
+    return $users;
+  }
+
   public function sendMessage(){
 
     $conn = Db::getConnection();

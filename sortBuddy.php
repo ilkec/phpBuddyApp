@@ -33,6 +33,9 @@ if (isset($_SESSION['user'])) {
 
   //$query = "select firstname from users where games = '$curentUserGame' and email != '$curntUserEmail'";
   $query = "select firstname, lastname,picture from users where email != '$connectedUserEmail'";
+
+  $countUsers = $user->countUsers();
+  $countMatches = count($user->showMatches()) * 2;
 }
 
 
@@ -53,6 +56,14 @@ if (!empty($_POST['btnTalk'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
+  <style>
+    .countUsers {
+      width: 68%;
+      padding-top: 30px;
+      margin: 0px auto;
+
+}
+  </style>
 </head>
 
 <body>
@@ -63,7 +74,12 @@ if (!empty($_POST['btnTalk'])) {
  echo "uploads/" . $connectedUserPicture['picture']; } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
+  
   <div class="container-fluid box ">
+  <div class="countUsers">
+    <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op het platform." ;?></p>
+    <p><?php echo $countMatches . " daarvan vonden al een buddy."?></p>
+  </div> 
     <form class="form-inline userForm" method="post">
       <a href="" type="submit" name="bookBtn" id="book" class="interest">
         <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
