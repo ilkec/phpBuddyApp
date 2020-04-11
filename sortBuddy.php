@@ -62,12 +62,7 @@ if (!empty($_POST['btnTalk'])) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-    .countUsers {
-      width: 68%;
-      padding-top: 30px;
-      margin: 0px auto;
-
-}
+   
   </style>
 </head>
 
