@@ -49,9 +49,6 @@ if (!empty($_POST['btnTalk'])) {
   $user->sendMatchRequest();
   header("Location: feature8.php");
 }
-
-$allMatches = $user->receiveMatchRequest();
-var_dump($allMatches);
 ?>
 
 
@@ -81,6 +78,8 @@ var_dump($allMatches);
   </nav>
 
   <div class="container-fluid box ">
+    <?php $allMatches = $user->receiveMatchRequest();
+    var_dump($allMatches); ?>
     <div class="countUsers">
       <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform."; ?></p>
       <p><?php echo $countMatches . " daarvan vonden al een buddy." ?></p>

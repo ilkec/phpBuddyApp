@@ -485,11 +485,10 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare('select * from matches where id = :userid');
+    $statement = $conn->prepare('select * from matches where user_id1 = :userId');
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
-    $result = $statement->execute();
-    $users = $statement->fetch(PDO::FETCH_ASSOC);
+    $users = $statement->fetchAll();
     return $users;
   }
 
