@@ -49,6 +49,9 @@ if (!empty($_POST['btnTalk'])) {
   $user->sendMatchRequest();
   header("Location: feature8.php");
 }
+
+// var_dump($databaseId);
+$user->setId($databaseId['id']);
 ?>
 
 
@@ -67,6 +70,7 @@ if (!empty($_POST['btnTalk'])) {
 
 <body>
   <!-----------------------------Navbar------------------------------>
+  <!--
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
@@ -76,7 +80,7 @@ if (!empty($_POST['btnTalk'])) {
                                                                                                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-
+                                                                                                  -->
   <div class="container-fluid box ">
     <?php $allMatches = $user->receiveMatchRequest();
     var_dump($allMatches); ?>
@@ -84,6 +88,14 @@ if (!empty($_POST['btnTalk'])) {
       <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform."; ?></p>
       <p><?php echo $countMatches . " daarvan vonden al een buddy." ?></p>
     </div>
+
+    <?php foreach ($allMatches as $m) { ?>
+      <div>
+        <h4>Je hebt een buddyverzoek ontvangen van <?php echo implode($m) ?></h4>
+        <div class="type-select btn btn-primary">Accepteren</div>
+        <div class="type-select btn btn-primary">Weigeren</div>
+      </div>
+    <?php } ?>
     <form class="form-inline userForm" method="post">
       <a href="" type="submit" name="bookBtn" id="book" class="interest">
         <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
