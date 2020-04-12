@@ -485,7 +485,7 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare('select * from matches where user_id1 = :userId');
+    $statement = $conn->prepare('select user_id2 from matches where user_id1 = :userId');
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
     $users = $statement->fetchAll();
