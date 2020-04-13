@@ -485,7 +485,7 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("select user_id2 from matches where user_id1 = :userid and buddy_match='0'");
+    $statement = $conn->prepare("select distinct users.firstname, ' ' ,users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
     $result = $statement->execute();
@@ -494,8 +494,32 @@ class User
     return $users;
   }
 
+  public function acceptMatchRequest()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update matches set buddy_match = '1' where user_id1 = :userid and users_id2 = :buddyid");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
+  }
+
+
+
   public function deleteMatchRequest()
   {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("delete from matches where user_id1 = :userid and user_id2 = :buddyid");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
   }
 
   public function sendMessage()

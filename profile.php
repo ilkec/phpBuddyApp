@@ -28,7 +28,6 @@ if (isset($_POST['return'])) {
     exit;
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,7 @@ if (isset($_POST['return'])) {
 
     #settingsIcon {
         width: 40px;
-       
+
     }
 </style>
 
