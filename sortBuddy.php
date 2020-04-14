@@ -63,7 +63,32 @@ if (!empty($_POST['btnTalk'])) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-   
+    .countUsers{
+      display: grid; 
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #activeUsers{
+      display: grid;
+      grid-column: 1/2; 
+      background-color:#343a40;
+      border-right: 1px solid white;
+    }
+    
+    #countActiveUsers, #countActiveBuddies{
+      text-align:center;
+      color: white;
+    }
+    #activeBuddies{
+      display:grid;
+      grid-column: 2/3;
+      background-color:#343a40;
+    }
+   #personIcon,#buddyIcon{
+     width: 70px;
+     margin: 10px auto 10px auto;
+
+   }
   </style>
 </head>
 
@@ -78,8 +103,15 @@ if (!empty($_POST['btnTalk'])) {
   
   <div class="container-fluid box ">
   <div class="countUsers">
-    <p><?php echo "Er zijn al " . $countUsers['registeredUsers'] . " gebruikers op dit platform." ;?></p>
-    <p><?php echo $countMatches . " daarvan vonden al een buddy."?></p>
+    <div id="activeUsers">
+      <img id="personIcon" src="img/person-icon" alt="icon person">
+      <p id="countActiveUsers"><?php echo " Active users: ". $countUsers['registeredUsers'];?></p>
+    </div>
+    <div id="activeBuddies">
+      <img id="buddyIcon" src="img/person-icon" alt="icon person">
+      <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches ;?></p>
+    </div>
+    
   </div> 
     <form class="form-inline userForm" method="post">
       <a href="" type="submit" name="bookBtn" id="book" class="interest">
