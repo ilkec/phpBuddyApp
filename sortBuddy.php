@@ -89,7 +89,6 @@ $allMatches = $user->receiveMatchRequest();
 
 <body>
   <!-----------------------------Navbar------------------------------>
-  <!--
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
@@ -99,7 +98,7 @@ $allMatches = $user->receiveMatchRequest();
                                                                                                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-                                                                                                  -->
+
   <div class="container-fluid box ">
     <div class="countUsers">
       <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform."; ?></p>
