@@ -86,6 +86,10 @@ if (isset($_POST['return'])) {
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
+                    <h5>Buddy</h5>
+                    <ul>
+                        <li></li>
+                    </ul>
                     <form class="btn btn-primary" action="" method="post">
                         <input class="btn btn-primary" type="submit" name="return" value="logout">
                         <a href="sortBuddy.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Back</a>
