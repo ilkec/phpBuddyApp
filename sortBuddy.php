@@ -50,6 +50,7 @@ if (!empty($_POST['btnTalk'])) {
   header("Location: feature8.php");
 }
 
+$redenfield = "";
 
 if (isset($_POST['acceptBtn'])) {
   $user->acceptMatchRequest();
@@ -57,7 +58,15 @@ if (isset($_POST['acceptBtn'])) {
 
 if (isset($_POST['deleteBtn'])) {
   $user->deleteMatchRequest();
+  $redenfield = "<label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+  <input type='text' id='reden' name='reden' size='51'>
+  <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>";
+} else if (isset($_POST['redenBtn'])) {
+  $user->setReden($_POST['reden']);
+  $user->geefReden();
+  $redenfield = "";
 }
+
 // var_dump($databaseId);
 $user->setId($databaseId['id']);
 $allMatches = $user->receiveMatchRequest();
@@ -96,18 +105,18 @@ $allMatches = $user->receiveMatchRequest();
       <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform."; ?></p>
       <p><?php echo $countMatches . " daarvan vonden al een buddy." ?></p>
     </div>
-
     <?php foreach ($allMatches as $m) {
       // $user->setBuddy($m);
       // $user->setToUser($m);
     ?>
-      <form class="verzoeken" action="sortBuddy.php" method="POST">
+      <form id="verzoek" action="" method="POST">
         <div>
           <h4>Je hebt een buddyverzoek ontvangen van <?php echo implode($m) ?></h4>
-          <button class="type-select btn btn-primary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
-          <button class="type-select btn btn-primary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
-        </div>
-      <?php } ?>
+          <button onclick="hide(); return false;" class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
+          <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
+          <br>
+        </div> <?php } ?>
+      <?php echo "$redenfield" ?>
       </form>
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
@@ -152,6 +161,11 @@ $allMatches = $user->receiveMatchRequest();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    function hide() {
+      document.getElementById("verzoek").style.display = "none";
+    }
+  </script>
 </body>
 
 </html>

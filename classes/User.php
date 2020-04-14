@@ -20,7 +20,7 @@ class User
   private $location;
   private $books;
   private $buddy;
-
+  private $reden;
 
   //variables used for message system
   private $message;
@@ -459,6 +459,27 @@ class User
     return $this;
   }
 
+
+  /**
+   * Get the value of reden
+   */
+  public function getReden()
+  {
+    return $this->reden;
+  }
+
+  /**
+   * Set the value of reden
+   *
+   * @return  self
+   */
+  public function setReden($reden)
+  {
+    $this->reden = $reden;
+
+    return $this;
+  }
+
   public function countUsers()
   {
 
@@ -507,14 +528,27 @@ class User
     return $result;
   }
 
-
-
   public function deleteMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("delete from matches where user_id1 = :userid and user_id2 = :buddyid");
+    $statement = $conn->prepare("update matches set buddy_match = '0' where user_id1 = :userid and user_id2 = :buddyid");
     $userid = $this->getFromUser();
     $buddyid = $this->getToUser();
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
+  }
+
+  public function geefReden()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update matches set reden = :reden where user_id1 = :userid and user_id2 = :buddyid and buddy_match = '0'");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $reden = $this->getReden();
+    $statement->bindParam(":reden", $reden);
     $statement->bindParam(":userid", $userid);
     $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
