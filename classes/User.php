@@ -462,15 +462,16 @@ class User
   public function countUsers(){
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare('select count(*) from users');
+    $statement = $conn->prepare('select count(*) as registeredUsers from users');
     $result = $statement->execute();
     $users = $statement->fetch(PDO::FETCH_ASSOC);
     return $users;
+    
   }
 
   public function sendMatchRequest(){
     $conn = Db::getConnection();
-    $statement = $conn->prepare("insert into matches (user_id1, user_id2, buddy_match) values(:userId, :buddyId, false)");
+    $statement = $conn->prepare("insert into matches (user_id1, user_id2, buddy_match) values(:userId, :buddyId, 0)");
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $statement->bindValue(":userId", $fromUser);
