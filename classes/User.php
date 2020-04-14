@@ -28,15 +28,15 @@ class User
   private $location;
   private $books;
   private $buddy;
+  private $reden;
 
-  
   //variables used for message system
   private $message;
   private $fromUser;
   private $toUser;
   private $time;
-  
- 
+
+
 
 
 
@@ -387,10 +387,10 @@ class User
     return $this;
   }
 
-  
+
   /**
    * Get the value of message
-   */ 
+   */
   public function getMessage()
   {
     return $this->message;
@@ -400,17 +400,17 @@ class User
    * Set the value of message
    *
    * @return  self
-   */ 
+   */
   public function setMessage($message)
   {
     $this->message = $message;
 
     return $this;
   }
-  
+
   /**
    * Get the value of fromUser
-   */ 
+   */
   public function getFromUser()
   {
     return $this->fromUser;
@@ -420,7 +420,7 @@ class User
    * Set the value of fromUser
    *
    * @return  self
-   */ 
+   */
   public function setFromUser($fromUser)
   {
     $this->fromUser = $fromUser;
@@ -430,7 +430,7 @@ class User
 
   /**
    * Get the value of toUser
-   */ 
+   */
   public function getToUser()
   {
     return $this->toUser;
@@ -440,16 +440,16 @@ class User
    * Set the value of toUser
    *
    * @return  self
-   */ 
+   */
   public function setToUser($toUser)
   {
     $this->toUser = $toUser;
 
     return $this;
   }
-    /**
+  /**
    * Get the value of time
-   */ 
+   */
   public function getTime()
   {
     return $this->time;
@@ -459,7 +459,7 @@ class User
    * Set the value of time
    *
    * @return  self
-   */ 
+   */
   public function setTime($time)
   {
     $this->time = $time;
@@ -467,7 +467,29 @@ class User
     return $this;
   }
 
-  public function countUsers(){
+
+  /**
+   * Get the value of reden
+   */
+  public function getReden()
+  {
+    return $this->reden;
+  }
+
+  /**
+   * Set the value of reden
+   *
+   * @return  self
+   */
+  public function setReden($reden)
+  {
+    $this->reden = $reden;
+
+    return $this;
+  }
+
+  public function countUsers()
+  {
 
     $conn = Db::getConnection();
     $statement = $conn->prepare('select count(*) from users');
@@ -476,7 +498,8 @@ class User
     return $users;
   }
 
-  public function sendMatchRequest(){
+  public function sendMatchRequest()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare("insert into matches (user_id1, user_id2, buddy_match) values(:userId, :buddyId, false)");
     $fromUser = $this->getFromUser();
@@ -486,9 +509,63 @@ class User
     $result = $statement->execute();
     var_dump($result);
     return $result;
-
   }
 
+  public function receiveMatchRequest()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("select distinct users.firstname, ' ' ,users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
+    $userid = $this->getId();
+    $statement->bindParam(":userid", $userid);
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($result);
+    return $users;
+  }
+
+  public function acceptMatchRequest()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update matches set buddy_match = '1' where user_id1 = :userid and users_id2 = :buddyid");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
+  }
+
+  public function deleteMatchRequest()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update matches set buddy_match = '0' where user_id1 = :userid and user_id2 = :buddyid");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
+  }
+
+  public function geefReden()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("update matches set reden = :reden where user_id1 = :userid and user_id2 = :buddyid and buddy_match = '0'");
+    $userid = $this->getFromUser();
+    $buddyid = $this->getToUser();
+    $reden = $this->getReden();
+    $statement->bindParam(":reden", $reden);
+    $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    // var_dump($result);
+    return $result;
+  }
+
+  public function sendMessage()
+  {
   public function sendMatchMail(){
     $conn = Db::getConnection();
     $statement = $conn->prepare("select email from users where id = :buddyId");
@@ -531,14 +608,13 @@ class User
     $result = $statement->execute();
 
     return $result;
-  
+  }
 
-    }
+  public function messagesFromDatabase()
+  {
 
-    public function messagesFromDatabase(){
-      
     $conn = Db::getConnection();
-    
+
     $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
     from users as user1, messages, users as user2 
     where (from_user = :fromUser  and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id) or (from_user = :toUser and to_user = :fromUser and messages.from_user = user1.id and messages.to_user = user2.id) ORDER BY date_time ASC');
@@ -550,9 +626,9 @@ class User
     $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
     return $users;
     var_dump($users);
-    }
+  }
 
-   
+
 
 
   public function getAll()
@@ -717,9 +793,9 @@ class User
 
 
   }
-  
-  
-   public function getConnectedUserFirstname()
+
+
+  public function getConnectedUserFirstname()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select firstname from users where email = :email');
@@ -728,9 +804,9 @@ class User
     $result = $statement->execute();
     $userFirstname = $statement->fetch(PDO::FETCH_ASSOC);
     return $userFirstname;
-   var_dump($userFirstname);
+    var_dump($userFirstname);
   }
-   public function getConnectedUserLastname()
+  public function getConnectedUserLastname()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select lastname from users where email = :email');
@@ -739,10 +815,10 @@ class User
     $result = $statement->execute();
     $userLastname = $statement->fetch(PDO::FETCH_ASSOC);
     return $userLastname;
-   var_dump($userLastname);
+    var_dump($userLastname);
   }
-  
-   public function getConnectedUserPicture()
+
+  public function getConnectedUserPicture()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select picture from users where email = :email');
@@ -751,10 +827,10 @@ class User
     $result = $statement->execute();
     $userPicture = $statement->fetch(PDO::FETCH_ASSOC);
     return $userPicture;
-   var_dump($userPicture);
+    var_dump($userPicture);
   }
-  
-   public function getConnectedUserGame()
+
+  public function getConnectedUserGame()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select games from users where email = :email');
@@ -763,10 +839,10 @@ class User
     $result = $statement->execute();
     $userGame = $statement->fetch(PDO::FETCH_ASSOC);
     return $userGame;
-   var_dump($userGame);
+    var_dump($userGame);
   }
-  
-  
+
+
   public function getConnectedUserMovie()
   {
     $conn = Db::getConnection();
@@ -776,10 +852,10 @@ class User
     $result = $statement->execute();
     $userMovie = $statement->fetch(PDO::FETCH_ASSOC);
     return $userMovie;
-   var_dump($userMovie);
+    var_dump($userMovie);
   }
-  
-   public function getConnectedUserBook()
+
+  public function getConnectedUserBook()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select books from users where email = :email');
@@ -788,10 +864,10 @@ class User
     $result = $statement->execute();
     $userBook = $statement->fetch(PDO::FETCH_ASSOC);
     return $userBook;
-   var_dump($userBook);
+    var_dump($userBook);
   }
-  
-   public function getConnectedUserLocation()
+
+  public function getConnectedUserLocation()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select location from users where email = :email');
@@ -800,9 +876,9 @@ class User
     $result = $statement->execute();
     $userLocation = $statement->fetch(PDO::FETCH_ASSOC);
     return $userLocation;
-   var_dump($userLocation);
+    var_dump($userLocation);
   }
-  
+
   public function getConnectedUserMusic()
   {
     $conn = Db::getConnection();
@@ -812,10 +888,10 @@ class User
     $result = $statement->execute();
     $userMusic = $statement->fetch(PDO::FETCH_ASSOC);
     return $userMusic;
-   var_dump($userMusic);
+    var_dump($userMusic);
   }
-  
-  
+
+
 
   public function canLogin($email, $password)
   {
@@ -908,7 +984,8 @@ class User
   }
 
 
-  public function showMatches(){
+  public function showMatches()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select matches.id, user1.picture as picture1, user1.firstname as firstname1, user1.lastname as lastname1, user2.picture as picture2, user2.firstname as firstname2, user2.lastname as lastname2 from users as user1, users as user2, matches where matches.user_id1 = user1.id and matches.user_id2 = user2.id');
     $result = $statement->execute();
@@ -916,11 +993,4 @@ class User
     return $matches;
     //var_dump($matches);
   }
-
-  
-
-
-
-
-
 }
