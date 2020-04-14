@@ -564,6 +564,12 @@ class User
     return $result;
   }
 
+  public function checkBuddy()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare()
+  }
+
   /*
   public function sendMessage()
   { */
