@@ -42,12 +42,13 @@ if (isset($_SESSION['user'])) {
 
 
 if (!empty($_POST['btnTalk'])) {
-  $idReceiver = $_POST['inputUserId'];
-  $_SESSION['chatId'] = $idReceiver;
-  $user->setFromUser($databaseId['id']);
-  $user->setToUser($_SESSION['chatId']);
-  $user->sendMatchRequest();
-  header("Location: feature8.php");
+    $idReceiver = $_POST['inputUserId'];
+    $_SESSION['chatId'] = $idReceiver;
+    $user->setFromUser($databaseId['id']);
+    $user->setToUser($_SESSION['chatId']);
+    $user->sendMatchRequest();
+    $user->sendMatchMail();
+    //header("Location: feature8.php");
 }
 
 $redenfield = "";

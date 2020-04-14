@@ -1,6 +1,14 @@
 <?php
 
+include_once(__DIR__."/phpMailer/src/Exception.php");
+include_once(__DIR__."/phpMailer/src/PHPMailer.php");
+include_once(__DIR__."/phpMailer/src/SMTP.php");
 include_once(__DIR__ . "/Db.php");
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class User
 {
   private $id;
@@ -558,6 +566,34 @@ class User
 
   public function sendMessage()
   {
+  public function sendMatchMail(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("select email from users where id = :buddyId");
+    $toUser = $this->getToUser();
+    $statement->bindValue(":buddyId", $toUser);
+    $result = $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    $mail = new PHPMailer(true);
+    var_dump($result);
+    try{
+      $mail->setFrom('noreply@noreply.com', 'Mailer');
+      $mail->addAddress($result);
+      $mail->isHTML(true); 
+         $mail->Subject = 'Buddy request';
+         $mail->Body    = 'Check your buddy app, you have recieved a new friend request';
+         $mail->AltBody = 'Check your buddy app, you have recieved a new friend request';
+
+      $mail->send();
+         echo 'Message has been sent';
+    }
+    catch (Exception $e){
+      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    return $result;
+
+  }
+
+  public function sendMessage(){
 
     $conn = Db::getConnection();
     $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time) values(:fromUser, :toUser, :message, :time)');
