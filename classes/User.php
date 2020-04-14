@@ -499,6 +499,9 @@ class User
     $mail = new PHPMailer(true);
     var_dump($result);
     try{
+      $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+      $mail->isSMTP();
+      $mail->SMTPAuth   = true;
       $mail->setFrom('noreply@noreply.com', 'Mailer');
       $mail->addAddress($result);
       $mail->isHTML(true); 
