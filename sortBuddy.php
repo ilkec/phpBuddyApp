@@ -47,9 +47,31 @@ if (!empty($_POST['btnTalk'])) {
     $user->setFromUser($databaseId['id']);
     $user->setToUser($_SESSION['chatId']);
     $user->sendMatchRequest();
-    header("Location: feature8.php");
+    $user->sendMatchMail();
+    //header("Location: feature8.php");
 }
 
+$redenfield = "";
+
+if (isset($_POST['acceptBtn'])) {
+  $user->acceptMatchRequest();
+}
+
+if (isset($_POST['deleteBtn'])) {
+  $user->deleteMatchRequest();
+  $redenfield = "<label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+  <input type='text' id='reden' name='reden' size='51'>
+  <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>";
+} else if (isset($_POST['redenBtn'])) {
+  $user->setReden($_POST['reden']);
+  $user->geefReden();
+  $redenfield = "";
+}
+
+// var_dump($databaseId);
+$user->setId($databaseId['id']);
+$allMatches = $user->receiveMatchRequest();
+// var_dump($allMatches);
 ?>
 
 
@@ -62,7 +84,7 @@ if (!empty($_POST['btnTalk'])) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-   
+
   </style>
 </head>
 
@@ -70,51 +92,67 @@ if (!empty($_POST['btnTalk'])) {
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {echo "uploads/profilePic.png";} else {
- echo "uploads/" . $connectedUserPicture['picture']; } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
+      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
+                                                                                                      echo "uploads/profilePic.png";
+                                                                                                    } else {
+                                                                                                      echo "uploads/" . $connectedUserPicture['picture'];
+                                                                                                    } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-  
+
   <div class="container-fluid box ">
-  <div class="countUsers">
-    <p><?php echo "Er zijn al " . $countUsers['registeredUsers'] . " gebruikers op dit platform." ;?></p>
-    <p><?php echo $countMatches . " daarvan vonden al een buddy."?></p>
-  </div> 
-    <form class="form-inline userForm" method="post">
-      <a href="" type="submit" name="bookBtn" id="book" class="interest">
-        <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
-      </a>
-      <a href="" id="movie" type="submit" name="movieBtn" class="interest">
-        <div class="type-select btn btn-primary movieBtn" ><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
-      </a>
-      <a href="" type="submit" name="musicBtn" id="music" class="interest">
-        <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
-      </a>
-      <a href="" id="game" type="submit" name="gameBtn" class="interest">
-        <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
-      </a>
-      <a href="" id="location" type="submit" name="locationBtn" class="interest" >
-        <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
-      </a>
-      <a href="" id="all" type="submit" name="showAllBtn" class="interest">
-        <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
-      </a>
-    </form>
-    <div class="container-list">
-      <div class="userContainer">
-        <ul class="usersList">
-          <?php foreach ($conn->query($query) as $data) : ?>
-            <li class="row"> <img src="<?php if ($data['picture'] === NULL) {
-                                          echo "uploads/profilePic.png ";
-                                        } else {
-                                          echo "uploads/" . $data['picture'];
-                                        } ?>" class="avatar">
-              <h2 class="user-name col-xs-5"><?php echo $data['firstname'] . " " . $data['lastname'] ?></h2>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+    <div class="countUsers">
+      <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform."; ?></p>
+      <p><?php echo $countMatches . " daarvan vonden al een buddy." ?></p>
     </div>
+    <?php foreach ($allMatches as $m) {
+      // $user->setBuddy($m);
+      // $user->setToUser($m);
+    ?>
+      <form id="verzoek" action="" method="POST">
+        <div>
+          <h4>Je hebt een buddyverzoek ontvangen van <?php echo implode($m) ?></h4>
+          <button onclick="hide(); return false;" class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
+          <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
+          <br>
+        </div> <?php } ?>
+      <?php echo "$redenfield" ?>
+      </form>
+      <form class="form-inline userForm" method="post">
+        <a href="" type="submit" name="bookBtn" id="book" class="interest">
+          <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
+        </a>
+        <a href="" id="movie" type="submit" name="movieBtn" class="interest">
+          <div class="type-select btn btn-primary movieBtn"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
+        </a>
+        <a href="" type="submit" name="musicBtn" id="music" class="interest">
+          <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
+        </a>
+        <a href="" id="game" type="submit" name="gameBtn" class="interest">
+          <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
+        </a>
+        <a href="" id="location" type="submit" name="locationBtn" class="interest">
+          <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
+        </a>
+        <a href="" id="all" type="submit" name="showAllBtn" class="interest">
+          <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
+        </a>
+      </form>
+      <div class="container-list">
+        <div class="userContainer">
+          <ul class="usersList">
+            <?php foreach ($conn->query($query) as $data) : ?>
+              <li class="row"> <img src="<?php if ($data['picture'] === NULL) {
+                                            echo "uploads/profilePic.png ";
+                                          } else {
+                                            echo "uploads/" . $data['picture'];
+                                          } ?>" class="avatar">
+                <h2 class="user-name col-xs-5"><?php echo $data['firstname'] . " " . $data['lastname'] ?></h2>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
   </div>
   <div id="#displayData"></div>
   <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
@@ -123,6 +161,11 @@ if (!empty($_POST['btnTalk'])) {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    function hide() {
+      document.getElementById("verzoek").style.display = "none";
+    }
+  </script>
 </body>
 
 </html>

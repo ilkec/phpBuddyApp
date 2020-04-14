@@ -28,7 +28,6 @@ if (isset($_POST['return'])) {
     exit;
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,7 @@ if (isset($_POST['return'])) {
 
     #settingsIcon {
         width: 40px;
-       
+
     }
 </style>
 
@@ -86,6 +85,10 @@ if (isset($_POST['return'])) {
                         <li><?php echo $getAllUser['books']; ?></li>
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
+                    </ul>
+                    <h5>Buddy</h5>
+                    <ul>
+                        <li></li>
                     </ul>
                     <form class="btn btn-primary" action="" method="post">
                         <input class="btn btn-primary" type="submit" name="return" value="logout">
