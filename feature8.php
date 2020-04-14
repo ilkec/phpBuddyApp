@@ -44,7 +44,9 @@ $chatHistory = $user->messagesFromDatabase();
 //var_dump($chatHistory);
 
 
-
+if ($user->sendMatchRequest()) {
+    $buddymessage = "Je buddy verzoek is verstuurd!";
+}
 
 ?>
 
@@ -79,6 +81,7 @@ $chatHistory = $user->messagesFromDatabase();
 
 <body>
     <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></div>
+    <div><?php echo "$buddymessage" ?></div>
     <div class="chatbox">
         <?php foreach ($chatHistory as $chatMessage) : ?>
             <p><strong><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>

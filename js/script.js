@@ -16,14 +16,14 @@ $(document).ready(function () {
         , dataType: "html"
         , success: (respons) => {
           $('.usersList').html(respons);
-          
-         if(respons.trim()==''){
-             errorAlert.html(errormsg);
+
+          if (respons.trim() == '') {
+            errorAlert.html(errormsg);
           }
-            
+
         }
       });
-    }else if (idBtn === 'music') {
+    } else if (idBtn === 'music') {
       e.preventDefault();
       $.ajax({
         method: "post"
@@ -32,11 +32,11 @@ $(document).ready(function () {
         , dataType: "html"
         , success: (respons) => {
           $('.usersList').html(respons);
-          
-         if(respons.trim()==''){
-             errorAlert.html(errormsg);
+
+          if (respons.trim() == '') {
+            errorAlert.html(errormsg);
           }
-            
+
         }
       });
     }
@@ -50,8 +50,8 @@ $(document).ready(function () {
         , success: (respons) => {
           $('.usersList').html(respons);
           console.log(respons);
-          if(respons.trim()==''){
-             errorAlert.html(errormsg);
+          if (respons.trim() == '') {
+            errorAlert.html(errormsg);
           }
         }
       });
@@ -65,8 +65,8 @@ $(document).ready(function () {
         , dataType: "html"
         , success: (respons) => {
           $('.usersList').html(respons);
-          if(respons.trim()==''){
-             errorAlert.html(errormsg);
+          if (respons.trim() == '') {
+            errorAlert.html(errormsg);
           }
         }
       });
@@ -81,8 +81,8 @@ $(document).ready(function () {
         , success: (respons) => {
           $('.usersList').html(respons);
           console.log(respons);
-          if(respons.trim()==''){
-             errorAlert.html(errorForLocation);
+          if (respons.trim() == '') {
+            errorAlert.html(errorForLocation);
           }
         }
       });
@@ -97,11 +97,17 @@ $(document).ready(function () {
         , success: (respons) => {
           $('.usersList').html(respons);
           console.log(respons);
-          if(respons.trim()==''){
-             errorAlert.html(errormsg);
+          if (respons.trim() == '') {
+            errorAlert.html(errormsg);
           }
         }
       });
     }
   });
 });
+
+document.getElementById("acceptBtn").addEventListener("click", hide());
+
+function hide() {
+  document.getElementById("verzoeken").style.display = "none";
+}
