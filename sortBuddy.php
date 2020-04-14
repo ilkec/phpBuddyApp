@@ -78,7 +78,7 @@ if (!empty($_POST['btnTalk'])) {
   
   <div class="container-fluid box ">
   <div class="countUsers">
-    <p><?php echo "Er zijn al " . $countUsers['count(*)'] . " gebruikers op dit platform." ;?></p>
+    <p><?php echo "Er zijn al " . $countUsers['registeredUsers'] . " gebruikers op dit platform." ;?></p>
     <p><?php echo $countMatches . " daarvan vonden al een buddy."?></p>
   </div> 
     <form class="form-inline userForm" method="post">
