@@ -541,7 +541,7 @@ class User
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("update matches set buddy_match = '0' where user_id1 = :userid and user_id2 = :buddyid");
-    $userid = $this->getFromUser();
+    $userid = $this->getId();
     $buddyid = $this->getToUser();
     $statement->bindParam(":userid", $userid);
     $statement->bindParam(":buddyid", $buddyid);
@@ -554,7 +554,7 @@ class User
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("update matches set reden = :reden where user_id1 = :userid and user_id2 = :buddyid and buddy_match = '0'");
-    $userid = $this->getFromUser();
+    $userid = $this->getId();
     $buddyid = $this->getToUser();
     $reden = $this->getReden();
     $statement->bindParam(":reden", $reden);
@@ -565,11 +565,19 @@ class User
     return $result;
   }
 
- /* public function checkBuddy()
+  public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare();
-  }*/
+    $statement = $conn->prepare("select distinct users.firstname, ' ' ,users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='1' and users.id = matches.user_id2");
+    $userid = $this->getId();
+    // $buddyid = $this->getBuddy();
+    $statement->bindParam(":userid", $userid);
+    // $statement->bindParam(":buddyid", $buddyid);
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($result);
+    return $users;
+  }
 
   /*
   public function sendMessage()

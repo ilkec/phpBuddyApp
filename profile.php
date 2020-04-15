@@ -28,6 +28,11 @@ if (isset($_POST['return'])) {
     exit;
 }
 
+try {
+    $allBuddy = $user->checkBuddy();
+} catch (\Throwable $th) {
+    $allBuddy = "Deze persoon heeft nog geen buddies";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +93,9 @@ if (isset($_POST['return'])) {
                     </ul>
                     <h5>Buddy</h5>
                     <ul>
-                        <li></li>
+                        <?php foreach ($allBuddy as $b) { ?>
+                            <?php echo implode($b) ?>
+                        <?php } ?>
                     </ul>
                     <form class="btn btn-primary" action="" method="post">
                         <input class="btn btn-primary" type="submit" name="return" value="logout">
