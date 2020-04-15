@@ -496,7 +496,6 @@ class User
     $result = $statement->execute();
     $users = $statement->fetch(PDO::FETCH_ASSOC);
     return $users;
-    
   }
 
   public function sendMatchRequest()
@@ -593,7 +592,7 @@ class User
     $mail = new PHPMailer(true);
     var_dump($result);
 
-    try{
+    try {
       $mail->SMTPDebug = SMTP::DEBUG_SERVER;
       $mail->isSMTP();
       $mail->SMTPAuth   = true;
