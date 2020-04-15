@@ -42,13 +42,13 @@ if (isset($_SESSION['user'])) {
 
 
 if (!empty($_POST['btnTalk'])) {
-    $idReceiver = $_POST['inputUserId'];
-    $_SESSION['chatId'] = $idReceiver;
-    $user->setFromUser($databaseId['id']);
-    $user->setToUser($_SESSION['chatId']);
-    $user->sendMatchRequest();
-    $user->sendMatchMail();
-    //header("Location: feature8.php");
+  $idReceiver = $_POST['inputUserId'];
+  $_SESSION['chatId'] = $idReceiver;
+  $user->setFromUser($databaseId['id']);
+  $user->setToUser($_SESSION['chatId']);
+  $user->sendMatchRequest();
+  $user->sendMatchMail();
+  //header("Location: feature8.php");
 }
 
 $redenfield = "";
@@ -108,6 +108,7 @@ $allMatches = $user->receiveMatchRequest();
     <?php foreach ($allMatches as $m) {
       // $user->setBuddy($m);
       // $user->setToUser($m);
+      // $user->setBuddy($m['id']);
     ?>
       <form id="verzoek" action="" method="POST">
         <div>
