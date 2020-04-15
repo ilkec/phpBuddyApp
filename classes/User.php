@@ -567,7 +567,7 @@ class User
   public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare()
+    $statement = $conn->prepare("");
   }
 
   /*
