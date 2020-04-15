@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
   $query = "select firstname, lastname,picture from users where email != '$connectedUserEmail'";
 
   $countUsers = $user->countUsers();
-  $countMatches = count($user->showMatches()) * 2;
+  $countMatches = count($user->showMatches());
 }
 
 
