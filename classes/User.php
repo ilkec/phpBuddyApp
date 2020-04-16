@@ -511,7 +511,7 @@ class User
     $statement->bindValue(":userId", $fromUser);
     $statement->bindValue(":buddyId", $toUser);
     $result = $statement->execute();
-    var_dump($result);
+    //var_dump($result);
     return $result;
   }
 
@@ -582,9 +582,7 @@ class User
     return $users;
   }
 
-  /*
-  public function sendMessage()
-  { */
+  
   public function sendMatchMail()
   {
     $conn = Db::getConnection();
@@ -615,12 +613,20 @@ class User
     return $result;
   }
 
-
+  public function newMessage(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select * from messages where message_status = 1');
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    //var_dump($users);
+    return $users;
+    
+  }
   public function sendMessage()
   {
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time) values(:fromUser, :toUser, :message, :time)');
+    $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:fromUser, :toUser, :message, :time, 1)');
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $message = $this->getMessage();

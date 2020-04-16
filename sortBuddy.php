@@ -88,6 +88,11 @@ if (isset($_POST['deleteBtn'])) {
 $user->setId($databaseId['id']);
 $allMatches = $user->receiveMatchRequest();
 // var_dump($allMatches);
+
+$notification = count($user->newMessage());
+//var_dump($notification);
+
+
 ?>
 
 
@@ -137,7 +142,12 @@ $allMatches = $user->receiveMatchRequest();
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
+      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php">
+       
+       <a href="messages.php">
+         <div id="newMessage"><?php echo $notification ?></div> 
+      </a>
+       <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
                                                                                                       echo "uploads/profilePic.png";
                                                                                                     } else {
                                                                                                       echo "uploads/" . $connectedUserPicture['picture'];
