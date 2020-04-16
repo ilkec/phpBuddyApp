@@ -110,7 +110,7 @@ $allMatches = $user->receiveMatchRequest();
 
     #personIcon,
     #buddyIcon {
-      width: 70px;
+  
       margin: 10px auto 10px auto;
 
     }
@@ -132,11 +132,11 @@ $allMatches = $user->receiveMatchRequest();
   <div class="container-fluid box ">
     <div class="countUsers">
       <div id="activeUsers">
-        <img id="personIcon" src="img/person-icon" alt="icon person">
+        <img id="personIcon" src="img/user-icon.svg" alt="icon person">
         <p id="countActiveUsers"><?php echo " Active users: " . $countUsers['registeredUsers']; ?></p>
       </div>
       <div id="activeBuddies">
-        <img id="buddyIcon" src="img/person-icon" alt="icon person">
+        <img id="buddyIcon" src="img/buddy-icon.svg" alt="icon person">
         <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
       </div>
     </div>

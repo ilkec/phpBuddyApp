@@ -1,0 +1,22 @@
+<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.87" height="77.62" viewBox="0 0 54.87 77.62">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#imdbuddies);
+      }
+
+      .cls-2 {
+        fill: url(#imdbuddies-2);
+      }
+    </style>
+    <linearGradient id="imdbuddies" x1="8.12" y1="23.12" x2="46.75" y2="23.12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ee9b8e"/>
+      <stop offset="1" stop-color="#d4837b"/>
+    </linearGradient>
+    <linearGradient id="imdbuddies-2" data-name="imdbuddies" x1="3.08" y1="59.84" x2="51.79" y2="59.84" xlink:href="#imdbuddies"/>
+  </defs>
+  <g>
+    <path class="cls-1" d="M46.75,23.12A19.32,19.32,0,1,1,27.44,3.81,19.34,19.34,0,0,1,46.75,23.12Z"/>
+    <path class="cls-2" d="M51.79,69v4.8H3.08V69A24.34,24.34,0,0,1,19.89,45.86a19.39,19.39,0,0,0,15.1,0A24.34,24.34,0,0,1,51.79,69Z"/>
+  </g>
+</svg>
