@@ -79,7 +79,7 @@ if (!empty($_POST)) {
         <!-------------Birthday----------!-->
         <div class="form-group email ">
           <label for="fullName">Birthday</label>
-          <input type="text" class="form-control formInputs" placeholder="dd/mm/yy" name="birthday" value=""> </div>
+          <input type="text" class="form-control formInputs" placeholder="YYY-MM-DD" name="birthday" value=""> </div>
         <!-------------Password----------!-->
         <div class="form-group password ">
           <label for="exampleInputPassword1">Password</label>
@@ -124,7 +124,7 @@ if (!empty($_POST)) {
         <!-------------Birthday----------!-->
         <div class="form-group email ">
           <label for="fullName">Birthday</label>
-          <input type="text" class="form-control formInputs" placeholder="dd/mm/yy" name="birthday" value="<?php if (isset($_POST['birthday'])) {
+          <input type="text" class="form-control formInputs" placeholder="YYY-MM-DD" name="birthday" value="<?php if (isset($_POST['birthday'])) {
                                                                                                               echo $user->getBirthday();
                                                                                                             } ?>"> </div>
         <!-------------Password----------!-->
