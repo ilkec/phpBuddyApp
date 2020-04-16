@@ -28,6 +28,7 @@ if (!empty($_POST['sendMessage'])) {
     $user->setTime(date("Y-m-d H:i:s"));
     //var_dump($message);
     $user->sendMessage();
+    
 }
 //// 1. kijken wie de ingelogde gebruiker is, dit wordt de zender van het bericht (getAllUser['firstname']);
 //// 2. kijken wie de persoon in de buddysuggestie was, dit wordt de ontvanger van het bericht. (om te testen hardcoded in code zetten)

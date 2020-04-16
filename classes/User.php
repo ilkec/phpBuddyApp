@@ -507,7 +507,7 @@ class User
     $statement->bindValue(":userId", $fromUser);
     $statement->bindValue(":buddyId", $toUser);
     $result = $statement->execute();
-    var_dump($result);
+    //var_dump($result);
     return $result;
   }
 
@@ -609,12 +609,12 @@ class User
     return $result;
   }
 
-  public function notification(){
+  public function newMessage(){
     $conn = Db::getConnection();
     $statement = $conn->prepare('select * from messages where message_status = 1');
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    // var_dump($result);
+    //var_dump($users);
     return $users;
     
   }
