@@ -578,9 +578,7 @@ class User
     return $users;
   }
 
-  /*
-  public function sendMessage()
-  { */
+  
   public function sendMatchMail()
   {
     $conn = Db::getConnection();
@@ -616,7 +614,7 @@ class User
   {
 
     $conn = Db::getConnection();
-    $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time) values(:fromUser, :toUser, :message, :time)');
+    $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:fromUser, :toUser, :message, :time, 1)');
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $message = $this->getMessage();
