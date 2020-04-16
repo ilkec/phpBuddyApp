@@ -16,25 +16,41 @@ $user->setFirstname($connectedUserFirstname['firstname']);
 $connectedUserlastname = $user->getConnectedUserLastname();
 $user->setLastname($connectedUserlastname['lastname']);
 $userFullname = $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'];
+
 $connectedUserPicture = $user->getConnectedUserPicture();
 $user->setProfilePicture($connectedUserPicture['picture']);
+
+
 $connectedUserGame = $user->getConnectedUserGame();
 $user->setGames($connectedUserGame['games']);
+$game = $connectedUserGame['games'];
+
 $connectedUserBook = $user->getConnectedUserBook();
 $user->setBooks($connectedUserBook['books']);
+$book = $connectedUserBook['books'];
+
 $connectedUserLocation = $user->getConnectedUserLocation();
 $user->setLocation($connectedUserLocation['location']);
+$location = $connectedUserLocation['location'];
+
 $connectedUserMovie = $user->getConnectedUserMovie();
 $user->setFilms($connectedUserMovie['films']);
+$movie = $connectedUserMovie['films'];
+
 $connectedUserMusic = $user->getConnectedUserMusic();
 $user->setMusic($connectedUserMusic['music']);
+$music = $connectedUserMusic['music'];
+
+$connectedUserBuddyChoice = $user->getConnectedUserBuddyChoice();
+$user->setBuddy($connectedUserBuddyChoice['buddy']);
+$choice = $connectedUserBuddyChoice['buddy'];
 /*------------------------------END----------------------------------------------*/
 
 if (isset($_SESSION['user'])) {
   $conn = Db::getConnection();
 
   //$query = "select firstname from users where games = '$curentUserGame' and email != '$curntUserEmail'";
-  $query = "select firstname, lastname,picture from users where email != '$connectedUserEmail'";
+  $query= "select id, firstname, lastname, picture, books, films, games,music,location,buddy from users where email != '$connectedUserEmail' and films ='$movie'and music ='$music'and location ='$location'and games ='$game'and books ='$book' and buddy != '$choice'";
 
   $countUsers = $user->countUsers();
   $countMatches = count($user->showMatches());
@@ -151,8 +167,11 @@ $allMatches = $user->receiveMatchRequest();
           <button onclick="hide(); return false;" class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
           <br>
-        </div> <?php } ?>
+        </div> 
+          </form>
+        <?php } ?>
       <?php echo "$redenfield" ?>
+  
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
           <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
@@ -176,15 +195,7 @@ $allMatches = $user->receiveMatchRequest();
       <div class="container-list">
         <div class="userContainer">
           <ul class="usersList">
-            <?php foreach ($conn->query($query) as $data) : ?>
-              <li class="row"> <img src="<?php if ($data['picture'] === NULL) {
-                                            echo "uploads/profilePic.png ";
-                                          } else {
-                                            echo "uploads/" . $data['picture'];
-                                          } ?>" class="avatar">
-                <h2 class="user-name col-xs-5"><?php echo $data['firstname'] . " " . $data['lastname'] ?></h2>
-              </li>
-            <?php endforeach; ?>
+            
           </ul>
         </div>
       </div>
