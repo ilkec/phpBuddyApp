@@ -125,10 +125,14 @@ class User
   }
 
 
-  public function setBirthday($birthday)
+ public function setBirthday($birthday)
   {
-    if (empty($birthday)) {
-      //throw new Exception("Birthday can not be empty");
+    if (!empty($birthday)) {
+    $regex="/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/";
+      if(preg_match($regex,$birthday)){
+      }else{
+       throw new Exception("Birthday is not in the correct format. It must be like YYYY-MM-DD");
+      }
     }
     $this->birthday = $birthday;
     return $this;
@@ -909,6 +913,18 @@ class User
     $userMusic = $statement->fetch(PDO::FETCH_ASSOC);
     return $userMusic;
     var_dump($userMusic);
+  }
+  
+  public function getConnectedUserBuddyChoice()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select buddy from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userBuddyChoice = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userBuddyChoice;
+   var_dump($userBuddyChoice);
   }
 
 
