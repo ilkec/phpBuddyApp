@@ -93,9 +93,13 @@ try {
                     </ul>
                     <h5>Buddy</h5>
                     <ul>
-                        <?php foreach ($allBuddy as $b) { ?>
-                            <?php echo implode($b) ?>
-                        <?php } ?>
+                        <?php if ($allBuddy == null) {
+                            echo "Deze gebruiker heeft nog geen buddy";
+                        } else { ?>
+                            <?php foreach ($allBuddy as $b) { ?>
+                                <?php echo implode($b) ?>
+                        <?php }
+                        } ?>
                     </ul>
                     <form class="btn btn-primary" action="" method="post">
                         <input class="btn btn-primary" type="submit" name="return" value="logout">
