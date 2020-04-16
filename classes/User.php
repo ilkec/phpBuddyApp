@@ -609,7 +609,15 @@ class User
     return $result;
   }
 
-
+  public function notification(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select * from messages where message_status = 1');
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($result);
+    return $users;
+    
+  }
   public function sendMessage()
   {
 
