@@ -615,7 +615,9 @@ class User
 
   public function newMessage(){
     $conn = Db::getConnection();
-    $statement = $conn->prepare('select * from messages where message_status = 1');
+    $statement = $conn->prepare('select * from messages where message_status = 1 and to_user = :userId');
+    $userId = $this->getId();
+    $statement->bindValue(":userId", $userId);
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     //var_dump($users);
@@ -624,7 +626,7 @@ class User
   }
   public function updateNotification(){
     $conn = Db::getConnection();
-    $statement = $conn->prepare('update messages set message_status = 0 where (from_user = :fromUser  and to_user = :toUser and message_status = 1) or (from_user = :toUser and to_user = :fromUser and message_status = 1)');
+    $statement = $conn->prepare('update messages set message_status = 0 where (from_user = :toUser and to_user = :fromUser and message_status = 1)');
     $fromUser = $this->getFromUser();
     $toUser = $this->getToUser();
     $statement->bindValue(":fromUser", $fromUser);
