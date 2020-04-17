@@ -632,6 +632,19 @@ class User
     $result = $statement->execute();
     return $result;
   }
+
+  public function chatNames(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select matches.user_id1, matches.user_id2, user1.firstname as user1, user2.firstname as user2 from users as user1, matches, users as user2 where (matches.user_id1 = :fromUser and matches.user_id1 = user1.id and user_id2 = user2.id) or (matches.user_id2 = :fromUser and matches.user_id1 = user1.id and user_id2 = user2.id)');
+    $fromUser = $this->getId();
+    $statement->bindValue(":fromUser", $fromUser);
+    $result = $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
+    return $users;
+  
+  }
+
+
   public function sendMessage()
   {
 
