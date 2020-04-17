@@ -29,7 +29,7 @@ if (isset($_POST['return'])) {
 }
 
 try {
-    $allBuddy = $user->checkBuddy();
+    $allBuddy = $user->profileBuddy();
 } catch (\Throwable $th) {
     $allBuddy = "Deze persoon heeft nog geen buddies";
 }
@@ -97,7 +97,7 @@ try {
                             echo "Deze gebruiker heeft nog geen buddy";
                         } else { ?>
                             <?php foreach ($allBuddy as $b) { ?>
-                                <?php echo implode($b) ?>
+                                <?php echo $b['firstname'], $b['lastname'] ?>
                         <?php }
                         } ?>
                     </ul>

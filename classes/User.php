@@ -569,7 +569,17 @@ class User
   public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("select distinct users.firstname, ' ' ,users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='1' and users.id = matches.user_id2");
+    $statement = $conn->prepare("update users set buddy = '2' where id = :userid");
+    $userid = $this->getId();
+    $statement->bindParam(":userid", $userid);
+    $result = $statement->execute();
+    return $result;
+  }
+
+  public function profileBuddy()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("select distinct users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='2' and users.id = matches.user_id2");
     $userid = $this->getId();
     // $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);

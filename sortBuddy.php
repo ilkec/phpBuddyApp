@@ -133,6 +133,7 @@ $allMatches = $user->receiveMatchRequest();
               if (isset($_POST['acceptBtn'])) {
                 $user->setBuddy($m['user_id2']);
                 $user->acceptMatchRequest();
+                $user->checkBuddy();
               }
               if (isset($_POST['deleteBtn'])) {
                 $user->setBuddy($m['user_id2']);
