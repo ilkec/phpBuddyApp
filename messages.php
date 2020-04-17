@@ -20,9 +20,12 @@ var_dump($receiverInfo);
 if (!empty($_POST['btnChat'])) {
     $idReceiver = $_POST['inputUserId'];
     $_SESSION['chatId'] = $idReceiver;
+    $user->setToUser($_SESSION['chatId']);
+    $user->setFromUser($databaseId['id']);
     $user->updateNotification();
     header("Location: feature8.php");
   }
+
 
 
 

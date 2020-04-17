@@ -152,7 +152,7 @@ if($notification > 0){
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> 
       <?php if(isset($showNotification)):?>
-        <a href="messages.php">
+        <a href="messages.php?notification">
           <div id="messageNotification"><?php echo "messages " . $showNotification ?></div>
         </a>
          <?php endif; ?>
