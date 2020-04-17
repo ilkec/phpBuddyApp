@@ -94,6 +94,9 @@ $notification = count($user->newMessage());
 //als de array wel een getal bevat, toon dan dit getal
 if($notification > 0){
   $showNotification = $notification;
+  if(!empty($_POST['messageBtn'])){
+    $user->updateNotification();
+  }
 }
 //var_dump($notification);
 
@@ -147,13 +150,13 @@ if($notification > 0){
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php">
-       
-       <a href="messages.php">
-       <?php if(isset($showNotification)):?>
-         <div id="newMessage"><?php echo $showNotification ?></div> 
+      <ul class="nav justify-content-end"> 
+      <?php if(isset($showNotification)):?>
+        <a href="messages.php">
+          <div id="messageNotification"><?php echo "messages " . $showNotification ?></div>
+        </a>
          <?php endif; ?>
-      </a>
+        <a class="nav-link profile" href="profile.php">
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
                                                                                                       echo "uploads/profilePic.png";
                                                                                                     } else {

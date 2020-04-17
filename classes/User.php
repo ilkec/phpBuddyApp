@@ -622,6 +622,12 @@ class User
     return $users;
     
   }
+  public function updateNotification(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('update messages set message_status = 0 where message_status = 1');
+    $result = $statement->execute();
+    return $result;
+  }
   public function sendMessage()
   {
 
