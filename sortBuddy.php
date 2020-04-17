@@ -134,6 +134,7 @@ $allMatches = $user->receiveMatchRequest();
                 $user->setBuddy($m['user_id2']);
                 $user->acceptMatchRequest();
                 $user->checkBuddy();
+                echo "Verzoek geaccepteerd!";
               }
               if (isset($_POST['deleteBtn'])) {
                 $user->setBuddy($m['user_id2']);
@@ -147,6 +148,7 @@ $allMatches = $user->receiveMatchRequest();
         $user->setReden($_POST['reden']);
         $user->deleteMatchRequest();
         $user->geefReden();
+        echo "Verzoek verwijderd!";
       }
       ?>
       <form class="form-inline userForm" method="post">
