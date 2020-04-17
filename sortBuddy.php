@@ -55,17 +55,6 @@ if (!empty($_POST['btnTalk'])) {
 $user->setId($databaseId['id']);
 $allMatches = $user->receiveMatchRequest();
 // var_dump($allMatches);
-
-$redenfield = "";
-
-/*
-if (isset($_POST['acceptBtn'])) {
-  // $idReceiver = $_POST['acceptBtn'];
-  // $_SESSION['id'] = $idReceiver;
-  // $user->setBuddy($_SESSION['id']);
-  $user->acceptMatchRequest();
-}
-*/
 ?>
 
 
@@ -114,7 +103,6 @@ if (isset($_POST['acceptBtn'])) {
 <body>
 
   <!-----------------------------Navbar------------------------------>
-  <!--
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php"><img src="<?php if ($connectedUserPicture['picture'] === NULL) {
@@ -124,7 +112,6 @@ if (isset($_POST['acceptBtn'])) {
                                                                                                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-  -->
   <div class="container-fluid box ">
     <div class="countUsers">
       <div id="activeUsers">
@@ -136,13 +123,7 @@ if (isset($_POST['acceptBtn'])) {
         <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
       </div>
     </div>
-    <?php foreach ($allMatches as $m) {
-      // $user->setBuddy($m);
-      // $user->setToUser($m);
-      // $user->setBuddy($m['id']);
-      // var_dump($buddyid);
-
-    ?>
+    <?php foreach ($allMatches as $m) { ?>
       <form id="verzoek" action="" method="POST">
         <div>
           <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
@@ -150,29 +131,23 @@ if (isset($_POST['acceptBtn'])) {
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
         </div> <?php }
               if (isset($_POST['acceptBtn'])) {
-                // $idReceiver = $_POST['acceptBtn'];
-                // $_SESSION['id'] = $idReceiver;
-                // $user->setBuddy($_SESSION['id']);
                 $user->setBuddy($m['user_id2']);
                 $user->acceptMatchRequest();
               }
               if (isset($_POST['deleteBtn'])) {
                 $user->setBuddy($m['user_id2']);
-                $user->deleteMatchRequest();
-                /*
-                $redenfield = "<label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
-                <input type='text' id='reden' name='reden' size='51'>
-                <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>";
-                */
-              }
-
-              /*else if (isset($_POST['redenBtn'])) {
-                $user->setReden($_POST['reden']);
-                $user->geefReden();
-                $redenfield = "";
-              } */
                 ?>
-      <?php echo "$redenfield" ?>
+        <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+        <input type='text' id='reden' name='reden' size='51'>
+        <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
+      <?php } ?>
+      <?php if (isset($_POST['redenBtn'])) {
+        $user->setBuddy($m['user_id2']);
+        $user->setReden($_POST['reden']);
+        $user->deleteMatchRequest();
+        $user->geefReden();
+      }
+      ?>
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
           <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>

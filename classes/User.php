@@ -526,7 +526,7 @@ class User
   public function acceptMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update matches set buddy_match = '1' where user_id1 = :userid and user_id2 = :buddyid");
+    $statement = $conn->prepare("update matches set buddy_match = '2' where user_id1 = :userid and user_id2 = :buddyid");
     $userid = $this->getId();
     $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);
@@ -541,7 +541,7 @@ class User
   public function deleteMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("delete from matches where buddy_match = '0' and user_id1 = :userid and user_id2 = :buddyid");
+    $statement = $conn->prepare("update matches set buddy_match = '1' where user_id1 = :userid and user_id2 = :buddyid");
     $userid = $this->getId();
     $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);
@@ -554,7 +554,7 @@ class User
   public function geefReden()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update matches set reden = :reden where user_id1 = :userid and user_id2 = :buddyid and buddy_match = '0'");
+    $statement = $conn->prepare("update matches set reden = :reden where user_id1 = :userid and user_id2 = :buddyid");
     $userid = $this->getId();
     $buddyid = $this->getBuddy();
     $reden = $this->getReden();
