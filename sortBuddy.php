@@ -90,6 +90,11 @@ $allMatches = $user->receiveMatchRequest();
 // var_dump($allMatches);
 
 $notification = count($user->newMessage());
+//als de array leeg is toon dan niets
+//als de array wel een getal bevat, toon dan dit getal
+if($notification > 0){
+  $showNotification = $notification;
+}
 //var_dump($notification);
 
 
@@ -145,7 +150,9 @@ $notification = count($user->newMessage());
       <ul class="nav justify-content-end"> <a class="nav-link profile" href="profile.php">
        
        <a href="messages.php">
-         <div id="newMessage"><?php echo $notification ?></div> 
+       <?php if(isset($showNotification)):?>
+         <div id="newMessage"><?php echo $showNotification ?></div> 
+         <?php endif; ?>
       </a>
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
                                                                                                       echo "uploads/profilePic.png";
