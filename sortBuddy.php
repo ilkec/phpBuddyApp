@@ -50,7 +50,7 @@ if (isset($_SESSION['user'])) {
   $conn = Db::getConnection();
 
   //$query = "select firstname from users where games = '$curentUserGame' and email != '$curntUserEmail'";
-  $query= "select id, firstname, lastname, picture, books, films, games,music,location,buddy from users where email != '$connectedUserEmail' and films ='$movie'and music ='$music'and location ='$location'and games ='$game'and books ='$book' and buddy != '$choice'";
+  $query = "select id, firstname, lastname, picture, books, films, games,music,location,buddy from users where email != '$connectedUserEmail' and films ='$movie'and music ='$music'and location ='$location'and games ='$game'and books ='$book' and buddy != '$choice'";
 
   $countUsers = $user->countUsers();
   $countMatches = count($user->showMatches());
@@ -65,23 +65,6 @@ if (!empty($_POST['btnTalk'])) {
   $user->sendMatchRequest();
   $user->sendMatchMail();
   header("Location: feature8.php");
-}
-
-$redenfield = "";
-
-if (isset($_POST['acceptBtn'])) {
-  $user->acceptMatchRequest();
-}
-
-if (isset($_POST['deleteBtn'])) {
-  $user->deleteMatchRequest();
-  $redenfield = "<label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
-  <input type='text' id='reden' name='reden' size='51'>
-  <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>";
-} else if (isset($_POST['redenBtn'])) {
-  $user->setReden($_POST['reden']);
-  $user->geefReden();
-  $redenfield = "";
 }
 
 // var_dump($databaseId);
@@ -139,7 +122,7 @@ if($notification > 0){
 
     #personIcon,
     #buddyIcon {
-  
+      width: 70px;
       margin: 10px auto 10px auto;
 
     }
@@ -147,6 +130,7 @@ if($notification > 0){
 </head>
 
 <body>
+
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
@@ -158,10 +142,10 @@ if($notification > 0){
          <?php endif; ?>
         <a class="nav-link profile" href="profile.php">
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
-                                                                                                      echo "uploads/profilePic.png";
-                                                                                                    } else {
-                                                                                                      echo "uploads/" . $connectedUserPicture['picture'];
-                                                                                                    } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
+           echo "uploads/profilePic.png";
+          } else {
+           echo "uploads/" . $connectedUserPicture['picture'];
+          } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
 
@@ -176,22 +160,34 @@ if($notification > 0){
         <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
       </div>
     </div>
-    <?php foreach ($allMatches as $m) {
-      // $user->setBuddy($m);
-      // $user->setToUser($m);
-      // $user->setBuddy($m['id']);
-    ?>
+    <?php foreach ($allMatches as $m) { ?>
       <form id="verzoek" action="" method="POST">
         <div>
-          <h4>Je hebt een buddyverzoek ontvangen van <?php echo implode($m) ?></h4>
-          <button onclick="hide(); return false;" class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
+          <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
+          <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
-          <br>
-        </div> 
-          </form>
-        <?php } ?>
-      <?php echo "$redenfield" ?>
-  
+        </div> <?php }
+              if (isset($_POST['acceptBtn'])) {
+                $user->setBuddy($m['user_id2']);
+                $user->acceptMatchRequest();
+                $user->checkBuddy();
+                echo "Verzoek geaccepteerd!";
+              }
+              if (isset($_POST['deleteBtn'])) {
+                $user->setBuddy($m['user_id2']);
+                ?>
+        <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+        <input type='text' id='reden' name='reden' size='51'>
+        <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
+      <?php } ?>
+      <?php if (isset($_POST['redenBtn'])) {
+        $user->setBuddy($m['user_id2']);
+        $user->setReden($_POST['reden']);
+        $user->deleteMatchRequest();
+        $user->geefReden();
+        echo "Verzoek verwijderd!";
+      }
+      ?>
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
           <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
@@ -215,7 +211,7 @@ if($notification > 0){
       <div class="container-list">
         <div class="userContainer">
           <ul class="usersList">
-            
+
           </ul>
         </div>
       </div>
@@ -233,5 +229,12 @@ if($notification > 0){
     }
   </script>
 </body>
+<!--
+<script>
+  function hide() {
+    document.getElementById("verzoek").style.display = "none";
+  }
+</script>
+-->
 
 </html>
