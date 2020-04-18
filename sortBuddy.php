@@ -77,9 +77,6 @@ $notification = count($user->newMessage());
 //als de array wel een getal bevat, toon dan dit getal
 if($notification > 0){
   $showNotification = $notification;
-  if(!empty($_POST['messageBtn'])){
-    $user->updateNotification();
-  }
 }
 //var_dump($notification);
 
