@@ -119,7 +119,6 @@ if($notification > 0){
 
     #personIcon,
     #buddyIcon {
-      width: 70px;
       margin: 10px auto 10px auto;
 
     }
