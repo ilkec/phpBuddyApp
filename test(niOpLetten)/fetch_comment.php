@@ -1,9 +1,12 @@
 
 <?php
 
+
+include_once(__DIR__ . "/classes/Db.php");
+
 //fetch_comment.php
 
-$connect = new PDO('mysql:host=localhost;dbname=testing', 'root', '');
+
 
 $query = "
 SELECT * FROM tbl_comment 

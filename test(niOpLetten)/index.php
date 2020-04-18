@@ -6,14 +6,14 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>Comment System using PHP and Ajax</title>
+  <title>Babbelke doen</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
  </head>
  <body>
   <br />
-  <h2 align="center"><a href="#">Comment System using PHP and Ajax</a></h2>
+  <h2 align="center"><a href="#">Babbelke doen</a></h2>
   <br />
   <div class="container">
    <form method="POST" id="comment_form">
