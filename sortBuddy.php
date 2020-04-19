@@ -64,6 +64,7 @@ if (!empty($_POST['btnTalk'])) {
   $user->setToUser($_SESSION['chatId']);
   $user->sendMatchRequest();
   $user->sendMatchMail();
+  
   header("Location: feature8.php");
 }
 

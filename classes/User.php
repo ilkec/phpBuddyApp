@@ -607,11 +607,16 @@ class User
     var_dump($result);
 
     try {
-      $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+      
       $mail->isSMTP();
-      $mail->SMTPAuth   = true;
+      $mail->Host = "smtp.sendgrid.net";
+      $mail->SMTPAuth = true;
+      $mail->Username = 'noreplyUser';
+      $mail->Password = 'flameswort10';
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+      $mail->Port = 587;
       $mail->setFrom('noreply@noreply.com', 'Mailer');
-      $mail->addAddress($result);
+      $mail->addAddress($result['email']);
       $mail->isHTML(true);
       $mail->Subject = 'Buddy request';
       $mail->Body    = 'Check your buddy app, you have recieved a new friend request';
