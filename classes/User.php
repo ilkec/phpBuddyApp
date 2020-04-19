@@ -125,13 +125,13 @@ class User
   }
 
 
- public function setBirthday($birthday)
+  public function setBirthday($birthday)
   {
     if (!empty($birthday)) {
-    $regex="/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/";
-      if(preg_match($regex,$birthday)){
-      }else{
-       throw new Exception("Birthday is not in the correct format. It must be like YYYY-MM-DD");
+      $regex = "/[0-9]{4}\-[0-9]{2}\-[0-9]{2}/";
+      if (preg_match($regex, $birthday)) {
+      } else {
+        throw new Exception("Birthday is not in the correct format. It must be like YYYY-MM-DD");
       }
     }
     $this->birthday = $birthday;
@@ -518,7 +518,7 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("select distinct matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
+    $statement = $conn->prepare("select distinct matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2 and users.id and users.id <> :userid");
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
     $result = $statement->execute();
@@ -594,7 +594,7 @@ class User
     return $users;
   }
 
-  
+
   public function sendMatchMail()
   {
     $conn = Db::getConnection();
@@ -630,7 +630,8 @@ class User
     return $result;
   }
 
-  public function newMessage(){
+  public function newMessage()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select * from messages where message_status = 1 and to_user = :userId');
     $userId = $this->getId();
@@ -639,9 +640,9 @@ class User
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     //var_dump($users);
     return $users;
-    
   }
-  public function updateNotification(){
+  public function updateNotification()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('update messages set message_status = 0 where (from_user = :toUser and to_user = :fromUser and message_status = 1)');
     $fromUser = $this->getFromUser();
@@ -652,7 +653,8 @@ class User
     return $result;
   }
 
-  public function chatNames(){
+  public function chatNames()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select matches.user_id1, matches.user_id2, user1.firstname as user1, user2.firstname as user2 from users as user1, matches, users as user2 where (matches.user_id1 = :fromUser and matches.user_id1 = user1.id and user_id2 = user2.id) or (matches.user_id2 = :fromUser and matches.user_id1 = user1.id and user_id2 = user2.id)');
     $fromUser = $this->getId();
@@ -660,7 +662,6 @@ class User
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
     return $users;
-  
   }
 
 
@@ -962,7 +963,7 @@ class User
     return $userMusic;
     var_dump($userMusic);
   }
-  
+
   public function getConnectedUserBuddyChoice()
   {
     $conn = Db::getConnection();
@@ -972,7 +973,7 @@ class User
     $result = $statement->execute();
     $userBuddyChoice = $statement->fetch(PDO::FETCH_ASSOC);
     return $userBuddyChoice;
-   var_dump($userBuddyChoice);
+    var_dump($userBuddyChoice);
   }
 
 

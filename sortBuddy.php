@@ -76,7 +76,7 @@ $allMatches = $user->receiveMatchRequest();
 $notification = count($user->newMessage());
 //als de array leeg is toon dan niets
 //als de array wel een getal bevat, toon dan dit getal
-if($notification > 0){
+if ($notification > 0) {
   $showNotification = $notification;
 }
 //var_dump($notification);
@@ -131,18 +131,18 @@ if($notification > 0){
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> 
-      <?php if(isset($showNotification)):?>
-        <a href="messages.php">
-          <div id="messageNotification"><?php echo "messages " . $showNotification ?></div>
-        </a>
-         <?php endif; ?>
+      <ul class="nav justify-content-end">
+        <?php if (isset($showNotification)) : ?>
+          <a href="messages.php">
+            <div id="messageNotification"><?php echo "messages " . $showNotification ?></div>
+          </a>
+        <?php endif; ?>
         <a class="nav-link profile" href="profile.php">
-       <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
-           echo "uploads/profilePic.png";
-          } else {
-           echo "uploads/" . $connectedUserPicture['picture'];
-          } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
+          <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
+                      echo "uploads/profilePic.png";
+                    } else {
+                      echo "uploads/" . $connectedUserPicture['picture'];
+                    } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
 
@@ -157,7 +157,8 @@ if($notification > 0){
         <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
       </div>
     </div>
-    <?php foreach ($allMatches as $m) { ?>
+    <?php foreach ($allMatches as $m) {
+      $user->setBuddy($m['user_id2']); ?>
       <form id="verzoek" action="" method="POST">
         <div>
           <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
