@@ -131,11 +131,11 @@ if($notification > 0){
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> 
-      <?php if(isset($showNotification)):?>
-        <a href="messages.php">
-          <div id="messageNotification"><?php echo "messages " . $showNotification ?></div>
+      
+        <a  id="messageNotification" href="messages.php">messages
+          <?php if(isset($showNotification)){echo $showNotification;} ?>
         </a>
-         <?php endif; ?>
+         
         <a class="nav-link profile" href="profile.php">
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
            echo "uploads/profilePic.png";
