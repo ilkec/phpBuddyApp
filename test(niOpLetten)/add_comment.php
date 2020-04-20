@@ -1,9 +1,12 @@
 
 <?php
 
+
+include_once(__DIR__ . "/classes/Db.php");
+
 //add_comment.php
 
-$connect = new PDO('mysql:host=localhost;dbname=testing', 'root', '');
+
 
 $error = '';
 $comment_name = '';
