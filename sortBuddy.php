@@ -65,7 +65,7 @@ if (!empty($_POST['btnTalk'])) {
   $user->sendMatchRequest();
   $user->sendMatchMail();
   
-  header("Location: feature8.php");
+  //header("Location: feature8.php");
 }
 
 // var_dump($databaseId);
