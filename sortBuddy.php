@@ -93,41 +93,7 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
-  <style>
-    .countUsers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    #activeUsers {
-      display: grid;
-      grid-column: 1/2;
-      background-color: #343a40;
-      border-right: 1px solid white;
-    }
-
-    #countActiveUsers,
-    #countActiveBuddies {
-      text-align: center;
-      color: white;
-    }
-
-    #activeBuddies {
-      display: grid;
-      grid-column: 2/3;
-      background-color: #343a40;
-    }
-
-    #personIcon,
-    #buddyIcon {
-      margin: 10px auto 10px auto;
-
-    }
-
-    #messageNotification{
-      align-self:center
-    }
-  </style>
+  
 </head>
 
 <body>
@@ -150,16 +116,7 @@ if ($notification > 0) {
   </nav>
 
   <div class="container-fluid box ">
-    <div class="countUsers">
-      <div id="activeUsers">
-        <img id="personIcon" src="img/user-icon.svg" alt="icon person">
-        <p id="countActiveUsers"><?php echo " Active users: " . $countUsers['registeredUsers']; ?></p>
-      </div>
-      <div id="activeBuddies">
-        <img id="buddyIcon" src="img/buddy-icon.svg" alt="icon person">
-        <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
-      </div>
-    </div>
+   
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']); ?>
       <form id="verzoek" action="" method="POST">
@@ -167,7 +124,8 @@ if ($notification > 0) {
           <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
           <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
-        </div> <?php }
+        </div>
+         <?php }
               if (isset($_POST['acceptBtn'])) {
                 $user->setBuddy($m['user_id2']);
                 $user->acceptMatchRequest();
@@ -189,6 +147,20 @@ if ($notification > 0) {
         echo "Verzoek verwijderd!";
       }
       ?>
+      </form>
+
+       <!------counters------>
+      <div class="countUsers">
+        <div id="activeUsers">
+          <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+          <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+        </div>
+        <div id="activeBuddies">
+          <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+          <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
+        </div>
+      </div>
+
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
           <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
