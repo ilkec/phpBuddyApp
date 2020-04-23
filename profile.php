@@ -11,7 +11,6 @@ $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
 //var_dump($databaseId['id']);
 
-
 if (isset($_SESSION['user'])) {
     $getAllUser = $user->getAll();
     //var_dump($getAllUser);

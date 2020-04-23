@@ -1,13 +1,15 @@
 <?php
 
-include_once(__DIR__ . "/phpMailer/src/Exception.php");
+/*include_once(__DIR__ . "/phpMailer/src/Exception.php");
 include_once(__DIR__ . "/phpMailer/src/PHPMailer.php");
-include_once(__DIR__ . "/phpMailer/src/SMTP.php");
+include_once(__DIR__ . "/phpMailer/src/SMTP.php");*/
 include_once(__DIR__ . "/Db.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
+
 
 class User
 {
@@ -604,18 +606,23 @@ class User
     $result = $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     $mail = new PHPMailer(true);
-    var_dump($result);
+    var_dump($result['email']);
 
     try {
       
       $mail->isSMTP();
+      
+      $mail->SMTPDebug = 2;
       $mail->Host = "smtp.sendgrid.net";
-      $mail->SMTPAuth = true;
+      //$mail->Host = "localhost"; /* test */ 
+      //$mail->Host = 'smtp.gmail.com';
+      $mail->SMTPAuth = true; /*false/true*/
+      //$mail->SMTPAutoTLS = false; /* test */
       $mail->Username = 'noreplyUser';
       $mail->Password = 'flameswort10';
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-      $mail->Port = 587;
-      $mail->setFrom('noreply@noreply.com', 'Mailer');
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /*ENCRYPTION_SMTPS;*/
+      $mail->Port = 587; //25 - 465 - 587 -2525
+      $mail->setFrom('buddyfixers@mail.com', 'Buddy fixers');
       $mail->addAddress($result['email']);
       $mail->isHTML(true);
       $mail->Subject = 'Buddy request';
