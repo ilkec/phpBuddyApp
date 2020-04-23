@@ -123,6 +123,10 @@ if ($notification > 0) {
       margin: 10px auto 10px auto;
 
     }
+
+    #messageNotification{
+      align-self:center
+    }
   </style>
 </head>
 
@@ -132,7 +136,6 @@ if ($notification > 0) {
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end"> 
-      
         <a  id="messageNotification" href="messages.php">messages
           <?php if(isset($showNotification)){echo $showNotification;} ?>
         </a>
