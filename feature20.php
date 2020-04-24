@@ -1,75 +1,50 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/phproject/classes/User.php');
-    /*
-
-    session_start();
-    if(!isset($_SESSION['user'])){
-        header("Location: login.php");
-    }
-
-    */
-    //set current user
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/User.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/comment.php');
     $user = new User();
-    $user->setFirstName("tester1");
-    /*
-    
-    $user->setEmail($_SESSION['user']);
-    $userId = $user->getCurrentUser();
-    $user->setId($userId);
-    
-    */
+    session_start();
+    $databaseId = $user->getDatabaseId();
+    $user->setId($databaseId);
+
+    if (!isset($_SESSION['user'])) {
+        header("Location: feature2.php");
+    }else{
+        $user->setEmail($_SESSION['user']);
+    }
+    $userFirstName = $user->getConnectedUserFirstname();
+    $userLastName = $user->getConnectedUserLastname();
+    $user->setFirstname($userFirstName);
+    $user->setLastname($userLastName);
 
     //add new comment + create error var for verification
     $error = '';
     if(!empty($_POST) && isset($_POST['update']) !== true){
-        $comment_name = '';
-        $comment_content = '';
-
+        $comment = new comment();
+        $comment->setParent_Id(0);
+        $comment->setSenderName($user->getFirstName());
+        $test = $comment->getSenderName();
         if(empty($_POST['comment_name'])){
             $error = 'no comment name';
         }else{
-            $comment_name = $_POST['comment_name'];
+            $comment->setTitle($_POST['comment_name']);
         }
         if(empty($_POST['comment_content'])){
             $error = 'no comment content';
         }else{
-            $comment_content = $_POST['comment_content'];
+            $comment->setComment($_POST['comment_content']);
         }
         if($error == ''){
-            $conn = new PDO('mysql:host=localhost;dbname=testing', 'root', '');
-            $parentcomment_id = 0;
-            $comment_sendername = $user->getFirstName();
-            $comment = $comment_content;
-            $statement = $conn->prepare("INSERT INTO tbl_comment (parentcomment_id, comment, comment_sendername) VALUES (:parentcomment_id, :comment, :comment_sendername);");
-            $statement->bindValue(":parentcomment_id", $parentcomment_id);
-            $statement->bindValue(":comment", $comment);
-            $statement->bindValue(":comment_sendername", $comment_sendername);
-            $result = $statement->execute();
+            $comment->addComment();
             $error = 'Comment succesfully posted';
         }
     }
     //fetch all comments
-    function fetchComments(){
-        $conn = new PDO('mysql:host=localhost;dbname=testing', 'root', '');
-        $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parentcomment_id = '0' ORDER BY comment_id DESC");
-        $statement->execute();
-        $result = $statement->fetchAll();
-        $output = '';
-        foreach($result as $row){
-            $output .= '
-                <div class="comment_container">
-                    <div class="comment_header">' .$row["comment_sendername"]. '</div>
-                    <div class="comment_body"> ' .$row["comment"]. ' </div>
-                    <div class="comment_footer"><button type="button" id="'.$row["comment_id"].'">Reply</button></div>
-                </div>
-            ';
-        }
-        return $output;
-    }
     $output = '';
     if(isset($_POST['update'])){
-        $output = fetchComments();
+        $comment = new Comment();
+        $output = $comment->getAllComments();
         unset($_POST['update']);
+        $test = $comment->test();
     }
 ?>
 <!DOCTYPE html>
