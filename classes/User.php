@@ -8,7 +8,7 @@ include_once(__DIR__ . "/Db.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
+// require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
 
 
 class User
@@ -609,9 +609,9 @@ class User
     var_dump($result['email']);
 
     try {
-      
+
       $mail->isSMTP();
-      
+
       $mail->SMTPDebug = 2;
       $mail->Host = "smtp.sendgrid.net";
       //$mail->Host = "localhost"; /* test */ 
