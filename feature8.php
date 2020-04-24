@@ -47,7 +47,7 @@ $chatHistory = $user->messagesFromDatabase();
     <style>
         .chatbox {
             height: 500px;
-            width: 460px;
+            width: 600px;
             padding: 20px;
             background-color: mintcream;
             overflow: auto;
@@ -55,12 +55,13 @@ $chatHistory = $user->messagesFromDatabase();
 
         #chatpartner {
             background-color: linen;
-            width: 460px;
+            width: 600px;
             padding: 20px;
         }
 
         #message {
-            width: 400px;
+            width: 550px;
+            height: 30px;
 
         }
 
@@ -72,6 +73,10 @@ $chatHistory = $user->messagesFromDatabase();
             padding: 5px;
             font-size: 12px;
         }
+        /*.names{
+            display: inline;
+        }*/
+        
     </style>
 </head>
 
@@ -79,8 +84,8 @@ $chatHistory = $user->messagesFromDatabase();
     <a href="messages.php">Back</a>
     <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></div>
     <div class="chatbox">
-        <?php foreach ($chatHistory as $chatMessage) : ?>
-            <p><strong><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
+        <?php foreach ($chatHistory as $chatMessage): ?>
+            <p><strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
         <?php endforeach; ?>
     </div>
     <!--<form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">-->

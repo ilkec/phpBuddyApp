@@ -3,13 +3,13 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
     //message text
     let text = document.querySelector("#message").value;
     console.log(text);
-        
+
     //message posten naar de databank(via ajax)
     let formData = new FormData();
     formData.append("text", text);
-   
 
-    
+
+
     fetch("ajax/savecomment.php", {
         method: "POST",
         body: formData
@@ -23,4 +23,4 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
         .catch(error => {
            console.log("Error:", error);
         });
-});//messages tonen in chatvenster;
+});//messages tonen in chatvenster; 
