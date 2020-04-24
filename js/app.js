@@ -20,6 +20,7 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
             let newMessage = document.createElement("p");
             newMessage.innerHTML = result.body;
             document.querySelector(".chatbox").appendChild(newMessage);
+            document.querySelector("#message").value = "";
         })
         .catch(error => {
            console.log("Error:", error);
