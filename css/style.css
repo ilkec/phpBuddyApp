@@ -129,8 +129,12 @@ button.btn.btn-primary:hover {
   border: 2px solid #21313F;
 }
 
+
 /*---------------------------------------------------Sort-buddy-style-------------------------------------------------------*/
 
+#messageNotification{
+  align-self: center;
+}
 .countUsers {
   display: grid;
   width: 68%;
@@ -167,9 +171,7 @@ button.btn.btn-primary:hover {
 
 }
 
-#nieuwediv{
-  align-self:center;
-}
+
 
 
 #activeBuddies {
