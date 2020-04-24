@@ -8,7 +8,7 @@ $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']); //id van de ingelogde gebruiker
 $chatNames = $user->chatNames();
-var_dump($chatNames);
+//var_dump($chatNames);
 //zoek met welke personen je al een gesprek hebt gehad
 //
 
