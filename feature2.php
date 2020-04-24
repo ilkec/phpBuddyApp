@@ -26,6 +26,8 @@ if ($_SESSION["login_attempts"] > 2) {
 
 $block = "";
 $disable = "";
+$force = "";
+
 if (!empty($_POST)) {
 
 	$user = new User();
@@ -39,6 +41,7 @@ if (!empty($_POST)) {
 				if ($_COOKIE['login-form'] < 3) {
 					$attempts = $_COOKIE['login-form'] + 1;
 					setcookie('login-form', $attempts, time() + 60); // cookie 60 seconden met aantal pogingen
+					sleep(1);
 				} else {
 					$block = 'Te veel foute invoerpogingen, gelieve 1minuut te wachten.';
 					$disable = 'disabled';
@@ -80,8 +83,6 @@ if (!empty($_POST)) {
 
 	$error = "Email and password are required";
 }
-
-
 ?>
 
 
@@ -114,6 +115,7 @@ if (!empty($_POST)) {
 				<h5><?php echo $block ?></h5>
 				<input class="mt-3 mb-3 btn btn-primary" type="submit" $disable value="Log in">
 				<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
+
 
 		</div>
 	</fieldset>
