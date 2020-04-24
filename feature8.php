@@ -23,21 +23,7 @@ $receiver = new User();
 $receiver->setId($_SESSION['chatId']);
 $receiverInfo = $receiver->getAll();
 //var_dump($receiverInfo);
-/*if (!empty($_POST['sendMessage'])) {
-    $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
-    $user->setMessage($message);
-    $user->setToUser($_SESSION['chatId']);
-    $user->setFromUser($databaseId['id']);
-    $user->setTime(date("Y-m-d H:i:s"));
-    //var_dump($message);
-    $user->sendMessage();
-    
-}*/
-//// 1. kijken wie de ingelogde gebruiker is, dit wordt de zender van het bericht (getAllUser['firstname']);
-//// 2. kijken wie de persoon in de buddysuggestie was, dit wordt de ontvanger van het bericht. (om te testen hardcoded in code zetten)
-//// 3. als er gesubmit wordt bericht van zender ophalen uit textarea (input) en setten in setMessage();
-//// 4. als er gesubmit wordt bericht sturen naar databank met id van zender en id van ontvanger. 
-//// 5. berichten uit de databank halen waar het id van de user bij staat. deze berichten tonen in de 'chatbox'
+
 
 
 
