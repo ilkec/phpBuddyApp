@@ -39,11 +39,6 @@ class User
   private $time;
 
 
-
-
-
-
-
   /**
    * Get the value of firstname
    */
