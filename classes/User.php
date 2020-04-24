@@ -43,7 +43,6 @@ class User
 
 
 
-
   /**
    * Get the value of firstname
    */
@@ -816,7 +815,7 @@ class User
     $userAge = $dif->format('%y');
 
     $stmt = $conn->prepare("select 1 from users where `email` = ?");
-    $stmt->execute([$email]);
+      $stmt->execute([$email]);
     $found = $stmt->fetchColumn();
 
 

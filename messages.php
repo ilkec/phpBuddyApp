@@ -23,6 +23,7 @@ $receiverInfo = $receiver->getAll();
 if (!empty($_POST['btnChat'])) {
     $idReceiver = $_POST['inputUserId'];
     $_SESSION['chatId'] = $idReceiver;
+    $_SESSION['userid'] = $databaseId['id'];
     $user->setToUser($_SESSION['chatId']);
     $user->setFromUser($databaseId['id']);
     $user->updateNotification();

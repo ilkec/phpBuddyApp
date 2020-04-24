@@ -167,6 +167,11 @@ button.btn.btn-primary:hover {
 
 }
 
+#nieuwediv{
+  align-self:center;
+}
+
+
 #activeBuddies {
   display: grid;
   grid-column: 2/3;

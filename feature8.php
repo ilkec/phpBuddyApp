@@ -1,14 +1,17 @@
 <?php
 
 include_once(__DIR__ . '/classes/User.php');
+include_once(__DIR__ . '/classes/Comment.php');
+
 
 
 $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
+
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
-
+$_SESSION['userid'] = $databaseId['id'];
 //var_dump($databaseId['id']);
 $getAllUser = $user->getAll();
 
@@ -20,7 +23,7 @@ $receiver = new User();
 $receiver->setId($_SESSION['chatId']);
 $receiverInfo = $receiver->getAll();
 //var_dump($receiverInfo);
-if (!empty($_POST['sendMessage'])) {
+/*if (!empty($_POST['sendMessage'])) {
     $message = $_POST['message']; //message moet later naar databank gestuurd worden met id van sender en id van receiver
     $user->setMessage($message);
     $user->setToUser($_SESSION['chatId']);
@@ -29,7 +32,7 @@ if (!empty($_POST['sendMessage'])) {
     //var_dump($message);
     $user->sendMessage();
     
-}
+}*/
 //// 1. kijken wie de ingelogde gebruiker is, dit wordt de zender van het bericht (getAllUser['firstname']);
 //// 2. kijken wie de persoon in de buddysuggestie was, dit wordt de ontvanger van het bericht. (om te testen hardcoded in code zetten)
 //// 3. als er gesubmit wordt bericht van zender ophalen uit textarea (input) en setten in setMessage();
@@ -58,7 +61,7 @@ $chatHistory = $user->messagesFromDatabase();
     <title>Document</title>
     <style>
         .chatbox {
-            height: 250px;
+            height: 500px;
             width: 460px;
             padding: 20px;
             background-color: mintcream;
@@ -72,8 +75,17 @@ $chatHistory = $user->messagesFromDatabase();
         }
 
         #message {
-            width: 450px;
+            width: 400px;
 
+        }
+
+        .btn {
+            background-color: #f29f90;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -86,16 +98,18 @@ $chatHistory = $user->messagesFromDatabase();
             <p><strong><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
         <?php endforeach; ?>
     </div>
-    <form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">
+    <!--<form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">-->
 
         <div class="mt-2">
-            <textarea type="text" placeholder="message" name="message" id="message"></textarea>
-            <input type="submit" value="send" class="btn btn-primary mb-3" id="btnOpslaan" name="sendMessage">
+            <input type="text" placeholder="message" name="message" id="message">
+            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage">Send message</a>
         </div>
 
 
 
-    </form>
+   <!-- </form>-->
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>
