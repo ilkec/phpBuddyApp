@@ -41,7 +41,6 @@ $receiverInfo = $receiver->getAll();
 
 
 
-
 $user->setToUser($_SESSION['chatId']);
 $user->setFromUser($databaseId['id']);
 $chatHistory = $user->messagesFromDatabase();

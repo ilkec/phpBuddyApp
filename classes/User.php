@@ -873,7 +873,6 @@ class User
 
   }
 
-
   public function getConnectedUserFirstname()
   {
     $conn = Db::getConnection();

@@ -94,13 +94,12 @@ if ($notification > 0) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-  .error{
-    display: inline;
-    padding: 0 6px;
-    background-color:red;
-    border-radius: 50px;
-  }
-
+    .error {
+      display: inline;
+      padding: 0 6px;
+      background-color: red;
+      border-radius: 50px;
+    }
   </style>
 </head>
 
@@ -109,12 +108,12 @@ if ($notification > 0) {
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> 
-      
-        <a  id="messageNotification" href="messages.php">messages
-        <?php if(isset($showNotification)): ?>
-          <div class="error"><?php echo $showNotification;?></div>
-        <?php endif; ?>  
+      <ul class="nav justify-content-end">
+
+        <a id="messageNotification" href="messages.php">messages
+          <?php if (isset($showNotification)) : ?>
+            <div class="error"><?php echo $showNotification; ?></div>
+          <?php endif; ?>
         </a>
 
         <a class="nav-link profile" href="profile.php">
@@ -127,7 +126,7 @@ if ($notification > 0) {
   </nav>
   <div class="container-fluid box ">
     <!------counters------>
-    
+
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
