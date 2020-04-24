@@ -93,7 +93,15 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
+  <style>
+  .error{
+    display: inline;
+    padding: 0 6px;
+    background-color:red;
+    border-radius: 50px;
+  }
 
+  </style>
 </head>
 
 <body>
@@ -101,12 +109,12 @@ if ($notification > 0) {
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end">
-
-        <a id="messageNotification" href="messages.php">messages
-          <?php if (isset($showNotification)) {
-            echo $showNotification;
-          } ?>
+      <ul class="nav justify-content-end"> 
+      
+        <a  id="messageNotification" href="messages.php">messages
+        <?php if(isset($showNotification)): ?>
+          <div class="error"><?php echo $showNotification;?></div>
+        <?php endif; ?>  
         </a>
 
         <a class="nav-link profile" href="profile.php">
@@ -119,16 +127,7 @@ if ($notification > 0) {
   </nav>
   <div class="container-fluid box ">
     <!------counters------>
-    <div class="countUsers">
-      <div id="activeUsers">
-        <img id="personIcon" src="img/icon-user.svg" alt="icon person">
-        <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
-      </div>
-      <div id="activeBuddies">
-        <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
-        <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
-      </div>
-    </div>
+    
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
@@ -161,6 +160,17 @@ if ($notification > 0) {
     }
       ?>
         </form>
+
+        <div class="countUsers">
+          <div id="activeUsers">
+            <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+            <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+          </div>
+          <div id="activeBuddies">
+            <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+            <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
+          </div>
+        </div>
         <form class="form-inline userForm" method="post">
           <a href="" type="submit" name="bookBtn" id="book" class="interest">
             <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
