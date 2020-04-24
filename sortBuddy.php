@@ -117,9 +117,18 @@ if ($notification > 0) {
                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-
   <div class="container-fluid box ">
-
+    <!------counters------>
+    <div class="countUsers">
+      <div id="activeUsers">
+        <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+        <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+      </div>
+      <div id="activeBuddies">
+        <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+        <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
+      </div>
+    </div>
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
@@ -152,19 +161,6 @@ if ($notification > 0) {
     }
       ?>
         </form>
-
-        <!------counters------>
-        <div class="countUsers">
-          <div id="activeUsers">
-            <img id="personIcon" src="img/icon-user.svg" alt="icon person">
-            <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
-          </div>
-          <div id="activeBuddies">
-            <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
-            <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
-          </div>
-        </div>
-
         <form class="form-inline userForm" method="post">
           <a href="" type="submit" name="bookBtn" id="book" class="interest">
             <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
