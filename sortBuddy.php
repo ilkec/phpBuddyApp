@@ -164,7 +164,9 @@ if ($notification > 0) {
       <div class="countUsers">
         <div id="activeUsers">
           <img id="personIcon" src="img/icon-user.svg" alt="icon person">
-          <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+          <div id="countActiveUsers">
+            <div id="nieuwediv"><?php echo "Active: " . $countUsers['registeredUsers']; ?></div>
+          </div>
         </div>
         <div id="activeBuddies">
           <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
