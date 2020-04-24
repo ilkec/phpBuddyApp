@@ -93,7 +93,15 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
-  
+  <style>
+  .error{
+    display: inline;
+    padding: 0 6px;
+    background-color:red;
+    border-radius: 50px;
+  }
+
+  </style>
 </head>
 
 <body>
@@ -104,7 +112,9 @@ if ($notification > 0) {
       <ul class="nav justify-content-end"> 
       
         <a  id="messageNotification" href="messages.php">messages
-          <?php if(isset($showNotification)){echo $showNotification;} ?>
+        <?php if(isset($showNotification)): ?>
+          <div class="error"><?php echo $showNotification;?></div>
+        <?php endif; ?>  
         </a>
          
         <a class="nav-link profile" href="profile.php">
