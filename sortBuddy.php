@@ -64,7 +64,7 @@ if (!empty($_POST['btnTalk'])) {
   $user->setToUser($_SESSION['chatId']);
   $user->sendMatchRequest();
   $user->sendMatchMail();
-  
+
   //header("Location: feature8.php");
 }
 
@@ -94,34 +94,11 @@ if ($notification > 0) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-    .countUsers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    #activeUsers {
-      display: grid;
-      grid-column: 1/2;
-      background-color: #343a40;
-      border-right: 1px solid white;
-    }
-
-    #countActiveUsers,
-    #countActiveBuddies {
-      text-align: center;
-      color: white;
-    }
-
-    #activeBuddies {
-      display: grid;
-      grid-column: 2/3;
-      background-color: #343a40;
-    }
-
-    #personIcon,
-    #buddyIcon {
-      margin: 10px auto 10px auto;
-
+    .error {
+      display: inline;
+      padding: 0 6px;
+      background-color: red;
+      border-radius: 50px;
     }
   </style>
 </head>
@@ -131,12 +108,14 @@ if ($notification > 0) {
   <!-----------------------------Navbar------------------------------>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> 
-      
-        <a  id="messageNotification" href="messages.php">messages
-          <?php if(isset($showNotification)){echo $showNotification;} ?>
+      <ul class="nav justify-content-end">
+
+        <a id="messageNotification" href="messages.php">messages
+          <?php if (isset($showNotification)) : ?>
+            <div class="error"><?php echo $showNotification; ?></div>
+          <?php endif; ?>
         </a>
-         
+
         <a class="nav-link profile" href="profile.php">
           <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
                       echo "uploads/profilePic.png";
@@ -145,39 +124,31 @@ if ($notification > 0) {
                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-
   <div class="container-fluid box ">
-    <div class="countUsers">
-      <div id="activeUsers">
-        <img id="personIcon" src="img/user-icon.svg" alt="icon person">
-        <p id="countActiveUsers"><?php echo " Active users: " . $countUsers['registeredUsers']; ?></p>
-      </div>
-      <div id="activeBuddies">
-        <img id="buddyIcon" src="img/buddy-icon.svg" alt="icon person">
-        <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
-      </div>
-    </div>
+    <!------counters------>
+
     <?php foreach ($allMatches as $m) {
-      $user->setBuddy($m['user_id2']); ?>
-      <form id="verzoek" action="" method="POST">
-        <div>
-          <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
-          <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
-          <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
-        </div> <?php }
-              if (isset($_POST['acceptBtn'])) {
-                $user->setBuddy($m['user_id2']);
-                $user->acceptMatchRequest();
-                $user->checkBuddy();
-                echo "Verzoek geaccepteerd!";
-              }
-              if (isset($_POST['deleteBtn'])) {
-                $user->setBuddy($m['user_id2']);
-                ?>
-        <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
-        <input type='text' id='reden' name='reden' size='51'>
-        <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
-      <?php } ?>
+      $user->setBuddy($m['user_id2']);
+      if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
+        <form id="verzoek" action="" method="POST">
+          <div>
+            <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
+            <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
+            <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
+          </div> <?php }
+                if (isset($_POST['acceptBtn'])) {
+                  $user->setBuddy($m['user_id2']);
+                  $user->acceptMatchRequest();
+                  $user->checkBuddy();
+                  echo "Verzoek geaccepteerd!";
+                }
+                if (isset($_POST['deleteBtn'])) {
+                  $user->setBuddy($m['user_id2']);
+                  ?>
+          <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+          <input type='text' id='reden' name='reden' size='51'>
+          <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
+        <?php } ?>
       <?php if (isset($_POST['redenBtn'])) {
         $user->setBuddy($m['user_id2']);
         $user->setReden($_POST['reden']);
@@ -185,34 +156,47 @@ if ($notification > 0) {
         $user->geefReden();
         echo "Verzoek verwijderd!";
       }
+    }
       ?>
-      <form class="form-inline userForm" method="post">
-        <a href="" type="submit" name="bookBtn" id="book" class="interest">
-          <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
-        </a>
-        <a href="" id="movie" type="submit" name="movieBtn" class="interest">
-          <div class="type-select btn btn-primary movieBtn"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
-        </a>
-        <a href="" type="submit" name="musicBtn" id="music" class="interest">
-          <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
-        </a>
-        <a href="" id="game" type="submit" name="gameBtn" class="interest">
-          <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
-        </a>
-        <a href="" id="location" type="submit" name="locationBtn" class="interest">
-          <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
-        </a>
-        <a href="" id="all" type="submit" name="showAllBtn" class="interest">
-          <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
-        </a>
-      </form>
-      <div class="container-list">
-        <div class="userContainer">
-          <ul class="usersList">
+        </form>
 
-          </ul>
+        <div class="countUsers">
+          <div id="activeUsers">
+            <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+            <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+          </div>
+          <div id="activeBuddies">
+            <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+            <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
+          </div>
         </div>
-      </div>
+        <form class="form-inline userForm" method="post">
+          <a href="" type="submit" name="bookBtn" id="book" class="interest">
+            <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
+          </a>
+          <a href="" id="movie" type="submit" name="movieBtn" class="interest">
+            <div class="type-select btn btn-primary movieBtn"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
+          </a>
+          <a href="" type="submit" name="musicBtn" id="music" class="interest">
+            <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
+          </a>
+          <a href="" id="game" type="submit" name="gameBtn" class="interest">
+            <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
+          </a>
+          <a href="" id="location" type="submit" name="locationBtn" class="interest">
+            <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
+          </a>
+          <a href="" id="all" type="submit" name="showAllBtn" class="interest">
+            <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
+          </a>
+        </form>
+        <div class="container-list">
+          <div class="userContainer">
+            <ul class="usersList">
+
+            </ul>
+          </div>
+        </div>
   </div>
   <div id="#displayData"></div>
   <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
