@@ -132,9 +132,50 @@ button.btn.btn-primary:hover {
 /*---------------------------------------------------Sort-buddy-style-------------------------------------------------------*/
 
 .countUsers {
+  display: grid;
   width: 68%;
-  padding-top: 30px;
+  grid-template-columns: 190px 190px;
+  grid-gap: 10px;
+  padding-top: 20px;
   margin: 0px auto;
+}
+
+#activeUsers {
+  display: grid;
+  grid-column: 1/2;
+  border-right: 1px solid white;
+}
+
+#activeUsers, #activeBuddies{
+  border: 1px solid #7f8081;
+  border-radius: 5px;
+  display:grid;
+  grid-template-columns: 50px 140px;
+  grid-template-rows: 30px;
+  
+  
+}
+
+#countActiveUsers,
+#countActiveBuddies {
+  text-align: center;
+  color: white;
+  background-color: #7f8081;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ 
+
+}
+
+#activeBuddies {
+  display: grid;
+  grid-column: 2/3;
+}
+
+#personIcon,
+#buddyIcon {
+  height: 20px;
+  /*margin: 10px auto 10px auto;*/
 
 }
 

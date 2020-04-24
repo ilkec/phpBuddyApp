@@ -93,37 +93,7 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
-  <style>
-    .countUsers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
 
-    #activeUsers {
-      display: grid;
-      grid-column: 1/2;
-      background-color: #343a40;
-      border-right: 1px solid white;
-    }
-
-    #countActiveUsers,
-    #countActiveBuddies {
-      text-align: center;
-      color: white;
-    }
-
-    #activeBuddies {
-      display: grid;
-      grid-column: 2/3;
-      background-color: #343a40;
-    }
-
-    #personIcon,
-    #buddyIcon {
-      margin: 10px auto 10px auto;
-
-    }
-  </style>
 </head>
 
 <body>
@@ -149,16 +119,7 @@ if ($notification > 0) {
   </nav>
 
   <div class="container-fluid box ">
-    <div class="countUsers">
-      <div id="activeUsers">
-        <img id="personIcon" src="img/user-icon.svg" alt="icon person">
-        <p id="countActiveUsers"><?php echo " Active users: " . $countUsers['registeredUsers']; ?></p>
-      </div>
-      <div id="activeBuddies">
-        <img id="buddyIcon" src="img/buddy-icon.svg" alt="icon person">
-        <p id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></p>
-      </div>
-    </div>
+
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
@@ -190,33 +151,47 @@ if ($notification > 0) {
       }
     }
       ?>
-      <form class="form-inline userForm" method="post">
-        <a href="" type="submit" name="bookBtn" id="book" class="interest">
-          <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
-        </a>
-        <a href="" id="movie" type="submit" name="movieBtn" class="interest">
-          <div class="type-select btn btn-primary movieBtn"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
-        </a>
-        <a href="" type="submit" name="musicBtn" id="music" class="interest">
-          <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
-        </a>
-        <a href="" id="game" type="submit" name="gameBtn" class="interest">
-          <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
-        </a>
-        <a href="" id="location" type="submit" name="locationBtn" class="interest">
-          <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
-        </a>
-        <a href="" id="all" type="submit" name="showAllBtn" class="interest">
-          <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
-        </a>
-      </form>
-      <div class="container-list">
-        <div class="userContainer">
-          <ul class="usersList">
+        </form>
 
-          </ul>
+        <!------counters------>
+        <div class="countUsers">
+          <div id="activeUsers">
+            <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+            <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
+          </div>
+          <div id="activeBuddies">
+            <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+            <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
+          </div>
         </div>
-      </div>
+
+        <form class="form-inline userForm" method="post">
+          <a href="" type="submit" name="bookBtn" id="book" class="interest">
+            <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
+          </a>
+          <a href="" id="movie" type="submit" name="movieBtn" class="interest">
+            <div class="type-select btn btn-primary movieBtn"><i class="fas fa-film icon"></i>Movie: <span class="badge badge-dark"><?php echo $connectedUserMovie['films'] ?></span> </div>
+          </a>
+          <a href="" type="submit" name="musicBtn" id="music" class="interest">
+            <div class="type-select btn btn-primary musicBtn"><i class="fas fa-music icon"></i>Music: <span class="badge badge-dark"><?php echo $connectedUserMusic['music'] ?></span></div>
+          </a>
+          <a href="" id="game" type="submit" name="gameBtn" class="interest">
+            <div class="type-select btn btn-primary gameBtn"><i class="fas fa-gamepad icon"></i>Game: <span class="badge badge-dark"><?php echo $connectedUserGame['games'] ?></span></div>
+          </a>
+          <a href="" id="location" type="submit" name="locationBtn" class="interest">
+            <div class="type-select btn btn-primary"><i class="fas fa-map-marker-alt icon"></i>Location: <span class="badge badge-dark"><?php echo $connectedUserLocation['location'] ?></span></div>
+          </a>
+          <a href="" id="all" type="submit" name="showAllBtn" class="interest">
+            <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
+          </a>
+        </form>
+        <div class="container-list">
+          <div class="userContainer">
+            <ul class="usersList">
+
+            </ul>
+          </div>
+        </div>
   </div>
   <div id="#displayData"></div>
   <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
