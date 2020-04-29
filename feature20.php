@@ -13,18 +13,31 @@
     }
     $userFirstName = $user->getConnectedUserFirstname();
     $userLastName = $user->getConnectedUserLastname();
-    $user->setFirstname($userFirstName);
-    $user->setLastname($userLastName);
+    $user->setFirstname($userFirstName['firstname']);
+    $user->setLastname($userLastName['lastname']);
 
-    //add new comment + create error var for verification
+    //fetch all comments
+    $output = '';
+    $dummyComment = new Comment();
+    $output = $dummyComment->getAllComments();
+
+    //add new comment
     $error = '';
-    if(!empty($_POST) && isset($_POST['update']) !== true){
+    $response = '';
+    $parentId = 0;
+    if(!empty($_GET)){
+        $parent = $_GET['parent'];
+        $response = 'Replying to comment: ' . $parent;
+        $parentId = $parent;
+    }
+    if(!empty($_POST)){
         $comment = new comment();
-        $comment->setParent_Id(0);
-        $comment->setSenderName($user->getFirstName());
-        $test = $comment->getSenderName();
+        $comment->setParent_Id($parentId);
+        $test = $comment->getParent_id();
+        var_dump($test);
+        $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
         if(empty($_POST['comment_name'])){
-            $error = 'no comment name';
+            $error = 'no comment title';
         }else{
             $comment->setTitle($_POST['comment_name']);
         }
@@ -36,15 +49,10 @@
         if($error == ''){
             $comment->addComment();
             $error = 'Comment succesfully posted';
+            $output = $dummyComment->getAllComments();
+            $response = $error;
         }
-    }
-    //fetch all comments
-    $output = '';
-    if(isset($_POST['update'])){
-        $comment = new Comment();
-        $output = $comment->getAllComments();
-        unset($_POST['update']);
-        $test = $comment->test();
+        $response = $error;
     }
 ?>
 <!DOCTYPE html>
@@ -52,24 +60,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/comment_style.css">
     <title>Document</title>
 </head>
 <body>
-    <h2><?php echo $error; ?></h2>
+    <h2><?php echo $response; $error; ?></h2>
     <form action="" method="post">
-        <label for="comment_name">Title:</label>
-        <input type="text" id="comment_name" name="comment_name">
+        <!-- <label for="comment_name">Title:</label> -->
+        <input class="title" type="text" id="comment_name" name="comment_name" placeholder="Place your title here">
         <br><br>
-        <label for="comment_content">Comment:</label>
-        <input type="textarea" id="comment_content" name="comment_content">
+        <!--<label for="comment_content">Comment:</label>-->
+        <input class="comment" type="textarea" id="comment_content" name="comment_content" placeholder="Place your comment here">
         <br><br>
-        <input type="submit" value="Post Comment">
+        <input class="submit_btn" type="submit" value="Post Comment">
     </form>
-    <form action="" method="post">
-        <input type="hidden" name="update">
-        <input type="submit" value="update form">
-    </form>
-    <div id="comments_display">
+    <div class="comments_display" id="comments_display">
         <?php echo $output; ?>
     </div>
 </body>

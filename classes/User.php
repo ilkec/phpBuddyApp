@@ -5,9 +5,9 @@ include_once(__DIR__ . "/phpMailer/src/PHPMailer.php");
 include_once(__DIR__ . "/phpMailer/src/SMTP.php");*/
 include_once(__DIR__ . "/Db.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
+/*use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\Exception;*/
 // require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
 
 
@@ -596,7 +596,7 @@ class User
   }
 
 
-  public function sendMatchMail()
+  /*public function sendMatchMail()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("select email from users where id = :buddyId");
@@ -615,12 +615,12 @@ class User
       $mail->Host = "smtp.sendgrid.net";
       //$mail->Host = "localhost"; /* test */ 
       //$mail->Host = 'smtp.gmail.com';
-      $mail->SMTPAuth = true; /*false/true*/
+      /*$mail->SMTPAuth = true; /*false/true*/
       //$mail->SMTPAutoTLS = false; /* test */
-      $mail->Username = 'noreplyUser';
+     /* $mail->Username = 'noreplyUser';
       $mail->Password = 'flameswort10';
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /*ENCRYPTION_SMTPS;*/
-      $mail->Port = 587; //25 - 465 - 587 -2525
+     /* $mail->Port = 587; //25 - 465 - 587 -2525
       $mail->setFrom('buddyfixers@mail.com', 'Buddy fixers');
       $mail->addAddress($result['email']);
       $mail->isHTML(true);
@@ -634,7 +634,7 @@ class User
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
     return $result;
-  }
+  }*/
 
   public function newMessage()
   {

@@ -10,9 +10,9 @@
         private $title;
         private $comment;
         private $date;
+        private $pinned;
 
         /*variables for chatbox */
-        
 
         private $message;
         private $from;
@@ -99,85 +99,84 @@
         }
 
             /**
-     * Get the value of message
-     */ 
-    public function getMessage()
-    {
-        return $this->message;
-    }
+         * Get the value of message
+         */ 
+        public function getMessage()
+        {
+            return $this->message;
+        }
 
-    /**
-     * Set the value of message
-     *
-     * @return  self
-     */ 
-    public function setMessage($message)
-    {
-        $this->message = $message;
+        /**
+         * Set the value of message
+         *
+         * @return  self
+         */ 
+        public function setMessage($message)
+        {
+            $this->message = $message;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    /**
-     * Get the value of from
-     */ 
-    public function getFrom()
-    {
-        return $this->from;
-    }
+        /**
+         * Get the value of from
+         */ 
+        public function getFrom()
+        {
+            return $this->from;
+        }
 
-    /**
-     * Set the value of from
-     *
-     * @return  self
-     */ 
-    public function setFrom($from)
-    {
-        $this->from = $from;
+        /**
+         * Set the value of from
+         *
+         * @return  self
+         */ 
+        public function setFrom($from)
+        {
+            $this->from = $from;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    /**
-     * Get the value of receiver
-     */ 
-    public function getReceiver()
-    {
-        return $this->receiver;
-    }
+        /**
+         * Get the value of receiver
+         */ 
+        public function getReceiver()
+        {
+            return $this->receiver;
+        }
 
-    /**
-     * Set the value of receiver
-     *
-     * @return  self
-     */ 
-    public function setReceiver($receiver)
-    {
-        $this->receiver = $receiver;
+        /**
+         * Set the value of receiver
+         *
+         * @return  self
+         */ 
+        public function setReceiver($receiver)
+        {
+            $this->receiver = $receiver;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    /**
-     * Get the value of datetime
-     */ 
-    public function getDatetime()
-    {
-        return $this->datetime;
-    }
+        /**
+         * Get the value of datetime
+         */ 
+        public function getDatetime()
+        {
+            return $this->datetime;
+        }
 
-    /**
-     * Set the value of datetime
-     *
-     * @return  self
-     */ 
-    public function setDatetime($datetime)
-    {
-        $this->datetime = $datetime;
+        /**
+         * Set the value of datetime
+         *
+         * @return  self
+         */ 
+        public function setDatetime($datetime)
+        {
+            $this->datetime = $datetime;
 
-        return $this;
-    }
-
+            return $this;
+        }
 
         public function test(){
             $conn = Db::getConnection();
@@ -202,27 +201,83 @@
             return $result;
         }
 
-        public function getAllComments(){
-            $conn = Db::getConnection();
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = '0' ORDER BY comment_id DESC");
+        public function getReplies($conn, $parent_id, $margin_left = 0){
+            //testing for stylising the reply box
+            $reply_style = 'border: 2px solid grey;
+            border-radius: 4px;
+            width: 70%;
+            height: 150px;
+            padding-left: 15px;
+            padding-bottom: 160px;
+            
+            margin-top: 25px;
+            margin-bottom: 50px;';
+            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
+            $statement->bindValue(':parent_id', $parent_id);
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $count = $statement->rowCount();
             $output = '';
-            foreach($result as $row){
-                $output .= '
-                    <div class="comment_container">
-                        <div class="comment_header"> <h2>' .$row["comment_title"]. '</h2> </div>
-                        <div class="comment_body"> <p> ' .$row["comment"]. ' </p>
-                        <p> ' .$row["comment_sender_name"]. ' </p>
-                        <p> ' .$row["date"]. ' </p> </div>
-                        <div class="comment_footer"><button type="button" id="'.$row["comment_id"].'">Reply</button></div>
+            if($parent_id == 0){
+                $margin_left = 0;
+            }else{
+                $margin_left = $margin_left + 125;
+            }
+            if($count > 0){
+                foreach($result as $row){
+                    $output .= '
+                    <div class="reply_container" style=" '.$reply_style.'margin-left: '.$margin_left.'px">
+                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
+                        <p> ' .$row["date"]. ' </p> 
+                        <div class="comment_body"> 
+                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
+                            <p> ' .$row["comment"]. ' </p>
+                        </div>
+                        <div class="comment_footer"><form action="" method="GET">
+                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
+                        </form></div>
+                        <div class="comment_footer"><form action="" method="POST">
+                            <input type="hidden" name="pin">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Pin">
+                        </form></div>
                     </div>
-                ';
+                ' . $this->getReplies($conn, $row["comment_id"]);
+                }
             }
             return $output;
         }
 
-        
+        public function getAllComments(){
+            $conn = Db::getConnection();
+            //get all stand alone comments
+            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = '0' ORDER BY comment_id DESC");
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $output = '';
+            
+            foreach($result as $row){
+                $output .= '
+                    <div class="comment_container">
+                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
+                        <p> ' .$row["date"]. ' </p> 
+                        <div class="comment_body"> 
+                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
+                            <p> ' .$row["comment"]. ' </p>
+                        </div>
+                        <div class="comment_footer"><form action="" method="GET">
+                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
+                        </form></div>
+                        <div class="comment_footer"><form action="" method="POST">
+                            <input type="hidden" name="pin">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Pin">
+                        </form></div>
+                    </div>
+                ' . $this->getReplies($conn, $row["comment_id"]);
+            }
+            return $output;
+        }
 
         public function sendToDatabase(){
         $conn = Db::getConnection();
