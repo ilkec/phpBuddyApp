@@ -10,7 +10,6 @@
         private $title;
         private $comment;
         private $date;
-        private $pinned;
 
         /*variables for chatbox */
 
@@ -201,62 +200,24 @@
             return $result;
         }
 
-        public function getReplies($conn, $parent_id, $margin_left = 0){
-            //testing for stylising the reply box
-            $reply_style = 'border: 2px solid grey;
-            border-radius: 4px;
-            width: 70%;
-            height: 150px;
-            padding-left: 15px;
-            padding-bottom: 160px;
-            
-            margin-top: 25px;
-            margin-bottom: 50px;';
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
-            $statement->bindValue(':parent_id', $parent_id);
-            $statement->execute();
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $count = $statement->rowCount();
-            $output = '';
-            if($parent_id == 0){
-                $margin_left = 0;
-            }else{
-                $margin_left = $margin_left + 125;
-            }
-            if($count > 0){
-                foreach($result as $row){
-                    $output .= '
-                    <div class="reply_container" style=" '.$reply_style.'margin-left: '.$margin_left.'px">
-                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
-                        <p> ' .$row["date"]. ' </p> 
-                        <div class="comment_body"> 
-                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
-                            <p> ' .$row["comment"]. ' </p>
-                        </div>
-                        <div class="comment_footer"><form action="" method="GET">
-                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
-                        </form></div>
-                        <div class="comment_footer"><form action="" method="POST">
-                            <input type="hidden" name="pin">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Pin">
-                        </form></div>
-                    </div>
-                ' . $this->getReplies($conn, $row["comment_id"]);
-                }
-            }
-            return $output;
+        public function setPinned($pinnedId){
+            $conn = Db::getConnection();
+            $statement = $conn->prepare("UPDATE tbl_comment SET pinned = true WHERE comment_id = :comment_id");
+
+            $comment_id = $pinnedId;
+
+            $statement->bindValue("comment_id", $comment_id);
+            $result = $statement->execute();
+            return $result;
         }
 
-        public function getAllComments(){
+        public function getAllPinned(){ ///hier kieke
             $conn = Db::getConnection();
-            //get all stand alone comments
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = '0' ORDER BY comment_id DESC");
+            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE Pinned = 1 ORDER BY comment_id DESC");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             $output = '';
-            
-            foreach($result as $row){
+            foreach($result as $row){ //deze klasse hier :)
                 $output .= '
                     <div class="comment_container">
                         <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
@@ -269,12 +230,96 @@
                             <input type="hidden" name="parent" value="'.$row["comment_id"].'">
                             <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
                         </form></div>
-                        <div class="comment_footer"><form action="" method="POST">
-                            <input type="hidden" name="pin">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Pin">
+                    </div>
+                ' . $this->getReplies(false, $conn, $row["comment_id"]);
+            }
+            return $output;
+        }
+
+        public function getReplies($isModerator, $conn, $parent_id, $margin_left = 0){
+            //testing for stylising the reply box
+            $reply_style = 'border: 2px solid grey;
+            border-radius: 4px;
+            width: 70%;
+            height: 150px;
+            padding-left: 15px;
+            padding-bottom: 160px;
+            margin-top: 25px;
+            margin-bottom: 50px;';
+            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
+            $statement->bindValue(':parent_id', $parent_id);
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $count = $statement->rowCount();
+            $output = '';
+            $pinAppend = '';
+            if($parent_id == 0){
+                $margin_left = 0;
+            }else{
+                $margin_left = $margin_left + 125;
+            }
+            if($count > 0){
+                foreach($result as $row){
+                    if($isModerator){
+                        $pinAppend = '
+                            <form action="" method="POST">
+                                <input type="hidden" name="pin" value="'.$row["comment_id"].'">
+                                <input class="pin_btn" type="submit" value="Pin">
+                            </form>
+                        ';
+                    }
+                    $output .= '
+                    <div class="reply_container" style=" '.$reply_style.'margin-left: '.$margin_left.'px">
+                        '.$pinAppend.'
+                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
+                        <p> ' .$row["date"]. ' </p> 
+                        <div class="comment_body"> 
+                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
+                            <p> ' .$row["comment"]. ' </p>
+                        </div>
+                        <div class="comment_footer"><form action="" method="GET">
+                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
                         </form></div>
                     </div>
-                ' . $this->getReplies($conn, $row["comment_id"]);
+                ' . $this->getReplies($isModerator, $conn, $row["comment_id"]);
+                }
+            }
+            return $output;
+        }
+
+        public function getAllComments($isModerator){
+            $conn = Db::getConnection();
+            //get all stand alone comments
+            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = '0' ORDER BY comment_id DESC");
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $output = '';
+            $pinAppend = ''; 
+            foreach($result as $row){
+                if($isModerator){
+                    $pinAppend = '
+                        <form action="" method="POST">
+                            <input type="hidden" name="pin" value="'.$row["comment_id"].'">
+                            <input class="pin_btn" type="submit" value="Pin">
+                        </form>
+                    ';
+                }
+                $output .= '
+                    <div class="comment_container">
+                        '.$pinAppend.'
+                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
+                        <p> ' .$row["date"]. ' </p> 
+                        <div class="comment_body"> 
+                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
+                            <p> ' .$row["comment"]. ' </p>
+                        </div>
+                        <div class="comment_footer"><form action="" method="GET">
+                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
+                        </form></div>
+                    </div>
+                ' . $this->getReplies($isModerator, $conn, $row["comment_id"]);
             }
             return $output;
         }

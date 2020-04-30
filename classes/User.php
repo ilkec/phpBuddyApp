@@ -5,10 +5,11 @@ include_once(__DIR__ . "/phpMailer/src/PHPMailer.php");
 include_once(__DIR__ . "/phpMailer/src/SMTP.php");*/
 include_once(__DIR__ . "/Db.php");
 
-/*use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;*/
-// require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
+use PHPMailer\PHPMailer\Exception;
+require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
+require("sendGrid/sendgrid-php.php");
 
 
 class User
@@ -31,6 +32,7 @@ class User
   private $books;
   private $buddy;
   private $reden;
+  private $moderator; //bespreken me groep
 
   //variables used for message system
   private $message;
@@ -493,6 +495,16 @@ class User
     return $this;
   }
 
+  public function getModerator(){
+    return $this->moderator;
+  }
+
+  public function setModerator($moderator){
+    $this->moderator = $moderator;
+
+    return $this;
+  }
+
   public function countUsers()
   {
 
@@ -596,7 +608,7 @@ class User
   }
 
 
-  /*public function sendMatchMail()
+  public function sendMatchMail()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("select email from users where id = :buddyId");
@@ -604,37 +616,29 @@ class User
     $statement->bindValue(":buddyId", $toUser);
     $result = $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
-    $mail = new PHPMailer(true);
-    var_dump($result['email']);
+    $toMail = $result["email"];
 
+    putenv("SENDGRID_API_KEY=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");
+
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
+    $email->setSubject("You have a new buddy request!");
+    $email->addTo($toMail, $toUser);
+    $email->addContent("text/plain", "You have a new buddy request, please log in and verify.");
+    $email->addContent(
+        "text/html", "<strong> You have a new buddy request, please log in and verify.</strong>"
+    );
+    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
-
-      $mail->isSMTP();
-
-      $mail->SMTPDebug = 2;
-      $mail->Host = "smtp.sendgrid.net";
-      //$mail->Host = "localhost"; /* test */ 
-      //$mail->Host = 'smtp.gmail.com';
-      /*$mail->SMTPAuth = true; /*false/true*/
-      //$mail->SMTPAutoTLS = false; /* test */
-     /* $mail->Username = 'noreplyUser';
-      $mail->Password = 'flameswort10';
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /*ENCRYPTION_SMTPS;*/
-     /* $mail->Port = 587; //25 - 465 - 587 -2525
-      $mail->setFrom('buddyfixers@mail.com', 'Buddy fixers');
-      $mail->addAddress($result['email']);
-      $mail->isHTML(true);
-      $mail->Subject = 'Buddy request';
-      $mail->Body    = 'Check your buddy app, you have recieved a new friend request';
-      $mail->AltBody = 'Check your buddy app, you have recieved a new friend request';
-
-      $mail->send();
-      echo 'Message has been sent';
+        $response = $sendgrid->send($email);
+        print $response->statusCode() . "\n";
+        print_r($response->headers());
+        print $response->body() . "\n";
     } catch (Exception $e) {
-      echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo 'Caught exception: '. $e->getMessage() ."\n";
     }
     return $result;
-  }*/
+  }
 
   public function newMessage()
   {

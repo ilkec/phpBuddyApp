@@ -51,7 +51,7 @@ body{
     margin-bottom: 50px;
 }
 
-.reply_btn{
+.reply_btn, .pin_btn{
     background-color:#007bff;
     border: none;
     color: white;
@@ -61,7 +61,10 @@ body{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /*float: right;*/
     margin-top: 10px;
     margin-right: 15px;
+}
+.reply_btn, .pin_btn{
+    float: right;
+    clear: both;
 }

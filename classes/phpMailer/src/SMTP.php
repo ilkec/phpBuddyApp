@@ -256,11 +256,11 @@ class SMTP
             return;
         }
         //Is this a PSR-3 logger?
-        if ($this->Debugoutput instanceof \Psr\Log\LoggerInterface) {
+        /*if ($this->Debugoutput instanceof \Psr\Log\LoggerInterface) {
             $this->Debugoutput->debug($str);
 
             return;
-        }
+        }*/
         //Avoid clash with built-in function names
         if (is_callable($this->Debugoutput) && !in_array($this->Debugoutput, ['error_log', 'html', 'echo'])) {
             call_user_func($this->Debugoutput, $str, $level);
@@ -1168,7 +1168,7 @@ class SMTP
             //Must pass vars in here as params are by reference
             if (!stream_select($selR, $selW, $selW, $this->Timelimit)) {
                 $this->edebug(
-                    'SMTP -> get_lines(): select timed-out in (' . $this->Timelimit . ' sec)',
+                    'SMTP -> get_lines(): timed-out (' . $this->Timeout . ' sec)',
                     self::DEBUG_LOWLEVEL
                 );
                 break;
@@ -1187,7 +1187,7 @@ class SMTP
             $info = stream_get_meta_data($this->smtp_conn);
             if ($info['timed_out']) {
                 $this->edebug(
-                    'SMTP -> get_lines(): stream timed-out (' . $this->Timeout . ' sec)',
+                    'SMTP -> get_lines(): timed-out (' . $this->Timeout . ' sec)',
                     self::DEBUG_LOWLEVEL
                 );
                 break;
