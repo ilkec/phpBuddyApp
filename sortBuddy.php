@@ -110,6 +110,8 @@ if ($notification > 0) {
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end">
 
+        <a class="nav-link pt-4" href="feature22.php">contacts</a>
+
         <a id="messageNotification" href="messages.php">messages
           <?php if (isset($showNotification)) : ?>
             <div class="error"><?php echo $showNotification; ?></div>
@@ -124,7 +126,7 @@ if ($notification > 0) {
                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-  <div class="container-fluid box ">
+  <div class="container-fluid box">
     <!------counters------>
 
     <?php foreach ($allMatches as $m) {
