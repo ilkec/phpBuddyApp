@@ -3,30 +3,9 @@
 include_once(__DIR__ . '/classes/User.php');
 include_once(__DIR__ . '/classes/Db.php');
 
-/*
-session_start();
-
-if ($user->canLogin() != true) {
-	$_SESSION["login_attempts"] += 1;
-}
-// At the top of page right after session_start();
-if (isset($_SESSION["locked"])) {
-	$difference = time() - $_SESSION["locked"];
-	if ($difference > 30) {
-		unset($_SESSION["locked"]);
-		unset($_SESSION["login_attempts"]);
-	}
-}
-
-// In sign-in form submit button
-if ($_SESSION["login_attempts"] > 2) {
-	$_SESSION["locked"] = time();
-	echo "Please wait for 30 seconds";
-} */
-
 $block = "";
 $disable = "";
-$force = "";
+// $force = "";
 
 if (!empty($_POST)) {
 

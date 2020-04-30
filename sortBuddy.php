@@ -63,9 +63,9 @@ if (!empty($_POST['btnTalk'])) {
   $user->setFromUser($databaseId['id']);
   $user->setToUser($_SESSION['chatId']);
   $user->sendMatchRequest();
-  /*$user->sendMatchMail();*/
+  $user->sendMatchMail(); //dees heb ik terug aangezet
 
-  header("Location: feature8.php");
+  header("Location: feature8.php"); 
 }
 
 // var_dump($databaseId);

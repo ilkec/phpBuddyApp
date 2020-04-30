@@ -17,10 +17,14 @@
     $user->setFirstname($userFirstName['firstname']);
     $user->setLastname($userLastName['lastname']);
 
+    //check if user is a moderator
+    $isModerator = $user->getModerator();
+    $isModerator = true;
+
     //fetch all comments
     $output = '';
     $dummyComment = new Comment();
-    $output = $dummyComment->getAllComments();
+    $output = $dummyComment->getAllComments($isModerator);
 
     //add new comment
     $error = '';
@@ -32,28 +36,33 @@
         $parentId = $parent;
     }
     if(!empty($_POST)){
-        $comment = new comment();
-        $comment->setParent_Id($parentId);
-        $test = $comment->getParent_id();
-        var_dump($test);
-        $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
-        if(empty($_POST['comment_name'])){
-            $error = 'no comment title';
-        }else{
-            $comment->setTitle($_POST['comment_name']);
+        if(isset($_POST['pin'])){
+            $pinnedId = $_POST['pin'];
+            $comment = new comment();
+            $comment->setPinned($pinnedId);
         }
-        if(empty($_POST['comment_content'])){
-            $error = 'no comment content';
-        }else{
-            $comment->setComment($_POST['comment_content']);
-        }
-        if($error == ''){
-            $comment->addComment();
-            $error = 'Comment succesfully posted';
-            $output = $dummyComment->getAllComments();
+        else{
+            $comment = new comment();
+            $comment->setParent_Id($parentId);
+            $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
+            if(empty($_POST['comment_name'])){
+                $error = 'no comment title';
+            }else{
+                $comment->setTitle($_POST['comment_name']);
+            }
+            if(empty($_POST['comment_content'])){
+                $error = 'no comment content';
+            }else{
+                $comment->setComment($_POST['comment_content']);
+            }
+            if($error == ''){
+                $comment->addComment();
+                $error = 'Comment succesfully posted';
+                $output = $dummyComment->getAllComments($isModerator);
+                $response = $error;
+            }
             $response = $error;
         }
-        $response = $error;
     }
 ?>
 <!DOCTYPE html>
@@ -62,7 +71,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/comment_style.css">
+    <link rel="stylesheet" href="css/commentStyle.css">
     <title>Document</title>
 </head>
 <body>
