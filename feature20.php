@@ -2,15 +2,18 @@
 
     include_once(__DIR__ . '/classes/User.php');
     include_once(__DIR__ . '/classes/Comment.php');
+    
     $user = new User();
     session_start();
+    $user->setEmail($_SESSION['user']);
     $databaseId = $user->getDatabaseId();
-    $user->setId($databaseId);
+    $user->setId($databaseId['id']);
 
     if (!isset($_SESSION['user'])) {
         header("Location: feature2.php");
     }else{
         $user->setEmail($_SESSION['user']);
+        $_SESSION['userid'] = $databaseId['id'];
     }
     $userFirstName = $user->getConnectedUserFirstname();
     $userLastName = $user->getConnectedUserLastname();
@@ -95,12 +98,17 @@
                         <input class="pin_btn" type="submit" value="Pin">
                     </form>
                 <?php endif; ?>
-                <div class="comment_header"> <h3> <?php echo $row["comment_sender_name"]; ?></h3> </div>
+                <div class="comment_header"> 
+                    <h3> <?php echo $row["comment_sender_name"]; ?></h3> 
+                </div>
                 <p><?php echo $row["date"] ?></p> 
                 <div class="comment_body"> 
                     <p> <h5><?php echo $row["comment_title"]; ?></h5> </p>
-                    <p><?php echo $row["comment"]; ?></p>
-                    
+                    <p><?php echo $row["comment"];?></p>
+                    <div class="upvoteclass">
+                        <p id="upvoteNumber"> <?php echo $row['upvote_count']; ?></p>
+                        <a href="#" id="upvote" data-postid=<?php echo $row['id']; ?>>upvote</a>
+                    </div>
                 </div>
                 <div class="comment_footer"><form action="" method="GET">
                     <input type="hidden" name="parent" value="<?php echo $row["id"] ?>">
@@ -132,5 +140,7 @@
             <?php endforeach; ?>
         <?php endforeach; ?> 
     </div>
+
+    <script src="js/upvote.js"></script>
 </body>
 </html>

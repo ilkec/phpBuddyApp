@@ -177,7 +177,8 @@
             return $this;
         }
 
-        public function test(){
+        public function test()
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment");
             $statement->execute();
@@ -185,13 +186,14 @@
             return $result;
         }
 
-        public function addComment(){
+        public function addComment()
+        {
             $conn = Db::getConnection();
             $parentcomment_id = $this->getParent_id();
             $senderName = $this->getSenderName();
             $comment = $this->getComment();
             $title = $this->getTitle();
-            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title)");
+            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title,upvote_count) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title, 0)");
             $statement->bindValue(":parent_comment_id", $parentcomment_id);
             $statement->bindValue(":comment", $comment);
             $statement->bindValue(":comment_sendername", $senderName);
@@ -200,7 +202,8 @@
             return $result;
         }
 
-        public function setPinned($pinnedId){
+        public function setPinned($pinnedId)
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("UPDATE comment SET pinned = true WHERE id = :id");
 
@@ -211,7 +214,8 @@
             return $result;
         }
 
-        public function getAllPinned(){ 
+        public function getAllPinned()
+        { ///hier kieke
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment WHERE Pinned = 1 ORDER BY id DESC");
             $statement->execute();
@@ -237,21 +241,44 @@
             return $result;
         }
 
-        public function sendToDatabase(){
-        $conn = Db::getConnection();
-        $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:from, :receiver, :message, :time, 1)');
-        $from = $this->getFrom();
-        $receiver = $this->getReceiver();
-        $message = $this->getMessage();
-        $time = $this->getDatetime();
-        $statement->bindValue(":from", $from);
-        $statement->bindValue(":receiver", $receiver);
-        $statement->bindValue(":message", $message);
-        $statement->bindValue(":time", $time);
-        $result = $statement->execute();
+        public function sendToDatabase()
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:from, :receiver, :message, :time, 1)');
+            $from = $this->getFrom();
+            $receiver = $this->getReceiver();
+            $message = $this->getMessage();
+            $time = $this->getDatetime();
+            $statement->bindValue(":from", $from);
+            $statement->bindValue(":receiver", $receiver);
+            $statement->bindValue(":message", $message);
+            $statement->bindValue(":time", $time);
+            $result = $statement->execute();
     
         return $result;
-    }                   
         }
-?>
 
+        public function upvoteUpdate($commentid)
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('update comment set upvote_count = (upvote_count + 1) where id = :commentid');
+            $id = $commentid;
+            $statement->bindValue(":commentid", $id);
+            $result = $statement->execute();
+            return $result;
+      
+        }
+        public function upvoteInsert($userid, $commentid)
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('insert into upvote (user_id, comment_id, active) values(:userid, :commentid, 1)');
+            $userid = $userid;
+            $commentid =  $commentid;
+            $statement->bindValue(":userid", $userid);
+            $statement->bindValue(":commentid", $commentid);
+           
+            $result = $statement->execute();
+            
+            return $result;
+        }
+    }

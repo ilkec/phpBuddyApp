@@ -17,6 +17,14 @@ body{
     margin-left: 75px;
 }
 
+#upvote{
+    background-color:#132236;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 17px;
+    text-decoration: none;
+}
+
 
 .submit_btn{
     background-color:#132236;
@@ -72,7 +80,7 @@ body{
     border: 2px solid #132236;
     border-radius: 4px;
     width: 70%;
-    height: 150px;
+    /*height: 150px;*/
     padding-left: 15px;
     padding-bottom: 160px;
     
