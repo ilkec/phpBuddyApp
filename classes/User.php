@@ -12,12 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 /*require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');*/
-<<<<<<< HEAD
 require_once("sendGrid/sendgrid-php.php");
-=======
-
-require("sendGrid/sendgrid-php.php");
->>>>>>> 3681bb6023098204577fbeca65e8d084be990fd2
 require_once("vendor/autoload.php");
 
 class User
@@ -629,7 +624,6 @@ class User
     return $users;
   }
 
-<<<<<<< HEAD
   public function activateAccount($activationId){
     $conn = Db::getConnection();
     $statement = $conn->prepare("UPDATE users SET status = '1' WHERE id = :activationId");
@@ -665,10 +659,7 @@ class User
   }
 
 
-=======
-  /*
->>>>>>> 3681bb6023098204577fbeca65e8d084be990fd2
-  public function sendMatchMail()
+  /*public function sendMatchMail()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("select email from users where id = :buddyId");
@@ -698,7 +689,7 @@ class User
       $mail->isSMTP();
 
       $mail->SMTPDebug = 2;
-      $mail->Host = "smtp.sendgrid.net";
+      $mail->Host = "smtp.sendgrid.net";}
       //$mail->Host = "localhost"; /* test */
   //$mail->Host = 'smtp.gmail.com';
   /*$mail->SMTPAuth = true; /*false/true*/
@@ -720,8 +711,9 @@ class User
         echo 'Caught exception: '. $e->getMessage() ."\n";
     }
     return $result;
-  }
-  */
+  
+}*/
+  
   public function newMessage()
   {
     $conn = Db::getConnection();
