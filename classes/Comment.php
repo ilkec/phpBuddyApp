@@ -202,18 +202,18 @@
 
         public function setPinned($pinnedId){
             $conn = Db::getConnection();
-            $statement = $conn->prepare("UPDATE tbl_comment SET pinned = true WHERE comment_id = :comment_id");
+            $statement = $conn->prepare("UPDATE comment SET pinned = true WHERE id = :id");
 
-            $comment_id = $pinnedId;
+            $id = $pinnedId;
 
-            $statement->bindValue("comment_id", $comment_id);
+            $statement->bindValue("id", $id);
             $result = $statement->execute();
             return $result;
         }
 
         public function getAllPinned(){ ///hier kieke
             $conn = Db::getConnection();
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE Pinned = 1 ORDER BY comment_id DESC");
+            $statement = $conn->prepare("SELECT * FROM comment WHERE Pinned = 1 ORDER BY id DESC");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             $output = '';
@@ -227,11 +227,11 @@
                             <p> ' .$row["comment"]. ' </p>
                         </div>
                         <div class="comment_footer"><form action="" method="GET">
-                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
+                            <input type="hidden" name="parent" value="'.$row["id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["id"].'" value="Reply">
                         </form></div>
                     </div>
-                ' . $this->getReplies(false, $conn, $row["comment_id"]);
+                ' . $this->getReplies(false, $conn, $row["id"]);
             }
             return $output;
         }
@@ -246,7 +246,7 @@
             padding-bottom: 160px;
             margin-top: 25px;
             margin-bottom: 50px;';
-            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
+            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = :parent_id ORDER BY id DESC");
             $statement->bindValue(':parent_id', $parent_id);
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -263,7 +263,7 @@
                     if($isModerator){
                         $pinAppend = '
                             <form action="" method="POST">
-                                <input type="hidden" name="pin" value="'.$row["comment_id"].'">
+                                <input type="hidden" name="pin" value="'.$row["id"].'">
                                 <input class="pin_btn" type="submit" value="Pin">
                             </form>
                         ';
@@ -278,11 +278,11 @@
                             <p> ' .$row["comment"]. ' </p>
                         </div>
                         <div class="comment_footer"><form action="" method="GET">
-                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
+                            <input type="hidden" name="parent" value="'.$row["id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["id"].'" value="Reply">
                         </form></div>
                     </div>
-                ' . $this->getReplies($isModerator, $conn, $row["comment_id"]);
+                ' . $this->getReplies($isModerator, $conn, $row["id"]);
                 }
             }
             return $output;
@@ -294,9 +294,34 @@
             $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY id DESC");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-           
-            
-            return $result;
+            $output = '';
+            $pinAppend = ''; 
+            foreach($result as $row){
+                if($isModerator){
+                    $pinAppend = '
+                        <form action="" method="POST">
+                            <input type="hidden" name="pin" value="'.$row["id"].'">
+                            <input class="pin_btn" type="submit" value="Pin">
+                        </form>
+                    ';
+                }
+                $output .= '
+                    <div class="comment_container">
+                        '.$pinAppend.'
+                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
+                        <p> ' .$row["date"]. ' </p> 
+                        <div class="comment_body"> 
+                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
+                            <p> ' .$row["comment"]. ' </p>
+                        </div>
+                        <div class="comment_footer"><form action="" method="GET">
+                            <input type="hidden" name="parent" value="'.$row["id"].'">
+                            <input class="reply_btn" type="submit" id="'.$row["id"].'" value="Reply">
+                        </form></div>
+                    </div>
+                ' . $this->getReplies($isModerator, $conn, $row["id"]);
+            }
+            return $output;
         }
 
         public function sendToDatabase(){
