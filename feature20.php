@@ -75,7 +75,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h2><?php echo $response; $error; ?></h2>
+    <h2><?php echo $response; ?></h2>
     <form action="" method="post">
         <!-- <label for="comment_name">Title:</label> -->
         <input class="title" type="text" id="comment_name" name="comment_name" placeholder="Place your title here">
