@@ -193,7 +193,7 @@
             $senderName = $this->getSenderName();
             $comment = $this->getComment();
             $title = $this->getTitle();
-            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title, upvote) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title,0)");
+            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title,upvote_count) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title, 0)");
             $statement->bindValue(":parent_comment_id", $parentcomment_id);
             $statement->bindValue(":comment", $comment);
             $statement->bindValue(":comment_sendername", $senderName);
@@ -348,16 +348,31 @@
         return $result;
         }
 
-        public function upvoteComment($commentid)
+        public function upvoteUpdate($commentid)
         {
             $conn = Db::getConnection();
-            $statement = $conn->prepare('update comment set upvote = (upvote + 1) where id = :commentid');
+            $statement = $conn->prepare('update comment set upvote_count = (upvote_count + 1) where id = :commentid');
             $id = $commentid;
             $statement->bindValue(":commentid", $id);
             $result = $statement->execute();
             return $result;
       
         }
+        public function upvoteInsert($userid, $commentid)
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('insert into upvote (user_id, comment_id, active) values(:userid, :commentid, 1)');
+            $userid = $userid;
+            $commentid =  $commentid;
+            $statement->bindValue(":userid", $userid);
+            $statement->bindValue(":commentid", $commentid);
+           
+            $result = $statement->execute();
+            
+            return $result;
+        }
+
+
         
         
         

@@ -4,13 +4,17 @@
     include_once(__DIR__ . '/classes/Comment.php');
     $user = new User();
     session_start();
+    $user->setEmail($_SESSION['user']);
     $databaseId = $user->getDatabaseId();
-    $user->setId($databaseId);
+    $user->setId($databaseId['id']);
 
     if (!isset($_SESSION['user'])) {
         header("Location: feature2.php");
     }else{
         $user->setEmail($_SESSION['user']);
+        
+        $_SESSION['userid'] = $databaseId['id'];
+        
     }
     $userFirstName = $user->getConnectedUserFirstname();
     $userLastName = $user->getConnectedUserLastname();
@@ -64,6 +68,8 @@
             $response = $error;
         }
     }
+    
+    
 
     //var_dump($output);
     
@@ -100,9 +106,9 @@
     <?php foreach($output as $comment): ?>
     <div class="comments_display" id="comments_display">
         <p id="commentId"><?php echo $comment['id'] ?></p>
-        <p><?php echo htmlspecialchars($comment['comment_title']); ?></p>
-        <p><?php echo htmlspecialchars($comment['comment']); ?></p>
-        <p id="upvoteNumber"> <?php echo htmlspecialchars($comment['upvote']) ?></p>
+        <p><?php echo $comment['comment_title']; ?></p>
+        <p><?php echo $comment['comment']; ?></p>
+        <p id="upvoteNumber"> <?php echo $comment['upvote_count']; ?></p>
         <a href="#" id="upvote" data-postid=<?php echo $comment['id']; ?>>upvote</a>
     </div>
     <?php endforeach; ?>
