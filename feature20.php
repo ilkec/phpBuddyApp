@@ -1,6 +1,11 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/User.php');
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/comment.php');
+    /*include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/User.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/phpbuddyapp2/phpbuddyapp/classes/comment.php');*/
+
+    include_once(__DIR__ . "/classes/User.php");
+    include_once(__DIR__ . "/classes/Comment.php");
+
+
     $user = new User();
     session_start();
     $databaseId = $user->getDatabaseId();
