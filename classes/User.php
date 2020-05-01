@@ -12,6 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 /*require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');*/
+
 require("sendGrid/sendgrid-php.php");
 require_once("vendor/autoload.php");
 
@@ -498,11 +499,13 @@ class User
     return $this;
   }
 
-  public function getModerator(){
+  public function getModerator()
+  {
     return $this->moderator;
   }
 
-  public function setModerator($moderator){
+  public function setModerator($moderator)
+  {
     $this->moderator = $moderator;
 
     return $this;
@@ -610,7 +613,7 @@ class User
     return $users;
   }
 
-
+  /*
   public function sendMatchMail()
   {
     $conn = Db::getConnection();
@@ -664,7 +667,7 @@ class User
     }
     return $result;
   }
-
+  */
   public function newMessage()
   {
     $conn = Db::getConnection();
