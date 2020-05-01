@@ -64,6 +64,8 @@
             $response = $error;
         }
     }
+
+    //var_dump($output);
     
 ?>
 <!DOCTYPE html>
@@ -74,6 +76,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  
     <link rel="stylesheet" href="css/commentStyle.css">
     <title>Document</title>
+    <style>
+        .comments_display{
+            border: 1px solid black;
+            width: 50%;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
     <h2>FAQ</h2>
@@ -90,11 +99,14 @@
 
     <?php foreach($output as $comment): ?>
     <div class="comments_display" id="comments_display">
-        <p><?php echo $comment['comment_title'] ?></p>
-        <?php echo $comment['comment'] ?>
-        <a href="#" id="upvote">upvote</a>
+        <p id="commentId"><?php echo $comment['id'] ?></p>
+        <p><?php echo htmlspecialchars($comment['comment_title']); ?></p>
+        <p><?php echo htmlspecialchars($comment['comment']); ?></p>
+        <p id="upvoteNumber"> <?php echo htmlspecialchars($comment['upvote']) ?></p>
+        <a href="#" id="upvote" data-postid=<?php echo $comment['id']; ?>>upvote</a>
     </div>
     <?php endforeach; ?>
+
     <script src="js/upvote.js"></script>
 </body>
 </html>

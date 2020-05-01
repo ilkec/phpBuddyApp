@@ -177,7 +177,8 @@
             return $this;
         }
 
-        public function test(){
+        public function test()
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment");
             $statement->execute();
@@ -185,13 +186,14 @@
             return $result;
         }
 
-        public function addComment(){
+        public function addComment()
+        {
             $conn = Db::getConnection();
             $parentcomment_id = $this->getParent_id();
             $senderName = $this->getSenderName();
             $comment = $this->getComment();
             $title = $this->getTitle();
-            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title)");
+            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title, upvote) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title,0)");
             $statement->bindValue(":parent_comment_id", $parentcomment_id);
             $statement->bindValue(":comment", $comment);
             $statement->bindValue(":comment_sendername", $senderName);
@@ -200,7 +202,8 @@
             return $result;
         }
 
-        public function setPinned($pinnedId){
+        public function setPinned($pinnedId)
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("UPDATE comment SET pinned = true WHERE id = :id");
 
@@ -211,7 +214,8 @@
             return $result;
         }
 
-        public function getAllPinned(){ ///hier kieke
+        public function getAllPinned()
+        { ///hier kieke
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment WHERE Pinned = 1 ORDER BY id DESC");
             $statement->execute();
@@ -236,7 +240,8 @@
             return $output;
         }
 
-        public function getReplies($isModerator, $conn, $parent_id, $margin_left = 0){
+        public function getReplies($isModerator, $conn, $parent_id, $margin_left = 0)
+        {
             //testing for stylising the reply box
             $reply_style = 'border: 2px solid grey;
             border-radius: 4px;
@@ -288,7 +293,8 @@
             return $output;
         }
 
-        public function getAllComments($isModerator){
+        public function getAllComments($isModerator)
+        {
             $conn = Db::getConnection();
             //get all stand alone comments
             $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY id DESC");
@@ -296,7 +302,7 @@
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             $output = '';
             $pinAppend = ''; 
-            foreach($result as $row){
+            /*foreach($result as $row){
                 if($isModerator){
                     $pinAppend = '
                         <form action="" method="POST">
@@ -321,24 +327,42 @@
                     </div>
                 ' . $this->getReplies($isModerator, $conn, $row["id"]);
             }
-            return $output;
+            return $output;*/
+            return $result;
         }
 
-        public function sendToDatabase(){
-        $conn = Db::getConnection();
-        $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:from, :receiver, :message, :time, 1)');
-        $from = $this->getFrom();
-        $receiver = $this->getReceiver();
-        $message = $this->getMessage();
-        $time = $this->getDatetime();
-        $statement->bindValue(":from", $from);
-        $statement->bindValue(":receiver", $receiver);
-        $statement->bindValue(":message", $message);
-        $statement->bindValue(":time", $time);
-        $result = $statement->execute();
+        public function sendToDatabase()
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('insert into messages (from_user, to_user, message, date_time, message_status) values(:from, :receiver, :message, :time, 1)');
+            $from = $this->getFrom();
+            $receiver = $this->getReceiver();
+            $message = $this->getMessage();
+            $time = $this->getDatetime();
+            $statement->bindValue(":from", $from);
+            $statement->bindValue(":receiver", $receiver);
+            $statement->bindValue(":message", $message);
+            $statement->bindValue(":time", $time);
+            $result = $statement->execute();
     
         return $result;
-    }
+        }
+
+        public function upvoteComment($commentid)
+        {
+            $conn = Db::getConnection();
+            $statement = $conn->prepare('update comment set upvote = (upvote + 1) where id = :commentid');
+            $id = $commentid;
+            $statement->bindValue(":commentid", $id);
+            $result = $statement->execute();
+            return $result;
+      
+        }
+        
+        
+        
+
+    
 
 
 
