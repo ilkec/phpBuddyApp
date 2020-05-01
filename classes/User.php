@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 /*require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');*/
-require("sendGrid/sendgrid-php.php");
+require_once("sendGrid/sendgrid-php.php");
 require_once("vendor/autoload.php");
 
 class User
@@ -36,6 +36,7 @@ class User
   private $buddy;
   private $reden;
   private $moderator; //bespreken me groep
+  private $status;
 
   //variables used for message system
   private $message;
@@ -508,6 +509,17 @@ class User
     return $this;
   }
 
+  public function getStatus()
+  {
+    return $this->status;
+  }
+
+  public function setStatus($status)
+  {
+    $this->status = $status;
+    return $this;
+  }
+
   public function countUsers()
   {
 
@@ -608,6 +620,40 @@ class User
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     // var_dump($result);
     return $users;
+  }
+
+  public function activateAccount($activationId){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("UPDATE users SET status = '1' WHERE id = :activationId");
+    $statement->bindValue(":activationId", $activationId);
+    $result = $statement->execute();
+    return $result;
+  }
+
+  public function sendActivationEmail($activationId)
+  {
+    $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."activate.php?id=" . $activationId;
+    $toMail = $this->getEmail();
+    $toUser = $this->getFirstname() . $this->getLastname();
+    putenv("SENDGRID_API_KEY=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");
+
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
+    $email->setSubject("Activate your Buddy App Account.");
+    $email->addTo($toMail, $toUser);
+    $email->addContent("text/plain", "Your account has been created, please click the following link to activate your account: " . $activationLink);
+    $email->addContent(
+        "text/html", "<strong> Your account has been created, please click the following link to activate your account: " . $activationLink ." </strong>"
+    );
+    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+    try {
+        $response = $sendgrid->send($email);
+        print $response->statusCode() . "\n";
+        print_r($response->headers());
+        print $response->body() . "\n";
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n";
+    }
   }
 
 
@@ -858,7 +904,7 @@ class User
               $result = $statement->execute();
               //header("Location: feature4.php");
               var_dump($result);
-              return $result;
+              return $conn->lastInsertId();
             }
           }
         }
@@ -988,7 +1034,17 @@ class User
     var_dump($userBuddyChoice);
   }
 
-
+  public function isActivateAccount($email){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select * from users where email = :email');
+    $statement->bindParam(":email", $email);
+    $result = $statement->execute();
+    $output = $statement->fetch(PDO::FETCH_ASSOC);
+    if($output['status'] == '1'){
+      return true;
+    }
+    return false;
+  }
 
   public function canLogin($email, $password)
   {

@@ -88,9 +88,53 @@
         <input class="comment" type="textarea" id="comment_content" name="comment_content" placeholder="Place your comment here">
         <br><br>
         <input class="submit_btn" type="submit" value="Post Comment">
+        <a class="pinned_btn" href="pinnedComments.php">Pinned Messages</a>
     </form>
     <div class="comments_display" id="comments_display">
-        <?php echo $output; ?>
+        <?php foreach($output as $row): ?>
+            <div class="comment_container">
+                <?php if($isModerator): ?>
+                    <form action="" method="POST">
+                        <input type="hidden" name="pin" value="<?php echo $row["id"] ?>">
+                        <input class="pin_btn" type="submit" value="Pin">
+                    </form>
+                <?php endif; ?>
+                <div class="comment_header"> <h3> <?php echo $row["comment_sender_name"]; ?></h3> </div>
+                <p><?php echo $row["date"] ?></p> 
+                <div class="comment_body"> 
+                    <p> <h5><?php echo $row["comment_title"]; ?></h5> </p>
+                    <p><?php echo $row["comment"]; ?></p>
+                    
+                </div>
+                <div class="comment_footer"><form action="" method="GET">
+                    <input type="hidden" name="parent" value="<?php echo $row["id"] ?>">
+                    <input class="reply_btn" type="submit" id="<?php echo $row["id"] ?>" value="Reply">
+                </form></div>
+            </div>
+            <?php
+                $thisComment = new comment();
+                $thisComment->setId($row["id"]);
+                $thisId = $thisComment->getId();
+                $replies = $thisComment->getReplies($thisId);
+            ?>
+            <?php foreach($replies as $row): ?>
+                <div class="reply_container" style="margin-left: 150px">
+                    <?php if($isModerator): ?>
+                        <form action="" method="POST">
+                            <input type="hidden" name="pin" value="<?php echo $row["id"]; ?>">
+                            <input class="pin_btn" type="submit" value="Pin">
+                            
+                        </form>
+                    <?php endif; ?>
+                    <div class="comment_header"> <h3><?php echo $row["comment_sender_name"]; ?></h3> </div>
+                    <p><?php echo $row["date"]; ?></p> 
+                    <div class="comment_body"> 
+                        <p> <h5><?php echo $row["comment_title"]; ?> </h5> </p>
+                        <p><?php echo $row["comment"]; ?> </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?> 
     </div>
 </body>
 </html>

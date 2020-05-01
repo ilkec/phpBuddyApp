@@ -10,7 +10,8 @@ if (!empty($_POST)) {
     $user->setBirthday($_POST['birthday']);
     $user->setPassword($_POST['password']);
     $user->setConfPassword($_POST['confPassword']);
-    $user->saveUser();
+    $activationId = $user->saveUser();
+    $user->sendActivationEmail($activationId);
     $success = "Your account has been created successfully";
   } catch (\Throwable $th) {
     $error = $th->getMessage();

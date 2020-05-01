@@ -1,16 +1,16 @@
 body{
-    background-color: #F8F8F8;
+    background-color: #ffffff;
 }
 
 .title{
-    border: 2px solid grey;
+    border: 2px solid #132236;
     border-radius: 4px;
     margin-left: 75px;
     margin-top: 50px;
 }
 
 .comment{
-    border: 2px solid grey;
+    border: 2px solid #132236;
     border-radius: 4px;
     width: 30%;
     height: 150px;
@@ -19,7 +19,7 @@ body{
 
 
 .submit_btn{
-    background-color:#007bff;
+    background-color:#132236;
     border: none;
     color: white;
     border-radius: 5px;
@@ -30,6 +30,36 @@ body{
     font-size: 16px;
     margin-left: 75px;
 }
+
+.pinned_btn{
+    background-color:#132236;
+    
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 75px;
+}
+
+.pinn_btn{
+    background-color:#132236;
+    
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 75px;
+    margin-top: 25px;
+}
+
 /*.comments_display{
     border: 2px solid grey;
     border-radius: 4px;
@@ -39,7 +69,7 @@ body{
 }*/
 
 .comment_container, .reply_container{
-    border: 2px solid grey;
+    border: 2px solid #132236;
     border-radius: 4px;
     width: 70%;
     height: 150px;
@@ -52,7 +82,7 @@ body{
 }
 
 .reply_btn, .pin_btn{
-    background-color:#007bff;
+    background-color:#132236;
     border: none;
     color: white;
     border-radius: 5px;
@@ -68,3 +98,30 @@ body{
     float: right;
     clear: both;
 }
+
+/*.comment_header{
+
+    border: 2px solid grey;
+    border-radius: 4px;
+    width: 70%;
+    height: 150px;
+    padding-left: 15px;
+    padding-bottom: 160px;
+    
+    margin-left: 75px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+*/
+/*.comment_footer{
+    border: 2px solid grey;
+    border-radius: 4px;
+    width: 70%;
+    height: 150px;
+    padding-left: 15px;
+    padding-bottom: 160px;
+    
+    margin-left: 75px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}*/

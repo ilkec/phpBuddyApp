@@ -30,27 +30,31 @@ if (!empty($_POST)) {
 			}
 		}
 		if ($user->canLogin($email, $password)) {
-			//$user->setEmail($email);
-			//$user->setPassword($password);
-			session_start();
+			if($user->isActivateAccount($email)){
+				//$user->setEmail($email);
+				//$user->setPassword($password);
+				session_start();
 
-			$_SESSION['user'] = $email;
-			$user->setEmail($_SESSION['user']);
-			$databaseId = $user->getDatabaseId();
-			$user->setId($databaseId['id']);
+				$_SESSION['user'] = $email;
+				$user->setEmail($_SESSION['user']);
+				$databaseId = $user->getDatabaseId();
+				$user->setId($databaseId['id']);
 
-			$getAllUser = $user->getAll();
-			$games = $getAllUser['games'];
-			$films = $getAllUser['films'];
-			$location = $getAllUser['location'];
-			$music = $getAllUser['music'];
-			$books = $getAllUser['books'];
-			var_dump($books);
+				$getAllUser = $user->getAll();
+				$games = $getAllUser['games'];
+				$films = $getAllUser['films'];
+				$location = $getAllUser['location'];
+				$music = $getAllUser['music'];
+				$books = $getAllUser['books'];
+				var_dump($books);
 
-			if (is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)) {
-				header("Location: feature4.php");
-			} else {
-				header("Location: sortBuddy.php");
+				if (is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)) {
+					header("Location: feature4.php");
+				} else {
+					header("Location: sortBuddy.php");
+				}
+			} else{
+				$error = "Your account has not been activated yet";
 			}
 		} else {
 			$error = "Email and password don't match";
