@@ -179,7 +179,7 @@
 
         public function test(){
             $conn = Db::getConnection();
-            $statement = $conn->prepare("SELECT * FROM tbl_comment");
+            $statement = $conn->prepare("SELECT * FROM comment");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -191,7 +191,7 @@
             $senderName = $this->getSenderName();
             $comment = $this->getComment();
             $title = $this->getTitle();
-            $statement = $conn->prepare("INSERT INTO tbl_comment(parent_comment_id, comment, comment_sender_name, comment_title) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title)");
+            $statement = $conn->prepare("INSERT INTO comment(parent_comment_id, comment, comment_sender_name, comment_title) VALUES (:parent_comment_id, :comment, :comment_sendername, :comment_title)");
             $statement->bindValue(":parent_comment_id", $parentcomment_id);
             $statement->bindValue(":comment", $comment);
             $statement->bindValue(":comment_sendername", $senderName);
@@ -246,7 +246,7 @@
             padding-bottom: 160px;
             margin-top: 25px;
             margin-bottom: 50px;';
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
+            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = :parent_id ORDER BY comment_id DESC");
             $statement->bindValue(':parent_id', $parent_id);
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -291,37 +291,12 @@
         public function getAllComments($isModerator){
             $conn = Db::getConnection();
             //get all stand alone comments
-            $statement = $conn->prepare("SELECT * FROM tbl_comment WHERE parent_comment_id = '0' ORDER BY comment_id DESC");
+            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY id DESC");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $output = '';
-            $pinAppend = ''; 
-            foreach($result as $row){
-                if($isModerator){
-                    $pinAppend = '
-                        <form action="" method="POST">
-                            <input type="hidden" name="pin" value="'.$row["comment_id"].'">
-                            <input class="pin_btn" type="submit" value="Pin">
-                        </form>
-                    ';
-                }
-                $output .= '
-                    <div class="comment_container">
-                        '.$pinAppend.'
-                        <div class="comment_header"> <h3>' .$row["comment_sender_name"]. '</h3> </div>
-                        <p> ' .$row["date"]. ' </p> 
-                        <div class="comment_body"> 
-                            <p> <h5> ' .$row["comment_title"]. ' </h5> </p>
-                            <p> ' .$row["comment"]. ' </p>
-                        </div>
-                        <div class="comment_footer"><form action="" method="GET">
-                            <input type="hidden" name="parent" value="'.$row["comment_id"].'">
-                            <input class="reply_btn" type="submit" id="'.$row["comment_id"].'" value="Reply">
-                        </form></div>
-                    </div>
-                ' . $this->getReplies($isModerator, $conn, $row["comment_id"]);
-            }
-            return $output;
+           
+            
+            return $result;
         }
 
         public function sendToDatabase(){

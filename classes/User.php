@@ -8,7 +8,7 @@ include_once(__DIR__ . "/Db.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
+//require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');
 require("sendGrid/sendgrid-php.php");
 
 
