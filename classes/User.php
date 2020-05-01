@@ -637,6 +637,28 @@ class User
         print $response->statusCode() . "\n";
         print_r($response->headers());
         print $response->body() . "\n";
+
+      $mail->isSMTP();
+
+      $mail->SMTPDebug = 2;
+      $mail->Host = "smtp.sendgrid.net";
+      //$mail->Host = "localhost"; /* test */
+  //$mail->Host = 'smtp.gmail.com';
+  /*$mail->SMTPAuth = true; /*false/true*/
+  //$mail->SMTPAutoTLS = false; /* test */
+  /* $mail->Username = 'noreplyUser';
+      $mail->Password = 'flameswort10';
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /*ENCRYPTION_SMTPS;*/
+  /* $mail->Port = 587; //25 - 465 - 587 -2525
+      $mail->setFrom('buddyfixers@mail.com', 'Buddy fixers');
+      $mail->addAddress($result['email']);
+      $mail->isHTML(true);
+      $mail->Subject = 'Buddy request';
+      $mail->Body    = 'Check your buddy app, you have recieved a new friend request';
+      $mail->AltBody = 'Check your buddy app, you have recieved a new friend request';
+
+      $mail->send();
+      echo 'Message has been sent';
     } catch (Exception $e) {
         echo 'Caught exception: '. $e->getMessage() ."\n";
     }
@@ -1089,5 +1111,60 @@ class User
     $matches = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $matches;
     //var_dump($matches);
+  }
+
+  public function showAlgemeen()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible != 'Design' AND responsible != 'Business' AND responsible != 'Communicatie' AND responsible != 'Hardware' AND responsible != 'Code'");
+    $result = $statement->execute();
+    $algemeen = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $algemeen;
+  }
+
+
+  public function showCode()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible = 'Code'");
+    $result = $statement->execute();
+    $code = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $code;
+  }
+
+  public function showDesign()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible = 'Design'");
+    $result = $statement->execute();
+    $design = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $design;
+  }
+
+  public function showBusiness()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible = 'Business'");
+    $result = $statement->execute();
+    $business = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $business;
+  }
+
+  public function showCommunicatie()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible = 'Communicatie'");
+    $result = $statement->execute();
+    $communicatie = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $communicatie;
+  }
+
+  public function showHardware()
+  {
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("SELECT * FROM contacts WHERE responsible = 'Hardware'");
+    $result = $statement->execute();
+    $hardware = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $hardware;
   }
 }

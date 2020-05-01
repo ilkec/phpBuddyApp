@@ -110,6 +110,8 @@ if ($notification > 0) {
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
       <ul class="nav justify-content-end">
 
+        <a class="nav-link pt-4" href="feature22.php">contacts</a>
+
         <a id="messageNotification" href="messages.php">messages
           <?php if (isset($showNotification)) : ?>
             <div class="error"><?php echo $showNotification; ?></div>
@@ -124,7 +126,7 @@ if ($notification > 0) {
                     } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
     </div>
   </nav>
-  <div class="container-fluid box ">
+  <div class="container-fluid box">
     <!------counters------>
 
     <?php foreach ($allMatches as $m) {
@@ -132,7 +134,7 @@ if ($notification > 0) {
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
         <form id="verzoek" action="" method="POST">
           <div>
-            <h4>Je hebt een buddyverzoek ontvangen van <?php echo $m['firstname'] . " " . $m['lastname'] ?></h4>
+            <h4>Je hebt een buddyverzoek ontvangen van <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
             <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
             <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
           </div> <?php }
