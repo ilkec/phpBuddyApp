@@ -61,49 +61,49 @@ if (!empty($_POST['btnTalk'])) {
         <div class="row text-center mr-2">
             <?php
             foreach ($foundmatch as $m) {
-              
+
                 if ($m['games'] == $user->getGames() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
-                        <h5> <?php echo $m['firstname'] . " " .  $m['lastname'] ?></h5>
-                        <h5> Deze persoon speelt ook graag <?php echo $m['games'] ?> games. </h5>
+                        <h5> <?php echo htmlspecialchars($m['firstname'] . " " .  $m['lastname']) ?></h5>
+                        <h5> Deze persoon speelt ook graag <?php echo htmlspecialchars($m['games']) ?> games. </h5>
                         <form action="" method="post">
-                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
-                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                            <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo htmlspecialchars($m['id']); ?>">
+                            <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
                         </form>
-                  
+
                     </div>
                 <?php
                 } else if ($m['music'] == $user->getMusic() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
-                        <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
-                        <h5> Deze persoon luistert ook graag <?php echo $m['music'] ?> muziek. </h5>
+                        <h5><?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?> </h5>
+                        <h5> Deze persoon luistert ook graag <?php echo htmlspecialchars($m['music']) ?> muziek. </h5>
                         <form action="" method="post">
-                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
-                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                            <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                            <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
                         </form>
                     </div>
                 <?php
                 } else if ($m['location'] == $user->getLocation() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
-                        <h5> <?php echo $m['firstname'] . " " . $m['lastname'] ?> </h5>
-                        <h5> Deze persoon woont ook in <?php echo $m['location'] ?> </h5>
+                        <h5> <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?> </h5>
+                        <h5> Deze persoon woont ook in <?php echo htmlspecialchars($m['location']) ?> </h5>
                         <form action="" method="post">
-                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
-                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                            <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                            <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
                         </form>
                     </div>
                 <?php
                 } else if ($m['books'] == $user->getBooks() && $m['films'] == $user->getFilms() && $m['id'] != $match['id']) { ?>
                     <div class="col-md-4">
                         <img src="uploads/ <?php echo $m['picture'] ?>">
-                        <h5><?php echo $m['firstname'] . " " . $m['lastname'] ?></h5>
-                        <h5> <br> Deze persoon kijkt ook graag <?php echo $m['films'] ?> films en leest ook graag <?php echo $m['books'] ?> boeken. <br> </h5>
+                        <h5><?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h5>
+                        <h5> <br> Deze persoon kijkt ook graag <?php echo htmlspecialchars($m['films']) ?> films en leest ook graag <?php echo htmlspecialchars($m['books']) ?> boeken. <br> </h5>
                         <form action="" method="post">
-                        <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
-                        <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk"> 
+                            <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
+                            <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
                         </form>
                     </div>
             <?php
