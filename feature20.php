@@ -71,7 +71,7 @@
         }
     }       $comment->setId($databaseId['id']);
             $oneUpvote = $comment->getUpvoter();
-            var_dump($oneUpvote);
+           // var_dump($oneUpvote);
 
         
 ?>
