@@ -116,7 +116,7 @@
 
                     <?php foreach($oneUpvote as $upvoteForId){ 
                         if($upvoteForId['comment_id'] ===  $row["id"]) {
-                            $errorUpvote = "je hebt deze comment al geupvote";
+                            $errorUpvote = "Already upvoted";
                         } else {
                             $setUpvoteBtn = "upvote";
                         }
