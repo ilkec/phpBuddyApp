@@ -100,14 +100,14 @@
                     </form>
                 <?php endif; ?>
                 <div class="comment_header"> 
-                    <h3> <?php echo $row["comment_sender_name"]; ?></h3> 
+                    <h3 id="koekoek"> <?php echo $row["comment_sender_name"]; ?></h3> 
                 </div>
                 <p><?php echo $row["date"] ?></p> 
                 <div class="comment_body"> 
                     <p> <h5><?php echo $row["comment_title"]; ?></h5> </p>
                     <p><?php echo $row["comment"];?></p>
                     <div class="upvoteclass">
-                        <p id="upvoteNumber"> <?php echo $row['upvote_count']; ?></p>
+                        <p id="upvoteCount" data-number=<?php echo $row['upvote_count']; ?>><?php echo $row['upvote_count']; ?></p>
                         <a href="#" id="upvote" data-postid=<?php echo $row['id']; ?>>upvote</a>
                     </div>
                 </div>

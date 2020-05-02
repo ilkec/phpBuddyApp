@@ -235,7 +235,7 @@
         public function getAllComments(){
             $conn = Db::getConnection();
             //get all stand alone comments
-            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY id DESC");
+            $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY upvote_count DESC");
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);       
             return $result;
