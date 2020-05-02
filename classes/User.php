@@ -659,7 +659,7 @@ class User
   }
 
 
-  /*public function sendMatchMail()
+  public function sendMatchMail()
   {
     $conn = Db::getConnection();
     $statement = $conn->prepare("select email from users where id = :buddyId");
@@ -681,38 +681,16 @@ class User
     );
     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
-        $response = $sendgrid->send($email);
-        print $response->statusCode() . "\n";
-        print_r($response->headers());
-        print $response->body() . "\n";
-
-      $mail->isSMTP();
-
-      $mail->SMTPDebug = 2;
-      $mail->Host = "smtp.sendgrid.net";}
-      //$mail->Host = "localhost"; /* test */
-  //$mail->Host = 'smtp.gmail.com';
-  /*$mail->SMTPAuth = true; /*false/true*/
-  //$mail->SMTPAutoTLS = false; /* test */
-  /* $mail->Username = 'noreplyUser';
-      $mail->Password = 'flameswort10';
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; /*ENCRYPTION_SMTPS;*/
-  /* $mail->Port = 587; //25 - 465 - 587 -2525
-      $mail->setFrom('buddyfixers@mail.com', 'Buddy fixers');
-      $mail->addAddress($result['email']);
-      $mail->isHTML(true);
-      $mail->Subject = 'Buddy request';
-      $mail->Body    = 'Check your buddy app, you have recieved a new friend request';
-      $mail->AltBody = 'Check your buddy app, you have recieved a new friend request';
-
-      $mail->send();
-      echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo 'Caught exception: '. $e->getMessage() ."\n";
-    }
+      $response = $sendgrid->send($email);
+      print $response->statusCode() . "\n";
+      print_r($response->headers());
+      print $response->body() . "\n";
+  } catch (Exception $e) {
+      echo 'Caught exception: '. $e->getMessage() ."\n";
+  }
     return $result;
   
-}*/
+}
   
   public function newMessage()
   {
@@ -725,6 +703,7 @@ class User
     //var_dump($users);
     return $users;
   }
+
   public function updateNotification()
   {
     $conn = Db::getConnection();
@@ -772,7 +751,7 @@ class User
 
     $conn = Db::getConnection();
 
-    $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
+    $statement = $conn->prepare('select messages.message,messages.id, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
     from users as user1, messages, users as user2 
     where (from_user = :fromUser  and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id) or (from_user = :toUser and to_user = :fromUser and messages.from_user = user1.id and messages.to_user = user2.id) ORDER BY date_time ASC');
     $fromUser = $this->getFromUser();
