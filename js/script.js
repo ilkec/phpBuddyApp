@@ -140,19 +140,18 @@ function hide() {
 $(".reactionsBox").click(function (e) {
      
    e.preventDefault();
-   $.ajax({
+  $.ajax({
         method: "post"
-        , url: "./Ajax/showReaction.php"
+        , url: "./classes/showReaction.php"
         , data: $('.emojisBox').serialize()
         , dataType: "html"
         , success: (respons) => {
-          $('.emojisBox').html(respons);
-          //console.log(respons);
           let emojiBox = $(this).next();
          emojiBox.toggle();
           let emojis = $(this).next().children().last().children().children();
           let currentMessageBox = $(this).prev();
          givedReactionBoxSrc = $(this).prev().children().last();
+          console.log(respons);
           //console.log(currentMessageBox);
   
   emojis.click(function(e){

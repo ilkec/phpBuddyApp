@@ -3,6 +3,7 @@
 include_once(__DIR__ . '/classes/User.php');
 include_once(__DIR__ . '/classes/Comment.php');
 include_once(__DIR__ . '/classes/reaction.php');
+include_once(__DIR__ . '/classes/showReaction.php');
 
 
 
@@ -33,6 +34,14 @@ if (isset($_SESSION['user'])) {
     $chatHistory = $user->messagesFromDatabase();
     //var_dump($chatHistory);
 
+$user->setToUser($_SESSION['chatId']);
+$user->setFromUser($databaseId['id']);
+$chatHistory = $user->messagesFromDatabase();
+//var_dump($chatHistory);
+
+
+$allReactions = reaction::getAll($databaseId['id']);
+$showemojis= showReaction::showReactions();
 
     $allReactions = reaction::getAll($databaseId['id']);
 }else{
@@ -103,7 +112,12 @@ if (isset($_SESSION['user'])) {
               <i class="far fa-smile" aria-hidden="false"></i>
              </a>
              </div>
-             <div class="emojisBox" id="">
+              <div class="emojisBox" id="">
+              <div role='listbox' aria-orientation='horizontal' class='_1z8q _fy2'>
+               <?php foreach($showemojis as $emojis):?>
+               <span class='iconn'><img id='<?php echo $emojis['id']?>' alt='<?php echo $emojis['name']?>' class='_1ift _5m3a img' src='<?php echo $emojis['src']?>'></span>
+               <?php endforeach;?>
+               </div>
                
              </div>
            </div>
