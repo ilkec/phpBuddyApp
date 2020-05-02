@@ -303,6 +303,86 @@ h5 {
   top: 3em;
   left: 11em;
 }
+/*----------------feature8-reaction-----------------------*/
+.messageContainer {
+    margin-bottom: 27px;
+    align-items: center;
+    width: 80%;
+}
+
+.messageBox.col-lg-6 {
+    background: cornflowerblue;
+    padding: 1px 17px;
+    border-radius: 23px;
+    margin-right: 11px;
+}
+
+.messageBox p {
+    margin: 0;
+    padding: 10px;
+}
+
+.givedReactionBox {
+    height: 20px;
+    width: 23px;
+    /* width: 150px; */
+    display: block;
+    position: absolute;
+    left: 186px;
+    top: 21px;
+}
+
+._1ift._5m3a.img.gived {
+    width: 87%;
+    display: block;
+}
+
+.messageContainer:hover .reactionsBox.col-lg-2 {
+
+  display: block;
+  
+}
+
+
+.reactionsBox.col-lg-2 {
+
+  display: none;
+}
+
+.reactionsBox.col-lg-2 a{
+  color: grey;
+  font-size: 20px;
+}
+
+
+.emojisBox {
+   /*position: absolute; */
+    /* top: 84px; */
+    /* left: 280px; */
+    background: white;
+    overflow: hidden;
+    width: 50%;
+    border-radius: 100px;
+    padding: 5px 0px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 -2px 5px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+}
+
+._1z8q._fy2 {
+    text-align: center;
+}
+
+._1z8q._fy2 img {
+    width: 10%;
+    margin-right: 5px;
+}
+._1z8q._fy2 img:hover {
+    width: 12%;
+}
+
+span.iconn:hover {
+    cursor: pointer;
+}
 
 /*----------------------Media-query-----------------------*/
  /* For mobile phones: */

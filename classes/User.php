@@ -772,7 +772,7 @@ class User
 
     $conn = Db::getConnection();
 
-    $statement = $conn->prepare('select messages.message, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
+    $statement = $conn->prepare('select messages.message,messages.id, messages.from_user, messages.to_user, user1.firstname as fromUser, user2.firstname as toUser 
     from users as user1, messages, users as user2 
     where (from_user = :fromUser  and to_user = :toUser and messages.from_user = user1.id and messages.to_user = user2.id) or (from_user = :toUser and to_user = :fromUser and messages.from_user = user1.id and messages.to_user = user2.id) ORDER BY date_time ASC');
     $fromUser = $this->getFromUser();

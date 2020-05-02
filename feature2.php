@@ -98,7 +98,7 @@ if (!empty($_POST)) {
 				<h5><?php echo $block ?></h5>
 				<input class="mt-3 mb-3 btn btn-primary" type="submit" $disable value="Log in">
 				<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
-
+          </form>
 
 		</div>
 	</fieldset>
