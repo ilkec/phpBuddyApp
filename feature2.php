@@ -75,17 +75,17 @@ if (!empty($_POST)) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/login.css">
 	<title>Document</title>
 </head>
 
 <body class="container-fluid bg-secondary">
-	<fieldset <?php echo $disable ?>>
+	<fieldset class="fs" <?php echo $disable ?>>
+	<img src="img/Logo.png" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
 		<div class="row">
-			<img src="img/we-are-imd.jpg" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+			
 			<form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
-				<h2 form__title>Sign up for an account</h2>
+				<h2 form__title>Sign up</h2>
 				<?php if (isset($error)) : ?>
 					<p>
 						<?php echo $error; ?>
@@ -96,7 +96,7 @@ if (!empty($_POST)) {
 				<label for="password">Password</label>
 				<input class="form-control" type="password" id="password" name="password">
 				<h5><?php echo $block ?></h5>
-				<input class="mt-3 mb-3 btn btn-primary" type="submit" $disable value="Log in">
+				<input class="buttton" type="submit" $disable value="Log in">
 				<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
           </form>
 
