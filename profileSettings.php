@@ -174,7 +174,7 @@ $getAllUser = $user->getAll();
         <!--<h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>-->
         <!-------form picture------>
         <form class="w-80 border-3 rounded-0 mt-3" action="" method="post" enctype="multipart/form-data">
-            <h3>Profielfoto toevoegen</h3>
+            <h3>Add profile picture </h3>
             <div class="form__field mt-2">
                 <img src="<?php if ($getAllUser['picture'] === NULL) {
                                 echo "uploads/profilePic.png";
@@ -190,64 +190,23 @@ $getAllUser = $user->getAll();
                     </div>
                 <?php endif; ?>
 
-                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePhoto">
+                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePhoto">
             </div>
         </form>
         <!-------form algemeen------>
         <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
-            <h3>Persoonlijke gegevens</h3>
+            <h3>Personal info</h3>
             <div class="form_field mt-2">
                 <label for="profileText">Korte beschrijving</label>
                 <textarea class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description']; ?></textarea>
             </div>
             <div class="form_field mt-2">
-                <label for="firstname">Voornaam</label>
+                <label for="firstname">Firstname</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['firstname']; ?>" name="firstname" id="firstname">
             </div>
             <div class="form_field mt-2">
-                <label for="lastname">Achternaam</label>
+                <label for="lastname">Lastname</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['lastname']; ?>" name="lastname" id="lastname">
-            </div>
-
-            <div class="form_field mt-2">
-                <input type="submit" value="Opslaan" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile">
-            </div>
-        </form>
-        <!-------form email------>
-        <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
-            <h3>Emailadres wijzigen</h3>
-            <div class="form_field mt-2">
-                <label for="email">Emailadres</label>
-                <input class="form-control" type="text" value="<?php echo $getAllUser['email']; ?>" name="email" id="email">
-            </div>
-            <div class="form_field mt-2">
-                <label for="passwordNew">Wachtwoord</label>
-                <input class="form-control" type="password" placeholder="Wachtwoord" name="passwordEmail" id="passwordEmail">
-            </div>
-            <div>
-                <input type="submit" value="Emailadres wijzigen" class="btn btn-primary mb-3" id="btnOpslaan" name="updateEmail">
-            </div>
-            <?php if (isset($errorEmail)) : ?>
-                <div class="form__error">
-                    <p>
-                        <?php echo $errorEmail; ?>
-                    </p>
-                </div>
-            <?php endif; ?>
-        </form>
-        <!-------form wachtwoord------>
-        <form class="w-80 border-3 rounded-0 mb-3" action="" method="post" enctype="multipart/form-data">
-            <h3>Wachtwoord wijzigen</h3>
-            <div class="form_field mt-2">
-                <label for="passwordOld">Oud wachtwoord</label>
-                <input class="form-control" type="password" placeholder="oud wachtwoord" name="passwordOld" id="passwordOld">
-            </div>
-            <div class="form_field mt-2">
-                <label for="passwordNew">Nieuw wachtwoord</label>
-                <input class="form-control" type="password" placeholder="nieuw wachtwoord" name="passwordNew" id="passwordNew">
-            </div>
-            <div>
-                <input type="submit" value="Wachtwoord wijzigen" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePassword">
             </div>
             <?php if (isset($error)) : ?>
                 <div class="form__error">
@@ -256,6 +215,49 @@ $getAllUser = $user->getAll();
                     </p>
                 </div>
             <?php endif; ?>
+
+            <div class="form_field mt-2">
+                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile">
+            </div>
+        </form>
+        <!-------form email------>
+        <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
+            <h3>Change email address</h3>
+            <div class="form_field mt-2">
+                <label for="email">Email address</label>
+                <input class="form-control" type="text" value="<?php echo $getAllUser['email']; ?>" name="email" id="email">
+            </div>
+            <div class="form_field mt-2">
+                <label for="passwordNew">Password</label>
+                <input class="form-control" type="password" placeholder="Password" name="passwordEmail" id="passwordEmail">
+            </div>
+            <?php if (isset($errorEmail)) : ?>
+                <div class="form__error">
+                    <p>
+                        <?php echo $errorEmail; ?>
+                    </p>
+                </div>
+            <?php endif; ?>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updateEmail">
+            </div>
+            
+        </form>
+        <!-------form wachtwoord------>
+        <form class="w-80 border-3 rounded-0 mb-3" action="" method="post" enctype="multipart/form-data">
+            <h3>Change password</h3>
+            <div class="form_field mt-2">
+                <label for="passwordOld">Old password</label>
+                <input class="form-control" type="password" placeholder="old password" name="passwordOld" id="passwordOld">
+            </div>
+            <div class="form_field mt-2">
+                <label for="passwordNew">New password</label>
+                <input class="form-control" type="password" placeholder="new password" name="passwordNew" id="passwordNew">
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePassword">
+            </div>
+            
             <a href="profile.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Go back</a>
         </form>
         

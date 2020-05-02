@@ -65,7 +65,7 @@ class User
   public function setFirstname($firstname)
   {
     if (empty($firstname)) {
-      //throw new Exception("lastname can not be empty");
+      throw new Exception("firstname can not be empty");
     }
     $this->firstname = $firstname;
     return $this;
@@ -87,7 +87,7 @@ class User
   public function setLastname($lastname)
   {
     if (empty($lastname)) {
-      //throw new Exception("lastname can not be empty");
+      throw new Exception("lastname can not be empty");
     }
     $this->lastname = $lastname;
     return $this;
