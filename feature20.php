@@ -8,6 +8,8 @@
     $user->setEmail($_SESSION['user']);
     $databaseId = $user->getDatabaseId();
     $user->setId($databaseId['id']);
+   
+    $comment = new comment();
 
     if (!isset($_SESSION['user'])) {
         header("Location: feature2.php");
@@ -45,9 +47,10 @@
             $comment->setPinned($pinnedId);
         }
         else{
-            $comment = new comment();
+            
             $comment->setParent_Id($parentId);
             $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
+            
             if(empty($_POST['comment_name'])){
                 $error = 'no comment title';
             }else{
@@ -66,7 +69,10 @@
             }
             $response = $error;
         }
-    }
+    }       $comment->setId($databaseId['id']);
+            $watziterin = $comment->getUpvoter();
+            //var_dump($watziterin);
+        
 ?>
 <!DOCTYPE html>
 <html lang="en">
