@@ -83,13 +83,17 @@ form{
 
   .form-control{
     margin-left: 25px;
+    margin-top: 15px;
 
     width: 60%;
-    margin-top: 15px;
-    border: none;
-    background-color: #f19d90;
     height: 40px;
+
+    border: 1px;
+    border-style: solid ;
+    border-color: #f19d90;
     border-radius: 50px;
+
+    background-color: #ffffff;
   }
 
 .buttton{
@@ -227,10 +231,10 @@ form{
     
         padding-top: 5px;
         padding-bottom: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     
-        margin-left: 15px;
+        margin-left: 50px;
         margin-bottom: 15px;
     
     
