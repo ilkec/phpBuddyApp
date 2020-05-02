@@ -70,8 +70,9 @@
             $response = $error;
         }
     }       $comment->setId($databaseId['id']);
-            $watziterin = $comment->getUpvoter();
-            //var_dump($watziterin);
+            $oneUpvote = $comment->getUpvoter();
+            var_dump($oneUpvote);
+
         
 ?>
 <!DOCTYPE html>
@@ -112,9 +113,25 @@
                 <div class="comment_body"> 
                     <p> <h5><?php echo $row["comment_title"]; ?></h5> </p>
                     <p><?php echo $row["comment"];?></p>
+
+                    <?php foreach($oneUpvote as $upvoteForId){ 
+                        if($upvoteForId['comment_id'] ===  $row["id"]) {
+                            $errorUpvote = "je hebt deze comment al geupvote";
+                        } else {
+                            $setUpvoteBtn = "upvote";
+                        }
+                    }?>
+
                     <div class="upvoteclass">
                         <p id="upvoteCount" data-number=<?php echo $row['upvote_count']; ?>><?php echo $row['upvote_count']; ?></p>
-                        <a href="#" id="upvote" data-postid=<?php echo $row['id']; ?>>upvote</a>
+                        <?php if(isset($errorUpvote)){ ?>
+                            <p><?php echo $errorUpvote ;?></p>
+                        <?php unset($errorUpvote);}
+                         else {?>
+                            <a href="#" id="upvote" data-postid=<?php echo $row['id']; ?>><?php echo $setUpvoteBtn; ?></a>
+                         <?php  unset($setUpvoteBtn); } ?>
+
+                        
                     </div>
                 </div>
                 <div class="comment_footer"><form action="" method="GET">

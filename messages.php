@@ -9,16 +9,13 @@ $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']); //id van de ingelogde gebruiker
 $chatNames = $user->chatNames();
 //var_dump($chatNames);
-//zoek met welke personen je al een gesprek hebt gehad
-//
+
+$newMessages = $user->newMessage();
+//var_dump($newMessages);
 
 
 
 
-$receiver = new User();
-$receiver->setId(14);
-$receiverInfo = $receiver->getAll();
-//var_dump($receiverInfo);
 
 if (!empty($_POST['btnChat'])) {
     $idReceiver = $_POST['inputUserId'];
@@ -46,23 +43,35 @@ if (!empty($_POST['btnChat'])) {
     <title>Messages</title>
 </head>
 <body>
-    <h1>MessengerBox</h1>
+    <h1>Messenger</h1>
     <a href="sortBuddy.php">Home</a>
-    <?php foreach($chatNames as $chatName){
-         if($chatName['user_id1'] === $databaseId['id']){
+    <?php foreach($chatNames as $chatName) {
+         if($chatName['user_id1'] === $databaseId['id']) {
             $printName = $chatName['user2'];
             $printId = $chatName['user_id2'];
         }
-        else if($chatName['user_id2'] === $databaseId['id']){
+        else if($chatName['user_id2'] === $databaseId['id']) {
             $printName = $chatName['user1'];
             $printId = $chatName['user_id1'];
+        } 
+        if($newMessages > 0) {
+            foreach($newMessages as $newMessage) {
+                if ($newMessage['from_user'] === $printId){
+                    $showNotification = "nieuwe berichten";
+                    
+                }
+            }
+        
         }?>
     <form action="" method="post">
     <div>
         <p><?php echo $printName;?></p>
+        <?php if(isset($showNotification)) : ?>
+        <p><?php echo $showNotification; ?></p>
+        <?php unset($showNotification); endif;  ?>
     </div>
         <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $printId; ?>">
-        <input type="submit" value="chatten" class="btn btn-primary mb-3" id="btnChat" name="btnChat"> 
+        <input type="submit" value="Chat" class="btn btn-primary mb-3" id="btnChat" name="btnChat"> 
     </form>
     <?php }; ?>
 </body>

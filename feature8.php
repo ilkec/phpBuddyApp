@@ -9,33 +9,35 @@ include_once(__DIR__ . '/classes/reaction.php');
 $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
+if (isset($_SESSION['user'])) {
+    $databaseId = $user->getDatabaseId();
+    $user->setId($databaseId['id']);
+    $_SESSION['userid'] = $databaseId['id'];
+    //var_dump($databaseId['id']);
+    $getAllUser = $user->getAll();
 
-$databaseId = $user->getDatabaseId();
-$user->setId($databaseId['id']);
-$_SESSION['userid'] = $databaseId['id'];
-//var_dump($databaseId['id']);
-$getAllUser = $user->getAll();
+    $firstname = $getAllUser['firstname'];
 
-$firstname = $getAllUser['firstname'];
+    //$idReceiver = 14;
 
-//$idReceiver = 14;
-
-$receiver = new User();
-$receiver->setId($_SESSION['chatId']);
-$receiverInfo = $receiver->getAll();
-//var_dump($receiverInfo);
-
-
+    $receiver = new User();
+    $receiver->setId($_SESSION['chatId']);
+    $receiverInfo = $receiver->getAll();
+    //var_dump($receiverInfo);
 
 
-$user->setToUser($_SESSION['chatId']);
-$user->setFromUser($databaseId['id']);
-$chatHistory = $user->messagesFromDatabase();
-//var_dump($chatHistory);
 
 
-$allReactions = reaction::getAll($databaseId['id']);
+    $user->setToUser($_SESSION['chatId']);
+    $user->setFromUser($databaseId['id']);
+    $chatHistory = $user->messagesFromDatabase();
+    //var_dump($chatHistory);
 
+
+    $allReactions = reaction::getAll($databaseId['id']);
+}else{
+    header("Location: feature2.php");
+}
 ?>
 
 <!DOCTYPE html>
