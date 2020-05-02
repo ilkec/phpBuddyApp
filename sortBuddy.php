@@ -117,7 +117,7 @@ if ($notification > 0) {
             <div class="error"><?php echo $showNotification; ?></div>
           <?php endif; ?>
         </a>
-
+        <a class="nav-link profile" href="feature20.php">Comments</a>
         <a class="nav-link profile" href="profile.php">
           <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
                       echo "uploads/profilePic.png";

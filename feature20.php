@@ -79,6 +79,7 @@
 </head>
 <body>
     <h2><?php echo $response; ?></h2>
+    <a class="pinned_btn" href="sortBuddy.php">Home</a>
     <form action="" method="post">
         <!-- <label for="comment_name">Title:</label> -->
         <input class="title" type="text" id="comment_name" name="comment_name" placeholder="Place your title here">
