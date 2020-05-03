@@ -68,11 +68,13 @@ try {
             <!--- <h2>profiel</h2>  even weggehaald 'sorry ilke'  --->
             
             <div class="profile1" > 
+                <div class="profilePictureWrap">
                 <img src="<?php if ($getAllUser['picture'] === NULL) {
                                 echo "uploads/profilePic.png";
                             } else {
                                 echo "uploads/" . $getAllUser['picture'];
                             } ?>" alt="profiel foto" class="profilePicture">
+                 </div>           
              <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
 
             </div>

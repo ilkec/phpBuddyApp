@@ -92,15 +92,15 @@ if (isset($_SESSION['user'])) {
             if ($user->checkPassword($oldPassword) == true) {
                 $user->updatePassword();
             } else {
-                $error = "Oud wachtwoord is niet correct. Gelieve opnieuw te proberen.";
+                $error = "Old password isn't correct. Try again";
             }
         }
 
         if (empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])) {
-            $error = "Oud wachtwoord moet ingevuld zijn voor u een nieuw wachtwoord kan instellen";
+            $error = "You need to fill in your old password.";
         }
         if (empty($_POST['passwordOld']) && empty($_POST['passwordNew'])) {
-            $error = "Je kan geen wachtwoord wijzigen. Gelieve de juiste velden in te vullen.";
+            $error = "Old password and new password need to be filled in";
         }
     }
 
