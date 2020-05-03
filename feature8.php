@@ -16,10 +16,10 @@ if (isset($_SESSION['user'])) {
     $_SESSION['userid'] = $databaseId['id'];
     //var_dump($databaseId['id']);
     $getAllUser = $user->getAll();
-
+    //var_dump($getAllUser);
     $firstname = $getAllUser['firstname'];
 
-    //$idReceiver = 14;
+
 
     $receiver = new User();
     $receiver->setId($_SESSION['chatId']);
@@ -87,6 +87,16 @@ $showemojis= showReaction::showReactions();
             padding: 5px;
             font-size: 12px;
         }
+
+        .messageBox{
+            display: grid;
+            grid-template-columns: 10% 80%;
+            grid-template-rows: 1;
+        }
+       .names{
+            align-self: center;
+
+        }
         /*.names{
             display: inline;
         }*/
@@ -100,17 +110,18 @@ $showemojis= showReaction::showReactions();
     <div class="chatbox">
         <?php foreach ($chatHistory as $chatMessage): ?>
            <div class="messageContainer row"> 
-           <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
-            <p><strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
-            <?php foreach($allReactions as $givedReaction):?>
-                <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
-                src="<?php echo $givedReaction["src"]; ?>"></span>
-            <?php endforeach;?>
+            <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
+                <strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong>
+                <p><?php echo $chatMessage['message'] ?></p>
+                <?php foreach($allReactions as $givedReaction):?>
+                    <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
+                    src="<?php echo $givedReaction["src"]; ?>"></span>
+                 <?php endforeach;?>
              </div>
              <div class="reactionsBox col-lg-2" id="">
-             <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
-              <i class="far fa-smile" aria-hidden="false"></i>
-             </a>
+                <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
+                <i class="far fa-smile" aria-hidden="false"></i>
+                </a>
              </div>
               <div class="emojisBox" id="">
               <div role='listbox' aria-orientation='horizontal' class='_1z8q _fy2'>
@@ -127,7 +138,7 @@ $showemojis= showReaction::showReactions();
 
         <div class="mt-2">
             <input type="text" placeholder="message" name="message" id="message">
-            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage">Send message</a>
+            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
         </div>
 
 

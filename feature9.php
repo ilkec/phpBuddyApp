@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
     <title>Matches</title>
     <style>
         .card {
-            width: 500px;
+            width: 90%;
             margin-bottom: 20px;
         }
 
@@ -32,20 +32,41 @@ if (isset($_SESSION['user'])) {
             margin: 20px 0 0 20px;
         }
 
+        .cards {
+            margin-top: 40px;
+        }
+
         .profilePicture {
-            width: 50px;
-            margin-left: auto;
-            margin-right: auto;
-
+            display: none;
         }
 
-        .card-body {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-        }
-
-        p {
+        .namesMatches{
             text-align: center;
+        }
+
+        @media all and (min-width: 768px) {
+            .card {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+            }
+
+        
+
+            .profilePicture {
+                display: block;
+                width: 50px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .card-body {
+                display: grid;
+                grid-template-columns: 1fr 3fr 1fr;
+            }
+
+        
         }
     </style>
 </head>
@@ -53,23 +74,25 @@ if (isset($_SESSION['user'])) {
 <body>
     <div class="wrapper">
         <h3>Match made between</h3>
-        <?php foreach ($matches as $match) : ?>
-            <div class="card">
-                <div class="card-body">
-                    <img src="<?php if ($match['picture1'] === NULL) {
-                                    echo "uploads/profilePic.png";
-                                } else {
-                                    echo "uploads/" . $match['picture1'];
-                                } ?>" alt="profiel foto" class="profilePicture">
-                    <p><?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?> </p>
-                    <img src="<?php if ($match['picture2'] === NULL) {
-                                    echo "uploads/profilePic.png";
-                                } else {
-                                    echo "uploads/" . $match['picture2'];
-                                } ?>" alt="profiel foto" class="profilePicture">
+        <div class="cards">
+            <?php foreach ($matches as $match) : ?>
+                <div class="card">
+                    <div class="card-body">
+                        <img src="<?php if ($match['picture1'] === NULL) {
+                                        echo "uploads/profilePic.png";
+                                    } else {
+                                        echo "uploads/" . $match['picture1'];
+                                    } ?>" alt="profiel foto" class="profilePicture">
+                        <p class="namesMatches"><?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?> </p>
+                        <img src="<?php if ($match['picture2'] === NULL) {
+                                        echo "uploads/profilePic.png";
+                                    } else {
+                                        echo "uploads/" . $match['picture2'];
+                                    } ?>" alt="profiel foto" class="profilePicture">
+                    </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 </body>
 
