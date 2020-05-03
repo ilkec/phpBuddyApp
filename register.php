@@ -96,11 +96,11 @@ if (!empty($_POST)) {
           <label for="exampleInputConfPassword">Confirm password</label>
           <input type="password" class="form-control formInputs" id="exampleInputConfPassword" name="confPassword" placeholder="confirm password"> </div>
         <!--------------Button------------>
-        <button type="submit" class="btn btn-primary button">Sign Up</button>
+        <button type="submit" class="btn">Sign Up</button>
       </form>
     <?php else : ?>
       <!----------------------------if-there-is-an-error-form-contains-the-user-info------------------------->
-      <form action="register.php" method="post">
+      <form action="register.php" method="post" id="formRegister">
         <h1 class="title">Sign up</h1>
         <!--------------Email------------>
         <div class="form-group email">
@@ -143,7 +143,7 @@ if (!empty($_POST)) {
           <label for="exampleInputConfPassword">Confirm password</label>
           <input type="password" class="form-control formInputs" id="exampleInputConfPassword" name="confPassword" placeholder="confirm password"> </div>
         <!--------------Button------------>
-        <button type="submit" class="btn btn-primary button">Sign Up</button>
+        <button type="submit" class="btn">Sign Up</button>
       </form>
     <?php endif; ?>
   </div>
