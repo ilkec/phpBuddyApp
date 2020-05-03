@@ -1183,4 +1183,6 @@ class User
     $hardware = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $hardware;
   }
+  
+
 }

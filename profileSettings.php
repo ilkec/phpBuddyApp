@@ -39,11 +39,9 @@ if (isset($_SESSION['user'])) {
     }
 
     if (!empty($_POST['updatePhoto'])) {
-        $user->setProfilePicture($_FILES["fileUpload"]["name"]);
-
+        
         $upload_dir = __DIR__ . "/uploads/";
-
-        $upload_file = $upload_dir . basename($_FILES["fileUpload"]["name"]);
+        $upload_file = $upload_dir . date('dmYHis') . basename($_FILES["fileUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($upload_file, PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
@@ -80,6 +78,7 @@ if (isset($_SESSION['user'])) {
                 $errorPhoto =  "Sorry, there was an error uploading your file.";
             }
         }
+        $user->setProfilePicture(date('dmYHis') . $_FILES["fileUpload"]["name"]);
         $user->updatePicture();
     }
 
