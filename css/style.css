@@ -433,6 +433,10 @@ a.nav-link.pt-4.settings {
     font-size: 11px;
 
 }
+
+
+ 
+
 /* --------------- Log in ---------------------*/
 /*#login-img {
   z-index: 2;
@@ -478,6 +482,9 @@ a.nav-link.pt-4.settings {
   left: 11em;
 }
 /*----------------feature8-reaction-----------------------*/
+#feature8{
+  overflow: hidden;
+}
 .messageContainer {
     margin-bottom: 27px;
     align-items: center;
@@ -485,10 +492,11 @@ a.nav-link.pt-4.settings {
 }
 
 .messageBox.col-lg-6 {
-    background: cornflowerblue;
+    background: #213854;
     padding: 1px 17px;
     border-radius: 23px;
     margin-right: 11px;
+    color: white;
 }
 
 .messageBox p {
@@ -502,8 +510,9 @@ a.nav-link.pt-4.settings {
     /* width: 150px; */
     display: block;
     position: absolute;
-    left: 186px;
     top: 21px;
+    right: 10px;
+    justify-self: end;
 }
 
 ._1ift._5m3a.img.gived {
@@ -551,12 +560,77 @@ a.nav-link.pt-4.settings {
     margin-right: 5px;
 }
 ._1z8q._fy2 img:hover {
-    width: 12%;
+    width: 11%;
 }
 
 span.iconn:hover {
     cursor: pointer;
 }
+
+.chatbox {
+    height: 73vh;
+    width: 100%;
+    padding: 27px 637px 0 20px!important;
+    background-color: mintcream;
+    overflow: auto;
+  background: white!important;
+}
+.chatbox-wrapper {
+min-width: 42.7%!important;
+}
+
+#chatpartner{
+   background-color: #122234;
+            padding: 20px;
+  min-width: 42.7%!important;
+}
+
+
+#message{
+    width: 100%;
+    height: 75px;
+  border: none;
+  border-top: 2px solid #122234;
+  }
+.mt-2{
+  margin-top: 0px!important;
+}
+
+.btn {
+            background-color: #122234;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 25px;
+            font-size: 17px;
+            width: 100%;
+            border-radius: 0!important;
+            border: none;
+        }
+
+
+  h1.col {
+    max-width: 109%!important;
+    text-align: center;
+    font-size: 1rem!important;
+    margin: 0!important;
+    align-self: center;
+}
+  
+  .col{
+    color: white!important;
+   max-width: 10%!important;
+  }
+
+.messageBox{
+ display: grid!important;
+ grid-template-columns: 40px 235px;;
+grid-template-rows: 1;
+}
+.names{
+            align-self: center;
+
+        }
 
 
 /*----------------------Media-query-----------------------*/
@@ -730,5 +804,35 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  a.nav-link.pt-4.settings {
     margin-top: 10px;
 }
+  
+  
+  .emojisBox {
+    
+    background: white;
+    overflow: hidden;
+    width: 75%;
+    border-radius: 100px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 -2px 5px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+}
+  
+.chatbox {
+    height: 77vh;
+    width: 100%;
+    padding:20px!important;
+    background-color: mintcream;
+    overflow: auto;
+}
+  
+  
+  #message{
+    width: 100%;
+    height: 43px;
+    border: none;
+  border-top: 2px solid #122234;
+  }
+  
+
   
 }
