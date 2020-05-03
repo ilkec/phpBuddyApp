@@ -86,7 +86,7 @@
 </head>
 <body>
     <h2><?php echo htmlspecialchars($response) ; ?></h2>                        
-    <a class="pinned_btn" href="sortBuddy.php">Home</a>
+    <a class="home" href="sortBuddy.php">Home</a>
     <form action="" method="post">
         <!-- <label for="comment_name">Title:</label> -->
         <input class="title" type="text" id="comment_name" name="comment_name" placeholder="Place your title here">
@@ -157,8 +157,8 @@
                     <div class="comment_header"> <h3><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3> </div> 
                     <p><?php echo $row["date"]; ?></p> 
                     <div class="comment_body"> 
-                        <p> <h5><?php echo $row["comment_title"]; ?> </h5> </p>
-                        <p><?php echo $row["comment"]; ?> </p>
+                        <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?> </h5> </p>
+                        <p><?php echo htmlspecialchars($row["comment"]) ; ?> </p>
                     </div>
                 </div>
             <?php endforeach; ?>
