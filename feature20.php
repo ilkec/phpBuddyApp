@@ -68,7 +68,7 @@
                 $response = $error;
             }
             $response = $error;
-        }
+        } //var_dump($output);
     }       $comment->setId($databaseId['id']);
             $oneUpvote = $comment->getUpvoter();
            // var_dump($oneUpvote);
@@ -128,8 +128,8 @@
                             <p><?php echo $errorUpvote ;?></p>
                         <?php unset($errorUpvote);}
                          else {?>
-                            <a href="#" id="upvote" data-postid=<?php $row['id'] ; ?>><?php echo $setUpvoteBtn; ?></a> 
-                         <?php  unset($setUpvoteBtn); } ?>
+                            <a href="#" id="upvote" data-commentid=<?php echo $row['id'];?>><?php echo $setUpvoteBtn; ?></a> 
+                         <?php unset($setUpvoteBtn); } ?>
 
                         
                     </div>
