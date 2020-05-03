@@ -23,31 +23,7 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Matches</title>
-    <style>
-        
-        @media all and (min-width: 700px) {
-            .card {
-                width: 70%;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 20px;
-            }
-
-        
-
-            .profilePictureMatch {
-                display: block;
-                width: 50px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .card-body {
-                display: grid;
-                grid-template-columns: 1fr 3fr 1fr;
-            }
-        }
-    </style>
+  
 </head>
 
 <body>
