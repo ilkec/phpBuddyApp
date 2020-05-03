@@ -150,6 +150,7 @@ flex-wrap:wrap-reverse!important;
 }
 
 
+
 .col>label{
   color: white;
 }
@@ -224,6 +225,13 @@ input:checked[type="checkbox"]:before {
   left: 57px;
 }
 
+#alert2{
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 0px;
+  z-index: 2;
+}
 
 /*----------------------Conf-password------------------------*/
 
@@ -693,15 +701,16 @@ min-width: 42.7%!important;
         }
 
 
-  h1.col {
+  .col.reciverName {
     max-width: 109%!important;
     text-align: center;
     font-size: 1rem!important;
     margin: 0!important;
     align-self: center;
+    color: white;
 }
   
-  .col{
+  .col.backBtn{
     color: white!important;
    max-width: 10%!important;
   }
