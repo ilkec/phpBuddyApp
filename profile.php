@@ -81,11 +81,11 @@ try {
             <!------profiel------->
             <div id="p-interests">
                 <div>
-                    <h3><?php echo $getAllUser['firstname'] . " " . $getAllUser['lastname']; ?></h3>
+                    <h3><?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?></h3>
                 </div>
                 <div>
                     <h5>Korte beschrijving</h5>
-                    <p><?php echo $getAllUser['description']; ?></p>
+                    <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
                 </div>
 
                 <div>
@@ -99,7 +99,7 @@ try {
                     <h5>Buddy</h5>
                     <ul>
                         <?php if ($allBuddy == null) {
-                            echo "Deze gebruiker heeft nog geen buddy";
+                            echo "This user doesn't have a buddy";
                         } else { ?>
                             <?php foreach ($allBuddy as $b) { ?>
                                 <?php echo $b['firstname'], $b['lastname'] ?>
