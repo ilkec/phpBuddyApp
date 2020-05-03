@@ -80,22 +80,22 @@ if (!empty($_POST)) {
 </head>
 
 <body class="container-fluid bg-secondary">
-	<fieldset class="fs" <?php echo $disable ?>>
-	<img src="img/Logo.png" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+	<fieldset class="fs" <?php echo htmlspecialchars($disable)  ?>>									
+	
 		<div class="row">
-			
+			<img src="img/Logo.png" alt="BuddyFixers" class="" id="login-img">
 			<form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
-				<h2 form__title>Sign up</h2>
+				<h2 form__title></h2>
 				<?php if (isset($error)) : ?>
 					<p>
-						<?php echo $error; ?>
+						<?php echo htmlspecialchars($error) ; ?> 									
 					</p>
 				<?php endif; ?>
 				<label for="email">Email</label>
 				<input class="form-control" type="text" id="email" name="email">
 				<label for="password">Password</label>
 				<input class="form-control" type="password" id="password" name="password">
-				<h5><?php echo $block ?></h5>
+				<h5><?php echo htmlspecialchars ($block) ?></h5> 									
 				<input class="buttton" type="submit" $disable value="Log in">
 				<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
           </form>

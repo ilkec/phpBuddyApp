@@ -1,13 +1,13 @@
-
 body{
-background-color: #F4FAFB;
-
+    background-color: #192e45;
 }
 
 h2{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 15px;
     padding-top: 20px;
+
+    color: #ffffff;
 }
 
 p{
@@ -15,105 +15,123 @@ p{
     font-style: normal;
     
     margin-left: 15px;
+
+    color: #ffffff;
 }
 
 a{
+    width: 100%;
+
+    display: block;
+
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: normal;
-    font-size: 16px;
+    font-size: 25px;
 
-    border: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    
-
-    border-radius: 10px;
-    text-decoration: none;
+    text-decoration: none;  
+    text-align: center;   
+            
     color: #ffffff;
     background-color: #132236;
+    
+    margin-top: 25px;
+
+
+    
+    
 }
 
 label{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: normal;
 
+    color: #ffffff;
+
     display: block;
 
-    margin-left: 15px;
+    margin-left: 15%;
+    margin-top:25px;
+
+    text-align: left;
 }
 
 .fs{
+    width: 35%;
     border: none;
     
 }
 
 form{
-    width: 35%;
-    height: 150px;
-       
+    
+    height: 150px;       
     
 }
 
-#login-img {
-    z-index: 2;
+#login-img {    
+    
+    width: 40%;
+
+    margin-left: 113%;
+    
+    padding-top: 80px;
     padding-left: 0;
-    width: 250px;
-    margin-left: 45%;
-    padding-top: 100px;
   }
   
-  #login-form {
-    z-index: 1;
+#login-form {
+
+    text-align: center;
+
     height: 50vh;
-    width: 35%;
-    background-color: #ffffff;
-    justify-content: center;
+    width: 60%;
+    background-color: #132236;
     
+    margin-top: -185px;
+    margin-left: 100%;
+
+    padding-top: 30%;   
     
-    margin-left: 25%;
-    color: #132236;
-    margin-top: -50px;
-    border-radius: 25px;
-    -webkit-box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
-    -moz-box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
-    box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
+    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
+    
   }
 
-  .form-control{
-    margin-left: 25px;
-    margin-top: 15px;
+.form-control{
 
-    width: 60%;
-    height: 40px;
+    background-color: #132236;
 
-    border: 1px;
-    border-style: solid ;
-    border-color: #f19d90;
-    border-radius: 50px;
+    color: #ffffff;
 
-    background-color: #ffffff;
+    width: 75%;
+    height: 35px;
+    
+    border-bottom: 1px #f19d90;
+    border-style: hidden hidden solid hidden;
+
+    margin-left: 0;
+    margin-top:0px;
+    
+    
   }
 
 .buttton{
 
+    width: 100%;
+
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: normal;
-    font-size: 16px;
+    font-size: 25px;
 
-    background-color: #132236;
-    color: #ffffff;
+    background-color: #192e45;
+    color: #f19d90;
     border: none;
-    border-radius: 10px;
 
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 
-    margin-left: 15px;
-
+    margin-left: -7.5%;
+    margin-right: -7.5%;
+    
 
 }
 
@@ -121,12 +139,19 @@ form{
 /* -----------------Mobiele versie van de login-------------------- */ 
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
+
+    body{
+        background-color: #132236;
+        width: 100%;
+    }
 
     h2{
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         margin-left: 15px;
         padding-top: 20px;
+
+        color: #ffffff;
     }
     
     p{
@@ -134,37 +159,46 @@ form{
         font-style: normal;
         
         margin-left: 15px;
+
+        color: #ffffff;
     }
     
     a{
+        width: 100%;
+
+        display: block;
+    
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-style: normal;
-        font-size: 16px;
-        text-decoration: none;
+        font-size: 25px;
 
-        border: 1px;
-        border-radius: 10px;
-
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        text-decoration: none;  
+        text-align: center;   
                 
         color: #ffffff;
         background-color: #132236;
+        
+        margin-top: 25px;
+
+        
     }
     
     label{
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-style: normal;
+
+        color: #ffffff;
     
         display: block;
     
         margin-left: 15px;
+        margin-top:25px;
     }
     
     .fs{
         border: none;
+        
+        width: 90%;
         
     }
     
@@ -176,67 +210,76 @@ form{
     }
     
     #login-img {
-        z-index: 2;
-        padding-left: 0;
-        width: 250px;
-        margin-left: 15%;
+        
+        width:65%;
+        margin-left: 0;
+
         padding-top: 80px;
+        padding-left: 20%;
       }
+
       
       #login-form {
-        z-index: 1;
+        
         height: 50vh;
-        width: 80%;
-        background-color: #ffffff;
+        width: 100%;
+        background-color: #132236;
+    
         justify-content: center;
         
-        
-        margin-left: 10%;
-        color: #132236;
         margin-top: -20px;
-        border-radius: 25px;
-        -webkit-box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
-        -moz-box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
-        box-shadow: 10px 10px 97px -25px rgba(241,157,144,1);
+        margin-right: 0;
+        margin-left: 0;
+
+        padding-top: 0;   
+        
+        color: #132236;
+
+        /*--- Dit is zodat er GEEN boxshadow in de mobile versie is ---*/
+
+        -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.00);
+        -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.0);
+        box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.0);
+       
+        
+        
       }
     
       .form-control{
-        width: 75%;
-        height: 40px;
 
-        margin-left: 25px;
-        margin-top: 15px;
+        background-color: #132236;
 
-        border: 1px;
-        border-style: solid ;
-        border-color: #f19d90;
-        border-radius: 50px;
+        width: 85%;
+        height: 35px;
+        
+        border-bottom: 1px #f19d90;
+        border-style: hidden hidden solid hidden;
 
-        background-color: #ffffff;
-
-      
+        margin-left: 7.5%;
+        margin-top:0px;
+        
         
       }
     
     .buttton{
+
+        width: 115%;
     
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-style: normal;
-        font-size: 16px;
+        font-size: 25px;
     
-        background-color: #132236;
-        color: #ffffff;
+        background-color: #192e45;
+        color: #f19d90;
         border: none;
-        border-radius: 10px;
     
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 15px;
-        padding-right: 15px;
-    
-        margin-left: 50px;
-        margin-bottom: 15px;
-    
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+        margin-top: 50%;
+        margin-left: -7.5%;
+        margin-right: -7.5%;
+        
     
     }
 }
