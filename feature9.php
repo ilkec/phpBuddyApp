@@ -21,32 +21,13 @@ if (isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Matches</title>
     <style>
-        .card {
-            width: 90%;
-            margin-bottom: 20px;
-        }
-
-        .wrapper {
-            margin: 20px 0 0 20px;
-        }
-
-        .cards {
-            margin-top: 40px;
-        }
-
-        .profilePicture {
-            display: none;
-        }
-
-        .namesMatches{
-            text-align: center;
-        }
-
-        @media all and (min-width: 768px) {
+        
+        @media all and (min-width: 700px) {
             .card {
-                width: 50%;
+                width: 70%;
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom: 20px;
@@ -54,7 +35,7 @@ if (isset($_SESSION['user'])) {
 
         
 
-            .profilePicture {
+            .profilePictureMatch {
                 display: block;
                 width: 50px;
                 margin-left: auto;
@@ -65,15 +46,13 @@ if (isset($_SESSION['user'])) {
                 display: grid;
                 grid-template-columns: 1fr 3fr 1fr;
             }
-
-        
         }
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <h3>Match made between</h3>
+        <h2 class="h2-buddy">Match made between</h2>
         <div class="cards">
             <?php foreach ($matches as $match) : ?>
                 <div class="card">
@@ -82,13 +61,13 @@ if (isset($_SESSION['user'])) {
                                         echo "uploads/profilePic.png";
                                     } else {
                                         echo "uploads/" . $match['picture1'];
-                                    } ?>" alt="profiel foto" class="profilePicture">
+                                    } ?>" alt="profiel foto" class="profilePictureMatch">
                         <p class="namesMatches"><?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?> </p>
                         <img src="<?php if ($match['picture2'] === NULL) {
                                         echo "uploads/profilePic.png";
                                     } else {
                                         echo "uploads/" . $match['picture2'];
-                                    } ?>" alt="profiel foto" class="profilePicture">
+                                    } ?>" alt="profiel foto" class="profilePictureMatch">
                     </div>
                 </div>
             <?php endforeach; ?>

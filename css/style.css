@@ -437,8 +437,8 @@ a.nav-link.pt-4.settings {
 
  
 /*-------------messenger-----------*/
-.h1-messages{
-  margin-left: 14%;
+.h2-buddy{
+  margin-left: 10%;
   margin-top: 40px;
 }
 .form-chatnames{
@@ -496,6 +496,27 @@ a.nav-link.pt-4.settings {
   
 }*/
 
+/*--------showMatches-----------*/
+.card {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: 1px solid #132236;
+ 
+}
+
+.cards {
+  margin-top: 40px;
+  
+}
+
+.profilePictureMatch {
+  display: none;
+}
+
+.namesMatches{
+  text-align: center;
+}
 
 
 /* ----------------- Profile ----------------------- */
@@ -674,6 +695,32 @@ grid-template-rows: 1;
 
 
 /*----------------------Media-query-----------------------*/
+/*--------showMatches-------*/
+@media all and (min-width: 700px) {
+  .card {
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+  }
+
+
+
+  .profilePictureMatch {
+      display: block;
+      width: 50px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .card-body {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+  }
+}
+
+
+
  /* For mobile phones: */
 @media only screen and (max-width: 768px) {
  body{

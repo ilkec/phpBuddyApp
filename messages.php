@@ -5,6 +5,7 @@ include_once(__DIR__ . '/classes/User.php');
 $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
+
 if (isset($_SESSION['user'])) {
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']); //id van de ingelogde gebruiker
@@ -13,7 +14,6 @@ $chatNames = $user->chatNames();
 
 $newMessages = $user->newMessage();
 //var_dump($newMessages);
-
 
 
 
@@ -46,7 +46,8 @@ if (!empty($_POST['btnChat'])) {
     <title>Messenger</title>
 </head>
 <body>
-    <h1 class="h1-messages">Messenger</h1>
+
+    <h2 class="h2-buddy">Messenger</h2>
     <a href="sortBuddy.php">Home</a>
     <?php foreach($chatNames as $chatName) {
          if($chatName['user_id1'] === $databaseId['id']) {
