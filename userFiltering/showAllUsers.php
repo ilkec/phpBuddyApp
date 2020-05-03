@@ -26,16 +26,23 @@ $movie = $connectedUserMovie['films'];
 $connectedUserMusic = $user->getConnectedUserMusic();
 $user->setMusic($connectedUserMusic['music']);
 $music = $connectedUserMusic['music'];
+     $conn = Db::getConnection();
+ $statement = $conn->prepare("select id, firstname, lastname, picture, books, films, games,music,location from users where email != :connectedUserEmail and films =:movie and music =:music and location = :location and games =:game and books =:book");
+  
+$statement->bindValue(":connectedUserEmail",$connectedUserEmail);
+$statement->bindValue(":movie",$movie);
+$statement->bindValue(":music",$music);
+$statement->bindValue(":location",$location);
+$statement->bindValue(":game",$game);
+$statement->bindValue(":book",$book);
+  
+$result = $statement->execute();
 
 
- $conn = Db::getConnection();
 
-$query= "select id, firstname, lastname, picture, books, films, games,music,location from users where email != '$connectedUserEmail' and films ='$movie'and music ='$music'and location ='$location'and games ='$game'and books ='$book'";
-
-  foreach($conn->query($query) as $data){
-    if($movie == $data['films'] && $music == $data['music']&& $location == $data['location'] && $book == $data['books']&& $game == $data['games']){
+foreach($statement as $data){
+if($movie == $data['films'] && $music == $data['music']&& $location == $data['location'] && $book == $data['books']&& $game == $data['games']){
        echo "</li>";
-
  echo "<li class='row'>";
  if($data['picture'] === NULL){
      echo "<img src='uploads/profilePic.png' class='avatar'>";
@@ -52,5 +59,8 @@ $query= "select id, firstname, lastname, picture, books, films, games,music,loca
   echo"</form>";
 echo "</li>";
       
-    }
-   }
+    }}
+
+return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
