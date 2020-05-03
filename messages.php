@@ -5,6 +5,7 @@ include_once(__DIR__ . '/classes/User.php');
 $user = new User();
 session_start();
 $user->setEmail($_SESSION['user']);
+if (isset($_SESSION['user'])) {
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']); //id van de ingelogde gebruiker
 $chatNames = $user->chatNames();
@@ -27,7 +28,9 @@ if (!empty($_POST['btnChat'])) {
     header("Location: feature8.php");
   }
 
-
+} else {
+    header("Location: feature2.php");
+}
 
 
 
