@@ -47,6 +47,14 @@ if (!empty($_POST['btnChat'])) {
     <style>
         form{
             margin: 10px auto;
+            border: none;
+            border-top:  2px solid #d37f79;
+            border-radius: 0;
+        }
+
+        form:last-of-type{
+            border-bottom:  2px solid #d37f79;
+
         }
         body{
             background-color: #132236;
