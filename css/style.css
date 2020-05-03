@@ -481,7 +481,24 @@ a.nav-link.pt-4.settings {
   width: 90%;
 }
 
+.profileform label {
+  display: block;
+}
 
+.profileform {
+  margin: 10px;
+}
+
+.profilePictureWrap {
+  width: 180px;
+  height: 180px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.profilePicture{
+  width: 180px;
+}
 
 /* --------------- Log in ---------------------*/
 /*#login-img {

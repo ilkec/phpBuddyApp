@@ -149,23 +149,7 @@ $getAllUser = $user->getAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title>Profile</title>
-    <style>
-        label {
-            display: block;
-        }
-
-        .form_field {
-            margin: 10px;
-        }
-
-        .profilePicture {
-            width: 180px;
-            height: 180px;
-            /*background-color: grey;*/
-
-        }
-    </style>
+    <title>Profile Settings</title>
 </head>
 
 <body>
@@ -174,12 +158,14 @@ $getAllUser = $user->getAll();
         <!-------form picture------>
         <form class="w-80 border-3 rounded-0 mt-3" action="" method="post" enctype="multipart/form-data">
             <h3>Add profile picture </h3>
-            <div class="form__field mt-2">
-                <img src="<?php if ($getAllUser['picture'] === NULL) {
-                                echo "uploads/profilePic.png";
-                            } else {
-                                echo "uploads/" . $getAllUser['picture'];
-                            } ?>" alt="profiel foto" class="profilePicture">
+            <div class="form__field mt-2 profileform">
+                <div class="profilePictureWrap">
+                    <img src="<?php if ($getAllUser['picture'] === NULL) {
+                                    echo "uploads/profilePic.png";
+                                } else {
+                                    echo "uploads/" . $getAllUser['picture'];
+                                } ?>" alt="profiel foto" class="profilePicture">
+                </div>
                 <input type="file" name="fileUpload" class="btn mb-3" id="fileUpload">
                 <?php if (isset($errorPhoto)) : ?>
                     <div class="form__error">
@@ -195,15 +181,15 @@ $getAllUser = $user->getAll();
         <!-------form algemeen------>
         <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
             <h3>Personal info</h3>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="profileText">Korte beschrijving</label>
                 <textarea class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description']; ?></textarea>
             </div>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="firstname">Firstname</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['firstname']; ?>" name="firstname" id="firstname">
             </div>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="lastname">Lastname</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['lastname']; ?>" name="lastname" id="lastname">
             </div>
@@ -215,18 +201,18 @@ $getAllUser = $user->getAll();
                 </div>
             <?php endif; ?>
 
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile">
             </div>
         </form>
         <!-------form email------>
         <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
             <h3>Change email address</h3>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="email">Email address</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['email']; ?>" name="email" id="email">
             </div>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="passwordNew">Password</label>
                 <input class="form-control" type="password" placeholder="Password" name="passwordEmail" id="passwordEmail">
             </div>
@@ -245,11 +231,11 @@ $getAllUser = $user->getAll();
         <!-------form wachtwoord------>
         <form class="w-80 border-3 rounded-0 mb-3" action="" method="post" enctype="multipart/form-data">
             <h3>Change password</h3>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="passwordOld">Old password</label>
                 <input class="form-control" type="password" placeholder="old password" name="passwordOld" id="passwordOld">
             </div>
-            <div class="form_field mt-2">
+            <div class="form_field mt-2 profileform">
                 <label for="passwordNew">New password</label>
                 <input class="form-control" type="password" placeholder="new password" name="passwordNew" id="passwordNew">
             </div>
