@@ -15,10 +15,10 @@ if (isset($_SESSION['user'])) {
     $_SESSION['userid'] = $databaseId['id'];
     //var_dump($databaseId['id']);
     $getAllUser = $user->getAll();
-
+    //var_dump($getAllUser);
     $firstname = $getAllUser['firstname'];
 
-    //$idReceiver = 14;
+
 
     $receiver = new User();
     $receiver->setId($_SESSION['chatId']);
@@ -113,7 +113,7 @@ if (isset($_SESSION['user'])) {
 
         <div class="mt-2">
             <input type="text" placeholder="message" name="message" id="message">
-            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage">Send message</a>
+            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
         </div>
 
 

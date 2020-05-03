@@ -4,6 +4,8 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
     //message text
     let text = document.querySelector("#message").value;
     console.log(text);
+    let sendername = this.dataset.sendername;
+    console.log(sendername);
 
     //message posten naar de databank(via ajax)
     let formData = new FormData();
@@ -22,11 +24,14 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
             newContainerRow.className = "messageContainer row";
             let messageBox = document.createElement("div");
             messageBox.className = "messageBox col-lg-6";
+            let sender = document.createElement("strong");
+            sender.innerHTML = sendername;
 
             newMessage.innerHTML = result.body;
             document.querySelector(".chatbox").appendChild(newContainerRow);
             newContainerRow.appendChild(messageBox);
             messageBox.appendChild(newMessage);
+            newMessage.appendChild(sender);
             document.querySelector("#message").value = "";
         })
         .catch(error => {
