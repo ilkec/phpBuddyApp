@@ -62,6 +62,7 @@ if (!empty($_POST['btnChat'])) {
         .chatName, h1{
             color: #fff;
         }
+        
 
         
     </style>
