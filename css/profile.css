@@ -139,11 +139,14 @@ li{
     font-size: 1.5em;
 
     margin-left: -35px;
+    
 
 }
 
 ul{
     text-align: center;
+
+    margin-top: -15px;
 }
 
 h3{
@@ -164,6 +167,8 @@ h5{
 
 p{
     text-align: center;
+
+    margin-top: -20px;
 }
 
 
@@ -189,7 +194,9 @@ p{
 
 .profile1{
     text-align: center;
-    margin-left: 3.5vw;
+
+    margin-left: 10vw;
+    margin-top: -15px;
 }
 
 .icon1{
@@ -204,14 +211,12 @@ p{
 
 .full{
     
-    border: 3px solid #132236;
+    border: none;
     background-color: #ffffff;
 
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 2vh;
 
-    padding-top: 2vh;
     padding-bottom: 5vh;
 
 }
@@ -236,7 +241,7 @@ p{
     padding-left: 15px;
     padding-right: 15px;
 
-    margin-left: 37%;
+    margin-left: 30%;
 
 }
   
