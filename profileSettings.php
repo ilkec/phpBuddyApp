@@ -170,7 +170,7 @@ $getAllUser = $user->getAll();
 </head>
 
 <body>
-    <div class="container-fluid overflow-auto bg-secondary text-light">
+    <div class="container-fluid overflow-auto" id="profileSettingsForm">
         <!--<h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>-->
         <!-------form picture------>
         <form class="w-80 border-3 rounded-0 mt-3" action="" method="post" enctype="multipart/form-data">

@@ -476,6 +476,12 @@ a.nav-link.pt-4.settings {
 }
 
 
+/*-------profilesettings------*/
+#profileSettingsForm{
+  width: 90%;
+}
+
+
 
 /* --------------- Log in ---------------------*/
 /*#login-img {

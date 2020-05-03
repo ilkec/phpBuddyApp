@@ -541,7 +541,6 @@ class User
     $statement->bindValue(":userId", $fromUser);
     $statement->bindValue(":buddyId", $toUser);
     $result = $statement->execute();
-    //var_dump($result);
     return $result;
   }
 
@@ -553,7 +552,6 @@ class User
     $statement->bindParam(":userid", $userid);
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    // var_dump($result);
     return $users;
   }
 
@@ -566,10 +564,8 @@ class User
     $statement->bindParam(":userid", $userid);
     $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
-    // var_dump($result);
     return $result;
-    // var_dump($buddyid);
-    // var_dump($userid);
+   
   }
 
   public function deleteMatchRequest()
@@ -581,7 +577,6 @@ class User
     $statement->bindParam(":userid", $userid);
     $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
-    // var_dump($result);
     return $result;
   }
 
@@ -596,7 +591,6 @@ class User
     $statement->bindParam(":userid", $userid);
     $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
-    // var_dump($result);
     return $result;
   }
 
@@ -620,7 +614,6 @@ class User
     // $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    // var_dump($result);
     return $users;
   }
 
@@ -700,7 +693,6 @@ class User
     $statement->bindValue(":userId", $userId);
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    //var_dump($users);
     return $users;
   }
 
@@ -761,7 +753,7 @@ class User
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
     return $users;
-    var_dump($users);
+ 
   }
 
 
@@ -878,8 +870,6 @@ class User
 
     if (empty($email) || empty($firstname) || empty($lastname) || empty($birthday) || empty($gender) || empty($password) || empty($confPassword)) {
       throw new Exception("All fields are required");
-      //var_dump( $dif);
-      //var_dump( $userAge);
       return false;
     } else {
 
@@ -907,7 +897,7 @@ class User
               $statement->bindValue(":register", $register);
               $result = $statement->execute();
               //header("Location: feature4.php");
-              var_dump($result);
+           
               return $conn->lastInsertId();
             }
           }
@@ -925,7 +915,6 @@ class User
     $result = $statement->execute();
     $userId = $statement->fetch(PDO::FETCH_ASSOC);
     return $userId;
-    //var_dump($userId);
 
 
   }
@@ -939,7 +928,6 @@ class User
     $result = $statement->execute();
     $userFirstname = $statement->fetch(PDO::FETCH_ASSOC);
     return $userFirstname;
-    var_dump($userFirstname);
   }
   public function getConnectedUserLastname()
   {
@@ -950,7 +938,6 @@ class User
     $result = $statement->execute();
     $userLastname = $statement->fetch(PDO::FETCH_ASSOC);
     return $userLastname;
-    var_dump($userLastname);
   }
 
   public function getConnectedUserPicture()
@@ -962,7 +949,6 @@ class User
     $result = $statement->execute();
     $userPicture = $statement->fetch(PDO::FETCH_ASSOC);
     return $userPicture;
-    var_dump($userPicture);
   }
 
   public function getConnectedUserGame()
@@ -974,7 +960,6 @@ class User
     $result = $statement->execute();
     $userGame = $statement->fetch(PDO::FETCH_ASSOC);
     return $userGame;
-    var_dump($userGame);
   }
 
 
@@ -987,7 +972,6 @@ class User
     $result = $statement->execute();
     $userMovie = $statement->fetch(PDO::FETCH_ASSOC);
     return $userMovie;
-    var_dump($userMovie);
   }
 
   public function getConnectedUserBook()
@@ -999,7 +983,6 @@ class User
     $result = $statement->execute();
     $userBook = $statement->fetch(PDO::FETCH_ASSOC);
     return $userBook;
-    var_dump($userBook);
   }
 
   public function getConnectedUserLocation()
@@ -1011,7 +994,6 @@ class User
     $result = $statement->execute();
     $userLocation = $statement->fetch(PDO::FETCH_ASSOC);
     return $userLocation;
-    var_dump($userLocation);
   }
 
   public function getConnectedUserMusic()
@@ -1023,7 +1005,6 @@ class User
     $result = $statement->execute();
     $userMusic = $statement->fetch(PDO::FETCH_ASSOC);
     return $userMusic;
-    var_dump($userMusic);
   }
 
   public function getConnectedUserBuddyChoice()
@@ -1035,7 +1016,6 @@ class User
     $result = $statement->execute();
     $userBuddyChoice = $statement->fetch(PDO::FETCH_ASSOC);
     return $userBuddyChoice;
-    var_dump($userBuddyChoice);
   }
 
   public function isActivateAccount($email){
@@ -1060,8 +1040,7 @@ class User
     $result = $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    //var_dump($result);
-    //var_dump($user);
+
 
     $hash = $user["password"];
     if (password_verify($password, $hash)) {
@@ -1091,7 +1070,7 @@ class User
     $statement->bindValue(":id", $id);
 
     $result = $statement->execute();
-    //var_dump($result);
+
 
     return $result;
   }
@@ -1148,7 +1127,6 @@ class User
     $result = $statement->execute();
     $matches = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $matches;
-    //var_dump($matches);
   }
 
   public function showAlgemeen()
