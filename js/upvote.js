@@ -3,7 +3,7 @@ console.log(upvotes); //geeft array terug met alle elementen die id upvote bevat
 
 upvotes.forEach(upvote => {
     upvote.addEventListener("click", function(){
-        let commentid = this.dataset.postid;
+        let commentid = this.dataset.commentid;
         console.log(commentid);
     
         let formData = new FormData();
