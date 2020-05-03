@@ -1,9 +1,18 @@
+body{
+  background: white;
+  
+}
+.registerBody{background:#192D45;
+overflow: hidden;}
 
   /*--------------------Nav-----------------------*/
 .navbar-brand,
 .navbar a {
 color: white !important;
+      font-size: 29px;
+ 
 }
+
 
 
 navbar {
@@ -13,16 +22,68 @@ navbar {
   top: 0;
   z-index: 1;
 }
+
+.alert-danger {
+    color: #a7000f!important;
+    background-color: #e8caca!important;
+    border-color: #cea1a6!important;
+}
+
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top.main-menu{
+
+/*border-right:1px solid #e5e5e5;*/
+position:fixed;
+top:0;
+bottom:0;
+height:100%;
+left:0;
+width:80px;
+overflow:hidden;
+padding: 100px
+z-index:1000;
+background: #122234 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
 .title {
   text-align: center;
-  margin-bottom: 47px;
+  margin-bottom: 30px;
+  color: white;
+  padding-top: 35px;
+}
+
+.fa-2x {
+font-size: 2em;
+}
+
+.fa {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
+}
+
+.container{
+flex-wrap:wrap-reverse!important;
+    position: absolute;
+    top: 30px;
+   left: -8px;
+
+}
+
+.container img {
+    width: 70px;
+  margin-top: 77vh
 }
 /*--------------------Alerts-Success/Error------------------------*/
 .alert.alert-danger.alert-dismissible.fade.show {
   position: fixed;
   width: 100%;
   text-align: center;
-  top: 56px;
+  top: 0px;
   z-index: 2;
 }
 
@@ -30,30 +91,100 @@ navbar {
   position: fixed;
   width: 100%;
   text-align: center;
-  top: 56px;
+  top: 0px;
   z-index: 2;
 }
 /*----------------------Form------------------------*/
 .form-div {
-  margin-top: 140px;
+  margin-top: 0px;
 }
 
 
-form {
-  width: 70%;
-  border: 2px solid lightgray;
-  border-radius: 9px;
-  padding: 30px 50px 50px;
-  margin: 0px auto;
+#formRegister  {
+  width: 35%;
+    border: 0px solid lightgray;
+    border-radius: 0px;
+    padding: 0px;
+    margin: 44px auto;
+  background: #112234;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+#verzoek  {
+      width: 70%;
+    border: 2px solid lightgray;
+    border-radius: 9px;
+    padding: 30px 50px 50px;
+    margin: 0px auto;
+}
+
+
+.email{
+  margin-bottom: 1rem;
+    /* margin: 1em 60px; */
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+#name{
+  margin-bottom: 2rem;
+    /* margin: 1em 60px; */
+    margin-right: 37px;
+    margin-left: 37px;
+}
+
+.password{
+  margin-bottom: 1rem;
+    /* margin: 1em 60px; */
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.confPassword{
+   margin-bottom: 1rem;
+    /* margin: 1em 60px; */
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+#formRegister .form-group>label{
+  color: white;
+}
+
+
+#formRegister .form-control.formInputs{
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid #F49088;
+  color: white!important;
+  
+}
+
+
+.col>label{
+  color: white;
+}
+
+.col.male,.col.female{
+  color: white
+}
+
+
+/*#exampleInputEmail1{
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid red;
+
+}*/
 /*----------------------Gender------------------------*/
 .gender {
-  display: grid;
-  grid-template-columns: 50px 60px 50px;
-  justify-items: center;
-  align-content: flex-start;
-  margin-top: 17px;
-  margin-bottom: 1rem;
+      display: grid;
+    grid-template-columns: 50px 60px 50px;
+    justify-items: center;
+    margin-top: 17px;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
 
 .gender input {
@@ -114,13 +245,14 @@ input:checked[type="checkbox"]:before {
 
 /*----------------------Button-Submit-----------------------*/
 
-button.btn.btn-primary {
-  width: 20%;
-  margin-left: 41%;
-  background: 0;
-  color: black;
-  border-radius: 50px;
-  border: 2px solid #21313F;
+#formRegister .btn{
+   width: 100%;
+    /* margin-left: 41%; */
+    background: #f59a93;;
+    color: black;
+    border-radius: 0;
+    /* border: 2px solid #21313F; */
+    padding: 13px;
 }
 
 button.btn.btn-primary:hover {
@@ -130,6 +262,26 @@ button.btn.btn-primary:hover {
 }
 
 /*---------------------------------------------------Sort-buddy-style-------------------------------------------------------*/
+
+
+.profile img.avatar {
+    width: 50px;
+    border-radius: 80% !important;
+    margin-right: 1em;
+    margin-left: -11px;
+}
+.container a.profile img {
+    width: 180%;
+    margin-top: 0;
+}
+
+.container.sortBuddy {
+    flex-wrap: wrap-reverse!important;
+    position: absolute;
+    top: 3px;
+    left: -8px;
+}
+
 
 #messageNotification{
   align-self: center;
@@ -178,11 +330,10 @@ button.btn.btn-primary:hover {
   grid-column: 2/3;
 }
 
-.counterIcon{
-  align-self:center;
+#personIcon,
+#buddyIcon {
   height: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  /*margin: 10px auto 10px auto;*/
 
 }
 
@@ -199,6 +350,8 @@ img.avatar {
     border-radius: 9px;
     padding: 30px 0px 10px;
     margin: 0px auto;
+  background: none;
+  box-shadow: none;
 }
 
 .userContainer {
@@ -266,6 +419,33 @@ h5 {
     top: 110px;
 }
 
+a.nav-link.pt-4.profile {
+        margin-bottom: 140px;
+}
+a.nav-link.pt-4 {
+    margin-bottom: 20px;
+}
+
+a.nav-link.pt-4.settings {
+   
+    margin-top: 10px;
+}
+
+.error{
+  
+    /* display: inline; */
+    /* padding: 0 3px; */
+    /* padding: 0px 10px; */
+    width: 22%;
+    text-align: center;
+    left: 50px;
+    top: 358px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    font-size: 11px;
+
+}
 /* --------------- Log in ---------------------*/
 /*#login-img {
   z-index: 2;
@@ -391,11 +571,58 @@ span.iconn:hover {
     cursor: pointer;
 }
 
+
 /*----------------------Media-query-----------------------*/
  /* For mobile phones: */
 @media only screen and (max-width: 768px) {
-   form {
+ body{
+  background: white;
+  
+}
+  
+  .registerBody{
+overflow: visible;}
+ nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top.main-menu{
+
+/*border-right:1px solid #e5e5e5;*/
+position:fixed;
+top:0;
+bottom:0;
+height:10%;
+left:0;
+width:100%;
+overflow:visible;
+padding: 10px;
+z-index:1000;
+background: #122234 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+  .container img {
+    width: 70px;
+    margin-top: 0;
+    
+}
+  .container{
+    padding-right: 5px!important;
+    padding-left: 30px!important;
+    flex-wrap: wrap-reverse!important;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .alert.alert-success.alert-dismissible.fade.show {
+    top: 29px;
+}
+  .alert.alert-danger.alert-dismissible.fade.show {
+   
+    top: 69px;
+
+}
+   #formRegister  {
     width: 90%;
+     margin: 124px auto 0px;
   }
   
    .fullName {
@@ -406,7 +633,7 @@ span.iconn:hover {
     display: grid;
     grid-template-columns: 59px 66px 44px;
     justify-items: left;
-    justify-content: left;
+    justify-content: center;
     margin-top: 22px;
     margin-bottom: 20px;
   }
@@ -418,5 +645,101 @@ span.iconn:hover {
     border-radius: 50px;
     border: 2px solid #21313F;
   }
+  
+  
+  
+  /*---------sortBuddy---------------*/
+ .container a.profile img {
+    width: 10%;
+    margin-top: 0;
+}
+   nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top.main-menu.sortbuddy{
+
+/*border-right:1px solid #e5e5e5;*/
+position:fixed;
+top:90vh;
+bottom:0;
+height:10%;
+left:0;
+width:100%;
+overflow:visible;
+padding: 10px;
+z-index:1000;
+background: #122234 !important;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+  
+  ul.nav.justify-content-end {
+   flex-wrap: nowrap!important;
+    align-items: baseline;
+    margin-top: -3px;
+    margin-left: -70px;
+    
+}
+  
+  a.nav-link.pt-4.profile {
+     margin-bottom: 0;
+    padding: 0;
+    /* width: 100%; */
+    text-align: center;
+    left: 228px;
+    width: 10%;
+    position: absolute;
+}
+  
+  .pt-4, .py-4 {
+    padding-top: 0rem!important; 
+}
+
+  
+  .container.sortBuddy{
+    display: contents;
+  }
+ 
+  
+  
+  .error{
+  
+  width: 4%;
+    text-align: center;
+   left: 146px;
+    top: 21px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    font-size: 13px;
+
+}
+  
+  .nav-link {
+    display: block;
+    padding: 0px 36px!important;
+}
+  
+.container a.profile img {
+    width: 160%;
+    margin-top: -20px;
+    border: 6px solid #122234;
+}
+  
+#messageNotification {
+    align-self: auto;
+    margin-left: -40px;
+    margin-right: 70px;
+  z-index: 1;
+ 
+}
+  #contactIcon{
+   padding-left: 90px;
+    padding-right: 50px;
+  }
+  .comments {
+  align-self: auto;
+    margin-left: -20px;
+    margin-right: -59px;
+}
+  
+ 
   
 }
