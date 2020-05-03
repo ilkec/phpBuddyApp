@@ -71,7 +71,8 @@
         } //var_dump($output);
     }       $comment->setId($databaseId['id']);
             $oneUpvote = $comment->getUpvoter();
-           // var_dump($oneUpvote);
+            
+            //var_dump($output);
 
         
 ?>
@@ -124,12 +125,12 @@
                     }?>
 
                     <div class="upvoteclass">
-                        <p id="upvoteCount" data-number=<?php echo $row['upvote_count']; ?>><?php echo $row['upvote_count']; ?></p> 
+                        <p id="upvoteCount"><?php echo $row['upvote_count']; ?></p> 
                         <?php if(isset($errorUpvote)){ ?>
                             <p><?php echo $errorUpvote ;?></p>
                         <?php unset($errorUpvote);}
                          else {?>
-                            <a href="#" id="upvote" data-commentid=<?php echo $row['id'];?>><?php echo $setUpvoteBtn; ?></a> 
+                            <a href="#" id="upvote" data-commentid="<?php echo $row['id'];?>" data-number="<?php echo $row['upvote_count'];?>" ><?php echo $setUpvoteBtn; ?></a> 
                          <?php unset($setUpvoteBtn); } ?>
 
                         

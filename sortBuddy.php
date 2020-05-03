@@ -118,7 +118,9 @@ if ($notification > 0) {
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top main-menu sortbuddy">
     <div class="container sortBuddy">
       <ul class="nav justify-content-end"> 
+        
        <a class="nav-link pt-4 profile" href="profile.php">
+         
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) { echo"uploads/profilePic.png";} 
             else {echo "uploads/" . $connectedUserPicture['picture'];} ?>" class="avatar">
         </a>

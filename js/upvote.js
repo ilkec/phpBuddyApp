@@ -5,6 +5,10 @@ upvotes.forEach(upvote => {
     upvote.addEventListener("click", function(){
         let commentid = this.dataset.commentid;
         console.log(commentid);
+        let number = parseInt(this.dataset.number);
+        number = number + 1 ; 
+        console.log(number);
+
     
         let formData = new FormData();
         formData.append("commentid", commentid);
@@ -15,7 +19,11 @@ upvotes.forEach(upvote => {
         }) 
             .then(response => response.json())
             .then(result => {
-                //hier iets printen? 
+                let upvoteNumber = document.createElement("p");
+                upvoteNumber.innerHTML = number;
+                document.querySelector(".upvoteclass").appendChild(upvoteNumber);
+
+
             })
             .catch(error => {
                console.log("Error:", error);
