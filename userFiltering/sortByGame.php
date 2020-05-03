@@ -9,18 +9,24 @@ $user->setEmail($_SESSION['user']);
 $connectedUserEmail= $_SESSION['user'];
 
 
+
+
 $connectedUserGame = $user->getConnectedUserGame();
 $user->setGames($connectedUserGame['games']);
 $game = $connectedUserGame['games'];
-//var_dump($connectedUserGame['games']);
- $conn = Db::getConnection();
- $query = "select firstname, lastname,picture from users where games = '$game' and  email != '$connectedUserEmail'";
+     $conn = Db::getConnection();
+ $statement = $conn->prepare("select firstname, lastname,picture from users where games = :game and  email != :connectedUserEmail");
+  
+$statement->bindValue(":connectedUserEmail",$connectedUserEmail);
+$statement->bindValue(":game",$game);
+
+  
+$result = $statement->execute();
 
 
-foreach($conn->query($query) as $data){
 
-  //echo'<img src="uploads/'.$data['picture'].'">';
-  echo "<li class='row'>";
+foreach($statement as $data){
+echo "<li class='row'>";
   if($data['picture'] === NULL){
      echo "<img src='uploads/profilePic.png' class='avatar'>";
   }
@@ -28,7 +34,11 @@ foreach($conn->query($query) as $data){
      echo "<img src='uploads/".$data['picture']."' class='avatar'>";
   }
   echo "<h2 class='user-name col-xs-5'>".$data['firstname']." ".$data['lastname']."</h2>";
-echo "</li>";
-  
-}
+echo "</li>";}
+
+return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
 
