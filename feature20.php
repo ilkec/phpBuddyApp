@@ -107,11 +107,12 @@
                     </form>
                 <?php endif; ?>
                 <div class="comment_header"> 
+                <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?></h5> </p> 
                     <h3 id="koekoek"> <?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3>        
                 </div>
                 <p><?php echo htmlspecialchars($row["date"] ) ?></p>                                           
                 <div class="comment_body"> 
-                    <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?></h5> </p>                  
+                                      
                     <p><?php echo htmlspecialchars($row["comment"]) ;?></p>                                      
 
                     <?php foreach($oneUpvote as $upvoteForId){ 
@@ -154,10 +155,12 @@
                             
                         </form>
                     <?php endif; ?>
-                    <div class="comment_header"> <h3><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3> </div> 
+                    <div class="comment_header">
+                    <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?> </h5> </p>    
+                    <h3><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3> </div> 
                     <p><?php echo $row["date"]; ?></p> 
                     <div class="comment_body"> 
-                        <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?> </h5> </p>
+                        
                         <p><?php echo htmlspecialchars($row["comment"]) ; ?> </p>
                     </div>
                 </div>
