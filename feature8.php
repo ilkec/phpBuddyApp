@@ -51,8 +51,8 @@ if (isset($_SESSION['user'])) {
     <title>chatbox</title>
     <style>
         .chatbox {
-            height: 500px;
-            width: 600px;
+            height: 76vh;
+             width: 100%;
             padding: 20px;
             background-color: mintcream;
             overflow: auto;
@@ -81,7 +81,7 @@ if (isset($_SESSION['user'])) {
 
         .messageBox{
             display: grid;
-            grid-template-columns: 10% 80%;
+            grid-template-columns: 40px 235px;;
             grid-template-rows: 1;
         }
        .names{
@@ -98,38 +98,39 @@ if (isset($_SESSION['user'])) {
 <body>
     <a href="messages.php">Back</a>
     <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></div>
-    <div class="chatbox">
-        <?php foreach ($chatHistory as $chatMessage): ?>
-           <div class="messageContainer row"> 
-            <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
-                <strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong>
-                <p><?php echo $chatMessage['message'] ?></p>
-                <?php foreach($allReactions as $givedReaction):?>
-                    <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
-                    src="<?php echo $givedReaction["src"]; ?>"></span>
-                 <?php endforeach;?>
-             </div>
-             <div class="reactionsBox col-lg-2" id="">
-                <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
-                <i class="far fa-smile" aria-hidden="false"></i>
-                </a>
-             </div>
-             <div class="emojisBox" id="">
-               
-             </div>
-           </div>
-        <?php endforeach; ?>
-    </div>
-    <!--<form class="container w-25 border border-primary rounded" action="" method="post" enctype="multipart/form-data">-->
+    <div class="chatbox-wrapper">
+        <div class="chatbox">
+            <?php foreach ($chatHistory as $chatMessage): ?>
+            <div class="messageContainer row"> 
+                <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
+                    <strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong>
+                    <p><?php echo $chatMessage['message'] ?></p>
+                    <?php foreach($allReactions as $givedReaction):?>
+                        <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
+                        src="<?php echo $givedReaction["src"]; ?>"></span>
+                    <?php endforeach;?>
+                </div>
+                <div class="reactionsBox col-lg-2" id="">
+                    <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
+                    <i class="far fa-smile" aria-hidden="false"></i>
+                    </a>
+                </div>
+                <div class="emojisBox" id="">
+                
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+      
 
-        <div class="mt-2">
-            <input type="text" placeholder="message" name="message" id="message">
-            <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
+            <div class="mt-2">
+                <input type="text" placeholder="message" name="message" id="message">
+                <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
+            </div>
         </div>
 
 
-
-   <!-- </form>-->
+   
     <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

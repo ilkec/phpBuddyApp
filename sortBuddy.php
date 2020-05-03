@@ -100,6 +100,7 @@ if ($notification > 0) {
       background-color: red;
       border-radius: 50px;
     }
+
   </style>
 </head>
 
@@ -127,7 +128,6 @@ if ($notification > 0) {
     </div>
   </nav>
   <div class="container-fluid box">
-    <!------counters------>
 
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
@@ -161,14 +161,14 @@ if ($notification > 0) {
     }
       ?>
         </form>
-
+<!------counters------>
         <div class="countUsers">
           <div id="activeUsers">
-            <img id="personIcon" src="img/icon-user.svg" alt="icon person">
+            <img class="counterIcon" id="personIcon" src="img/icon-user.svg" alt="icon person">
             <div id="countActiveUsers"><?php echo " Active: " . $countUsers['registeredUsers']; ?></div>
           </div>
           <div id="activeBuddies">
-            <img id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
+            <img class="counterIcon" id="buddyIcon" src="img/icon-buddy.svg" alt="icon person">
             <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
           </div>
         </div>
