@@ -48,14 +48,14 @@ if($movie == $data['films'] && $music == $data['music']&& $location == $data['lo
      echo "<img src='uploads/profilePic.png' class='avatar'>";
   }
   else{
-     echo "<img src='uploads/".$data['picture']."' class='avatar'>";
+     echo "<div class='ProfilAvatarUserList'><img src='uploads/".$data['picture']."'></div>";
   }
   echo "<h2 class='user-name col-xs-5' style='margin-right:45px' >".$data['firstname']." ".$data['lastname']."</h2>";
    echo "<h2 class='user-name col-xs-5'>Match 100%</h2>";
       echo "<form action='' method='post' style='border:none; margin:0; padding:0; width:0;' >";
 
         echo "<input type='hidden' id='inputUserId' name='inputUserId' value='".$data['id']."'>";
-            echo "<input type='submit' value='Buddyverzoek sturen' class='btn btn-primary mb-3' id='btnTalk' name='btnTalk'> ";
+            echo "<input type='submit' value='Buddyverzoek sturen' id='btnTalk' name='btnTalk'> ";
   echo"</form>";
 echo "</li>";
       

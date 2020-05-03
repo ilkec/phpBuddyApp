@@ -118,11 +118,11 @@ if ($notification > 0) {
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top main-menu sortbuddy">
     <div class="container sortBuddy">
       <ul class="nav justify-content-end"> 
-        
-       <a class="nav-link pt-4 profile" href="profile.php">
-         
+       <a class="" id="profilImg" href="profile.php">
+        <div class="ProfilAvatar">
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) { echo"uploads/profilePic.png";} 
-            else {echo "uploads/" . $connectedUserPicture['picture'];} ?>" class="avatar">
+            else {echo "uploads/" . $connectedUserPicture['picture'];} ?>" class="">
+        </div>
         </a>
       <a class="nav-link pt-4" href="feature22.php" id="contactIcon"><i class="fas fa-address-book"></i></a>
       <a id="messageNotification" class="nav-link pt-4" href="messages.php"><i class="fas fa-comment"></i>

@@ -94,7 +94,7 @@ $showemojis= showReaction::showReactions();
 
             <div class="mt-2">
                 <input type="text" placeholder="message" name="message" id="message">
-                <a href="#" class="btn btn-primary mb-3" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
+                <a href="#" class="btn btn-primary mb-3 btnSendMessages" id="btnSendMessage" name="sendMessage" data-sendername="<?php echo $getAllUser['firstname'] . ": "; ?>">Send message</a>
             </div>
         </div>
 

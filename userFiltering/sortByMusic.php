@@ -29,7 +29,7 @@ foreach($statement as $data){
      echo "<img src='uploads/profilePic.png' class='avatar'>";
   }
   else{
-     echo "<img src='uploads/".$data['picture']."' class='avatar'>";
+      echo "<div class='ProfilAvatarUserList'><img src='uploads/".$data['picture']."'></div>";
   }
   echo "<h2 class='user-name col-xs-5'>".$data['firstname']." ".$data['lastname']."</h2>";
 echo "</li>";}

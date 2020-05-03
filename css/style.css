@@ -442,6 +442,34 @@ a.nav-link.pt-4.settings {
 
 }
 
+.ProfilAvatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 100%;
+    margin: 0 auto 166px;
+    text-align: -webkit-center;
+    overflow: hidden;
+}
+
+.ProfilAvatar img {
+        width: 100%;
+  margin-top: 0;
+}
+
+.ProfilAvatarUserList{
+  width: 58px;
+    height: 58px;
+    border-radius: 100%;
+    margin: 0 15px 0px;
+    overflow: hidden;
+}
+
+.ProfilAvatarUserList img{
+    width: 100%;
+  margin-top: 0;
+  margin-left:0;
+}
+
 
  
 /*-------------messenger-----------*/
@@ -523,6 +551,14 @@ a.nav-link.pt-4.settings {
 
 .profilePicture{
   width: 180px;
+}
+
+
+#btnTalk{
+background: #122234;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
 }
 
 /* --------------- Log in ---------------------*/
@@ -677,7 +713,7 @@ span.iconn:hover {
 }
 
 .chatbox {
-    height: 73vh;
+    height: 70vh;
     width: 100%;
     padding: 27px 637px 0 20px!important;
     background-color: mintcream;
@@ -704,7 +740,7 @@ min-width: 42.7%!important;
 .mt-2{
   margin-top: 0px!important;
 }
-
+/*
 .btn {
             background-color: #122234;
             color: white;
@@ -715,7 +751,7 @@ min-width: 42.7%!important;
             width: 100%;
             border-radius: 0!important;
             border: none;
-        }
+        }*/
 
 
   .col.reciverName {
@@ -741,6 +777,17 @@ grid-template-rows: 1;
             align-self: center;
 
         }
+
+
+a#btnSendMessage {
+    width: 100%;
+    height: 130px;
+    
+    border: none;
+    border-radius: 0;
+    background: #122234;
+    padding-top: 40px;
+}
 
 
 /*----------------------Media-query-----------------------*/
@@ -834,13 +881,16 @@ background: #122234 !important;
     margin-top: 22px;
     margin-bottom: 20px;
   }
-   button.btn.btn-primary {
-    width: 38%;
-    margin-left: 27%;
-    background: 0;
-    color: black;
-    border-radius: 50px;
-    border: 2px solid #21313F;
+   a.btnSendMessages {
+  background-color: #122234;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 25px;
+            font-size: 17px;
+            width: 100%;
+            border-radius: 0!important;
+            border: none;
   }
   
   
@@ -875,15 +925,37 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
 }
   
-  a.nav-link.pt-4.profile {
+  /*a.nav-link.pt-4.profile {
      margin-bottom: 0;
     padding: 0;
     /* width: 100%; */
-    text-align: center;
+    /*text-align: center;
     left: 228px;
     width: 10%;
     position: absolute;
 }
+  */
+  
+  
+  .ProfilAvatar {
+    margin-bottom: 0;
+    padding: 0;
+    height: 90px;
+    /* width: 110%; */
+    text-align: center;
+    left: 196px;
+    width: 19%;
+    position: absolute;
+    border: 5px solid #122234;
+    top: -30px;
+}
+
+.ProfilAvatar img {
+  width: 100%;
+  margin-top: 0;
+}
+  
+  
   
   .pt-4, .py-4 {
     padding-top: 0rem!important; 
@@ -969,6 +1041,74 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-top: 2px solid #122234;
   }
   
+  a#btnSendMessage {
+    width: 100%;
+    height: 130px;
+    border: none;
+    border-radius: 0;
+    background: #122234;
+    padding-top: 25px;
+}
 
+  .container-list {
+    width: 100%;
+}
+  #btnTalk{
+background: #122234;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+}
+  
+  h2.user-name.col-xs-5 {
+    font-size: 9px;
+    text-transform: capitalize;
+    letter-spacing: 4px;
+    margin-right: 12px!important;
+}
+  
+  .container-fluid.box {
+    position: absolute;
+    top: 0px;
+}
+  
+ .form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    overflow: scroll;
+    -ms-flex-flow: row wrap;
+    flex-flow: nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+}
+  
+  .userForm {
+    border: none;
+    width: 98%;
+    border-radius: 9px;
+    padding: 30px 0px 10px;
+    margin: 0px auto;
+    background: none;
+    box-shadow: none;
+}
+  
+  .container-list {
+    width: 100%;
+    overflow: scroll;
+    height: 497px;
+    border-radius: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+  
+  .countUsers {
+    display: grid;
+    /* width: 68%; */
+    grid-template-columns: 190px 190px;
+    grid-gap: 10px;
+    padding-top: 20px;
+    margin: 0px auto;
+    justify-content: center;
+}
   
 }
