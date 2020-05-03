@@ -38,7 +38,7 @@ if (isset($_SESSION['user'])) {
                                     } else {
                                         echo "uploads/" . $match['picture1'];
                                     } ?>" alt="profiel foto" class="profilePictureMatch">
-                        <p class="namesMatches"><?php echo  $match['firstname1'] . " " . $match['lastname1'] . " &amp; " . $match['firstname2'] . " " . $match['lastname2'] ?> </p>
+                        <p class="namesMatches"><?php echo  htmlspecialchars($match['firstname1']) . " " . htmlspecialchars($match['lastname1']) . " &amp; " . htmlspecialchars($match['firstname2']) . " " . htmlspecialchars($match['lastname2']); ?> </p>
                         <img src="<?php if ($match['picture2'] === NULL) {
                                         echo "uploads/profilePic.png";
                                     } else {

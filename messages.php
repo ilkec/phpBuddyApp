@@ -68,7 +68,7 @@ if (!empty($_POST['btnChat'])) {
         }?>
     <form action="" method="post" class="form-chatnames">
     <div class="chatNames">
-        <p class="chatname"><?php echo $printName;?></p>
+        <p class="chatname"><?php echo htmlspecialchars($printName);?></p>
         <?php if(isset($showNotification)) : ?>
         <p class="newMessages"><?php echo $showNotification; ?></p>
         <?php unset($showNotification); endif;  ?>

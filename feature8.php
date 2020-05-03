@@ -61,13 +61,13 @@ $showemojis= showReaction::showReactions();
 
 <body id="feature8">
     
-    <div id="chatpartner" class="row"><a href="messages.php" class="col backBtn"><i class="fas fa-chevron-left"></i></a><h1 class="col reciverName"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></h1></div>
+    <div id="chatpartner" class="row"><a href="messages.php" class="col backBtn"><i class="fas fa-chevron-left"></i></a><h1 class="col reciverName"><?php echo "you are talking to " . htmlspecialchars($receiverInfo['firstname']); ?></h1></div>
     <div class="chatbox-wrapper">
         <div class="chatbox">
             <?php foreach ($chatHistory as $chatMessage): ?>
             <div class="messageContainer row"> 
                 <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
-                    <strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong>
+                    <strong class="names" ><?php echo htmlspecialchars($chatMessage['fromUser']) . ": "; ?></strong>
                     <p><?php echo htmlspecialchars($chatMessage['message']) ?></p>
                     <?php foreach($allReactions as $givedReaction):?>
                         <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
