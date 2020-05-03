@@ -445,7 +445,7 @@ a.nav-link.pt-4.settings {
 
  
 /*-------------messenger-----------*/
-.home{
+.home, .listBuddies{
   display: inline-block;
 
   background-color:#192e45;
@@ -462,6 +462,13 @@ a.nav-link.pt-4.settings {
   
   margin-left: 25px;
 }
+
+.listBuddies{
+  margin-left: 16%;
+  margin-top: 10px;
+  
+}
+
 .h2-buddy{
   margin-left: 10%;
   margin-top: 40px;

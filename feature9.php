@@ -29,6 +29,7 @@ if (isset($_SESSION['user'])) {
 <body>
     <div class="wrapper">
         <h2 class="h2-buddy">Match made between</h2>
+        <a class="home" href="sortBuddy.php">Home</a>
         <div class="cards">
             <?php foreach ($matches as $match) : ?>
                 <div class="card">

@@ -136,7 +136,7 @@ if ($notification > 0) {
     </div>
   </nav>
   <div class="container-fluid box">
-
+  
     <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
       if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { ?>
@@ -180,6 +180,7 @@ if ($notification > 0) {
             <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
           </div>
         </div>
+        <a class="listBuddies" href="feature9.php"><p>List of buddies</p></a>
         <form class="form-inline userForm" method="post">
           <a href="" type="submit" name="bookBtn" id="book" class="interest">
             <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>
