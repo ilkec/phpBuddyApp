@@ -91,17 +91,17 @@ if (isset($_SESSION['user'])) {
     <div class="chatbox">
         <?php foreach ($chatHistory as $chatMessage): ?>
            <div class="messageContainer row"> 
-           <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
-            <p><strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
-            <?php foreach($allReactions as $givedReaction):?>
-                <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
-                src="<?php echo $givedReaction["src"]; ?>"></span>
-            <?php endforeach;?>
+            <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
+                <p><strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
+                <?php foreach($allReactions as $givedReaction):?>
+                    <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
+                    src="<?php echo $givedReaction["src"]; ?>"></span>
+                 <?php endforeach;?>
              </div>
              <div class="reactionsBox col-lg-2" id="">
-             <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
-              <i class="far fa-smile" aria-hidden="false"></i>
-             </a>
+                <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
+                <i class="far fa-smile" aria-hidden="false"></i>
+                </a>
              </div>
              <div class="emojisBox" id="">
                

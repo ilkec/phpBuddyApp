@@ -18,8 +18,15 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
         .then(response => response.json())
         .then(result => {
             let newMessage = document.createElement("p");
+            let newContainerRow = document.createElement("div");
+            newContainerRow.className = "messageContainer row";
+            let messageBox = document.createElement("div");
+            messageBox.className = "messageBox col-lg-6";
+
             newMessage.innerHTML = result.body;
-            document.querySelector(".chatbox").appendChild(newMessage);
+            document.querySelector(".chatbox").appendChild(newContainerRow);
+            newContainerRow.appendChild(messageBox);
+            messageBox.appendChild(newMessage);
             document.querySelector("#message").value = "";
         })
         .catch(error => {
