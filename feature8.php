@@ -42,8 +42,6 @@ $chatHistory = $user->messagesFromDatabase();
 
 $allReactions = reaction::getAll($databaseId['id']);
 $showemojis= showReaction::showReactions();
-
-    $allReactions = reaction::getAll($databaseId['id']);
 }else{
     header("Location: feature2.php");
 }
@@ -58,55 +56,12 @@ $showemojis= showReaction::showReactions();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>chatbox</title>
-    <style>
-        .chatbox {
-            height: 76vh;
-             width: 100%;
-            padding: 20px;
-            background-color: mintcream;
-            overflow: auto;
-        }
-
-        #chatpartner {
-            background-color: linen;
-            width: 600px;
-            padding: 20px;
-        }
-
-        #message {
-            width: 550px;
-            height: 30px;
-
-        }
-
-        .btn {
-            background-color: #f29f90;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            padding: 5px;
-            font-size: 12px;
-        }
-
-        .messageBox{
-            display: grid;
-            grid-template-columns: 40px 235px;;
-            grid-template-rows: 1;
-        }
-       .names{
-            align-self: center;
-
-        }
-        /*.names{
-            display: inline;
-        }*/
-        
-    </style>
+   
 </head>
 
-<body>
-    <a href="messages.php">Back</a>
-    <div id="chatpartner"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></div>
+<body id="feature8">
+    
+    <div id="chatpartner" class="row"><a href="messages.php" class="col backBtn"><i class="fas fa-chevron-left"></i></a><h1 class="col"><?php echo "you are talking to " . $receiverInfo['firstname']; ?></h1></div>
     <div class="chatbox-wrapper">
         <div class="chatbox">
             <?php foreach ($chatHistory as $chatMessage): ?>
@@ -125,8 +80,13 @@ $showemojis= showReaction::showReactions();
                     </a>
                 </div>
                 <div class="emojisBox" id="">
-                
-                </div>
+              <div role='listbox' aria-orientation='horizontal' class='_1z8q _fy2'>
+               <?php foreach($showemojis as $emojis):?>
+               <span class='iconn'><img id='<?php echo $emojis['id']?>' alt='<?php echo $emojis['name']?>' class='_1ift _5m3a img' src='<?php echo $emojis['src']?>'></span>
+               <?php endforeach;?>
+               </div>
+               
+             </div>
             </div>
             <?php endforeach; ?>
         </div>
