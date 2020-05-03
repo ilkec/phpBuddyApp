@@ -107,10 +107,10 @@
                     </form>
                 <?php endif; ?>
                 <div class="comment_header"> 
-                <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?></h5> </p> 
-                    <h3 id="koekoek"> <?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3>        
+                <p> <h3><?php echo htmlspecialchars($row["comment_title"]) ; ?></h3> </p> 
+                    <h5 id="koekoek"> <?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h5>        
                 </div>
-                <p><?php echo htmlspecialchars($row["date"] ) ?></p>                                           
+                <p class="date"><?php echo htmlspecialchars($row["date"] ) ?></p>                                           
                 <div class="comment_body"> 
                                       
                     <p><?php echo htmlspecialchars($row["comment"]) ;?></p>                                      
@@ -147,7 +147,7 @@
                 $replies = $thisComment->getReplies($thisId);
             ?>
             <?php foreach($replies as $row): ?>
-                <div class="reply_container" style="margin-left: 150px">
+                <div class="reply_container" > 
                     <?php if($isModerator): ?>
                         <form action="" method="POST">
                             <input type="hidden" name="pin" value="<?php echo htmlspecialchars($row["id"]) ; ?>">   
@@ -156,9 +156,9 @@
                         </form>
                     <?php endif; ?>
                     <div class="comment_header">
-                    <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?> </h5> </p>    
-                    <h3><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3> </div> 
-                    <p><?php echo $row["date"]; ?></p> 
+                    <p> <h3><?php echo htmlspecialchars($row["comment_title"]) ; ?> </h3> </p>    
+                    <h5><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h5> </div> 
+                    <p class="date"><?php echo $row["date"]; ?></p> 
                     <div class="comment_body"> 
                         
                         <p><?php echo htmlspecialchars($row["comment"]) ; ?> </p>
