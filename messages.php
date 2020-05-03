@@ -44,6 +44,19 @@ if (!empty($_POST['btnChat'])) {
     <link rel="stylesheet" href="css/style.css">
 
     <title>Messages</title>
+    <style>
+        form{
+            margin: 10px auto;
+        }
+        body{
+            background-color: #132236;
+        }
+        .chatName, h1{
+            color: #fff;
+        }
+
+        
+    </style>
 </head>
 <body>
     <h1>Messenger</h1>
@@ -64,10 +77,9 @@ if (!empty($_POST['btnChat'])) {
                     
                 }
             }
-        
         }?>
     <form action="" method="post">
-    <div>
+    <div class="chatName">
         <p><?php echo $printName;?></p>
         <?php if(isset($showNotification)) : ?>
         <p><?php echo $showNotification; ?></p>
