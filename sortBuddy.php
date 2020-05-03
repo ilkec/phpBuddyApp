@@ -94,12 +94,20 @@ if ($notification > 0) {
   <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
   <style>
-    .error {
+    .errorNotif {
       display: inline;
       padding: 0 6px;
       background-color: red;
       border-radius: 50px;
     }
+
+    .counterIcon{
+      align-self: center;
+      margin-left:auto;
+      margin-right: auto;
+    }
+
+
 
   </style>
 </head>
@@ -115,7 +123,7 @@ if ($notification > 0) {
 
         <a id="messageNotification" href="messages.php">messages
           <?php if (isset($showNotification)) : ?>
-            <div class="error"><?php echo $showNotification; ?></div>
+            <div class="errorNotif"><?php echo $showNotification; ?></div>
           <?php endif; ?>
         </a>
         <a class="nav-link profile" href="feature20.php">Comments</a>
