@@ -35,25 +35,24 @@ if (isset($_SESSION['user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chooseBuddy.css">
     <title>feature 5</title>
 
 </head>
 
 <body class="container-fluid">
     <div>
-        <div class="imageButton row d-flex justify-content-center pt-5">
-            <form class="d-flex justify-content-center border-3 border-primary" method="post">
+        <div class="">
+            <form class="images_div" method="post">
 
-                <input id="firstImg" type="image" src="img/iab.png" width="300px" name="iAmBuddy">
-                <input id="scndImg" type="image" src="img/ihb.png" width="300px" name="iWantBuddy">
+                <input class="images" id="firstImg" type="image" src="img/buddy1.png" width="300px" name="iAmBuddy">
+                <input class="images" id="scndImg" type="image" src="img/buddy2.png" width="300px" name="iWantBuddy">
 
             </form>
             <p> <?php if (isset($choice)) {
                     echo $choice;
                 } else {
-                    echo "Please select wether you are looking for a buddy, or want to volunteer as one.";
+                    echo "Select";
                 } ?> </p>
         </div>
     </div>
