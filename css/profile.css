@@ -68,6 +68,16 @@ p{
     text-align: center;
     margin-left: 3.5vw;
 }
+.profilePictureWrap {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .profilePicture{
+    width: 180px;
+  }
 
 .icon1{
     display: inline-block;
