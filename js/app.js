@@ -30,8 +30,9 @@ document.querySelector('#btnSendMessage').addEventListener("click", function(){
             newMessage.innerHTML = result.body;
             document.querySelector(".chatbox").appendChild(newContainerRow);
             newContainerRow.appendChild(messageBox);
+            messageBox.appendChild(sender);
             messageBox.appendChild(newMessage);
-            newMessage.appendChild(sender);
+           
             document.querySelector("#message").value = "";
         })
         .catch(error => {

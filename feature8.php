@@ -78,6 +78,16 @@ if (isset($_SESSION['user'])) {
             padding: 5px;
             font-size: 12px;
         }
+
+        .messageBox{
+            display: grid;
+            grid-template-columns: 10% 80%;
+            grid-template-rows: 1;
+        }
+       .names{
+            align-self: center;
+
+        }
         /*.names{
             display: inline;
         }*/
@@ -92,7 +102,8 @@ if (isset($_SESSION['user'])) {
         <?php foreach ($chatHistory as $chatMessage): ?>
            <div class="messageContainer row"> 
             <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
-                <p><strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong><?php echo $chatMessage['message'] ?></p>
+                <strong class="names" ><?php echo $chatMessage['fromUser'] . ": "; ?></strong>
+                <p><?php echo $chatMessage['message'] ?></p>
                 <?php foreach($allReactions as $givedReaction):?>
                     <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
                     src="<?php echo $givedReaction["src"]; ?>"></span>
