@@ -1,25 +1,42 @@
 body{
-    background-color: #ffffff;
+    background-color: #132236;
 }
 
 .title{
-    border: 2px solid #132236;
-    border-radius: 4px;
+    /*border: 2px solid #ffffff;    */
+    border-bottom: 1px #f19d90;
+    border-style: hidden hidden solid hidden;
+    
+    color: #ffffff;
+    background-color: #132236;
+
     margin-left: 75px;
     margin-top: 50px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
 
 .comment{
-    border: 2px solid #132236;
-    border-radius: 4px;
+    border: 2px solid #f19d90;  
+    border-radius: 5px;
+    
+    background-color: #132236;
+
     width: 30%;
     height: 150px;
+
     margin-left: 75px;
+
+    padding-left: 5px;
 }
 
-#upvote{
-    background-color:#132236;
-    color: white;
+#upvote{ /* dit is da van ilke blijf er efkes vanaf*/
+    
+    background-color:#192e45;
+    color: #ffffff;
+    
     border-radius: 5px;
     padding: 5px 17px;
     text-decoration: none;
@@ -27,60 +44,68 @@ body{
 
 
 .submit_btn{
-    background-color:#132236;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 7px;
+    display: inline-block;
+
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin-left: 75px;
+
+    background-color:#192e45;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 10px;
+    
+    padding: 5px 7px;
+
+    text-align: center;
+    text-decoration: none;
+
+    margin-left: 125px;
+}
+
+.submit_btn:hover{
+    background-color: #f19d90;
+    color: #132236;
 }
 
 .pinned_btn{
-    background-color:#132236;
-    
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 7px;
+    display: inline-block;
+
+    background-color:#192e45;
+    color: #ffffff;
+
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin-left: 75px;
-}
 
-.pinn_btn{
-    background-color:#132236;
-    
     border: none;
-    color: white;
-    border-radius: 5px;
+    border-radius: 10px;
+
     padding: 5px 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-left: 75px;
-    margin-top: 25px;
+    
+    margin-left: 15px;
+
 }
 
-/*.comments_display{
-    border: 2px solid grey;
-    border-radius: 4px;
-    padding-left: 15px;
-    margin-left: 2.5%;
-    width: 90%;
-}*/
+.pinned_btn:hover{
+    background-color: #f19d90;
+    color: #132236;
+}
+
+
 
 .comment_container, .reply_container{
-    border: 2px solid #132236;
-    border-radius: 4px;
+
+    border-bottom: 1px #f19d90;
+    border-top: 1px #f19d90;
+    border-style: solid hidden hidden hidden;
+    
+    color: #ffffff;
+
     width: 70%;
-    /*height: 150px;*/
+   
+    padding-top: 15px;
     padding-left: 15px;
     padding-bottom: 160px;
     
@@ -90,46 +115,33 @@ body{
 }
 
 .reply_btn, .pin_btn{
-    background-color:#132236;
+    background-color:#d37f79;
+
+    display: inline-block;
+
+    color: #132236;
+
     border: none;
-    color: white;
-    border-radius: 5px;
+    border-radius: 15px;
+   
     padding: 5px 17px;
+
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    
     font-size: 16px;
+
     margin-top: 10px;
     margin-right: 15px;
 }
 .reply_btn, .pin_btn{
+
     float: right;
     clear: both;
 }
 
-/*.comment_header{
+/* -----------------Mobiele/tablet versie van de login-------------------- */ 
 
-    border: 2px solid grey;
-    border-radius: 4px;
-    width: 70%;
-    height: 150px;
-    padding-left: 15px;
-    padding-bottom: 160px;
-    
-    margin-left: 75px;
-    margin-top: 25px;
-    margin-bottom: 50px;
-}
-*/
-/*.comment_footer{
-    border: 2px solid grey;
-    border-radius: 4px;
-    width: 70%;
-    height: 150px;
-    padding-left: 15px;
-    padding-bottom: 160px;
-    
-    margin-left: 75px;
-    margin-top: 25px;
-    margin-bottom: 50px;
-}*/
+
+/* ------------------------------Animation-------------------------------- */ 
+
