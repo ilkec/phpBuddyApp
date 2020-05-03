@@ -35,6 +35,8 @@ a{
     background-color: #132236;
     
     margin-top: 25px;
+    
+    padding-bottom: 25px;
 
 
     
@@ -136,7 +138,7 @@ form{
 }
 
 
-/* -----------------Mobiele versie van de login-------------------- */ 
+/* -----------------Mobiele/tablet versie van de login-------------------- */ 
 
 
 @media only screen and (max-width: 850px) {
@@ -179,6 +181,8 @@ form{
         background-color: #132236;
         
         margin-top: 25px;
+
+        padding-bottom: 0px;
 
         
     }
@@ -276,7 +280,7 @@ form{
         padding-top: 25px;
         padding-bottom: 25px;
 
-        margin-top: 50%;
+        margin-top: 10vh;
         margin-left: -7.5%;
         margin-right: -7.5%;
         
