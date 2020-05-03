@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
             $user->setDescription($_POST['profileText']);
             $user->updateProfile();
         } catch (\Throwable $th) {
-            $error = $th->getMessage();
+            $errorProfile = $th->getMessage();
         }
     }
 
@@ -92,15 +92,15 @@ if (isset($_SESSION['user'])) {
             if ($user->checkPassword($oldPassword) == true) {
                 $user->updatePassword();
             } else {
-                $error = "Old password isn't correct. Try again";
+                $errorPassword = "Old password isn't correct. Try again";
             }
         }
 
-        if (empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])) {
-            $error = "You need to fill in your old password.";
+        else if (empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])) {
+            $errorPassword = "You need to fill in your old password.";
         }
-        if (empty($_POST['passwordOld']) && empty($_POST['passwordNew'])) {
-            $error = "Old password and new password need to be filled in";
+        else if (empty($_POST['passwordOld']) && empty($_POST['passwordNew'])) {
+            $errorPassword = "Old password and new password need to be filled in";
         }
     }
 
@@ -193,10 +193,10 @@ $getAllUser = $user->getAll();
                 <label for="lastname">Lastname</label>
                 <input class="form-control" type="text" value="<?php echo $getAllUser['lastname']; ?>" name="lastname" id="lastname">
             </div>
-            <?php if (isset($error)) : ?>
+            <?php if (isset($errorProfile)) : ?>
                 <div class="form__error">
                     <p>
-                        <?php echo $error; ?>
+                        <?php echo $errorProfile; ?>
                     </p>
                 </div>
             <?php endif; ?>
@@ -239,6 +239,13 @@ $getAllUser = $user->getAll();
                 <label for="passwordNew">New password</label>
                 <input class="form-control" type="password" placeholder="new password" name="passwordNew" id="passwordNew">
             </div>
+            <?php if (isset($errorPassword)) : ?>
+                <div class="form__error">
+                    <p>
+                        <?php echo $errorPassword; ?>
+                    </p>
+                </div>
+            <?php endif; ?>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePassword">
             </div>
