@@ -436,6 +436,46 @@ a.nav-link.pt-4.settings {
 
 
  
+/*-------------messenger-----------*/
+.h1-messages{
+  margin-left: 14%;
+  margin-top: 40px;
+}
+.form-chatnames{
+  width: 70%;
+  margin: 10px auto;
+  border: none;
+  border-top:  2px solid #132236;
+  border-radius: 0;
+  
+}
+
+.form-chatnames:last-of-type{
+  border-bottom:  2px solid #132236;
+}
+
+
+.chatNames, h1{
+  color: #132236;
+}
+
+.chatNames{
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+}
+
+.chatname{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.newMessages{
+  display: inline-block;
+  padding: 10px;  
+}
+
+
 
 /* --------------- Log in ---------------------*/
 /*#login-img {

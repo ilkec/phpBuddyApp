@@ -43,33 +43,10 @@ if (!empty($_POST['btnChat'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Messages</title>
-    <style>
-        form{
-            width: 70%;
-            margin: 10px auto;
-            border: none;
-            border-top:  2px solid #d37f79;
-            border-radius: 0;
-        }
-
-        form:last-of-type{
-            border-bottom:  2px solid #d37f79;
-        }
-
-        body{
-            background-color: #132236;
-        }
-        .chatName, h1{
-            color: #fff;
-        }
-        
-
-        
-    </style>
+    <title>Messenger</title>
 </head>
 <body>
-    <h1>Messenger</h1>
+    <h1 class="h1-messages">Messenger</h1>
     <a href="sortBuddy.php">Home</a>
     <?php foreach($chatNames as $chatName) {
          if($chatName['user_id1'] === $databaseId['id']) {
@@ -83,16 +60,16 @@ if (!empty($_POST['btnChat'])) {
         if($newMessages > 0) {
             foreach($newMessages as $newMessage) {
                 if ($newMessage['from_user'] === $printId){
-                    $showNotification = "nieuwe berichten";
+                    $showNotification = "new messages";
                     
                 }
             }
         }?>
-    <form action="" method="post">
-    <div class="chatName">
-        <p><?php echo $printName;?></p>
+    <form action="" method="post" class="form-chatnames">
+    <div class="chatNames">
+        <p class="chatname"><?php echo $printName;?></p>
         <?php if(isset($showNotification)) : ?>
-        <p><?php echo $showNotification; ?></p>
+        <p class="newMessages"><?php echo $showNotification; ?></p>
         <?php unset($showNotification); endif;  ?>
     </div>
         <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $printId; ?>">
