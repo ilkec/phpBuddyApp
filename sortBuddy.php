@@ -115,24 +115,22 @@ if ($notification > 0) {
 <body>
 
   <!-----------------------------Navbar------------------------------>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end">
-
-        <a class="nav-link pt-4" href="feature22.php">contacts</a>
-
-        <a id="messageNotification" href="messages.php">messages
-          <?php if (isset($showNotification)) : ?>
-            <div class="errorNotif"><?php echo $showNotification; ?></div>
-          <?php endif; ?>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top main-menu sortbuddy">
+    <div class="container sortBuddy">
+      <ul class="nav justify-content-end"> 
+       <a class="nav-link pt-4 profile" href="profile.php">
+       <img src="<?php if ($connectedUserPicture['picture'] === NULL) { echo"uploads/profilePic.png";} 
+            else {echo "uploads/" . $connectedUserPicture['picture'];} ?>" class="avatar">
         </a>
-        <a class="nav-link profile" href="feature20.php">Comments</a>
-        <a class="nav-link profile" href="profile.php">
-          <img src="<?php if ($connectedUserPicture['picture'] === NULL) {
-                      echo "uploads/profilePic.png";
-                    } else {
-                      echo "uploads/" . $connectedUserPicture['picture'];
-                    } ?>" class="avatar"><?php echo $connectedUserFirstname['firstname'] . " " . $connectedUserlastname['lastname'] ?></a></ul>
+      <a class="nav-link pt-4" href="feature22.php" id="contactIcon"><i class="fas fa-address-book"></i></a>
+      <a id="messageNotification" class="nav-link pt-4" href="messages.php"><i class="fas fa-comment"></i>
+       <?php if (isset($showNotification)) : ?>
+            <div class="error"><?php echo $showNotification; ?></div>
+          <?php endif; ?>
+      </a>
+       <a class="nav-link pt-4 comments " href="feature20.php"><i class="fas fa-sticky-note"></i></a>
+       <a class="nav-link pt-4 settings" href="profileSettings.php"><i class="fas fa-cog"></i></a>
+      </ul>
     </div>
   </nav>
   <div class="container-fluid box">
