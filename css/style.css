@@ -13,19 +13,6 @@ color: white !important;
  
 }
 
-<<<<<<< HEAD
-
-
-.navbar {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1;
-}
-
-=======
->>>>>>> stylingSortBuddy
 .alert-danger {
     color: #a7000f!important;
     background-color: #e8caca!important;
@@ -41,10 +28,6 @@ height:100%;
 left:0;
 width:80px;
 overflow:hidden;
-<<<<<<< HEAD
-/*padding: 100px;*/
-=======
->>>>>>> stylingSortBuddy
 z-index:1000;
 background: #122234 !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
