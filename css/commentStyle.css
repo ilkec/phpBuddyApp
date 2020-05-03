@@ -1,9 +1,9 @@
 body{
-    background-color: #132236;
+    background-color: #ffffff;
 }
 
 p{
-    color: #ffffff;
+    color: #192e45;
 }
 
 h5{
@@ -12,7 +12,7 @@ h5{
 }
 
 .date{
-    color: #ffffff;
+    color: black;
 
     opacity: 0.5;
 
@@ -45,11 +45,11 @@ h5{
 
 .title{
     /*border: 2px solid #ffffff;    */
-    border-bottom: 1px #f19d90;
+    border-bottom: 2px #f19d90;
     border-style: hidden hidden solid hidden;
     
     color: #ffffff;
-    background-color: #132236;
+    background-color: #ffffff;
 
     margin-left: 75px;
     margin-top: 50px;
@@ -63,8 +63,8 @@ h5{
     border: 2px solid #f19d90;  
     border-radius: 5px;
     
-    background-color: #132236;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #192e45;
 
     width: 30%;
     height: 150px;
@@ -155,7 +155,7 @@ h5{
     border-right: 1px #f19d90;
     border-style: solid hidden hidden solid;
     
-    color: #ffffff;
+    color: #192e45;
 
     width: 70%;
    
@@ -174,7 +174,7 @@ h5{
     border-left: 1px #f19d90;
     border-style: dashed hidden hidden dashed;
     
-    color: #ffffff;
+    color: #192e45;
 
     width: 70%;
    
@@ -259,14 +259,16 @@ h5{
 
 /* -----------------Mobiele/tablet versie van de login-------------------- */ 
 
+
+
 @media only screen and (max-width: 850px){
     
 body{
-    background-color: #132236;
+    background-color: #ffffff;
 }
 
 p{
-    color: #ffffff;
+    color: #192e45;
 }
 
 h3{
@@ -279,7 +281,7 @@ h5{
 }
 
 .date{
-    color: #ffffff;
+    color: black;
 
     opacity: 0.5;
 
@@ -317,8 +319,8 @@ h5{
     border-bottom: 1px #f19d90;
     border-style: hidden hidden solid hidden;
     
-    color: #ffffff;
-    background-color: #132236;
+    color: #132236;
+    background-color: #ffffff;
 
     margin-left: 5%;
     margin-top: 50px;

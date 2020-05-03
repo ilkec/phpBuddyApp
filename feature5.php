@@ -50,7 +50,7 @@ if (isset($_SESSION['user'])) {
 
             </form>
             <p> <?php if (isset($choice)) {
-                    echo $choice;
+                    echo htmlspecialchars($choice) ;
                 } else {
                     echo "Select";
                 } ?> </p>

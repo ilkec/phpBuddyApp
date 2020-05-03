@@ -168,6 +168,8 @@
         <?php endforeach; ?> 
     </div>
 
+    
+
     <script src="js/upvote.js"></script>
 </body>
 </html>

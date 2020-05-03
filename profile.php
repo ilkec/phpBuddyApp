@@ -39,8 +39,9 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"> --->
+    <link rel="stylesheet" href="css/profile.css">
     <title>Document</title>
 </head>
 <style>
@@ -55,21 +56,24 @@ try {
 </style>
 
 <body>
-    <img src="img/chairs.jpg" alt="chairs" id="profile-bg">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-        </div>
+    
+   <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><<img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
+        </div>-->
+    <div class="full">
+
     </nav>
     <section class="container-fluid">
-        <div class="col-lg-6 col-md-6 profile-form">
-            <h2>Profiel</h2>
-            <a href="profileSettings.php"><img src="img/settings_icon.png" alt="settingsIcon" id="settingsIcon"></a>
-            <div>
+        <div id="profile" class="col-lg-6 col-md-6 profile-form">
+            <!--- <h2>profiel</h2>  even weggehaald 'sorry ilke'  --->
+            
+            <div class="profile1" > 
                 <img src="<?php if ($getAllUser['picture'] === NULL) {
                                 echo "uploads/profilePic.png";
                             } else {
                                 echo "uploads/" . $getAllUser['picture'];
                             } ?>" alt="profiel foto" class="profilePicture">
+             <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
 
             </div>
             <!------profiel------->
@@ -100,11 +104,13 @@ try {
                         <?php }
                         } ?>
                     </ul>
-                    <form class="btn btn-primary" action="" method="post">
-                        <input class="btn btn-primary" type="submit" name="return" value="logout">
-                        <a href="sortBuddy.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Back</a>
-                    </form>
-
+                     
+                        <form class="btn btn-primary" action="" method="post">
+                         <input class="logout" type="submit" name="return" value="logout">
+                            <a href="sortBuddy.php" class="back" type="submit" value="Log in">Back</a>
+                        </form>
+                     
+                    </div>
                 </div>
             </div>
         </div>
