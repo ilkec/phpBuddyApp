@@ -183,15 +183,15 @@ $getAllUser = $user->getAll();
             <h3>Personal info</h3>
             <div class="form_field mt-2 profileform">
                 <label for="profileText">Korte beschrijving</label>
-                <textarea class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo htmlspecialchars($getAllUser['description']); ?></textarea>
+                <textarea class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description']; ?></textarea>
             </div>
             <div class="form_field mt-2 profileform">
                 <label for="firstname">Firstname</label>
-                <input class="form-control" type="text" value="<?php echo htmlspecialchars($getAllUser['firstname']); ?>" name="firstname" id="firstname">
+                <input class="form-control" type="text" value="<?php echo $getAllUser['firstname']; ?>" name="firstname" id="firstname">
             </div>
             <div class="form_field mt-2 profileform">
                 <label for="lastname">Lastname</label>
-                <input class="form-control" type="text" value="<?php echo htmlspecialchars($getAllUser['lastname']); ?>" name="lastname" id="lastname">
+                <input class="form-control" type="text" value="<?php echo $getAllUser['lastname']; ?>" name="lastname" id="lastname">
             </div>
             <?php if (isset($errorProfile)) : ?>
                 <div class="form__error">
@@ -210,7 +210,7 @@ $getAllUser = $user->getAll();
             <h3>Change email address</h3>
             <div class="form_field mt-2 profileform">
                 <label for="email">Email address</label>
-                <input class="form-control" type="text" value="<?php echo htmlspecialchars($getAllUser['email']); ?>" name="email" id="email">
+                <input class="form-control" type="text" value="<?php echo $getAllUser['email']; ?>" name="email" id="email">
             </div>
             <div class="form_field mt-2 profileform">
                 <label for="passwordNew">Password</label>
