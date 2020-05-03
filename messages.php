@@ -46,6 +46,7 @@ if (!empty($_POST['btnChat'])) {
     <title>Messages</title>
     <style>
         form{
+            width: 70%;
             margin: 10px auto;
             border: none;
             border-top:  2px solid #d37f79;
@@ -54,8 +55,8 @@ if (!empty($_POST['btnChat'])) {
 
         form:last-of-type{
             border-bottom:  2px solid #d37f79;
-
         }
+
         body{
             background-color: #132236;
         }
