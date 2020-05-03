@@ -13,6 +13,7 @@ color: white !important;
  
 }
 
+<<<<<<< HEAD
 
 
 .navbar {
@@ -23,6 +24,8 @@ color: white !important;
   z-index: 1;
 }
 
+=======
+>>>>>>> stylingSortBuddy
 .alert-danger {
     color: #a7000f!important;
     background-color: #e8caca!important;
@@ -30,7 +33,6 @@ color: white !important;
 }
 
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top.main-menu{
-
 /*border-right:1px solid #e5e5e5;*/
 position:fixed;
 top:0;
@@ -39,7 +41,10 @@ height:100%;
 left:0;
 width:80px;
 overflow:hidden;
+<<<<<<< HEAD
 /*padding: 100px;*/
+=======
+>>>>>>> stylingSortBuddy
 z-index:1000;
 background: #122234 !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -427,8 +432,7 @@ a.nav-link.pt-4 {
 }
 
 a.nav-link.pt-4.settings {
-   
-    margin-top: 10px;
+    margin-top: 133px;
 }
 
 .error{
@@ -740,6 +744,8 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: -59px;
 }
   
- 
+ a.nav-link.pt-4.settings {
+    margin-top: 10px;
+}
   
 }
