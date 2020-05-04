@@ -12,7 +12,7 @@ if (!empty($_POST)) {
     $user->setConfPassword($_POST['confPassword']);
     $activationId = $user->saveUser();
     $user->sendActivationEmail($activationId);
-    $success = "Your account has been created successfully";
+    $success = "Your account has been created successfully. <br/> A verification link has been sent to your email account.";
   } catch (\Throwable $th) {
     $error = $th->getMessage();
   }
