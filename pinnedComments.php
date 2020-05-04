@@ -34,15 +34,15 @@
        
         <div class="comment_container">
         
-            <div class="comment_header"> <h3><?php echo $row["comment_sender_name"]; ?></h3> </div>
+            <div class="comment_header"> <h3><?php echo htmlspecialchars($row["comment_sender_name"]) ; ?></h3> </div>
             <p><?php echo $row["date"]; ?></p> 
             <div class="comment_body"> 
-                <p> <h5><?php echo $row["comment_title"]; ?></h5> </p>
-                <p><?php echo $row["comment"]; ?></p>
+                <p> <h5><?php echo htmlspecialchars($row["comment_title"]) ; ?></h5> </p>
+                <p><?php echo htmlspecialchars($row["comment"]) ; ?></p>
             </div>
             <div class="comment_footer"><form action="" method="GET">
-                    <input type="hidden" name="parent" value="<?php echo $row["id"]; ?>">
-                    <input class="reply_btn" type="submit" id="<?php echo $row["id"]; ?>" value="Reply">
+                    <input type="hidden" name="parent" value="<?php echo htmlspecialchars($row["id"]) ; ?>">
+                    <input class="reply_btn" type="submit" id="<?php echo htmlspecialchars($row["id"]) ; ?>" value="Reply">
             </form></div> 
             
         </div>

@@ -116,12 +116,12 @@ if (!empty($_POST)) {
           <div class="col">
             <label for="fullName">First name</label>
             <input type="text" class="form-control formInputs" name="firstname" placeholder="first name" value="<?php if (isset($_POST['firstname'])) {
-                                                                                                                  echo $user->getFirstname();
+                                                                                                                  echo htmlspecialchars($user->getFirstname()) ;
                                                                                                                 } ?>"> </div>
           <div class="col">
             <label for="fullName">Last name</label>
             <input id="lasnemText" type="text" class="form-control formInputs" placeholder="Last name" name="lastname" value="<?php if (isset($_POST['lastname'])) {
-                                                                                                                                echo $user->getLastname();
+                                                                                                                                echo htmlspecialchars($user->getLastname()) ;
                                                                                                                               } ?>"> </div>
         </div>
         <!-------------Gender----------!-->
@@ -135,7 +135,7 @@ if (!empty($_POST)) {
         <div class="form-group email ">
           <label for="fullName">Birthday</label>
           <input type="text" class="form-control formInputs" placeholder="YYY-MM-DD" name="birthday" value="<?php if (isset($_POST['birthday'])) {
-                                                                                                              echo $user->getBirthday();
+                                                                                                              echo htmlspecialchars($user->getBirthday()) ;
                                                                                                             } ?>"> </div>
         <!-------------Password----------!-->
         <div class="form-group password ">
