@@ -39,8 +39,6 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css"> --->
     <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
@@ -84,12 +82,12 @@ try {
                     <h3><?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?></h3>
                 </div>
                 <div>
-                    <h5>Korte beschrijving</h5>
+                    <h5>Bio</h5>
                     <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
                 </div>
 
                 <div>
-                    <h5>Interesses</h5>
+                    <h5>Interrests</h5>
                     <ul>
                         <li><?php echo $getAllUser['games']; ?></li>
                         <li><?php echo $getAllUser['books']; ?></li>
