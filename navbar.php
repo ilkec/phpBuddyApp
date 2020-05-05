@@ -33,7 +33,8 @@ if ($notification > 0) {
           <?php endif; ?>
       </a>
        <a class="nav-link pt-4 comments " href="feature20.php"><i class="fas fa-sticky-note"></i></a>
-       <a class="nav-link pt-4 settings" href="profileSettings.php"><i class="fas fa-cog"></i></a>
+       <a class="nav-link pt-4 homeIcon" href="sortBuddy.php"><i class="fas fa-home"></i></a>
+       
       </ul>
     </div>
   </nav>

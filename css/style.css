@@ -422,7 +422,7 @@ a.nav-link.pt-4 {
     margin-bottom: 20px;
 }
 
-a.nav-link.pt-4.settings {
+a.nav-link.pt-4.homeIcon {
     margin-top: 133px;
 }
 
@@ -1016,7 +1016,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: -59px;
 }
   
- a.nav-link.pt-4.settings {
+ a.nav-link.pt-4.homeIcon {
     margin-top: 10px;
 }
   
