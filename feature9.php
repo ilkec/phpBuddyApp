@@ -7,13 +7,13 @@ session_start();
 $user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
-var_dump($databaseId);
+
 if (isset($_SESSION['user'])) {
     $matches = $user->showMatches();
 } else {
     header("Location: feature2.php");
 }
-//var_dump($matches);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
