@@ -68,18 +68,16 @@ if (!empty($_POST['btnTalk'])) {
   header("Location: feature8.php"); 
 }
 
-// var_dump($databaseId);
+
 $user->setId($databaseId['id']);
 $allMatches = $user->receiveMatchRequest();
-// var_dump($allMatches);
+
 
 $notification = count($user->newMessage());
-//als de array leeg is toon dan niets
-//als de array wel een getal bevat, toon dan dit getal
 if ($notification > 0) {
   $showNotification = $notification;
 }
-//var_dump($notification);
+
 
 
 ?>
