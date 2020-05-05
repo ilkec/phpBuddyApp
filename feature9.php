@@ -4,9 +4,10 @@ include_once(__DIR__ . '/classes/User.php');
 
 $user = new User();
 session_start();
+$user->setEmail($_SESSION['user']);
 $databaseId = $user->getDatabaseId();
 $user->setId($databaseId['id']);
-
+var_dump($databaseId);
 if (isset($_SESSION['user'])) {
     $matches = $user->showMatches();
 } else {

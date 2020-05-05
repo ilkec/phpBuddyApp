@@ -1,4 +1,8 @@
 <?php
+include_once(__DIR__ . '/classes/User.php');
+include_once(__DIR__ . '/classes/Db.php');
+
+
 
 $connectedUserPicture = $user->getConnectedUserPicture();
 $user->setProfilePicture($connectedUserPicture['picture']);
@@ -34,4 +38,4 @@ if ($notification > 0) {
     </div>
   </nav>
 
-  
+  <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
