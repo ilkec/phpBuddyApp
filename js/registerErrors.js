@@ -31,3 +31,39 @@ $("#registerBtn").click(function(e){
   }
   
 });
+
+
+
+$('.emailErrorDiv').hide();
+$("#exampleInputEmail1").blur(function() {
+  let email = $("#exampleInputEmail1").val();
+  //console.log(email);
+   let userInfo =[];
+        let usrEmail={};
+            usrEmail.userGivedEmail=email;
+            userInfo.push(usrEmail);  
+    console.log(userInfo);
+
+  if(email != ''){
+    
+    $.ajax({
+         url: "./ajax/checkEmail.php"
+        ,  method: "post"
+        ,  data: {usrEmail: JSON.stringify(userInfo)}
+        ,  dataType:"html"
+        , success: (respons) => {
+          if(email.indexOf("@student.thomasmore.be") > -1){
+            $('.emailErrorDiv').show();
+          
+          $('.emailErrorDiv').html(respons);
+          }else{
+            $('.emailErrorDiv').show();
+             $('.emailErrorDiv').html("Please enter a valid email");
+          }
+        }
+      });
+ }else{
+    $('.emailErrorDiv').hide();
+ }
+
+});

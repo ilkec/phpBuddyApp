@@ -257,6 +257,20 @@ button.btn.btn-primary:hover {
   border: 2px solid #21313F;
 }
 
+
+p.emailExisitError{
+  color: red!important;
+}
+
+p.sucessEmail{
+   color: green!important;
+}
+
+
+.emailErrorDiv{
+  color: red;
+}
+
 /*---------------------------------------------------Sort-buddy-style-------------------------------------------------------*/
 
 

@@ -69,7 +69,8 @@ if (!empty($_POST)) {
         <!--------------Email------------>
         <div class="form-group email">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control formInputs" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Example@student.thomasmore.be" value=""> </div>
+          <input type="email" class="form-control formInputs" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Example@student.thomasmore.be" value="">
+          <div class="emailErrorDiv"></div> </div>
         <!--------------Name------------>
         <div class="row" id="name">
           <div class="col">
@@ -108,9 +109,9 @@ if (!empty($_POST)) {
         <!--------------Email------------>
         <div class="form-group email">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control formInputs" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Example@student.thomasmore.be" value="<?php if (isset($_POST['email'])) {
-                                                                                                                                                                                      echo $user->getEmail();
-                                                                                                                                                                                    } ?>"> </div>
+          <input type="email" class="form-control formInputs" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Example@student.thomasmore.be" value="<?php if (isset($_POST['email'])) {echo $user->getEmail();} ?>"> 
+          <div class="emailErrorDiv"></div>
+          </div>
         <!--------------Name------------>
         <div class="row" id="name">
           <div class="col">
@@ -120,9 +121,7 @@ if (!empty($_POST)) {
                                                                                                                 } ?>"> </div>
           <div class="col">
             <label for="fullName">Last name</label>
-            <input id="lasnemText" type="text" class="form-control formInputs" placeholder="Last name" name="lastname" value="<?php if (isset($_POST['lastname'])) {
-                                                                                                                                echo htmlspecialchars($user->getLastname()) ;
-                                                                                                                              } ?>"> </div>
+            <input id="lasnemText" type="text" class="form-control formInputs" placeholder="Last name" name="lastname" value="<?php if (isset($_POST['lastname'])) {echo htmlspecialchars($user->getLastname()) ;} ?>"> </div>
         </div>
         <!-------------Gender----------!-->
         <div class="form-row gender">
