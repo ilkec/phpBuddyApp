@@ -17,8 +17,8 @@
         $user->setEmail($_SESSION['user']);
         $_SESSION['userid'] = $databaseId['id'];
     }
-    $userFirstName = $user->getConnectedUserFirstname();
-    $userLastName = $user->getConnectedUserLastname();
+    $userFirstName  = $user->getConnectedUserFirstname();
+    $userLastName   = $user->getConnectedUserLastname();
     $user->setFirstname($userFirstName['firstname']);
     $user->setLastname($userLastName['lastname']);
 
@@ -52,20 +52,20 @@
             $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
             
             if(empty($_POST['comment_name'])){
-                $error = 'no comment title';
+                $error      = 'no comment title';
             }else{
                 $comment->setTitle($_POST['comment_name']);
             }
             if(empty($_POST['comment_content'])){
-                $error = 'no comment content';
+                $error      = 'no comment content';
             }else{
                 $comment->setComment($_POST['comment_content']);
             }
             if($error == ''){
                 $comment->addComment();
-                $error = 'Comment succesfully posted';
-                $output = $dummyComment->getAllComments($isModerator);
-                $response = $error;
+                $error      = 'Comment succesfully posted';
+                $output     = $dummyComment->getAllComments($isModerator);
+                $response   = $error;
             }
             $response = $error;
         } //var_dump($output);
@@ -90,12 +90,12 @@
     <a class="home" href="sortBuddy.php">Home</a>
     <form action="" method="post">
         <!-- <label for="comment_name">Title:</label> -->
-        <input class="title" type="text" id="comment_name" name="comment_name" placeholder="Place your title here">
+        <input  class="title"       type="text"     id="comment_name"       name="comment_name" placeholder="Place your title here">
         <br><br>
         <!--<label for="comment_content">Comment:</label>-->
-        <input class="comment" type="textarea" id="comment_content" name="comment_content" placeholder="Place your comment here">
+        <input  class="comment"     type="textarea" id="comment_content"    name="comment_content" placeholder="Place your comment here">
         <br><br>
-        <input class="submit_btn" type="submit" value="Post Comment">
+        <input  class="submit_btn"  type="submit" value="Post Comment">
         <a class="pinned_btn" href="pinnedComments.php">Pinned Messages</a>
     </form>
     <div class="comments_display" id="comments_display">
