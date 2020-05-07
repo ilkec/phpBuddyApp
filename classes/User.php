@@ -12,6 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 /*require_once($_SERVER['DOCUMENT_ROOT'] .'/phpBuddyApp2/phpBuddyApp/vendor/autoload.php');*/
+
 require_once("sendGrid/sendgrid-php.php");
 require_once("vendor/autoload.php");
 
@@ -547,7 +548,7 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("select distinct matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2 and users.id and users.id <> :userid");
+    $statement = $conn->prepare("select distinct matches.user_id1, matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
     $result = $statement->execute();
@@ -565,7 +566,6 @@ class User
     $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
     return $result;
-   
   }
 
   public function deleteMatchRequest()
@@ -617,7 +617,8 @@ class User
     return $users;
   }
 
-  public function activateAccount($activationId){
+  public function activateAccount($activationId)
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare("UPDATE users SET status = '1' WHERE id = :activationId");
     $statement->bindValue(":activationId", $activationId);
@@ -627,7 +628,7 @@ class User
 
   public function sendActivationEmail($activationId)
   {
-    $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."activate.php?id=" . $activationId;
+    $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "activate.php?id=" . $activationId;
     $toMail = $this->getEmail();
     $toUser = $this->getFirstname() . $this->getLastname();
     putenv("SENDGRID_API_KEY=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");
@@ -638,16 +639,17 @@ class User
     $email->addTo($toMail, $toUser);
     $email->addContent("text/plain", "Your account has been created, please click the following link to activate your account: " . $activationLink);
     $email->addContent(
-        "text/html", "<strong> Your account has been created, please click the following link to activate your account: " . $activationLink ." </strong>"
+      "text/html",
+      "<strong> Your account has been created, please click the following link to activate your account: " . $activationLink . " </strong>"
     );
     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
-        $response = $sendgrid->send($email);
-        //print $response->statusCode() . "\n";
-        //print_r($response->headers());
-        //print $response->body() . "\n";
+      $response = $sendgrid->send($email);
+      //print $response->statusCode() . "\n";
+      //print_r($response->headers());
+      //print $response->body() . "\n";
     } catch (Exception $e) {
-        echo 'Caught exception: '. $e->getMessage() ."\n";
+      echo 'Caught exception: ' . $e->getMessage() . "\n";
     }
   }
 
@@ -670,7 +672,8 @@ class User
     $email->addTo($toMail, $toUser);
     $email->addContent("text/plain", "You have a new buddy request, please log in and verify.");
     $email->addContent(
-        "text/html", "<strong> You have a new buddy request, please log in and verify.</strong>"
+      "text/html",
+      "<strong> You have a new buddy request, please log in and verify.</strong>"
     );
     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
@@ -678,13 +681,12 @@ class User
       print $response->statusCode() . "\n";
       print_r($response->headers());
       print $response->body() . "\n";
-  } catch (Exception $e) {
-      echo 'Caught exception: '. $e->getMessage() ."\n";
-  }
+    } catch (Exception $e) {
+      echo 'Caught exception: ' . $e->getMessage() . "\n";
+    }
     return $result;
-  
-}
-  
+  }
+
   public function newMessage()
   {
     $conn = Db::getConnection();
@@ -753,7 +755,6 @@ class User
     $result = $statement->execute();
     $users = $statement->fetchAll(PDO::FETCH_ASSOC); //alle resultaten krijgen
     return $users;
- 
   }
 
 
@@ -897,7 +898,7 @@ class User
               $statement->bindValue(":register", $register);
               $result = $statement->execute();
               //header("Location: feature4.php");
-           
+
               return $conn->lastInsertId();
             }
           }
@@ -915,8 +916,6 @@ class User
     $result = $statement->execute();
     $userId = $statement->fetch(PDO::FETCH_ASSOC);
     return $userId;
-
-
   }
 
   public function getConnectedUserFirstname()
@@ -1018,13 +1017,14 @@ class User
     return $userBuddyChoice;
   }
 
-  public function isActivateAccount($email){
+  public function isActivateAccount($email)
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select * from users where email = :email');
     $statement->bindParam(":email", $email);
     $result = $statement->execute();
     $output = $statement->fetch(PDO::FETCH_ASSOC);
-    if($output['status'] == '1'){
+    if ($output['status'] == '1') {
       return true;
     }
     return false;
@@ -1183,6 +1183,4 @@ class User
     $hardware = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $hardware;
   }
-  
-
 }
