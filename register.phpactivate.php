@@ -11,10 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/activation.css">
     <title>Document</title>
 </head>
 <body>
-    <h2>Your account has been activated!</h2>
-    <a href="feature2.php">Log In</a>
+    <div class="log">
+        <h2>Your account has been activated!</h2>
+        <a href="feature2.php">Log In</a>
+    </div>
 </body>
 </html>
