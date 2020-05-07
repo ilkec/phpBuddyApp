@@ -19,7 +19,10 @@ if (!empty($_POST)) {
 			if (isset($_COOKIE['login-form'])) {
 				if ($_COOKIE['login-form'] < 3) {
 					$attempts = $_COOKIE['login-form'] + 1;
+					session_start();
 					setcookie('login-form', $attempts, time() + 60); // cookie 60 seconden met aantal pogingen
+					session_get_cookie_params();
+
 					sleep(1);
 				} else {
 					$block = 'Te veel foute invoerpogingen, gelieve 1minuut te wachten.';
@@ -27,10 +30,11 @@ if (!empty($_POST)) {
 				}
 			} else {
 				setcookie('login-form', 1, time() + 60); // cookie 60 seconden met waarde 1
+				session_get_cookie_params();
 			}
 		}
 		if ($user->canLogin($email, $password)) {
-			if($user->isActivateAccount($email)){
+			if ($user->isActivateAccount($email)) {
 				//$user->setEmail($email);
 				//$user->setPassword($password);
 				session_start();
@@ -53,7 +57,7 @@ if (!empty($_POST)) {
 				} else {
 					header("Location: sortBuddy.php");
 				}
-			} else{
+			} else {
 				$error = "Your account has not been activated yet";
 			}
 		} else {
@@ -80,25 +84,25 @@ if (!empty($_POST)) {
 </head>
 
 <body class="container-fluid bg-secondary">
-	<fieldset class="fs" <?php echo htmlspecialchars($disable)  ?>>									
-	
+	<fieldset class="fs" <?php echo htmlspecialchars($disable)  ?>>
+
 		<div class="row">
 			<img src="img/Logo.png" alt="BuddyFixers" class="" id="login-img">
 			<form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
 				<h2 form__title></h2>
 				<?php if (isset($error)) : ?>
 					<p>
-						<?php echo htmlspecialchars($error) ; ?> 									
+						<?php echo htmlspecialchars($error); ?>
 					</p>
 				<?php endif; ?>
 				<label for="email">Email</label>
 				<input class="form-control" type="text" id="email" name="email">
 				<label for="password">Password</label>
 				<input class="form-control" type="password" id="password" name="password">
-				<h5><?php echo htmlspecialchars ($block) ?></h5> 									
+				<h5><?php echo htmlspecialchars($block) ?></h5>
 				<input class="buttton" type="submit" $disable value="Log in">
 				<a href="register.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Register</a>
-          </form>
+			</form>
 
 		</div>
 	</fieldset>
