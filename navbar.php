@@ -23,7 +23,7 @@ if ($notification > 0) {
        <a class="" id="profilImg" href="profile.php">
         <div class="ProfilAvatar">
        <img src="<?php if ($connectedUserPicture['picture'] === NULL) { echo"uploads/profilePic.png";} 
-            else {echo "uploads/" . $connectedUserPicture['picture'];} ?>" class="">
+            else {echo "uploads/".$connectedUserPicture['picture'];} ?>" class="">
         </div>
         </a>
       <a class="nav-link pt-4" href="feature22.php" id="contactIcon"><i class="fas fa-address-book"></i></a>
