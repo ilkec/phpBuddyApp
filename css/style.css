@@ -2,6 +2,8 @@ body{
   background: white;
   
 }
+
+
 .registerBody{background:#192D45;
 overflow: hidden;}
 
@@ -602,12 +604,12 @@ a.nav-link.pt-4.homeIcon {
   margin-left: 25px;
 }
 */
-.home, .listBuddies {
+.home, a.listBuddies {
     display: inline-block;
     background-color: #1A2F44;
     color: #ffffff;
     text-align: center;
-    text-decoration: none;
+
     font-size: 16px;
     border: none;
     border-radius: 6px;
@@ -615,12 +617,16 @@ a.nav-link.pt-4.homeIcon {
     margin-left: 25px;
 }
 
-.home, .listBuddies p {
-    margin-top: 0;
-    margin-bottom: 0;
+
+
+
+.counterIcon {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.listBuddies {
+a.listBuddies {
     margin-left: 16%;
     margin-top: 14px;
 }
@@ -1265,6 +1271,7 @@ background: #122234;
   z-index: 2;
 }
   .listBuddies {
+
     margin-left: 41px;
     margin-top: 14px;
 }
@@ -1298,5 +1305,7 @@ background: #122234;
     #verzoek {
       border-color: #122234;
     }
+
+   
 
 

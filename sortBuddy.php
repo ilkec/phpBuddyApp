@@ -89,15 +89,7 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Buddyfixers</title>
-  <style>
-    
-
-    .counterIcon {
-      align-self: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+  
 </head>
 
 <body>
@@ -156,9 +148,7 @@ if ($notification > 0) {
           <div id="countActiveBuddies"><?php echo "Buddies: " . $countMatches; ?></div>
         </div>
       </div>
-      <a class="listBuddies" href="feature9.php">
-        <p><i class="fas fa-list" aria-hidden="true"></i>List of buddies</p>
-      </a>
+      <a class="listBuddies" href="feature9.php"><i class="fas fa-list" aria-hidden="true"></i>List of buddies</a>
       <a class="searchClassroom" href="feature19.php"><i class="fas fa-search-location" aria-hidden="true"></i> Classroom finder</a>
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
