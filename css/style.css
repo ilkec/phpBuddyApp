@@ -726,6 +726,7 @@ i.fa-search-location {
 
 #btnTalk{
 background: #122234;
+border: none;
   border-radius: 5px;
   padding: 10px;
   color: white;
