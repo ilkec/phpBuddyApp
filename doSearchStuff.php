@@ -1,5 +1,6 @@
 <?php
     include_once(__DIR__ . '/classes/Db.php');
+
     //to prevent errors, check if post has suggestions
     if(isset($_POST['suggestion'])){
         //save most recent suggestion
@@ -19,7 +20,7 @@
             foreach($result as $row){
                 //go through all the names to check if they match to either first or last names of users
                 if(stripos($names[$i], $name) !== false){
-                    echo "<a href='profileOfUser.php'><li>" . $names[$i] . "</li></a>";
+                    echo "<button value='otherUser' id='otherUser'>" . $names[$i] . "</button>";
                 }
                 $i = $i + 1;
             }
@@ -32,7 +33,4 @@
 // op de nieuwe 'profileOfUser' pagina haal je de email uit de sessie net zoals normaal maar ipv 'user' is het nu 'targetUser'
 
 
-
-
 ?>
-

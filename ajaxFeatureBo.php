@@ -1,4 +1,7 @@
 <?php
+    include_once(__DIR__ . '/classes/Db.php');
+
+
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +14,7 @@
     <script>
         $(document).ready(function(){
             $("#searchButton").click(function(){
-                var input = $("#monsieur").val();
+                /*var input = $("#monsieur").val();*/
                 $("#output").load("doSearchStuff.php", {
                     input: input
                 });
@@ -28,8 +31,17 @@
         //----basics jquery------
         //$("#elementId" of ".elementClass") = selector -> selecteer het element in de ()
         //.stuff() = function -> do something with a selector
-        
+
+
+
+         /*$(document).ready(function(){
+            $("#otherUser").click(function(){
+             //   var input = $("").val();
+                $("#show_profileOtherUser").load("profileOfUser.php")
+            })
+        )}*/
     </script>
+    
 </head>
 <body>
 </body>
