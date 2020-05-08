@@ -118,7 +118,7 @@
 
                     <?php foreach($oneUpvote as $upvoteForId){ 
                         if($upvoteForId['comment_id'] ===  $row["id"]) {
-                            $errorUpvote = "Already upvoted";
+                            $errorUpvote = "You already upvoted";
                         } else {
                             $setUpvoteBtn = "upvote";
                         }

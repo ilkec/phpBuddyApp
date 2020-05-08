@@ -28,7 +28,13 @@ let upvotes = document.querySelectorAll('#upvote');
                    let upvotenumber =  parent.querySelector("#upvoteCount");
                    console.log(upvotenumber);
                    upvotenumber.innerHTML = number;
-                   
+                   let remove = parent.querySelector("#upvote");
+                   remove.style.display = "none";
+                   let already = document.createElement("p");
+                   already.innerHTML = "You already upvoted "
+                   parent.appendChild(already);
+
+
     
                 })
                 .catch(error => {
