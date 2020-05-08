@@ -258,11 +258,13 @@
         return $result;
         }
 
-        public function upvoteUpdate($commentid)
+        public function upvoteUpdate($commentid, $upvotecount)
         {
             $conn = Db::getConnection();
-            $statement = $conn->prepare('update comment set upvote_count = (upvote_count + 1) where id = :commentid');
+            $statement = $conn->prepare('update comment set upvote_count = :upvotecount where id = :commentid');
+            $upvotecount = $upvotecount;
             $id = $commentid;
+            $statement->bindValue(":upvotecount", $upvotecount);
             $statement->bindValue(":commentid", $id);
             $result = $statement->execute();
             return $result;

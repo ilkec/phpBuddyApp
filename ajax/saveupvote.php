@@ -9,7 +9,8 @@ if(!empty($_POST)){
     $upvote = new Comment();
     $userid = $_SESSION['userid'];
     $commentid = $_POST['commentid'];
-    $upvote->upvoteUpdate($commentid);
+    $upvotecount = $_POST['upvotecount'];
+    $upvote->upvoteUpdate($commentid, $upvotecount);
     $upvote->upvoteInsert($userid, $commentid);
 
    /* var_dump($result);
