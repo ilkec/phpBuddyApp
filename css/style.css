@@ -766,12 +766,11 @@ background: #122234;
   text-align: center;
 }
 
-
-/*--------------feature9-matches------------------*/
-
-.noMatch{
+.emptyState{
   margin-left: 10%;
-}    
+}  
+
+ 
 
 
 

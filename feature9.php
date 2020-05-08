@@ -39,7 +39,7 @@ if (isset($_SESSION['user'])) {
        
         <div class="cards">
             <?php if(isset($noMatches)) : ?>
-            <p class="noMatch"><?php echo $noMatches;?></p>
+            <p class="emptyState"><?php echo $noMatches;?></p>
             <?php endif; ?>
             <?php foreach ($matches as $match) : ?>
                 <div class="card">

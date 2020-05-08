@@ -7,16 +7,14 @@ session_start();
 $user->setEmail($_SESSION['user']);
 
 if (isset($_SESSION['user'])) {
-$databaseId = $user->getDatabaseId();
-$user->setId($databaseId['id']); //id van de ingelogde gebruiker
-$chatNames = $user->chatNames();
-//var_dump($chatNames);
-
-$newMessages = $user->newMessage();
-//var_dump($newMessages);
-
-
-
+    $databaseId = $user->getDatabaseId();
+    $user->setId($databaseId['id']); //id van de ingelogde gebruiker
+    $chatNames = $user->chatNames();
+    if(count($chatNames) === 0){
+        $noChats = "There are no chats started yet";
+    }
+        
+    $newMessages = $user->newMessage();
 
 if (!empty($_POST['btnChat'])) {
     $idReceiver = $_POST['inputUserId'];
@@ -46,9 +44,12 @@ if (!empty($_POST['btnChat'])) {
     <title>Messenger</title>
 </head>
 <body>
-
+    <?php include_once("navbar.php") ?>
+    
     <h2 class="h2-buddy">Messenger</h2>
-    <a class="home" href="sortBuddy.php">Home</a>
+    <?php if(isset($noChats)) : ?>
+            <p class="emptyState"><?php echo $noChats;?></p>
+            <?php endif; ?>
     <?php foreach($chatNames as $chatName) {
          if($chatName['user_id1'] === $databaseId['id']) {
             $printName = $chatName['user2'];
