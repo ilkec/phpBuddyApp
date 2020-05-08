@@ -26,11 +26,8 @@ $hardware = $user->showHardware();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-        </div>
-    </nav>
-    <div class="container-fluid box pb-5">
+    <?php include_once("navbar.php") ?>
+    <div class="container-fluid box text-center">
         <form id="dropdown" action="" method="get">
             <label for="responsible">In welk veld hebt u hulp nodig ?</label>
 
@@ -43,7 +40,7 @@ $hardware = $user->showHardware();
                 <option value="hardware">Hardware</option>
             </select>
 
-            <input class="btn btn-primary" type="submit" value="Bevestigen" name="submit_button">
+            <button class="type-select btn btn-secondary" type="submit" value="Bevestigen" name="submit_button" id="contactBtn">Bevestigen</button>
 
 
             <?php
@@ -51,44 +48,44 @@ $hardware = $user->showHardware();
                 switch (isset($_GET['selectedOption'])) {
                     case $_GET['selectedOption'] == 'algemeen':
                         foreach ($algemeen as $a) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars($a['firstname'] . " " . $a['lastname']) ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($a['email'])  ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($a['responsible'] ) ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($a['firstname'] . " " . $a['lastname']) ?></h3>
+                            <h4 class="lead"><?php echo ($a['email'])  ?></h4>
+                            <h4 class="lead"><?php echo ($a['responsible']) ?></h4><br>
                         <?php }
                         break;
                     case $_GET['selectedOption'] == 'code':
                         foreach ($code as $c) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars($c['firstname'] . " " . $c['lastname'])  ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($c['email'])  ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($c['responsible'])  ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($c['firstname'] . " " . $c['lastname'])  ?></h3>
+                            <h4 class="lead"><?php echo ($c['email'])  ?></h4>
+                            <h4 class="lead"><?php echo ($c['responsible'])  ?></h4><br>
                         <?php }
                         break;
                     case $_GET['selectedOption'] == 'design':
                         foreach ($design as $d) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars($d['firstname'] . " " . $d['lastname'])  ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($d['email'])  ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($d['responsible'])  ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($d['firstname'] . " " . $d['lastname'])  ?></h3>
+                            <h4 class="lead"><?php echo ($d['email'])  ?></h4>
+                            <h4 class="lead"><?php echo ($d['responsible'])  ?></h4><br>
                         <?php }
                         break;
                     case $_GET['selectedOption'] == 'business':
                         foreach ($business as $b) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars( $b['firstname'] . " " . $b['lastname']) ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($b['email'])  ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($b['responsible'])  ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($b['firstname'] . " " . $b['lastname']) ?></h3>
+                            <h4 class="lead"><?php echo ($b['email'])  ?></h4>
+                            <h4 class="lead"><?php echo ($b['responsible'])  ?></h4><br>
                         <?php }
                         break;
                     case $_GET['selectedOption'] == 'communicatie':
                         foreach ($communicatie as $com) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars($com['firstname'] . " " . $com['lastname'] ) ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($com['email'])  ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($com['responsible'])  ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($com['firstname'] . " " . $com['lastname']) ?></h3>
+                            <h4 class="lead"><?php echo ($com['email'])  ?></h4>
+                            <h4 class="lead"><?php echo ($com['responsible'])  ?></h4><br>
                         <?php }
                         break;
                     case $_GET['selectedOption'] == 'hardware':
                         foreach ($hardware as $h) { ?>
-                            <h3 class="lead font-weight-bold"><?php echo htmlspecialchars($h['firstname'] . " " . $h['lastname'])  ?></h3>
-                            <h4 class="lead"><?php echo htmlspecialchars($h['email'] ) ?></h4>
-                            <h4 class="lead"><?php echo htmlspecialchars($h['responsible'] ) ?></h4><br>
+                            <h3 class="lead font-weight-bold"><?php echo ($h['firstname'] . " " . $h['lastname'])  ?></h3>
+                            <h4 class="lead"><?php echo ($h['email']) ?></h4>
+                            <h4 class="lead"><?php echo ($h['responsible']) ?></h4><br>
             <?php }
                         break;
                     default:

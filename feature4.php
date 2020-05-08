@@ -48,7 +48,7 @@ if (isset($_SESSION['user'])) {
     <title>Document</title>
 </head>
 
-<body class="container-fluid bg-secondary">
+<body class="container-fluid bg-feature4">
     <div class="row">
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
