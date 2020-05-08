@@ -114,14 +114,17 @@ if ($notification > 0) {
     <?php
     foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
-      //if ($m['user_id1'] != $user->getId()) { 
+      /*
+      if ($user->getId() == $m['user_id1']) {
+        continue;
+      } */
     ?>
       <form id="verzoek" action="" method="POST">
         <div>
           <h4>Je hebt een buddyverzoek ontvangen van <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
           <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
-        </div> <?php // }
+        </div> <?php
                 if (isset($_POST['acceptBtn'])) {
                   $user->setBuddy($m['user_id2']);
                   $user->acceptMatchRequest();
@@ -134,15 +137,17 @@ if ($notification > 0) {
           <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
           <input type='text' id='reden' name='reden' size='51'>
           <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
-        <?php } ?>
+          <?php // } 
+          ?>
       <?php if (isset($_POST['redenBtn'])) {
-        $user->setBuddy($m['user_id2']);
-        $user->setReden($_POST['reden']);
-        $user->deleteMatchRequest();
-        $user->geefReden();
-        echo "Verzoek verwijderd!";
-      }
-    }
+                    $user->setBuddy($m['user_id2']);
+                    $user->setReden($_POST['reden']);
+                    $user->deleteMatchRequest();
+                    $user->geefReden();
+                    echo "Verzoek verwijderd!";
+                  }
+                }
+              }
       ?>
       </form>
       <!------counters------>
