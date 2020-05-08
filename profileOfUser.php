@@ -1,22 +1,16 @@
 <?php
 
 include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/doSearchStuff.php');
 
 $user = new User();
 
-session_start();
-$user->setEmail($_SESSION['otherUser']);
-$other = $user->getDatabaseId();
-
-var_dump($_SESSION);
-
-if (isset($_SESSION['targetUser'])) {
-    $getOther = $user->getOther();
-} else {
-    /*header("Location: feature2.php");*/
-    echo'you fucked up again :D';
+if(!empty($_GET)){
+    $getId = $_GET['id'];
+    $user->setId($getId);
 }
+
+$getAllUser = $user->getAll();
+
 
 if (isset($_POST['return'])) {
     session_start();
@@ -27,7 +21,11 @@ if (isset($_POST['return'])) {
     exit;
 }
 
-
+try {
+    $allBuddy = $user->profileBuddy();
+} catch (\Throwable $th) {
+    $allBuddy = "Deze persoon heeft nog geen buddies";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,58 +33,72 @@ if (isset($_POST['return'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/profileOfUser.css">
+    <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
 <style>
-    
+    .profilePicture {
+        width: 150px;
+    }
+
+    #settingsIcon {
+        width: 40px;
+
+    }
 </style>
 
 <body>
     
-   
+   <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><<img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
+        </div>-->
     <div class="full">
 
     </nav>
     <section class="container-fluid">
-        <div id="profile" class="">
+        <div id="profile" class="col-lg-6 col-md-6 profile-form">
             
             <div class="profile1" > 
                 <div class="profilePictureWrap">
-                <img src="<?php if ($getOther['picture'] === NULL) {
+                <img src="<?php if ($getAllUser['picture'] === NULL) {
                                 echo "uploads/profilePic.png";
                             } else {
-                                echo "uploads/" . $getOther['picture'];
+                                echo "uploads/" . $getAllUser['picture'];
                             } ?>" alt="profiel foto" class="profilePicture">
-                 </div>   
-                  
-                 
-                        
-        
+                 </div>           
+             <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
+
             </div>
             <!------profiel------->
             <div id="p-interests">
                 <div>
-                    <h3><?php echo htmlspecialchars($getOther['firstname']) . " " . htmlspecialchars($getOther['lastname']); ?></h3>
+                    <h3><?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?></h3>
                 </div>
                 <div>
                     <h5>Bio</h5>
-                    <p><?php echo htmlspecialchars($getOther['description']); ?></p>
+                    <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
                 </div>
 
                 <div>
-                    <h5>I like</h5>
-                    <ul id='show_profileOtherUser'>
-                        <li><?php echo $getOther['games']; ?> </li>
-                        <li><?php echo $getOther['books']; ?></li>
-                        <li><?php echo $getOther['films']; ?></li>
-                        <li><?php echo $getOther['music']; ?></li>
+                    <h5>Interrests</h5>
+                    <ul>
+                        <li><?php echo $getAllUser['games']; ?></li>
+                        <li><?php echo $getAllUser['books']; ?></li>
+                        <li><?php echo $getAllUser['films']; ?></li>
+                        <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
                     <h5>Buddy</h5>
-                    
+                    <ul>
+                        <?php if ($allBuddy == null) {
+                            echo "This user doesn't have a buddy";
+                        } else { ?>
+                            <?php foreach ($allBuddy as $b) { ?>
+                                <?php echo $b['firstname'], $b['lastname'] ?>
+                        <?php }
+                        } ?>
+                    </ul>
                      
                         <form class="btn btn-primary" action="" method="post">
-                         
                             <a href="sortBuddy.php" class="back" type="submit" value="Log in">Back</a>
                         </form>
                      

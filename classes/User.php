@@ -39,13 +39,12 @@ class User
   private $moderator; //bespreken me groep
   private $status;
 
+ 
   //variables used for message system
   private $message;
   private $fromUser;
   private $toUser;
   private $time;
-
-
 
 
 
@@ -523,6 +522,7 @@ class User
     return $this;
   }
 
+
   public function countUsers()
   {
 
@@ -905,6 +905,16 @@ class User
         }
       }
     }
+  }
+
+  public function getDatabaseEmail(){
+    $conn = Db::getConnection();
+    $statement = $conn->prepare('select id from users where email = :email');
+    $email = $this->getEmail();
+    $statement->bindValue(':email', $email);
+    $result = $statement->execute();
+    $userId = $statement->fetch(PDO::FETCH_ASSOC);
+    return $userId;
   }
 
   public function getDatabaseId()

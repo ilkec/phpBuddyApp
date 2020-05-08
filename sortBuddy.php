@@ -184,6 +184,10 @@ if ($notification > 0) {
         <a href="" id="all" type="submit" name="showAllBtn" class="interest">
           <div class="type-select btn btn-primary"><i class="fas fa-list icon"></i>Show all</div>
         </a>
+        <a href="searchUser.php">
+          <div class="type-select btn btn-primary"><i class="fas fa-search icon"></i></div>
+        </a>
+        
       </form>
       <div class="container-list">
         <div class="userContainer">

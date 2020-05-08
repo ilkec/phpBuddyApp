@@ -6,14 +6,15 @@
     <title>Search</title>
     <script src="https://kit.fontawesome.com/6792ce1460.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
-        $(document).ready(function(){
-            $("#searchBar").keyup(function(){
-                var name = $("#searchBar").val();
-                $.post("doSearchStuff.php", {
+        $(document).ready(function(){                       //jQuerey word pas uitgevoerd als het geladen is
+            $("#searchBar").keyup(function(){               //vanaf er in de searchbar iets verandert 
+                var name = $("#searchBar").val();           //komt het hier in de variabele te stan
+                $.post("doSearchStuff.php", {               //de php word uitgevoerd en de variabele word gePOST
                     suggestion: name
-                }, function(data, status){
-                    $("#output").html(data);
+                }, function(data, status){                  //gaat de data van doSearchStuff opvragen en gebruiken
+                    $("#output").html(data);                //de opgevraagde data word in de html getoond
                 });
             });
         });
@@ -23,6 +24,7 @@
     <input type="text" id="searchBar" placeholder="search">
     <div>
         <ul id="output">
+
         </ul>
     </div>
 </body>
