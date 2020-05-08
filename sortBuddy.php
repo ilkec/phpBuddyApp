@@ -157,8 +157,9 @@ if ($notification > 0) {
         </div>
       </div>
       <a class="listBuddies" href="feature9.php">
-        <p>List of buddies</p>
+        <p><i class="fas fa-list" aria-hidden="true"></i>List of buddies</p>
       </a>
+      <a class="searchClassroom" href="feature19.php"><i class="fas fa-search-location" aria-hidden="true"></i> Classroom finder</a>
       <form class="form-inline userForm" method="post">
         <a href="" type="submit" name="bookBtn" id="book" class="interest">
           <div class="type-select btn btn-primary bookBtn"><i class="fas fa-book-open icon"></i>Book: <span class="badge badge-dark"><?php echo $connectedUserBook['books'] ?></span></div>

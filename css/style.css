@@ -312,7 +312,7 @@ p.sucessEmail{
 }
 
 #activeUsers, #activeBuddies{
-  border: 1px solid #132236;
+  border: 1px solid #1A2F44;
   border-radius: 5px;
   display:grid;
   grid-template-columns: 50px 140px;
@@ -325,7 +325,7 @@ p.sucessEmail{
 #countActiveBuddies {
   text-align: center;
   color: white;
-  background-color: #132236;
+  background-color: #1A2F44;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
  
@@ -582,7 +582,7 @@ a.nav-link.pt-4.homeIcon {
 
  
 /*-------------messenger-----------*/
-.home, .listBuddies{
+/*.home, .listBuddies{
   display: inline-block;
 
   background-color:#192e45;
@@ -599,12 +599,54 @@ a.nav-link.pt-4.homeIcon {
   
   margin-left: 25px;
 }
-
-.listBuddies{
-  margin-left: 16%;
-  margin-top: 10px;
-  
+*/
+.home, .listBuddies {
+    display: inline-block;
+    background-color: #1A2F44;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 20px 9px 20px;
+    margin-left: 25px;
 }
+
+.home, .listBuddies p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.listBuddies {
+    margin-left: 16%;
+    margin-top: 14px;
+}
+
+i.fas.fa-list {
+    margin-right: 10px;
+}
+a.searchClassroom {
+    padding: 9px 20px 9px 18px;
+    background: #192e45;
+    border-radius: 6px;
+    /* width: 170px; */
+    position: absolute;
+    margin-top: 14px;
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+a.searchClassroom li {
+   margin-right: 10px;
+}
+
+i.fa-search-location {
+    margin-right: 10px;
+}
+
+
 
 .h2-buddy{
   margin-left: 10%;
@@ -1238,5 +1280,8 @@ background: #122234;
   top: 75px;
   z-index: 2;
 }
-  
+  .listBuddies {
+    margin-left: 41px;
+    margin-top: 14px;
+}
 }
