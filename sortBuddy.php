@@ -90,12 +90,7 @@ if ($notification > 0) {
   <link rel="stylesheet" href="css/style.css">
   <title>Buddyfixers</title>
   <style>
-    .errorNotif {
-      display: inline;
-      padding: 0 6px;
-      background-color: red;
-      border-radius: 50px;
-    }
+    
 
     .counterIcon {
       align-self: center;

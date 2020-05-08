@@ -5,7 +5,7 @@ include_once(__DIR__ . '/classes/Db.php');
 
 $user = new User();
 session_start();
-
+$user->setEmail($_SESSION['user']);
 // $_POST['selectedOption'] = null;
 $algemeen = $user->showAlgemeen();
 $code = $user->showCode();

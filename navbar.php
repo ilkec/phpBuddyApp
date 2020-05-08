@@ -1,8 +1,9 @@
 <?php
-include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/classes/Db.php');
 
 
+$connectedUserEmail = $_SESSION['user'];
+$databaseId = $user->getDatabaseId();
+$user->setId($databaseId['id']);
 
 $connectedUserPicture = $user->getConnectedUserPicture();
 $user->setProfilePicture($connectedUserPicture['picture']);
@@ -29,7 +30,7 @@ if ($notification > 0) {
       <a class="nav-link pt-4" href="feature22.php" id="contactIcon"><i class="fas fa-address-book"></i></a>
       <a id="messageNotification" class="nav-link pt-4" href="messages.php"><i class="fas fa-comment"></i>
        <?php if (isset($showNotification)) : ?>
-            <div class="error"><?php echo $showNotification; ?></div>
+            <div class="errorNotification"><?php echo $showNotification; ?></div>
           <?php endif; ?>
       </a>
        <a class="nav-link pt-4 comments " href="feature20.php"><i class="fas fa-sticky-note"></i></a>
