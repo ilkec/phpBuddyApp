@@ -33,30 +33,28 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/profileOfUser.css">
     <title>Profile</title>
 </head>
 <style>
     .profilePicture {
-        width: 150px;
+        width: 180px;
     }
 
     #settingsIcon {
-        width: 40px;
+        width: 25px;
 
     }
 </style>
 
 <body>
     
-   <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid"> <a class="navbar-brand" href="sortBuddy.php"><<img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-        </div>-->
+   
     <div class="full">
 
     </nav>
     <section class="container-fluid">
-        <div id="profile" class="col-lg-6 col-md-6 profile-form">
+        <div id="profile" class="">
             
             <div class="profile1" > 
                 <div class="profilePictureWrap">
@@ -80,23 +78,15 @@ try {
                 </div>
 
                 <div>
-                    <h5>Interrests</h5>
-                    <ul>
+                    <h5>Interests</h5>
+                    <ul id='like' class="like">
                         <li><?php echo $getAllUser['games']; ?></li>
                         <li><?php echo $getAllUser['books']; ?></li>
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
                     <h5>Buddy</h5>
-                    <ul>
-                        <?php if ($allBuddy == null) {
-                            echo "This user doesn't have a buddy";
-                        } else { ?>
-                            <?php foreach ($allBuddy as $b) { ?>
-                                <?php echo $b['firstname'], $b['lastname'] ?>
-                        <?php }
-                        } ?>
-                    </ul>
+                    
                      
                         <form class="btn btn-primary" action="" method="post">
                             <a href="sortBuddy.php" class="back" type="submit" value="Log in">Back</a>
