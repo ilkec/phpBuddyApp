@@ -370,6 +370,8 @@ img.avatar {
 
 .container-list {
     width: 68%;
+  overflow: scroll;
+  height: 64vh;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
     margin: 0 auto;
@@ -426,7 +428,7 @@ h5 {
 
 .container-fluid.box {
     position: absolute;
-    top: 110px;
+    top: 12px;
 }
 
 a.nav-link.pt-4.profile {
@@ -1257,7 +1259,7 @@ background: #122234;
   .container-list {
     width: 100%;
     overflow: scroll;
-    height: 497px;
+    height: 444px;
     border-radius: 0;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -1284,4 +1286,10 @@ background: #122234;
     margin-left: 41px;
     margin-top: 14px;
 }
+  
+  .contain .box .details {
+    transform: scaleY(1);
+}
+  
+  
 }
