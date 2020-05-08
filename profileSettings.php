@@ -250,7 +250,7 @@ $getAllUser = $user->getAll();
                 <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updatePassword">
             </div>
             
-            <a href="profile.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Go back</a>
+            <a href="profile.php" class="mt-3 mb-3 btn btn-primary btnBack" type="submit" value="Log in">Go back</a>
         </form>
         
     </div>

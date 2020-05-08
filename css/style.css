@@ -694,6 +694,15 @@ i.fa-search-location {
   padding: 10px;  
 }
 
+.form-chatnames #btnChat{
+  background-color: #132236;
+    color: #ffffff;
+    border: none;
+}
+.form-chatnames #btnChat:hover{
+  background-color:#d37f79;
+  color: #122234;
+}
 
 
 
@@ -723,12 +732,12 @@ i.fa-search-location {
   width: 180px;
 }
 
-.btnOpslaan{
+.btnOpslaan,.btnBack{
   background: #122234;
   border: none;
 }
 
-.btnOpslaan:hover{
+.btnOpslaan:hover, .btnBack:hover{
   background-color:#d37f79;
   color: #122234;
 }
