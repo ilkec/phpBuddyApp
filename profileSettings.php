@@ -175,7 +175,7 @@ $getAllUser = $user->getAll();
                     </div>
                 <?php endif; ?>
 
-                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePhoto">
+                <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updatePhoto">
             </div>
         </form>
         <!-------form algemeen------>
@@ -202,7 +202,7 @@ $getAllUser = $user->getAll();
             <?php endif; ?>
 
             <div class="form_field mt-2 profileform">
-                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updateProfile">
+                <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updateProfile">
             </div>
         </form>
         <!-------form email------>
@@ -224,7 +224,7 @@ $getAllUser = $user->getAll();
                 </div>
             <?php endif; ?>
             <div>
-                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updateEmail">
+                <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updateEmail">
             </div>
             
         </form>
@@ -247,7 +247,7 @@ $getAllUser = $user->getAll();
                 </div>
             <?php endif; ?>
             <div>
-                <input type="submit" value="Save" class="btn btn-primary mb-3" id="btnOpslaan" name="updatePassword">
+                <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updatePassword">
             </div>
             
             <a href="profile.php" class="mt-3 mb-3 btn btn-primary" type="submit" value="Log in">Go back</a>

@@ -723,6 +723,15 @@ i.fa-search-location {
   width: 180px;
 }
 
+.btnOpslaan{
+  background: #122234;
+  border: none;
+}
+
+.btnOpslaan:hover{
+  background-color:#d37f79;
+  color: #122234;
+}
 
 #btnTalk{
 background: #122234;
