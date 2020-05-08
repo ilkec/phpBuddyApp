@@ -96,7 +96,6 @@ try {
                          <input class="logout" type="submit" name="return" value="logout">
                             <a href="sortBuddy.php" class="back" type="submit" value="Log in">Back</a>
                         </form>
-                     
                     </div>
                 </div>
             </div>

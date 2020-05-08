@@ -767,29 +767,14 @@ background: #122234;
 }
 
 
-/* ----------------- Profile ----------------------- */
-#profile-bg {
-  background-image: url(/img/chairs.jpg) center no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 100%;
-  opacity: 0.5;
-}
+/*--------------feature9-matches------------------*/
 
-.profile-form {
+.noMatch{
+  margin-left: 10%;
+}    
 
-  position: absolute;
-  top: 15%;
-  left: 37%;
-  color: #0E0E0E;
-  font-weight: bold;
-}
 
-#p-interests {
-  position: absolute;
-  top: 3em;
-  left: 11em;
-}
+
 /*----------------feature8-reaction-----------------------*/
 #feature8{
   overflow: hidden;

@@ -10,6 +10,11 @@ $user->setId($databaseId['id']);
 
 if (isset($_SESSION['user'])) {
     $matches = $user->showMatches();
+    $matchesCount = count($matches);
+   if($matchesCount === 0){
+       $noMatches = "There were no matches found";
+   }
+
 } else {
     header("Location: feature2.php");
 }
@@ -33,6 +38,9 @@ if (isset($_SESSION['user'])) {
         <h2 class="h2-buddy">Match made between</h2>
        
         <div class="cards">
+            <?php if(isset($noMatches)) : ?>
+            <p class="noMatch"><?php echo $noMatches;?></p>
+            <?php endif; ?>
             <?php foreach ($matches as $match) : ?>
                 <div class="card">
                     <div class="card-body">
