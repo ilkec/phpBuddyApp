@@ -109,8 +109,10 @@ li{
     
     li{
         font-size: 1.3em;
+
+        margin-left: -4%;
     
-        text-align: left;
+        text-align: center;
         text-decoration: none;
     
         list-style-type: none;
