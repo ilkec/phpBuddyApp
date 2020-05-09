@@ -631,7 +631,7 @@ class User
     $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "activate.php?id=" . $activationId;
     $toMail = $this->getEmail();
     $toUser = $this->getFirstname() . $this->getLastname();
-    putenv("SENDGRID_API_KEY=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");
+    putenv("SENDGRID_API_KEY="); //API MOET HIER
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
@@ -645,9 +645,6 @@ class User
     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
       $response = $sendgrid->send($email);
-      //print $response->statusCode() . "\n";
-      //print_r($response->headers());
-      //print $response->body() . "\n";
     } catch (Exception $e) {
       echo 'Caught exception: ' . $e->getMessage() . "\n";
     }
@@ -664,7 +661,7 @@ class User
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     $toMail = $result["email"];
 
-    putenv("SENDGRID_API_KEY=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");
+    putenv("SENDGRID_API_KEY="); //API MOET HIER
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
@@ -675,7 +672,7 @@ class User
       "text/html",
       "<strong> You have a new buddy request, please log in and verify.</strong>"
     );
-    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY')); 
     try {
       $response = $sendgrid->send($email);
       print $response->statusCode() . "\n";
