@@ -27,7 +27,7 @@ if (!empty($_POST['btnChat'])) {
   }
 
 } else {
-    header("Location: feature2.php");
+    header("Location: login.php");
 }
 
 

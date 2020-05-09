@@ -13,7 +13,7 @@ $databaseId = $user->getDatabaseId();
 if (isset($_SESSION['user'])) {
     $matches = $user->showMatches();
 } else {
-    header("Location: feature2.php");
+    header("Location: login.php");
 }
 
 

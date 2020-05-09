@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
     $getAllUser = $user->getAll();
     //var_dump($getAllUser);
 } else {
-    header("Location: feature2.php");
+    header("Location: login.php");
 }
 
 if (isset($_POST['return'])) {
@@ -23,7 +23,7 @@ if (isset($_POST['return'])) {
     session_unset();
     session_destroy();
 
-    header("Location: feature2.php");
+    header("Location: login.php");
     exit;
 }
 

@@ -122,7 +122,7 @@ if (isset($_SESSION['user'])) {
         }
     }
 } else {
-    header("Location: feature2.php");
+    header("Location: login.php");
 }
 
 $getAllUser = $user->getAll();

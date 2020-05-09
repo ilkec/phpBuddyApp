@@ -17,7 +17,7 @@
 <body>
     <div class="log">
         <h2>Your account has been activated!</h2>
-        <a href="feature2.php">Log In</a>
+        <a href="login.php">Log In</a>
     </div>
 </body>
 </html>

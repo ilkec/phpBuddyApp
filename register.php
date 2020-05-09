@@ -34,13 +34,13 @@ if (!empty($_POST)) {
   <!-----------------------------Navbar------------------------------>
  <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link" href="feature2.php">Login</a> </ul>
+      <ul class="nav justify-content-end"> <a class="nav-link" href="login.php">Login</a> </ul>
     </div>
   </nav>
   -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top main-menu">
     <div class="container"> <a class="navbar-brand" href="#"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-      <ul class="nav justify-content-end"> <a class="nav-link" href="feature2.php"><i class="fas fa-sign-in-alt"></i></a> </ul>
+      <ul class="nav justify-content-end"> <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i></a> </ul>
     </div>
   </nav>
   <!------------------------Error-message------------------------->

@@ -12,7 +12,7 @@
     $comment = new comment();
 
     if (!isset($_SESSION['user'])) {
-        header("Location: feature2.php");
+        header("Location: login.php");
     }else{
         $user->setEmail($_SESSION['user']);
         $_SESSION['userid'] = $databaseId['id'];

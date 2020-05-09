@@ -17,7 +17,7 @@ if (isset($_POST['return'])) {
     session_unset();
     session_destroy();
 
-    header("Location: feature2.php");
+    header("Location: login.php");
     exit;
 }
 
