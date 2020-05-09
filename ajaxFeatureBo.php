@@ -49,7 +49,7 @@
                 $("#output").load("profileOfUser.php")
                 
             })
-        )}
+        })
 
         
     </script>
