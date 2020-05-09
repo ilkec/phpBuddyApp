@@ -69,10 +69,10 @@ $showemojis= showReaction::showReactions();
                 <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
                     <strong class="names" ><?php echo htmlspecialchars($chatMessage['fromUser']) . ": "; ?></strong>
                     <p><?php echo htmlspecialchars($chatMessage['message']) ?></p>
-                    <?php foreach($allReactions as $givedReaction):?>
+                    
                         <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
-                        src="<?php echo $givedReaction["src"]; ?>"></span>
-                    <?php endforeach;?>
+                        src="<?php foreach($allReactions as $givedReaction){echo $givedReaction['src'];}?>"></span>
+                  
                 </div>
                 <div class="reactionsBox col-lg-2" id="">
                     <a href="" class="reaction-box-icon" id="showReactionBtn" data-messageid="<?php echo $chatMessage['id']?>">
