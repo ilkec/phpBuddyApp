@@ -65,7 +65,7 @@ if (!empty($_POST['btnTalk'])) {
   $user->sendMatchRequest();
   //$user->sendMatchMail(); //dees heb ik terug aangezet
 
-  header("Location: feature8.php");
+  header("Location: chat.php");
 }
 
 

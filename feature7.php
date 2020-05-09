@@ -25,7 +25,7 @@ $foundmatch = $user->matchUser();
 if (!empty($_POST['btnTalk'])) {
     $idReceiver = $_POST['inputUserId'];
     $_SESSION['chatId'] = $idReceiver;
-    header("Location: feature8.php");
+    header("Location:chat.php");
 }
 
 

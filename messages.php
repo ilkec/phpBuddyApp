@@ -23,7 +23,7 @@ if (!empty($_POST['btnChat'])) {
     $user->setToUser($_SESSION['chatId']);
     $user->setFromUser($databaseId['id']);
     $user->updateNotification();
-    header("Location: feature8.php");
+    header("Location: chat.php");
   }
 
 } else {
