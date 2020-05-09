@@ -39,7 +39,7 @@ class User
   private $moderator; //bespreken me groep
   private $status;
 
- 
+
   //variables used for message system
   private $message;
   private $fromUser;
@@ -907,7 +907,8 @@ class User
     }
   }
 
-  public function getDatabaseEmail(){
+  public function getDatabaseEmail()
+  {
     $conn = Db::getConnection();
     $statement = $conn->prepare('select id from users where email = :email');
     $email = $this->getEmail();
