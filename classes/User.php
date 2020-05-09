@@ -38,7 +38,7 @@ class User
   private $reden;
   private $moderator; //bespreken me groep
   private $status;
-
+  private $api; 
  
   //variables used for message system
   private $message;
@@ -522,6 +522,26 @@ class User
     return $this;
   }
 
+  
+  /**
+   * Get the value of api
+   */ 
+  public function getApi()
+  {
+    return $this->api;
+  }
+
+  /**
+   * Set the value of api
+   *
+   * @return  self
+   */ 
+  public function setApi($api)
+  {
+    $this->api = $api;
+
+    return $this;
+  }
 
   public function countUsers()
   {
@@ -631,7 +651,8 @@ class User
     $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "activate.php?id=" . $activationId;
     $toMail = $this->getEmail();
     $toUser = $this->getFirstname() . $this->getLastname();
-    putenv("SENDGRID_API_KEY="); //API MOET HIER
+    $api = $this->getApi();
+    putenv($api); //API MOET HIER
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
@@ -660,8 +681,8 @@ class User
     $result = $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     $toMail = $result["email"];
-
-    putenv("SENDGRID_API_KEY="); //API MOET HIER
+    $api = $this->getApi();
+    putenv($api); //API MOET HIER
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
@@ -1190,4 +1211,5 @@ class User
     $hardware = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $hardware;
   }
+
 }
