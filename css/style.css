@@ -706,6 +706,13 @@ i.fa-search-location {
   
 }
 
+.showWelkom{
+  width: 100%;
+  background-color: #d37f79;
+  color: #122234;
+  padding: 20px;
+}
+
 .form-chatnames:last-of-type{
   border-bottom:  2px solid #132236;
 }
@@ -1340,6 +1347,8 @@ background: #122234;
     #verzoek {
       border-color: #122234;
     }
+
+    
 
  
 

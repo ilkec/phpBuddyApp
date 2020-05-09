@@ -14,34 +14,41 @@ if (isset($_SESSION['user'])) {
     $databaseId = $user->getDatabaseId();
     $user->setId($databaseId['id']);
     $_SESSION['userid'] = $databaseId['id'];
-    //var_dump($databaseId['id']);
     $getAllUser = $user->getAll();
-    //var_dump($getAllUser);
     $firstname = $getAllUser['firstname'];
-
-
 
     $receiver = new User();
     $receiver->setId($_SESSION['chatId']);
     $receiverInfo = $receiver->getAll();
-    //var_dump($receiverInfo);
-
-
-
-
+  
     $user->setToUser($_SESSION['chatId']);
     $user->setFromUser($databaseId['id']);
     $chatHistory = $user->messagesFromDatabase();
-    //var_dump($chatHistory);
+    $showWelkom = count($chatHistory);
+  
+    
+    if($showWelkom === 0) {
+        $welkomMessage = "You are both interested in the same genre of ";
+        if($getAllUser['games'] === $receiverInfo['games']) {
+            $sameGames = $receiverInfo['games'];
+        } if($getAllUser['films'] === $receiverInfo['films']) {
+            $sameFilms =  $receiverInfo['films'];
+        } if($getAllUser['books'] === $receiverInfo['books']) {
+            $sameBooks = $receiverInfo['books'];
+        } if($getAllUser['music'] === $receiverInfo['music']) {
+            $sameMusic = $receiverInfo['music'];
+        } 
+    }
 
-$user->setToUser($_SESSION['chatId']);
-$user->setFromUser($databaseId['id']);
-$chatHistory = $user->messagesFromDatabase();
-//var_dump($chatHistory);
+    if(isset($sameGames) && isset($sameFilms) && isset($sameBooks) && isset($sameMusic)) {
+        $optionOne = "games(" . $sameGames . ") films( " . $sameFilms .") books(" . $sameBooks . ") and music(". $sameMusic . ").";
+    }
 
 
-$allReactions = reaction::getAll($databaseId['id']);
-$showemojis= showReaction::showReactions();
+   
+
+    $allReactions = reaction::getAll($databaseId['id']);
+    $showemojis= showReaction::showReactions();
 }else{
     header("Location: feature2.php");
 }
@@ -63,6 +70,12 @@ $showemojis= showReaction::showReactions();
     
     <div id="chatpartner" class="row"><a href="messages.php" class="col backBtn"><i class="fas fa-chevron-left"></i></a><h1 class="col reciverName"><?php echo "you are talking to " . htmlspecialchars($receiverInfo['firstname']); ?></h1></div>
     <div class="chatbox-wrapper">
+        <?php if(isset($welkomMessage) && isset($optionOne)) : ?>
+            <div class="showWelkom">
+                <p class="showWelkom-p"><?php echo $welkomMessage . $optionOne;?></p>
+            </div>
+        <?php endif; ?>
+        
         <div class="chatbox">
             <?php foreach ($chatHistory as $chatMessage): ?>
             <div class="messageContainer row"> 
