@@ -1323,12 +1323,22 @@ background: #122234;
       }
   
     /*---------sortbuddy->matches--------*/
+
     #acceptBtn {
       background-color: #122234;
+    }
+    button#acceptBtn:hover{
+      background-color:#d37f79;
+      color: #122234;
     }
   
     #deleteBtn {
       background-color: #122234;
+    }
+
+    button#deleteBtn:hover{
+      background-color:#d37f79;
+      color: #122234;
     }
 
     #contactBtn {
