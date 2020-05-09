@@ -651,17 +651,20 @@ class User
     $activationLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "activate.php?id=" . $activationId;
     $toMail = $this->getEmail();
     $toUser = $this->getFirstname() . $this->getLastname();
+    /*
     $api = $this->getApi();
     putenv($api); //API MOET HIER
-
+    */
+    $apiKey = file_get_contents("key.txt");
+    putenv('SENDGRID_API_KEY='. $apiKey);
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
+    $email->setFrom("phpbuddyappemailer@gmail.com", "PHP buddy app");
     $email->setSubject("Activate your Buddy App Account.");
     $email->addTo($toMail, $toUser);
     $email->addContent("text/plain", "Your account has been created, please click the following link to activate your account: " . $activationLink);
     $email->addContent(
       "text/html",
-      "<strong> Your account has been created, please click the following link to activate your account: " . $activationLink . " </strong>"
+      "<strong> Your account has been created, please click <a href=" . $activationLink . ">Here</a> to activate your account </strong>"
     );
     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
@@ -681,9 +684,12 @@ class User
     $result = $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     $toMail = $result["email"];
+    /*
     $api = $this->getApi();
     putenv($api); //API MOET HIER
-
+    */
+    $apiKey = file_get_contents("key.txt");
+    putenv('SENDGRID_API_KEY='. $apiKey);
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
     $email->setSubject("You have a new buddy request!");
