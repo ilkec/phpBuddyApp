@@ -1,9 +1,9 @@
-body{
+body {
     background-color: #132236;
 }
 
-p{
-text-align: center;
+p {
+    text-align: center;
 
     color: #ffffff;
 
@@ -12,11 +12,11 @@ text-align: center;
     font-size: 2.5em;
 }
 
-.images_div{
+.images_div {
     text-align: center;
 }
 
-.images{
+.images {
     background-color: #f19d90;
 
     text-align: center;
@@ -26,36 +26,36 @@ text-align: center;
     margin-top: 25vh;
 }
 
-@media only screen and (max-width: 850px){
-    body{
+@media only screen and (max-width: 850px) {
+    body {
         background-color: #132236;
     }
-    
-    p{
-    text-align: center;
-    
+
+    p {
+        text-align: center;
+
         color: #ffffff;
-    
+
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-style: normal;
         font-size: 2.5em;
     }
-    
-    .images_div{
+
+    .images_div {
         text-align: center;
     }
-    
-    .images{
+
+    .images {
 
         width: 50%;
 
         background-color: #f19d90;
-    
+
         text-align: center;
-    
+
         border: 3px solid #f19d90;
         border-radius: 10px;
-    
+
         margin-top: 5vh;
     }
 }

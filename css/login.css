@@ -1,291 +1,291 @@
- body{
-        background-color: #132236;
-        width: 100%;
-    }
+ body {
+     background-color: #132236;
+     width: 100%;
+ }
 
-    h2{
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        margin-left: 15px;
-        padding-top: 20px;
+ h2 {
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     margin-left: 15px;
+     padding-top: 20px;
 
-        color: #ffffff;
-    }
-    
-    p{
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-style: normal;
-        
-        margin-left: 15px;
+     color: #ffffff;
+ }
 
-        color: #ffffff;
-    }
-    
-    a{
-        width: 100%;
+ p {
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-style: normal;
 
-        display: block;
-    
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-style: normal;
-        font-size: 25px;
+     margin-left: 15px;
 
-        text-decoration: none;  
-        text-align: center;   
-                
-        color: #ffffff;
-        background-color: #132236;
-        
-        margin-top: 25px;
+     color: #ffffff;
+ }
 
-        padding-bottom: 0px;
+ a {
+     width: 100%;
 
-        
-    }
-    
-    label{
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-style: normal;
+     display: block;
 
-        color: #ffffff;
-    
-        display: block;
-    
-        margin-left: 15px;
-        margin-top:25px;
-    }
-    
-    .fs{
-        border: none;
-        
-        width: 90%;
-        
-    }
-    
-    form{
-        width: 35%;
-        height: 150px;
-           
-        
-    }
-    
-    #login-img {
-        
-        width:65%;
-        margin-left: 0;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-style: normal;
+     font-size: 25px;
 
-        padding-top: 80px;
-        padding-left: 20%;
-      }
+     text-decoration: none;
+     text-align: center;
 
-      
-      #login-form {
-        
-        height: 50vh;
-        width: 100%;
-        background-color: #132236;
-    
-        justify-content: center;
-        
-        margin-top: -20px;
-        margin-right: 0;
-        margin-left: 0;
+     color: #ffffff;
+     background-color: #132236;
 
-        padding-top: 0;   
+     margin-top: 25px;
 
-        margin-bottom: -20px;
-        
-        color: #132236;
-
-        /*--- Dit is zodat er GEEN boxshadow in de mobile versie is ---*/
-
-        -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.00);
-        -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.0);
-        box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.0);
-       
-        
-        
-      }
-    
-      .form-control{
-
-        background-color: #132236;
-
-        width: 85%;
-        height: 35px;
-        
-        border-bottom: 1px #f19d90;
-        border-style: hidden hidden solid hidden;
-
-        margin-left: 7.5%;
-        margin-top:0px;
-        
-        
-      }
-    
-    .buttton{
-
-        width: 115%;
-    
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-style: normal;
-        font-size: 25px;
-    
-        background-color: #192e45;
-        color: #f19d90;
-        border: none;
-    
-        padding-top: 25px;
-        padding-bottom: 25px;
-
-        margin-top: 7vh;
-        margin-left: -7.5%;
-        margin-right: -7.5%;
-        
-    
-    }
-
-    
- 
-/*---- dit is groot scherm---- */
-@media only screen and (min-width: 850px){
-
-body{
-    background-color: #192e45;
-}
-
-h2{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-left: 15px;
-    padding-top: 20px;
-
-    color: #ffffff;
-}
-
-p{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: normal;
-    
-    margin-left: 15px;
-
-    color: #ffffff;
-}
-
-a{
-    width: 100%;
-
-    display: block;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: normal;
-    font-size: 25px;
-
-    text-decoration: none;  
-    text-align: center;   
-            
-    color: #ffffff;
-    background-color: #132236;
-    
-    margin-top: 25px;
-    
-    padding-bottom: 25px;
+     padding-bottom: 0px;
 
 
-    
-    
-}
+ }
 
-label{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: normal;
+ label {
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-style: normal;
 
-    color: #ffffff;
+     color: #ffffff;
 
-    display: block;
+     display: block;
 
-    margin-left: 15%;
-    margin-top:25px;
+     margin-left: 15px;
+     margin-top: 25px;
+ }
 
-    text-align: left;
-}
+ .fs {
+     border: none;
 
-.fs{
-    width: 35%;
-    border: none;
-    
-}
+     width: 90%;
 
-form{
-    
-    height: 150px;       
-    
-}
+ }
 
-#login-img {    
-    
-    width: 40%;
+ form {
+     width: 35%;
+     height: 150px;
 
-    margin-left: 113%;
-    
-    padding-top: 80px;
-    padding-left: 0;
-  }
-  
-#login-form {
 
-    text-align: center;
+ }
 
-    height: 50vh;
-    width: 60%;
-    background-color: #132236;
-    
-    margin-top: -185px;
-    margin-left: 100%;
+ #login-img {
 
-    padding-top: 30%;   
-    
-    -webkit-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 28px 2px rgba(0,0,0,0.75);
-    
-  }
+     width: 65%;
+     margin-left: 0;
 
-.form-control{
+     padding-top: 80px;
+     padding-left: 20%;
+ }
 
-    background-color: #132236;
 
-    color: #ffffff;
+ #login-form {
 
-    width: 75%;
-    height: 35px;
-    
-    border-bottom: 1px #f19d90;
-    border-style: hidden hidden solid hidden;
+     height: 50vh;
+     width: 100%;
+     background-color: #132236;
 
-    margin-left: 0;
-    margin-top:0px;
-    
-    
-  }
+     justify-content: center;
 
-.buttton{
+     margin-top: -20px;
+     margin-right: 0;
+     margin-left: 0;
 
-    width: 100%;
+     padding-top: 0;
 
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: normal;
-    font-size: 25px;
+     margin-bottom: -20px;
 
-    background-color: #192e45;
-    color: #f19d90;
-    border: none;
+     color: #132236;
 
-    padding-top: 25px;
-    padding-bottom: 25px;
+     /*--- Dit is zodat er GEEN boxshadow in de mobile versie is ---*/
 
-    margin-left: -7.5%;
-    margin-right: -7.5%;
-    
+     -webkit-box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.00);
+     -moz-box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.0);
+     box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.0);
 
-}
 
-}
+
+ }
+
+ .form-control {
+
+     background-color: #132236;
+
+     width: 85%;
+     height: 35px;
+
+     border-bottom: 1px #f19d90;
+     border-style: hidden hidden solid hidden;
+
+     margin-left: 7.5%;
+     margin-top: 0px;
+
+
+ }
+
+ .buttton {
+
+     width: 115%;
+
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-style: normal;
+     font-size: 25px;
+
+     background-color: #192e45;
+     color: #f19d90;
+     border: none;
+
+     padding-top: 25px;
+     padding-bottom: 25px;
+
+     margin-top: 7vh;
+     margin-left: -7.5%;
+     margin-right: -7.5%;
+
+
+ }
+
+
+
+ /*---- dit is groot scherm---- */
+ @media only screen and (min-width: 850px) {
+
+     body {
+         background-color: #192e45;
+     }
+
+     h2 {
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         margin-left: 15px;
+         padding-top: 20px;
+
+         color: #ffffff;
+     }
+
+     p {
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         font-style: normal;
+
+         margin-left: 15px;
+
+         color: #ffffff;
+     }
+
+     a {
+         width: 100%;
+
+         display: block;
+
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         font-style: normal;
+         font-size: 25px;
+
+         text-decoration: none;
+         text-align: center;
+
+         color: #ffffff;
+         background-color: #132236;
+
+         margin-top: 25px;
+
+         padding-bottom: 25px;
+
+
+
+
+     }
+
+     label {
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         font-style: normal;
+
+         color: #ffffff;
+
+         display: block;
+
+         margin-left: 15%;
+         margin-top: 25px;
+
+         text-align: left;
+     }
+
+     .fs {
+         width: 35%;
+         border: none;
+
+     }
+
+     form {
+
+         height: 150px;
+
+     }
+
+     #login-img {
+
+         width: 40%;
+
+         margin-left: 113%;
+
+         padding-top: 80px;
+         padding-left: 0;
+     }
+
+     #login-form {
+
+         text-align: center;
+
+         height: 50vh;
+         width: 60%;
+         background-color: #132236;
+
+         margin-top: -185px;
+         margin-left: 100%;
+
+         padding-top: 30%;
+
+         -webkit-box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.75);
+         -moz-box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.75);
+         box-shadow: 10px 10px 28px 2px rgba(0, 0, 0, 0.75);
+
+     }
+
+     .form-control {
+
+         background-color: #132236;
+
+         color: #ffffff;
+
+         width: 75%;
+         height: 35px;
+
+         border-bottom: 1px #f19d90;
+         border-style: hidden hidden solid hidden;
+
+         margin-left: 0;
+         margin-top: 0px;
+
+
+     }
+
+     .buttton {
+
+         width: 100%;
+
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         font-style: normal;
+         font-size: 25px;
+
+         background-color: #192e45;
+         color: #f19d90;
+         border: none;
+
+         padding-top: 25px;
+         padding-bottom: 25px;
+
+         margin-left: -7.5%;
+         margin-right: -7.5%;
+
+
+     }
+
+ }
