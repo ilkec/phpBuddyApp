@@ -53,7 +53,7 @@ if (!empty($_POST)) {
 				var_dump($books);
 
 				if (is_null($games) && is_null($books) && is_null($music) && is_null($location) && is_null($films)) {
-					header("Location: feature4.php");
+					header("Location: profileComplete.php");
 				} else {
 					header("Location: sortBuddy.php");
 				}
@@ -91,9 +91,9 @@ if (!empty($_POST)) {
 			<form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
 				<h2 form__title></h2>
 				<?php if (isset($error)) : ?>
-				<p>
-					<?php echo htmlspecialchars($error); ?>
-				</p>
+					<p>
+						<?php echo htmlspecialchars($error); ?>
+					</p>
 				<?php endif; ?>
 				<label for="email">Email</label>
 				<input class="form-control" type="text" id="email" name="email">
