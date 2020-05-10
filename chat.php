@@ -40,7 +40,7 @@ if (isset($_SESSION['user'])) {
     }
 
     if(isset($sameGames) && isset($sameFilms) && isset($sameBooks) && isset($sameMusic)) {
-        $optionOne = "games(" . $sameGames . ") films( " . $sameFilms .") books(" . $sameBooks . ") and music(". $sameMusic . ").";
+        $optionOne = "games(" . $sameGames . "), films(" . $sameFilms ."), books(" . $sameBooks . ") and music(". $sameMusic . ").";
     }
 
 
