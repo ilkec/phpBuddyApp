@@ -223,7 +223,8 @@
             return $result;
         }
 
-        public function getReplies($parent_id){
+        public function getReplies($parent_id)
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = :parent_id ORDER BY id DESC");
             $statement->bindValue(':parent_id', $parent_id);
@@ -232,7 +233,8 @@
             return $result;
         }
 
-        public function getAllComments(){
+        public function getAllComments()
+        {
             $conn = Db::getConnection();
             //get all stand alone comments
             $statement = $conn->prepare("SELECT * FROM comment WHERE parent_comment_id = '0' ORDER BY upvote_count DESC");
@@ -284,7 +286,8 @@
             return $result;
         }
 
-        public function getUpvoter(){
+        public function getUpvoter()
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("select comment_id from upvote where user_id = :userid");
             $userid = $this->getId();

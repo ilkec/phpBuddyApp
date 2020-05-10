@@ -13,10 +13,11 @@ $connectedUserEmail= $_SESSION['user'];
  
 
 
-public static function showReactions(){
-     $conn = Db::getConnection();
- $statement = $conn->prepare("select id, name, src from reaction");
- $result = $statement->execute();
+public static function showReactions()
+{
+    $conn = Db::getConnection();
+    $statement = $conn->prepare("select id, name, src from reaction");
+    $result = $statement->execute();
 
  return $statement->fetchAll(PDO::FETCH_ASSOC);
 

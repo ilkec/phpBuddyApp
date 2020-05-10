@@ -48,7 +48,8 @@
             return $result;
         }
 
-        public function getUpvoter(){
+        public function getUpvoter()
+        {
             $conn = Db::getConnection();
             $statement = $conn->prepare("select comment_id from upvote where user_id = :userid");
             $userid = $this->getId();
