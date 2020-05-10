@@ -23,7 +23,7 @@ if (isset($_SESSION['user'])) {
                 $user->setLocation($_POST['location']);
                 $user->setBooks($_POST['books']);
                 $user->saveInterests();
-                header('Location:feature5.php');
+                header('Location:buddyChoise.php');
             } catch (\Throwable $th) {
                 $error = $th->getMessage();
             }
@@ -54,7 +54,7 @@ if (isset($_SESSION['user'])) {
             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
                 <?php echo $error ?>
             <?php endif; ?>
-            <img src="img/we-are-imd.jpg" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+            <img src="img/logo.png" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
             <form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
                 <h2> Vervolledig u profiel </h2>
                 <div class="form__field mt-2">

@@ -49,7 +49,7 @@ if (!empty($_POST['btnTalk'])) {
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid"> <a class="navbar-brand" href="feature7.php"><img src="img/Logo.png" width="70em" alt="MyBuddyApp"></a>
-            <ul class="pt-2"><a href="feature5.php" class="btn btn-primary">Mijn profiel</a></ul>
+            <ul class="pt-2"><a href="buddyChoise.php" class="btn btn-primary">Mijn profiel</a></ul>
         </div>
     </nav>
     <?php
@@ -111,7 +111,7 @@ if (!empty($_POST['btnTalk'])) {
             }
             ?>
         </div>
-        <a href="feature5.php" class="btn btn-primary">Mijn profiel</a>
+        <a href="buddyChoise.php" class="btn btn-primary">Mijn profiel</a>
     </div>
 </body>
 
