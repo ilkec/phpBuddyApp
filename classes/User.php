@@ -38,8 +38,8 @@ class User
   private $reden;
   private $moderator; //bespreken me groep
   private $status;
-  private $api; 
- 
+  private $api;
+
   //variables used for message system
   private $message;
   private $fromUser;
@@ -522,10 +522,10 @@ class User
     return $this;
   }
 
-  
+
   /**
    * Get the value of api
-   */ 
+   */
   public function getApi()
   {
     return $this->api;
@@ -535,7 +535,7 @@ class User
    * Set the value of api
    *
    * @return  self
-   */ 
+   */
   public function setApi($api)
   {
     $this->api = $api;
@@ -617,9 +617,11 @@ class User
   public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update users set buddy = '2' where id = :userid");
+    $statement = $conn->prepare("update users set buddy = '2' where id = :userid and user_id2 = :buddyid");
     $userid = $this->getId();
+    $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);
+    $statement->bindParam(":buddyid", $buddyid);
     $result = $statement->execute();
     return $result;
   }
@@ -656,7 +658,7 @@ class User
     putenv($api); //API MOET HIER
     */
     $apiKey = file_get_contents("key.txt");
-    putenv('SENDGRID_API_KEY='. $apiKey);
+    putenv('SENDGRID_API_KEY=' . $apiKey);
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("phpbuddyappemailer@gmail.com", "PHP buddy app");
     $email->setSubject("Activate your Buddy App Account.");
@@ -689,7 +691,7 @@ class User
     putenv($api); //API MOET HIER
     */
     $apiKey = file_get_contents("key.txt");
-    putenv('SENDGRID_API_KEY='. $apiKey);
+    putenv('SENDGRID_API_KEY=' . $apiKey);
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
     $email->setSubject("You have a new buddy request!");
@@ -699,7 +701,7 @@ class User
       "text/html",
       "<strong> You have a new buddy request, please log in and verify.</strong>"
     );
-    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY')); 
+    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
     try {
       $response = $sendgrid->send($email);
       print $response->statusCode() . "\n";
@@ -1218,5 +1220,4 @@ class User
     $hardware = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $hardware;
   }
-
 }
