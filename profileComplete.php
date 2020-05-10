@@ -49,12 +49,12 @@ if (isset($_SESSION['user'])) {
 </head>
 
 <body class="container-fluid bg-feature4">
-    <div class="row">
+    <div class="row" id="formComplete">
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
                 <?php echo $error ?>
             <?php endif; ?>
-            <img src="img/logo.png" alt="weareimd" class="col-lg-6 col-md-6 d-none d-md-block" id="login-img">
+            <img src="img/logo.png" alt="weareimd" class="" id="login-img">
             <form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
                 <h2> Vervolledig u profiel </h2>
                 <div class="form__field mt-2">

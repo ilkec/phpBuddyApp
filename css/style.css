@@ -1411,6 +1411,15 @@ a#btnSendMessage {
   color: white;
 }
 
+#login-img {
+  width: 45%;
+}
+
+#formComplete {
+  padding-top: 10%;
+  padding-left: 5%;
+}
+
 /*---------sortbuddy->matches--------*/
 
 #acceptBtn {
