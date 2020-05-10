@@ -1,7 +1,7 @@
 <?php
 include_once(__DIR__ .'../../classes/User.php');
 include_once(__DIR__ . '../../classes/Db.php');
-class showReaction{
+class ShowReaction{
   
 /*
 $user = new User();
