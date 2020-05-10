@@ -89,7 +89,7 @@ if ($notification > 0) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Buddyfixers</title>
-  
+
 </head>
 
 <body>
@@ -108,20 +108,20 @@ if ($notification > 0) {
     ?>
       <form id="verzoek" action="" method="POST">
         <div>
-          <h4>You've got a new buddy request<?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
-          <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
-          <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
+          <h4>You've got a new buddy request from <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
+          <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accept</button>
+          <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Delete</button>
         </div> <?php
                 if (isset($_POST['acceptBtn'])) {
                   $user->setBuddy($m['user_id2']);
                   $user->acceptMatchRequest();
                   $user->checkBuddy();
-                  echo "Verzoek geaccepteerd!";
+                  echo "Request accepted";
                 }
                 if (isset($_POST['deleteBtn'])) {
                   $user->setBuddy($m['user_id2']);
                 ?>
-          <label for='Reden'>U kan hier de reden geven waarom u dit verzoek weigert.</label><br>
+          <label for='Reden'>Please give us a reason why you want to delete these matches.</label><br>
           <input type='text' id='reden' name='reden' size='51'>
           <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
           <?php // } 
@@ -131,7 +131,7 @@ if ($notification > 0) {
                     $user->setReden($_POST['reden']);
                     $user->deleteMatchRequest();
                     $user->geefReden();
-                    echo "Verzoek verwijderd!";
+                    echo "Request deleted!";
                   }
                 }
               }
@@ -172,7 +172,7 @@ if ($notification > 0) {
         <a href="searchUser.php">
           <div class="type-select btn btn-primary"><i class="fas fa-search icon"></i></div>
         </a>
-        
+
       </form>
       <div class="container-list">
         <div class="alert alert-secondary alertToUser" role="alert">you can only send a buddy request to users who match 100% with you</div>
