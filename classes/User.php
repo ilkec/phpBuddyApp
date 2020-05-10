@@ -658,7 +658,7 @@ class User
     putenv($api); //API MOET HIER
     */
     $apiKey = file_get_contents("key.txt");
-    putenv('SENDGRID_API_KEY=' . $apiKey);
+    putenv("");
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("phpbuddyappemailer@gmail.com", "PHP buddy app");
     $email->setSubject("Activate your Buddy App Account.");
@@ -691,9 +691,9 @@ class User
     putenv($api); //API MOET HIER
     */
     $apiKey = file_get_contents("key.txt");
-    putenv('SENDGRID_API_KEY=' . $apiKey);
+    putenv("");
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("no.reply.buddy.app@hotmail.com", "PHP buddy app");
+    $email->setFrom("phpbuddyappemailer@gmail.com", "PHP buddy app");
     $email->setSubject("You have a new buddy request!");
     $email->addTo($toMail, $toUser);
     $email->addContent("text/plain", "You have a new buddy request, please log in and verify.");

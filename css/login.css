@@ -65,6 +65,8 @@
      width: 35%;
      height: 150px;
 
+     color: #ffffff;
+
 
  }
 
@@ -83,6 +85,7 @@
      height: 50vh;
      width: 100%;
      background-color: #132236;
+     color: #ffffff;
 
      justify-content: center;
 
@@ -93,8 +96,6 @@
      padding-top: 0;
 
      margin-bottom: -20px;
-
-     color: #132236;
 
      /*--- Dit is zodat er GEEN boxshadow in de mobile versie is ---*/
 
@@ -109,6 +110,7 @@
  .form-control {
 
      background-color: #132236;
+     color: #ffffff;
 
      width: 85%;
      height: 35px;
