@@ -75,7 +75,7 @@
             $post->setId($databaseId['id']);
             $oneUpvote = $post->getUpvoter();
             
-            //var_dump($output);
+            var_dump($oneUpvote);
 
         
 ?>
@@ -133,7 +133,7 @@
                             <p><?php echo $errorUpvote ;?></p>
                         <?php unset($errorUpvote);}
                          else {?>
-                            <a href="#" id="upvote" data-commentid="<?php echo $row['id'];?>" data-number="<?php echo $row['upvote_count'];?>"><?php echo $setUpvoteBtn; ?></a> 
+                            <a href="#" id="upvote" data-commentid="<?php echo $row['id'];?>" data-number="<?php echo $row['upvote_count'];?>">Upvote</a> 
                          <?php unset($setUpvoteBtn); } ?>
 
                         
