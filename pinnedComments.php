@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <div><a class="pinn_btn" href="feature20.php">Go back to comments</a></div>
+    <div><a class="pinn_btn" href="faq.php">Go back to comments</a></div>
     <?php foreach($output as $row): ?>
 
     <div class="comment_container">

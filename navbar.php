@@ -35,7 +35,7 @@ if ($notification > 0) {
         </div></a>
     
   </li>
-  <li data-num="4" class="tab wave dark"><a href="feature20.php"><i class="fas fa-sticky-note"></i></a></li>
+  <li data-num="4" class="tab wave dark"><a href="faq.php"><i class="fas fa-sticky-note"></i></a></li>
   <li data-num="5" class="tab wave dark"><a href="sortBuddy.php"><i class="fas fa-home"></i></a></li>
   <div class="indicator"></div>
 </ul>
