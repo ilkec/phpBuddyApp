@@ -43,7 +43,7 @@ if (isset($_SESSION['user'])) {
         $optionOne = "games(" . $sameGames . "), films(" . $sameFilms ."), books(" . $sameBooks . ") and music(". $sameMusic . ").";
     }
 
-    $allReactions = reaction::getAll($databaseId['id']);
+    $allReactions = reaction::getAll();
     $showemojis= showReaction::showReactions();
 }else {
     header("Location: login.php");

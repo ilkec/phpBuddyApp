@@ -54,7 +54,7 @@ public function setUserId($userId)
     return $result;
   }
   
-  public static function getAll($userId)
+  public static function getAll()
   {
      $conn = Db::getConnection();
      //$statement = $conn->prepare("SELECT reaction.src FROM message_reactions,reaction, messages where message_reactions.usr_id = :uId and message_reactions.msg_id = messages.id");

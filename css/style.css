@@ -459,12 +459,6 @@ img.avatar {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
 }
 
-.container-list::-webkit-scrollbar {
-  background: #d37f79;
-  width: 10px;
-}
-
-
 h2.user-name.col-xs-5 {
   font-size: 19px;
   text-transform: capitalize;
