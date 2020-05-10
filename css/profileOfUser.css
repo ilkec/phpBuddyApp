@@ -3,10 +3,10 @@
 @media only screen and (max-width: 850px){
 
 body{
-    background-color: #132236;
+    background-color: #ffffff;
 }
 h3{
-    color: #ffffff;
+    color: #132236;
 
     margin: 0;
     margin-top: 3%;
@@ -27,7 +27,7 @@ li{
 
 #p-interests{
 
-    color: #ffffff;
+    color: #132236;
 
     border-radius: 5px;
 
@@ -95,10 +95,10 @@ li{
 @media only screen and (min-width: 850px){
 
     body{
-        background-color: #132236;
+        background-color: #ffffff;
     }
     h3{
-        color: #ffffff;
+        color: #132236;
     
         margin: 0;
 
@@ -120,14 +120,14 @@ li{
     
     #p-interests{
 
-        width: 60%;
+        width: 40%;
     
-        color: #ffffff;
+        color: #132236;
     
         border-radius: 5px;
     
         margin-top: 5%;
-        margin-left: 20%;
+        margin-left: 30%;
     
         padding-bottom: 5%;
     
