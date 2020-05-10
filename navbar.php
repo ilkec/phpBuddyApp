@@ -22,7 +22,7 @@ if ($notification > 0) {
 <nav class="navbar navbar-expand-md navbar-dark fixed-top main-menu sortbuddy">
    
 <ul class="tab-bar">
-  <li data-num="2" class="tab wave dark"><a href="feature22.php"><i class="fas fa-address-book"></i></a></li>
+  <li data-num="2" class="tab wave dark"><a href="contacts.php"><i class="fas fa-address-book"></i></a></li>
   <li data-num="3" class="tab wave dark"><?php if (isset($showNotification)) : ?>
   <div class="errorNotification"><?php echo $showNotification; ?></div><?php endif; ?>
   <a href="messages.php"><i class="fas fa-comment"></i></a>

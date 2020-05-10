@@ -46,7 +46,7 @@ if (isset($_SESSION['user'])) {
     $allReactions = reaction::getAll($databaseId['id']);
     $showemojis= showReaction::showReactions();
 }else {
-    header("Location: feature2.php");
+    header("Location: login.php");
 }
 ?>
 
