@@ -36,13 +36,13 @@
     $error = '';
     $response = '';
     $parentId = 0;
-    if(!empty($_GET)){
+    if (!empty($_GET)) {
         $parent = $_GET['parent'];
         $response = 'Replying to comment: ' . $parent;
         $parentId = $parent;
     }
-    if(!empty($_POST)){
-        if(isset($_POST['pin'])){
+    if (!empty($_POST)) {
+        if (isset($_POST['pin'])) {
             $pinnedId = $_POST['pin'];
             $comment = new comment();
             $comment->setPinned($pinnedId);
@@ -52,17 +52,17 @@
             $comment->setParent_Id($parentId);
             $comment->setSenderName($user->getFirstName() . ' ' .  $user->getLastName());
             
-            if(empty($_POST['comment_name'])){
+            if (empty($_POST['comment_name'])) {
                 $error      = 'no comment title';
             }else{
                 $comment->setTitle($_POST['comment_name']);
             }
-            if(empty($_POST['comment_content'])){
+            if (empty($_POST['comment_content'])) {
                 $error      = 'no comment content';
             }else{
                 $comment->setComment($_POST['comment_content']);
             }
-            if($error == ''){
+            if ($error == '') {
                 $comment->addComment();
                 $error      = 'Comment succesfully posted';
                 $output     = $dummyComment->getAllComments($isModerator);
@@ -120,7 +120,7 @@
                     <p><?php echo htmlspecialchars($row["comment"]) ;?></p>                                      
 
                     <?php foreach($oneUpvote as $upvoteForId){ 
-                        if($upvoteForId['comment_id'] ===  $row["id"]) {
+                        if ($upvoteForId['comment_id'] ===  $row["id"]) {
                             $errorUpvote = "You already upvoted";
                         } else {
                             $setUpvoteBtn = "upvote";
@@ -129,7 +129,7 @@
 
                     <div class="upvoteclass">
                         <p id="upvoteCount"><?php echo $row['upvote_count']; ?></p>
-                        <?php if(isset($errorUpvote)){ ?>
+                        <?php if (isset($errorUpvote)) { ?>
                             <p><?php echo $errorUpvote ;?></p>
                         <?php unset($errorUpvote);}
                          else {?>
