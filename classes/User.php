@@ -921,7 +921,7 @@ class User
               $statement->bindValue(":password", $password);
               $statement->bindValue(":register", $register);
               $result = $statement->execute();
-              //header("Location: feature4.php");
+              //header("Location: profileComplete.php");
 
               return $conn->lastInsertId();
             }
