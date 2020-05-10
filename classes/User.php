@@ -617,7 +617,7 @@ class User
   public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update users set buddy = '2' where id = :userid and user_id2 = :buddyid");
+    $statement = $conn->prepare("update users set buddy = '2' where id = :userid");
     $userid = $this->getId();
     $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);
