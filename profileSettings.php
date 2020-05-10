@@ -86,14 +86,19 @@ if (isset($_SESSION['user'])) {
 
     if (!empty($_POST['updatePassword'])) {
         if (!empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])) {
-            $password = password_hash($_POST['passwordNew'], PASSWORD_DEFAULT, ['cost' => 14]);
-            $user->setPasswordNew($password);
-            $oldPassword = $_POST['passwordOld'];
-            if ($user->checkPassword($oldPassword) == true) {
-                $user->updatePassword();
+            if(strlen($_POST['passwordNew']) < 8 ) {
+                $errorPassword = "Password must be at least 8 characters long";
             } else {
-                $errorPassword = "Old password isn't correct. Try again";
+                $password = password_hash($_POST['passwordNew'], PASSWORD_DEFAULT, ['cost' => 14]);
+                $user->setPasswordNew($password);
+                $oldPassword = $_POST['passwordOld'];
+                if ($user->checkPassword($oldPassword) == true) {
+                    $user->updatePassword();
+                } else {
+                    $errorPassword = "Old password isn't correct. Try again";
+                }
             }
+           
         }
 
         else if (empty($_POST['passwordOld']) && !empty($_POST['passwordNew'])) {

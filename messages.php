@@ -61,7 +61,7 @@ if (!empty($_POST['btnChat'])) {
         } 
         if($newMessages > 0) {
             foreach($newMessages as $newMessage) {
-                if ($newMessage['from_user'] === $printId){
+                if ($newMessage['from_user'] === $printId) {
                     $showNotification = "new messages";
                     
                 }
