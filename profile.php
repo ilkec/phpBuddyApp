@@ -30,7 +30,7 @@ if (isset($_POST['return'])) {
 try {
     $allBuddy = $user->profileBuddy();
 } catch (\Throwable $th) {
-    $allBuddy = "Deze persoon heeft nog geen buddies";
+    $allBuddy = "This person doesn't have buddies";
 }
 ?>
 <!DOCTYPE html>

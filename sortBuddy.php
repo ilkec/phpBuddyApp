@@ -108,7 +108,7 @@ if ($notification > 0) {
     ?>
       <form id="verzoek" action="" method="POST">
         <div>
-          <h4>Je hebt een buddyverzoek ontvangen van <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
+          <h4>You've got a new buddy request<?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
           <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accepteren</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Weigeren</button>
         </div> <?php

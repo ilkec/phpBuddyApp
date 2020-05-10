@@ -66,7 +66,7 @@ if (!empty($_POST['btnTalk'])) {
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo htmlspecialchars($m['firstname'] . " " .  $m['lastname']) ?></h5>
-                        <h5> Deze persoon speelt ook graag <?php echo htmlspecialchars($m['games']) ?> games. </h5>
+                        <h5> This person likes to play <?php echo htmlspecialchars($m['games']) ?> games. </h5>
                         <form action="" method="post">
                             <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo htmlspecialchars($m['id']); ?>">
                             <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
@@ -78,7 +78,7 @@ if (!empty($_POST['btnTalk'])) {
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5><?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?> </h5>
-                        <h5> Deze persoon luistert ook graag <?php echo htmlspecialchars($m['music']) ?> muziek. </h5>
+                        <h5> This person like to listen to  <?php echo htmlspecialchars($m['music']) ?> music. </h5>
                         <form action="" method="post">
                             <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
                             <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
@@ -89,7 +89,7 @@ if (!empty($_POST['btnTalk'])) {
                     <div class="col-md-4">
                         <img src="uploads/<?php echo $m['picture'] ?>">
                         <h5> <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?> </h5>
-                        <h5> Deze persoon woont ook in <?php echo htmlspecialchars($m['location']) ?> </h5>
+                        <h5> This person lives at <?php echo htmlspecialchars($m['location']) ?> </h5>
                         <form action="" method="post">
                             <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
                             <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
@@ -100,7 +100,7 @@ if (!empty($_POST['btnTalk'])) {
                     <div class="col-md-4">
                         <img src="uploads/ <?php echo $m['picture'] ?>">
                         <h5><?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h5>
-                        <h5> <br> Deze persoon kijkt ook graag <?php echo htmlspecialchars($m['films']) ?> films en leest ook graag <?php echo htmlspecialchars($m['books']) ?> boeken. <br> </h5>
+                        <h5> <br> This person like to watch <?php echo htmlspecialchars($m['films']) ?> movies and like to read <?php echo htmlspecialchars($m['books']) ?> books. <br> </h5>
                         <form action="" method="post">
                             <input type="hidden" id="inputUserId" name="inputUserId" value="<?php echo $m['id']; ?>">
                             <input type="submit" value="Babbeltje doen?" class="btn btn-primary mb-3" id="btnTalk" name="btnTalk">
@@ -111,7 +111,7 @@ if (!empty($_POST['btnTalk'])) {
             }
             ?>
         </div>
-        <a href="buddyChoise.php" class="btn btn-primary">Mijn profiel</a>
+        <a href="buddyChoise.php" class="btn btn-primary">My profile</a>
     </div>
 </body>
 

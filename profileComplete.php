@@ -56,7 +56,7 @@ if (isset($_SESSION['user'])) {
             <?php endif; ?>
             <img src="img/logo.png" alt="weareimd" class="" id="login-img">
             <form class="col-lg-6 col-md-6" id="login-form" action="" method="post">
-                <h2> Vervolledig u profiel </h2>
+                <h2> Fill in the form completely </h2>
                 <div class="form__field mt-2">
                     <label for="Games">My favorite genre of games</label>
                     <select class="form-control" type="text" id="Games" name="games">

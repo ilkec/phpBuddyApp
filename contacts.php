@@ -29,7 +29,7 @@ $hardware = $user->showHardware();
     <?php include_once("navbar.php") ?>
     <div class="container-fluid box text-center">
         <form id="dropdown" action="" method="get">
-            <label for="responsible">In welk veld hebt u hulp nodig ?</label>
+            <label for="responsible">In what field do you need help</label>
 
             <select type="text" name="selectedOption">
                 <option value="algemeen">Algemeen</option>
