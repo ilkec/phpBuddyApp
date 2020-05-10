@@ -48,19 +48,21 @@ try {
 <body>
     
     <div class="full">
-
-    </nav>
-    <section class="container-fluid">
-        <div id="profile" class="col-lg-6 col-md-6 profile-form">
-            <div class="profile1" > 
-                <div class="profilePictureWrap">
-                <img src="<?php if ($getAllUser['picture'] === NULL) {
-                                echo "uploads/profilePic.png";
-                            } else {
-                                echo "uploads/" . $getAllUser['picture'];
-                            } ?>" alt="profiel foto" class="profilePicture">
-                 </div>           
-             <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
+        <a href="sortBuddy.php">
+            <img class='back-btn'  src="img/back.png" alt="">
+        </a> 
+        </nav>
+        <section class="container-fluid">
+            <div id="profile" class="col-lg-6 col-md-6 profile-form">
+                <div class="profile1" > 
+                    <div class="profilePictureWrap">
+                    <img src="<?php if ($getAllUser['picture'] === NULL) {
+                                    echo "uploads/profilePic.png";
+                                } else {
+                                    echo "uploads/" . $getAllUser['picture'];
+                                } ?>" alt="profiel foto" class="profilePicture">
+                    </div>           
+                <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
 
             </div>
             <!------profiel------->
@@ -69,32 +71,31 @@ try {
                     <h3><?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?></h3>
                 </div>
                 <div>
-                    <h5>Bio</h5>
+                    <h5 class='title'>Bio</h5>
                     <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
                 </div>
 
                 <div>
-                    <h5>Interrests</h5>
+                    <h5 class="title">Interests</h5>
                     <ul>
                         <li><?php echo $getAllUser['games']; ?></li>
                         <li><?php echo $getAllUser['books']; ?></li>
                         <li><?php echo $getAllUser['films']; ?></li>
                         <li><?php echo $getAllUser['music']; ?></li>
                     </ul>
-                    <h5>Buddy</h5>
+                    <h5 class="title">Buddy</h5>
                     <ul>
                         <?php if ($allBuddy == null) {
                             echo "This user doesn't have a buddy";
                         } else { ?>
                             <?php foreach ($allBuddy as $b) { ?>
-                                <?php echo $b['firstname'], $b['lastname'] ?>
+                                <?php echo $b['firstname'] . " " . $b['lastname'] ?>
                         <?php }
                         } ?>
                     </ul>
                      
                         <form action="" method="post">
                          <input class="logout" type="submit" name="return" value="logout">
-                            <a href="sortBuddy.php" class="back" type="submit" value="Log in">Back</a>
                         </form>
                     </div>
                 </div>

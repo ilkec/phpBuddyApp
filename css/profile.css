@@ -2,10 +2,6 @@
 
 /* -----------------Mobiele/tablet versie van de login-------------------- */ 
 
-
-
-  
-
 body{
     background-color: #ffffff;
 }
@@ -14,13 +10,12 @@ li{
     text-align: center;
     list-style-type: none;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.5em;
-    margin-left: -35px;
+    font-size: 1rem;
 }
 
 ul{
     text-align: center;
-    margin-top: -15px;
+    padding: 0px;
 }
 
 h3{
@@ -33,12 +28,12 @@ h5{
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1.5em;
-    margin-top: -10px;;
+    
 }
 
 p{
     text-align: center;
-    margin-top: -20px;
+
 }
 
 
@@ -53,24 +48,24 @@ p{
     width: 180px;
   }
 
-a.back{
-    border: none;
-    border-radius: 2px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    background-color: #132236;
-    color: #ffffff;
-    padding: 5px 15px; 
-    margin-left: 41%;
-    margin-left: auto;
-    margin-right: auto;   
+  .back-btn{
+    display: inline-block;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
+
 
 .profile1{
     text-align: center;
     margin-left: 0%;
 }
+
+.title{
+   color: #d37f79;
+   font-weight:bold;
+}
+
 
 
 #settingsIcon {
@@ -87,12 +82,12 @@ a.back{
 
 .logout{
     display: block;
-    border: none;
+    border: 1px solid #132236;
     border-radius: 2px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1.1em;
-    background-color: #132236;
-    color: #ffffff;
+    background-color: #fff;
+    color: #132236;
     padding: 5px 15px; 
     margin: 0 auto 10px;
 }
@@ -100,147 +95,30 @@ a.back{
 
 
 @media only screen and (min-width: 768px){
-
     .full{
-    
-        border: 3px solid #132236;
-        background-color: #ffffff;
-    
-        margin-left: 35%;
-        margin-right: 35%;
-        margin-top: 10vh;
-    
-        padding-top: 2vh;
-        padding-bottom: 5vh;
-    
+        margin:0px;
+
     }
 
-
-
+    .col-md-6 {
+        max-width: 100%;
+    }
+    
 }
- /*----------------------desktop---------------------------- */
- 
-@media only screen and (min-width: 850px){
 
+@media all and (min-width: 1024px){
+    .container-fluid{
+        width: 50%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        box-shadow: 0px 0px 12px 7px rgba(0,0,0,0.2);
+    }
 
-body{
-    background-color: #ffffff;
     
 
-}
-
-li{
-
-    text-align: center;
-
-    list-style-type: none;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.5em;
-
-    margin-left: -35px;
-
-}
-
-ul{
-    text-align: center;
-}
-
-h3{
-    text-align: center;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 2em;
-}
-
-h5{
-    text-align: center;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.5em;
-
-    margin-top: -10px;;
-}
-
-p{
-    text-align: center;
-}
-
-
-a.back{
-    border: none;
-    border-radius: 2px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    background-color: #132236;
-    color: #ffffff;
-    padding: 5px 15px;
-
-    margin-left: 41%;
-}
-
-
-
-.profile1{
-    text-align: center;
-    margin-left: 28%;
-
-    margin-bottom: -70px;
-}
-
-.profilePictureWrap {
-
-    width: 180px;
-    height: 180px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  
-  .profilePicture{
-    width: 180px;
-  }
-
-.icon1{
-    display: block;
-
-    width: 20px;
-
-    margin-left:-30px;
-    margin-top: -20px;
-    margin-bottom: 10px;
-
-}
-
-
-
-
-.back{
-    margin:0px;
-}
-
-.logout{
-
-    border: none;
-    border-radius: 2px;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.1em;
-
-    background-color: #132236;
-    color: #ffffff;
-
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-
-    margin-left: 33%;
-
-}
-
-.back:hover,.logout:hover{
-    background-color:#d37f79;
-  color: #122234;
-}
+    .logout:hover{
+        border: none;
+        background-color: #d37f79;
+        color: #132236;
+    }
 }
