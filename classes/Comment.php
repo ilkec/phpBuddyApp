@@ -215,7 +215,7 @@
         }
 
         public function getAllPinned()
-        { ///hier kieke
+        { 
             $conn = Db::getConnection();
             $statement = $conn->prepare("SELECT * FROM comment WHERE Pinned = 1 ORDER BY id DESC");
             $statement->execute();
