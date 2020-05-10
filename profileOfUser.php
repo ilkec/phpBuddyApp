@@ -48,59 +48,61 @@ try {
 </style>
 
 <body>
-    
-   
+
+
     <div class="full">
 
-    <a href="sortBuddy.php">
-                    <img class='back_btn'  src="img/back.png" alt="">
-                </a> 
+        <a href="sortBuddy.php">
+            <img class='back_btn' src="img/back.png" alt="">
+        </a>
 
-    </nav>
-    <section class="container-fluid">
+        </nav>
+        <section class="container-fluid">
 
-        <div id="profile" class="">
-            
-            <div class="profile1" > 
-                <div class="profilePictureWrap">
-                <img src="<?php if ($getAllUser['picture'] === NULL) {
+            <div id="profile" class="">
+
+                <div class="profile1">
+                    <div class="profilePictureWrap">
+                        <img src="<?php if ($getAllUser['picture'] === NULL) {
                                 echo "uploads/profilePic.png";
                             } else {
                                 echo "uploads/" . $getAllUser['picture'];
                             } ?>" alt="profiel foto" class="profilePicture">
-                            
-                </div>   
 
-                
-                
+                    </div>
 
-                
-                                   
-            </div>
-            <!------profiel------->
-            <div id="p-interests">
-                <div>
-                    <h3 class='firstname'><?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?></h3>
+
+
+
+
+
                 </div>
-                <div>
-                    <h5 class='bio'>Bio</h5>
-                    <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
-                </div>
+                <!------profiel------->
+                <div id="p-interests">
+                    <div>
+                        <h3 class='firstname'>
+                            <?php echo htmlspecialchars($getAllUser['firstname']) . " " . htmlspecialchars($getAllUser['lastname']); ?>
+                        </h3>
+                    </div>
+                    <div>
+                        <h5 class='bio'>Bio</h5>
+                        <p><?php echo htmlspecialchars($getAllUser['description']); ?></p>
+                    </div>
 
-                <div>
-                    <h5 class='intr'>Interests</h5>
-                    <ul id='like' class="like">
-                        <li><?php echo $getAllUser['games']; ?></li>
-                        <li><?php echo $getAllUser['books']; ?></li>
-                        <li><?php echo $getAllUser['films']; ?></li>
-                        <li><?php echo $getAllUser['music']; ?></li>
-                    </ul>
-                    
-                     
+                    <div>
+                        <h5 class='intr'>Interests</h5>
+                        <ul id='like' class="like">
+                            <li><?php echo $getAllUser['games']; ?></li>
+                            <li><?php echo $getAllUser['books']; ?></li>
+                            <li><?php echo $getAllUser['films']; ?></li>
+                            <li><?php echo $getAllUser['music']; ?></li>
+                        </ul>
+
+
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </section>
 </body>
 

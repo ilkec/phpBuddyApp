@@ -1,5 +1,3 @@
-
-
 <?php
 
 //----what does what------
@@ -28,13 +26,14 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-       /* $(document).ready(function(){
+        /* $(document).ready(function(){
             $("#searchButton").click(function(){
                 //var input = $("#monsieur").val();
                 $("#output").load("doSearchStuff.php", {
@@ -43,18 +42,18 @@
             });
         });*/
 
-         $(document).ready(function(){
-            $("#choose").click(function(){
-             //   var input = $("").val();
+        $(document).ready(function () {
+            $("#choose").click(function () {
+                //   var input = $("").val();
                 $("#output").load("profileOfUser.php")
-                
+
             })
         })
-
-        
     </script>
-    
+
 </head>
+
 <body>
 </body>
+
 </html>
