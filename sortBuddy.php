@@ -175,6 +175,7 @@ if ($notification > 0) {
         
       </form>
       <div class="container-list">
+        <div class="alert alert-secondary alertToUser" role="alert">you can only send a buddy request to users who match 100% with you</div>
         <div class="userContainer">
           <ul class="usersList">
 
