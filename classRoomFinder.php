@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "/classes/Db.php");
-include_once(__DIR__ . "/classes/classrooms.php");
+include_once(__DIR__ . "/classes/Classrooms.php");
 
 $user = new User();
 session_start();
@@ -17,9 +17,9 @@ if (isset($_SESSION['user'])) {
 }
 
 
-$showAllClassRoom = classrooms::searchClassRoom('');
+$showAllClassRoom = Classrooms::searchClassRoom('');
   if(isset($_POST['search'])){
-    $showAllClassRoom = classrooms::searchClassRoom($_POST['searchCampus']);
+    $showAllClassRoom = Classrooms::searchClassRoom($_POST['searchCampus']);
   }
   
 

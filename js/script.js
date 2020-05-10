@@ -142,7 +142,7 @@ $(".reactionsBox").click(function (e) {
    e.preventDefault();
   $.ajax({
         method: "post"
-        , url: "./classes/showReaction.php"
+        , url: "./classes/ShowReaction.php"
         , data: $('.emojisBox').serialize()
         , dataType: "html"
         , success: (respons) => {

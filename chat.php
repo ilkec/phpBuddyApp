@@ -1,8 +1,8 @@
 <?php
 
 include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/classes/reaction.php');
-include_once(__DIR__ . '/classes/showReaction.php');
+include_once(__DIR__ . '/classes/Reaction.php');
+include_once(__DIR__ . '/classes/ShowReaction.php');
 
 
 
@@ -43,8 +43,8 @@ if (isset($_SESSION['user'])) {
         $optionOne = "games(" . $sameGames . "), films(" . $sameFilms ."), books(" . $sameBooks . ") and music(". $sameMusic . ").";
     }
 
-    $allReactions = reaction::getAll();
-    $showemojis= showReaction::showReactions();
+    $allReactions = Reaction::getAll();
+    $showemojis= ShowReaction::showReactions();
 }else {
     header("Location: login.php");
 }
