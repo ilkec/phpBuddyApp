@@ -1401,7 +1401,7 @@ a#btnSendMessage {
 
 }
 
-@media all and (min-width: 1024px){
+@media all and (min-width: 1024px) {
   #profileSettingsForm {
     width: 50%;
     box-shadow: 0px 0px 12px 7px rgba(0, 0, 0, 0.2);
