@@ -36,7 +36,6 @@ class User
   private $books;
   private $buddy;
   private $reden;
-  private $moderator; //bespreken me groep
   private $status;
   private $api;
 

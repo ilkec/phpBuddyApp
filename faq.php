@@ -104,7 +104,7 @@
     <div class="comments_display" id="comments_display">
         <?php foreach($output as $row): ?>
             <div class="comment_container">
-                <?php if($isModerator): ?>
+                <?php if ($isModerator): ?>
                     <form action="" method="POST">
                         <input type="hidden" name="pin" value="<?php echo htmlspecialchars($row["id"])  ?>">   
                         <input class="pin_btn" type="submit" value="Pin">
@@ -152,7 +152,7 @@
             ?>
             <?php foreach($replies as $row): ?>
                 <div class="reply_container" > 
-                    <?php if($isModerator): ?>
+                    <?php if ($isModerator): ?>
                         <form action="" method="POST">
                             <input type="hidden" name="pin" value="<?php echo htmlspecialchars($row["id"]) ; ?>">   
                             <input class="pin_btn" type="submit" value="Pin">
