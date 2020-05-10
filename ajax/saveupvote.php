@@ -1,12 +1,12 @@
 <?php
 
-include_once(__DIR__ . "../../classes/Comment.php");
+include_once(__DIR__ . "../../classes/Post.php");
 
 if(!empty($_POST)){
     
     session_start();
     //new comment
-    $upvote = new Comment();
+    $upvote = new Post();
     $userid = $_SESSION['userid'];
     $commentid = $_POST['commentid'];
     $upvotecount = $_POST['upvotecount'];

@@ -1,7 +1,6 @@
 <?php
 
 include_once(__DIR__ . '/classes/User.php');
-include_once(__DIR__ . '/classes/Comment.php');
 include_once(__DIR__ . '/classes/reaction.php');
 include_once(__DIR__ . '/classes/showReaction.php');
 

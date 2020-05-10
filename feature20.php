@@ -2,6 +2,7 @@
 
     include_once(__DIR__ . '/classes/User.php');
     include_once(__DIR__ . '/classes/Comment.php');
+    include_once(__DIR__ . '/classes/Post.php');
     
     $user = new User();
     session_start();
@@ -69,8 +70,10 @@
             }
             $response = $error;
         } //var_dump($output);
-    }       $comment->setId($databaseId['id']);
-            $oneUpvote = $comment->getUpvoter();
+    }      
+            $post = new Post();
+            $post->setId($databaseId['id']);
+            $oneUpvote = $post->getUpvoter();
             
             //var_dump($output);
 
