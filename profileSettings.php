@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
     }
 
     if (!empty($_POST['updatePhoto'])) {
-        
+      //bron: https://www.w3schools.com/php/php_file_upload.asp  
         $upload_dir = __DIR__ . "/uploads/";
         $upload_file = $upload_dir . date('dmYHis') . basename($_FILES["fileUpload"]["name"]);
         $uploadOk = 1;
@@ -48,22 +48,19 @@ if (isset($_SESSION['user'])) {
                 $uploadOk = 0;
             }
         }
-        // Check file size
         if ($_FILES["fileUpload"]["size"] > 500000) {
-            $errorPhoto = "Sorry, your file is too large.";
+            $errorPhoto = "This file is too large.";
             $uploadOk = 0;
         }
         if ($getAllUser['picture'] === "") {
-            // Allow certain file formats
             if (
                 $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif"
             ) {
-                $errorPhoto = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $errorPhoto = "Only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
         }
-        // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $upload_file)) {
                 $errorPhoto = "The file " . basename($_FILES["fileUpload"]["name"]) . " has been uploaded.";
