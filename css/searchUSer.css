@@ -1,112 +1,110 @@
-
-
 /* -----------------Mobiele/tablet versie van de login-------------------- */
 
 
 /*----------------------searchUser.php---------------------------- */
 
-@media only screen and (max-width: 850px){
-  
-
-body{
-    background-color: #ffffff;
-
-}
-
-a{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-    text-decoration: none;
-    text-align: left;
-
-    color: #132236;
-
-}
-        
-
-ul{
-    text-decoration: none;
-}
-
-li{
-    color: #132236 ;
-
-   list-style-type: none;
-
-   margin: 0 0 10px 0;
-
-   padding: 10px 20px 10px 7px;
-
-   border: 1px solid #132236;
-   border-radius: 20px;
-}
-
-li:hover{
-    color: #d37f79;
-    background-color: #132236;
-}
-
-.search_page{
-    display: inline-block;
-}
-
-.back_btn{
-    display: inline-block;
-    height: 25px;
-    margin-top: -30px;
-}
-
-.searchbar{
-
-    display: inline-block;
-
-    width: 75%;
-    height: 5vh;
-
-    text-align: left;
-
-    font-size: 1em;
-
-    text-decoration: none;
-
-    background-color: #ffffff;
-    color: #d37f79;
-
-    border: 1px solid #d37f79 ;
-    border-radius: 10px;
-
-    margin-left: 12.5%;
-    margin-top: 3vh;
-
-    padding-left: 5px;
-    
-}
-
-.aah{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-    text-align: left;
-
-    font-size: 1.2em;
-
-    margin: 0 0 10px 0;
-
-}
+@media only screen and (max-width: 850px) {
 
 
-#output{
-    display:block;
-    background-color: #ffffff;
+    body {
+        background-color: #ffffff;
 
-    color: #d37f79;
+    }
 
-    padding-top: 15px;
+    a {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-    text-align: left;
+        text-decoration: none;
+        text-align: left;
 
-    margin: 0 0 3px 0;
-    
-}
+        color: #132236;
+
+    }
+
+
+    ul {
+        text-decoration: none;
+    }
+
+    li {
+        color: #132236;
+
+        list-style-type: none;
+
+        margin: 0 0 10px 0;
+
+        padding: 10px 20px 10px 7px;
+
+        border: 1px solid #132236;
+        border-radius: 20px;
+    }
+
+    li:hover {
+        color: #d37f79;
+        background-color: #132236;
+    }
+
+    .search_page {
+        display: inline-block;
+    }
+
+    .back_btn {
+        display: inline-block;
+        height: 25px;
+        margin-top: -30px;
+    }
+
+    .searchbar {
+
+        display: inline-block;
+
+        width: 75%;
+        height: 5vh;
+
+        text-align: left;
+
+        font-size: 1em;
+
+        text-decoration: none;
+
+        background-color: #ffffff;
+        color: #d37f79;
+
+        border: 1px solid #d37f79;
+        border-radius: 10px;
+
+        margin-left: 12.5%;
+        margin-top: 3vh;
+
+        padding-left: 5px;
+
+    }
+
+    .aah {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+        text-align: left;
+
+        font-size: 1.2em;
+
+        margin: 0 0 10px 0;
+
+    }
+
+
+    #output {
+        display: block;
+        background-color: #ffffff;
+
+        color: #d37f79;
+
+        padding-top: 15px;
+
+        text-align: left;
+
+        margin: 0 0 3px 0;
+
+    }
 }
 
 
@@ -115,106 +113,106 @@ li:hover{
 
 /*----------------------searchUser.php---------------------------- */
 
-@media only screen and (min-width: 850px){
+@media only screen and (min-width: 850px) {
 
 
-body{
-    background-color: #ffffff;
+    body {
+        background-color: #ffffff;
 
-}
+    }
 
-a{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    a {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-    text-decoration: none;
-    text-align: left;
+        text-decoration: none;
+        text-align: left;
 
-    color: #132236;
+        color: #132236;
 
-}
-        
-
-ul{
-    text-decoration: none;
-}
-
-li{
-    color: #132236 ;
-
-   list-style-type: none;
-
-   margin: 0 0 10px 0;
-
-   padding: 10px 20px 10px 7px;
-
-   border: 1px solid #132236;
-   border-radius: 20px;
-}
-
-li:hover{
-    color: #d37f79;
-    background-color: #132236;
-}
+    }
 
 
-.back_btn{
-    height: 40px;
-    margin-top: -30px;
-}
+    ul {
+        text-decoration: none;
+    }
 
-.searchbar{
+    li {
+        color: #132236;
 
+        list-style-type: none;
 
-    width: 75%;
-    height: 5vh;
+        margin: 0 0 10px 0;
 
-    text-align: left;
+        padding: 10px 20px 10px 7px;
 
-    font-size: 1em;
+        border: 1px solid #132236;
+        border-radius: 20px;
+    }
 
-    text-decoration: none;
-
-    background-color: #ffffff;
-    color: #d37f79;
-
-    border: 2px solid #d37f79 ;
-    border-radius: 10px;
-
-    margin-left: 5%;
-    margin-top: 3vh;
-
-    padding-left: 5px;
-    
-}
-
-.aah{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-    text-align: left;
-
-    font-size: 1.2em;
-
-    margin: 0 0 10px 0;
-
-}
+    li:hover {
+        color: #d37f79;
+        background-color: #132236;
+    }
 
 
-#output{
-    
-    width: 40%;
+    .back_btn {
+        height: 40px;
+        margin-top: -30px;
+    }
 
-    display:block;
-    background-color: #ffffff;
+    .searchbar {
 
-    color: #d37f79;
 
-    padding-top: 15px;
+        width: 75%;
+        height: 5vh;
 
-    text-align: left;
+        text-align: left;
 
-    margin: 0 0 3px 2.5%;
-    
-}
+        font-size: 1em;
+
+        text-decoration: none;
+
+        background-color: #ffffff;
+        color: #d37f79;
+
+        border: 2px solid #d37f79;
+        border-radius: 10px;
+
+        margin-left: 5%;
+        margin-top: 3vh;
+
+        padding-left: 5px;
+
+    }
+
+    .aah {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+        text-align: left;
+
+        font-size: 1.2em;
+
+        margin: 0 0 10px 0;
+
+    }
+
+
+    #output {
+
+        width: 40%;
+
+        display: block;
+        background-color: #ffffff;
+
+        color: #d37f79;
+
+        padding-top: 15px;
+
+        text-align: left;
+
+        margin: 0 0 3px 2.5%;
+
+    }
 
 
 

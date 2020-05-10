@@ -1,536 +1,542 @@
+/* -----------------Mobiele/tablet versie van de login-------------------- */
 
-/* -----------------Mobiele/tablet versie van de login-------------------- */ 
+@media only screen and (max-width: 850px) {
 
-@media only screen and (max-width: 850px){
-    
-body{
-    background-color: #ffffff;
-}
+    body {
+        background-color: #ffffff;
+    }
 
-p{
-    color: #192e45;
-}
+    p {
+        color: #192e45;
+    }
 
-h3{
-    font-size: 1.5em;
-}
+    h3 {
+        font-size: 1.5em;
+    }
 
-h5{
-    color:#FF5349;
-    font-size: 1em;
-}
+    h5 {
+        color: #FF5349;
+        font-size: 1em;
+    }
 
-.date{
-    color: black;
+    .date {
+        color: black;
 
-    opacity: 0.5;
+        opacity: 0.5;
 
-    font-size: 1em;
+        font-size: 1em;
 
-    margin-left: 0;
-    margin-top: -10px;
-}
+        margin-left: 0;
+        margin-top: -10px;
+    }
 
-.home{
-    display: inline-block;
+    .home {
+        display: inline-block;
 
-    background-color:#192e45;
-    color: #ffffff;
+        background-color: #192e45;
+        color: #ffffff;
 
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
 
-    border: none;
-    border-radius: 10px;
+        border: none;
+        border-radius: 10px;
 
-    padding: 5px 7px;
-    
-    margin-left: 25px;
-}
+        padding: 5px 7px;
 
-.home:hover{
-    background-color: #f19d90;
-    color: #132236;
-}
+        margin-left: 25px;
+    }
 
-.title{
-    /*border: 2px solid #ffffff;    */
-    border-bottom: 1px #f19d90;
-    border-style: hidden hidden solid hidden;
-    
-    color: #132236;
-    background-color: #ffffff;
+    .home:hover {
+        background-color: #f19d90;
+        color: #132236;
+    }
 
-    margin-left: 5%;
-    margin-top: 50px;
+    .title {
+        /*border: 2px solid #ffffff;    */
+        border-bottom: 1px #f19d90;
+        border-style: hidden hidden solid hidden;
 
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-}
+        color: #132236;
+        background-color: #ffffff;
 
-.comment{
-    border: 2px solid #f19d90;  
-    border-radius: 5px;
-    
-    background-color: #132236;
-    color: #ffffff;
+        margin-left: 5%;
+        margin-top: 50px;
 
-    width: 85%;
-    height: 150px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
 
-    margin-left: 5%;
+    .comment {
+        border: 2px solid #f19d90;
+        border-radius: 5px;
 
-    padding-left: 15px;
-    padding-bottom: 85px;
-}
+        background-color: #132236;
+        color: #ffffff;
 
-#upvote{ /* dit is da van ilke blijf er efkes vanaf*/
-    
-    background-color:#192e45;
-    color: #ffffff;
-    
-    border-radius: 5px;
-    padding: 5px 17px;
-    text-decoration: none;
-}
-
-
-.submit_btn{
-    display: inline-block;
-
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+        width: 85%;
+        height: 150px;
 
-    background-color:#192e45;
-    color: #ffffff;
+        margin-left: 5%;
 
-    border: none;
-    border-radius: 10px;
-    
-    padding: 5px 7px;
+        padding-left: 15px;
+        padding-bottom: 85px;
+    }
 
-    text-align: center;
-    text-decoration: none;
+    #upvote {
+        /* dit is da van ilke blijf er efkes vanaf*/
 
-    margin-left: 5%;
-}
+        background-color: #192e45;
+        color: #ffffff;
 
-.submit_btn:hover{
-    background-color: #f19d90;
-    color: #132236;
-}
+        border-radius: 5px;
+        padding: 5px 17px;
+        text-decoration: none;
+    }
 
-.comment_header{
-    color: #f19d90;
-}
 
-.show_date{
-    color: #f19d90;
-}
+    .submit_btn {
+        display: inline-block;
 
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
 
-.pinned_btn{
-    display: inline-block;
+        background-color: #192e45;
+        color: #ffffff;
 
-    background-color:#192e45;
-    color: #ffffff;
+        border: none;
+        border-radius: 10px;
 
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+        padding: 5px 7px;
 
-    border: none;
-    border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
 
-    padding: 5px 7px;
-    
-    margin-left: 15px;
+        margin-left: 5%;
+    }
 
-}
+    .submit_btn:hover {
+        background-color: #f19d90;
+        color: #132236;
+    }
 
-.pinned_btn:hover{
-    background-color: #f19d90;
-    color: #132236;
-}
+    .comment_header {
+        color: #f19d90;
+    }
 
+    .show_date {
+        color: #f19d90;
+    }
 
 
-.comment_container{
+    .pinned_btn {
+        display: inline-block;
 
-    border-bottom: 1px #f19d90;
-    border-top: 1px #f19d90;
-    border-style: solid hidden hidden hidden;
-    
-    color: #ffffff;
+        background-color: #192e45;
+        color: #ffffff;
 
-    width: 90%;
-   
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-bottom: 75px;
-    
-    margin-left: 5%;
-    margin-top: 25px;
-    margin-bottom: 15px;
-}
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
 
-.reply_container{
+        border: none;
+        border-radius: 10px;
 
-    border-bottom: 1px #f19d90;
-    border-top: 1px #f19d90;
-    border-left: 1px #f19d90;
-    border-style: dashed hidden hidden dashed;
-    
-    color: #ffffff;
+        padding: 5px 7px;
 
-    width: 80%;
-   
-    padding-top: 0px;
-    padding-left: 15px;
-    padding-bottom: 75px;
-    
-    margin-left: 15%;
-    margin-top: 25px;
-    margin-bottom: 50px;
-}
+        margin-left: 15px;
 
-.reply_btn, .pin_btn{
-    background-color:#d37f79;
+    }
 
-    display: inline-block;
+    .pinned_btn:hover {
+        background-color: #f19d90;
+        color: #132236;
+    }
 
-    color: #132236;
 
-    border: none;
-    border-radius: 15px;
-   
-    padding: 5px 17px;
 
-    text-align: center;
-    text-decoration: none;
-    
-    font-size: 16px;
+    .comment_container {
 
-    margin-top: 10px;
-    margin-right: 15px;
-}
+        border-bottom: 1px #f19d90;
+        border-top: 1px #f19d90;
+        border-style: solid hidden hidden hidden;
 
-.reply_btn{
+        color: #ffffff;
 
-    float: right;
-    clear: both;
-}
+        width: 90%;
 
-.pin_btn{
+        padding-top: 15px;
+        padding-left: 15px;
+        padding-bottom: 75px;
 
-    float: right;
-    clear: both;
-}
+        margin-left: 5%;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
 
-.pin_btn:hover{
+    .reply_container {
 
-    color: #132236;
-    background-color: #ffffff;
+        border-bottom: 1px #f19d90;
+        border-top: 1px #f19d90;
+        border-left: 1px #f19d90;
+        border-style: dashed hidden hidden dashed;
 
-    border: solid 1px #132236;
-    
-}
-/* -----------------pinnedComments-------------------- */ 
+        color: #ffffff;
 
-.pinn_btn{
-    display: inline-block;
+        width: 80%;
 
-    background-color:#192e45;
-    color: #ffffff;
+        padding-top: 0px;
+        padding-left: 15px;
+        padding-bottom: 75px;
 
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+        margin-left: 15%;
+        margin-top: 25px;
+        margin-bottom: 50px;
+    }
 
-    border: none;
-    border-radius: 10px;
+    .reply_btn,
+    .pin_btn {
+        background-color: #d37f79;
 
-    padding: 5px 7px;
-    
-    margin-left: 15px;
-    margin-top: 25px;
+        display: inline-block;
 
-}
+        color: #132236;
 
-.pinn_btn:hover{
+        border: none;
+        border-radius: 15px;
 
-    background-color: #f19d90;
-    color: #132236; 
+        padding: 5px 17px;
 
-}
+        text-align: center;
+        text-decoration: none;
+
+        font-size: 16px;
+
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+
+    .reply_btn {
+
+        float: right;
+        clear: both;
+    }
+
+    .pin_btn {
+
+        float: right;
+        clear: both;
+    }
+
+    .pin_btn:hover {
+
+        color: #132236;
+        background-color: #ffffff;
+
+        border: solid 1px #132236;
+
+    }
+
+    /* -----------------pinnedComments-------------------- */
+
+    .pinn_btn {
+        display: inline-block;
+
+        background-color: #192e45;
+        color: #ffffff;
+
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+
+        border: none;
+        border-radius: 10px;
+
+        padding: 5px 7px;
+
+        margin-left: 15px;
+        margin-top: 25px;
+
+    }
+
+    .pinn_btn:hover {
+
+        background-color: #f19d90;
+        color: #132236;
+
+    }
 
 
 }
 
 /*-------------------------desktop---------------------------- */
 
-@media only screen and (min-width: 850px){
+@media only screen and (min-width: 850px) {
 
-    body{
+    body {
         background-color: #ffffff;
     }
-    
-    p{
+
+    p {
         color: #192e45;
     }
-    
-    h5{
-        color:#FF5349;
+
+    h5 {
+        color: #FF5349;
         font-size: 1.2em;
     }
-    
-    .date{
+
+    .date {
         color: black;
-    
+
         opacity: 0.5;
-    
+
         margin-left: 20%;
         margin-top: -30px;
     }
-    
-    .home{
+
+    .home {
         display: inline-block;
-    
-        background-color:#192e45;
+
+        background-color: #192e45;
         color: #ffffff;
-    
+
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-    
+
         border: none;
         border-radius: 10px;
-    
+
         padding: 5px 7px;
-        
+
         margin-left: 25px;
     }
-    
-    .home:hover{
+
+    .home:hover {
         background-color: #f19d90;
         color: #132236;
     }
-    
-    .title{
+
+    .title {
         /*border: 2px solid #ffffff;    */
         border-bottom: 2px #f19d90;
         border-style: hidden hidden solid hidden;
-        
+
         color: #192e45;
         background-color: #ffffff;
-    
+
         margin-left: 75px;
         margin-top: 50px;
-    
+
         padding-top: 5px;
         padding-bottom: 5px;
         padding-left: 5px;
     }
-    
-    .comment{
-        border: 2px solid #f19d90;  
+
+    .comment {
+        border: 2px solid #f19d90;
         border-radius: 5px;
-        
+
         background-color: #ffffff;
         color: #192e45;
-    
+
         width: 30%;
         height: 150px;
-    
+
         margin-left: 75px;
-    
+
         padding-left: 15px;
         padding-bottom: 85px;
     }
-    
-    #upvote{ /* dit is da van ilke blijf er efkes vanaf*/
-    
-        background-color:#192e45;
+
+    #upvote {
+        /* dit is da van ilke blijf er efkes vanaf*/
+
+        background-color: #192e45;
         color: #ffffff;
-        
+
         border-radius: 5px;
         padding: 5px 17px;
         text-decoration: none;
     }
-    
-    
-    .submit_btn{
+
+
+    .submit_btn {
         display: inline-block;
-    
+
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-    
-        background-color:#192e45;
+
+        background-color: #192e45;
         color: #ffffff;
-    
+
         border: none;
         border-radius: 10px;
-        
+
         padding: 5px 7px;
-    
+
         text-align: center;
         text-decoration: none;
-    
+
         margin-left: 125px;
     }
-    
-    .submit_btn:hover{
+
+    .submit_btn:hover {
         background-color: #f19d90;
         color: #132236;
     }
-    
-    .comment_header{
+
+    .comment_header {
         color: #f19d90;
     }
-    
-    .show_date{
+
+    .show_date {
         color: #f19d90;
     }
-    
-    
-    .pinned_btn{
+
+
+    .pinned_btn {
         display: inline-block;
-    
-        background-color:#192e45;
+
+        background-color: #192e45;
         color: #ffffff;
-    
+
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-    
+
         border: none;
         border-radius: 10px;
-    
+
         padding: 5px 7px;
-        
+
         margin-left: 15px;
-    
+
     }
-    
-    .pinned_btn:hover{
+
+    .pinned_btn:hover {
         background-color: #f19d90;
         color: #132236;
     }
-    
-    
-    
-    .comment_container{
-    
+
+
+
+    .comment_container {
+
         border-bottom: 1px #f19d90;
         border-top: 1px #f19d90;
         border-left: 1px #f19d90;
         border-right: 1px #f19d90;
         border-style: solid hidden hidden solid;
-        
+
         color: #192e45;
-    
+
         width: 70%;
-       
+
         padding-top: 15px;
         padding-left: 15px;
         padding-bottom: 75px;
-        
+
         margin-left: 75px;
         margin-top: 25px;
         margin-bottom: 50px;
     }
-    .reply_container{
-    
+
+    .reply_container {
+
         border-bottom: 1px #f19d90;
         border-top: 1px #f19d90;
         border-left: 1px #f19d90;
         border-style: dashed hidden hidden dashed;
-        
+
         color: #192e45;
-    
+
         width: 70%;
-       
+
         padding-top: 15px;
         padding-left: 15px;
         padding-bottom: 75px;
-        
+
         margin-left: 125px;
         margin-top: 25px;
         margin-bottom: 50px;
     }
-    
-    .reply_btn, .pin_btn{
-        background-color:#d37f79;
-    
+
+    .reply_btn,
+    .pin_btn {
+        background-color: #d37f79;
+
         display: inline-block;
-    
+
         color: #132236;
-    
+
         border: none;
         border-radius: 15px;
-       
+
         padding: 5px 17px;
-    
+
         text-align: center;
         text-decoration: none;
-        
+
         font-size: 16px;
-    
+
         margin-top: 10px;
         margin-right: 15px;
     }
-    
-    .reply_btn{
-    
+
+    .reply_btn {
+
         float: right;
         clear: both;
     }
-    
-    .pin_btn{
-    
+
+    .pin_btn {
+
         float: right;
         clear: both;
     }
-    
-    .pin_btn:hover{
-    
+
+    .pin_btn:hover {
+
         color: #132236;
         background-color: #ffffff;
-    
+
         border: solid 1px #132236;
-        
+
     }
-    /* -----------------pinnedComments-------------------- */ 
-    
-    .pinn_btn{
+
+    /* -----------------pinnedComments-------------------- */
+
+    .pinn_btn {
         display: inline-block;
-    
-        background-color:#192e45;
+
+        background-color: #192e45;
         color: #ffffff;
-    
+
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-    
+
         border: none;
         border-radius: 10px;
-    
+
         padding: 5px 7px;
-        
+
         margin-left: 15px;
         margin-top: 25px;
-    
+
     }
-    
-    .pinn_btn:hover{
-    
+
+    .pinn_btn:hover {
+
         background-color: #f19d90;
-        color: #132236; 
-    
+        color: #132236;
+
     }
-    
+
 }

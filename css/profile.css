@@ -1,37 +1,35 @@
+/* -----------------Mobiele/tablet versie van de login-------------------- */
 
-
-/* -----------------Mobiele/tablet versie van de login-------------------- */ 
-
-body{
+body {
     background-color: #ffffff;
 }
 
-li{
+li {
     text-align: center;
     list-style-type: none;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1rem;
 }
 
-ul{
+ul {
     text-align: center;
     padding: 0px;
 }
 
-h3{
+h3 {
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 2em;
 }
 
-h5{
+h5 {
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1.5em;
-    
+
 }
 
-p{
+p {
     text-align: center;
 
 }
@@ -43,13 +41,13 @@ p{
     overflow: hidden;
     margin: 20px auto;
     border-radius: 50%;
-  }
+}
 
-  .profilePicture{
+.profilePicture {
     width: 180px;
-  }
+}
 
-  .back-btn{
+.back-btn {
     display: inline-block;
     height: 25px;
     margin-top: 20px;
@@ -57,14 +55,14 @@ p{
 }
 
 
-.profile1{
+.profile1 {
     text-align: center;
     margin-left: 0%;
 }
 
-.title{
-   color: #d37f79;
-   font-weight:bold;
+.title {
+    color: #d37f79;
+    font-weight: bold;
 }
 
 
@@ -73,7 +71,7 @@ p{
     width: 40px;
 }
 
-.full{
+.full {
     border: none;
     background-color: #ffffff;
     margin-left: 5%;
@@ -81,7 +79,7 @@ p{
     padding-bottom: 5vh;
 }
 
-.logout{
+.logout {
     display: block;
     border: 1px solid #132236;
     border-radius: 2px;
@@ -89,35 +87,35 @@ p{
     font-size: 1.1em;
     background-color: #fff;
     color: #132236;
-    padding: 5px 15px; 
+    padding: 5px 15px;
     margin: 0 auto 10px;
 }
-  
 
 
-@media only screen and (min-width: 768px){
-    .full{
-        margin:0px;
+
+@media only screen and (min-width: 768px) {
+    .full {
+        margin: 0px;
 
     }
 
     .col-md-6 {
         max-width: 100%;
     }
-    
+
 }
 
-@media all and (min-width: 1024px){
-    .container-fluid{
+@media all and (min-width: 1024px) {
+    .container-fluid {
         width: 50%;
         padding-top: 10px;
         padding-bottom: 10px;
-        box-shadow: 0px 0px 12px 7px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 12px 7px rgba(0, 0, 0, 0.2);
     }
 
-    
 
-    .logout:hover{
+
+    .logout:hover {
         border: none;
         background-color: #d37f79;
         color: #132236;
