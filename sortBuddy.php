@@ -97,42 +97,36 @@ if ($notification > 0) {
   <!-----------------------------Navbar------------------------------>
   <?php include_once("navbar.php") ?>
   <div class="container-fluid box">
-
-    <?php
-    foreach ($allMatches as $m) {
+    <?php foreach ($allMatches as $m) {
       $user->setBuddy($m['user_id2']);
-      /*
-      if ($user->getId() == $m['user_id1']) {
-        continue;
-      } */
+      //if ($m['firstname'] . $m['lastname'] != $connectedUserFirstname['firstname'] . $connectedUserlastname['lastname']) { 
     ?>
       <form id="verzoek" action="" method="POST">
         <div>
-          <h4>You've got a new buddy request from <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
+          <h4>You received a buddy request from <?php echo htmlspecialchars($m['firstname'] . " " . $m['lastname']) ?></h4>
           <button class="type-select btn btn-secondary" type="submit" name="acceptBtn" id="acceptBtn">Accept</button>
           <button class="type-select btn btn-secondary" type="submit" name="deleteBtn" id="deleteBtn">Delete</button>
-        </div> <?php
-                if (isset($_POST['acceptBtn'])) {
-                  $user->setBuddy($m['user_id2']);
-                  $user->acceptMatchRequest();
-                  $user->checkBuddy();
-                  echo "Request accepted";
-                }
-                if (isset($_POST['deleteBtn'])) {
-                  $user->setBuddy($m['user_id2']);
+        </div> <?php }
+              if (isset($_POST['acceptBtn'])) {
+                $user->setBuddy($m['user_id2']);
+                $user->acceptMatchRequest();
+                $user->checkBuddy();
+                echo "The request has been accepted!";
+              }
+              if (isset($_POST['deleteBtn'])) {
+                $user->setBuddy($m['user_id2']);
                 ?>
-          <label for='Reden'>Please give us a reason why you want to delete these matches.</label><br>
-          <input type='text' id='reden' name='reden' size='51'>
-          <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
-          <?php // } 
-          ?>
+        <label for='Reden'>Please tell us why you are deleting this request</label><br>
+        <input type='text' id='reden' name='reden' size='51'>
+        <button onclick='hide(); return false;' class='type-select btn btn-success' type='submit' name='redenBtn' id='redenBtn'>Submit</button>
+        <?php // } 
+        ?>
       <?php if (isset($_POST['redenBtn'])) {
-                    $user->setBuddy($m['user_id2']);
-                    $user->setReden($_POST['reden']);
-                    $user->deleteMatchRequest();
-                    $user->geefReden();
-                    echo "Request deleted!";
-                  }
+                  $user->setBuddy($m['user_id2']);
+                  $user->setReden($_POST['reden']);
+                  $user->deleteMatchRequest();
+                  $user->geefReden();
+                  echo "The request has been deleted!";
                 }
               }
       ?>

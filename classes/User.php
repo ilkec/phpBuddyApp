@@ -567,7 +567,7 @@ class User
   public function receiveMatchRequest()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("select distinct matches.user_id1, matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
+    $statement = $conn->prepare("select distinct matches.user_id2, users.firstname, users.lastname from matches,users where matches.user_id1 = :userid and matches.buddy_match='0' and users.id = matches.user_id2");
     $userid = $this->getId();
     $statement->bindParam(":userid", $userid);
     $result = $statement->execute();
@@ -616,7 +616,7 @@ class User
   public function checkBuddy()
   {
     $conn = Db::getConnection();
-    $statement = $conn->prepare("update users set buddy = '2' where id = :userid");
+    $statement = $conn->prepare("update users set buddy = '2' where id = :userid or id = :buddyid");
     $userid = $this->getId();
     $buddyid = $this->getBuddy();
     $statement->bindParam(":userid", $userid);
@@ -624,6 +624,7 @@ class User
     $result = $statement->execute();
     return $result;
   }
+
 
   public function profileBuddy()
   {
