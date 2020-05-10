@@ -552,6 +552,13 @@ a.nav-link.pt-4.homeIcon {
   font-size: 13px;
 }
 
+.alert.alert-secondary.alertToUser{
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 /*--------------------------------feature19------------------------------*/
 
 .contain {
