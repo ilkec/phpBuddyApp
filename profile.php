@@ -50,7 +50,6 @@ try {
         <a href="sortBuddy.php">
             <img class='back-btn'  src="img/back.png" alt="">
         </a> 
-        </nav>
         <section class="container-fluid">
             <div id="profile" class="col-lg-6 col-md-6 profile-form">
                 <div class="profile1" > 

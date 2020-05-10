@@ -781,14 +781,53 @@ h1 {
 }
 
 .profileform {
-  margin: 10px;
+  margin-bottom: 10px;
 }
+
+.form-profile-settings {
+ 
+  margin: 20px 0;
+  padding: 10px;
+  /*border: 1px solid #d37f79;*/
+ /* box-shadow: 0px 0px 12px 7px rgba(0, 0, 0, 0.2);*/
+}
+
+#fileUpload {
+            
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+
+}
+
+#fileUploadLabel {
+  display: inline-block;
+  border: 1px solid #132236;
+}
+
+.back-btn {
+  display: inline-block;
+  height: 25px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.form__error_profile p{
+  background-color: #d37f79;
+  padding: 10px;
+}
+
 
 .profilePictureWrap {
   width: 180px;
   height: 180px;
   overflow: hidden;
   margin-bottom: 10px;
+  border-radius:50%;
+ 
 }
 
 .profilePicture {
@@ -1362,6 +1401,12 @@ a#btnSendMessage {
 
 }
 
+@media all and (min-width: 1024px){
+  #profileSettingsForm {
+    width: 50%;
+    box-shadow: 0px 0px 12px 7px rgba(0, 0, 0, 0.2);
+}
+}
 
 
 

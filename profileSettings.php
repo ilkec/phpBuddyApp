@@ -134,16 +134,6 @@ $getAllUser = $user->getAll();
 
 
 
-
-
-//Gegevens van User ophalen 
-//gegevens van user plaatsen in inputvelden behalve wachtwoord
-// profilePicutre ophalen uit device van persoon
-//profilePicture kunnen opslaan in database = url sturen
-
-//
-
-
 ?>
 
 <!DOCTYPE html>
@@ -158,10 +148,12 @@ $getAllUser = $user->getAll();
 </head>
 
 <body>
+<a href="profile.php">
+            <img class='back-btn'  src="img/back.png" alt="">
+        </a> 
     <div class="container-fluid overflow-auto" id="profileSettingsForm">
-        <!--<h2 class="container mt-5 w-25">Persoonlijke gegevens</h2>-->
         <!-------form picture------>
-        <form class="w-80 border-3 rounded-0 mt-3" action="" method="post" enctype="multipart/form-data">
+        <form class="w-80 border-3 rounded-0 mt-3 form-profile-settings" action="" method="post" enctype="multipart/form-data">
             <h3>Add profile picture </h3>
             <div class="form__field mt-2 profileform">
                 <div class="profilePictureWrap">
@@ -172,23 +164,47 @@ $getAllUser = $user->getAll();
                                 } ?>" alt="profiel foto" class="profilePicture">
                 </div>
                 <input type="file" name="fileUpload" class="btn mb-3" id="fileUpload">
+                <label for="fileUpload" id="fileUploadLabel" class="btn">Choose a file</label>
                 <?php if (isset($errorPhoto)) : ?>
-                    <div class="form__error">
+                    <div class="form__error_profile">
                         <p>
                             <?php echo $errorPhoto; ?>
                         </p>
                     </div>
                 <?php endif; ?>
+                <?php if (isset($errorProfile)) : ?>
+                    <div class="form__error_profile">
+                        <p>
+                            <?php echo $errorProfile; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($errorEmail)) : ?>
+                    <div class="form__error_profile">
+                        <p>
+                            <?php echo $errorEmail; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($errorPassword)) : ?>
+                    <div class="form__error_profile">
+                        <p>
+                            <?php echo $errorPassword; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
+
+
 
                 <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updatePhoto">
             </div>
         </form>
         <!-------form algemeen------>
-        <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
+        <form class="w-80 border-3 rounded-0 form-profile-settings" action="" method="post" enctype="multipart/form-data">
             <h3>Personal info</h3>
             <div class="form_field mt-2 profileform">
-                <label for="profileText">Korte beschrijving</label>
-                <textarea class="form-control" type="text" placeholder="Korte beschrijving" name="profileText" id="profileText"><?php echo $getAllUser['description']; ?></textarea>
+                <label for="profileText">Bio</label>
+                <textarea class="form-control" type="text" placeholder="Bio" name="profileText" id="profileText"><?php echo $getAllUser['description']; ?></textarea>
             </div>
             <div class="form_field mt-2 profileform">
                 <label for="firstname">Firstname</label>
@@ -199,7 +215,7 @@ $getAllUser = $user->getAll();
                 <input class="form-control" type="text" value="<?php echo $getAllUser['lastname']; ?>" name="lastname" id="lastname">
             </div>
             <?php if (isset($errorProfile)) : ?>
-                <div class="form__error">
+                <div class="form__error_profile">
                     <p>
                         <?php echo $errorProfile; ?>
                     </p>
@@ -211,7 +227,7 @@ $getAllUser = $user->getAll();
             </div>
         </form>
         <!-------form email------>
-        <form class="w-80 border-3 rounded-0" action="" method="post" enctype="multipart/form-data">
+        <form class="w-80 border-3 rounded-0 form-profile-settings" action="" method="post" enctype="multipart/form-data">
             <h3>Change email address</h3>
             <div class="form_field mt-2 profileform">
                 <label for="email">Email address</label>
@@ -222,7 +238,7 @@ $getAllUser = $user->getAll();
                 <input class="form-control" type="password" placeholder="Password" name="passwordEmail" id="passwordEmail">
             </div>
             <?php if (isset($errorEmail)) : ?>
-                <div class="form__error">
+                <div class="form__error_profile">
                     <p>
                         <?php echo $errorEmail; ?>
                     </p>
@@ -234,7 +250,7 @@ $getAllUser = $user->getAll();
             
         </form>
         <!-------form wachtwoord------>
-        <form class="w-80 border-3 rounded-0 mb-3" action="" method="post" enctype="multipart/form-data">
+        <form class="w-80 border-3 rounded-0 mb-3 form-profile-settings" action="" method="post" enctype="multipart/form-data">
             <h3>Change password</h3>
             <div class="form_field mt-2 profileform">
                 <label for="passwordOld">Old password</label>
@@ -245,7 +261,7 @@ $getAllUser = $user->getAll();
                 <input class="form-control" type="password" placeholder="new password" name="passwordNew" id="passwordNew">
             </div>
             <?php if (isset($errorPassword)) : ?>
-                <div class="form__error">
+                <div class="form__error_profile">
                     <p>
                         <?php echo $errorPassword; ?>
                     </p>
@@ -254,8 +270,6 @@ $getAllUser = $user->getAll();
             <div>
                 <input type="submit" value="Save" class="btn btn-primary mb-3 btnOpslaan" name="updatePassword">
             </div>
-            
-            <a href="profile.php" class="mt-3 mb-3 btn btn-primary btnBack" type="submit" value="Log in">Go back</a>
         </form>
         
     </div>
