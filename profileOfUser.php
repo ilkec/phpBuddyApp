@@ -71,7 +71,7 @@ try {
                             
                 </div>   
 
-                <a  href="profileSettings.php"><img class="icon1" src="img/settings.png" alt="settingsIcon" id="settingsIcon"></a>
+                
                 
 
                 

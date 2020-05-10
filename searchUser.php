@@ -13,7 +13,7 @@
         $(document).ready(function(){                       //jQuerey word pas uitgevoerd als het geladen is
             $("#searchBar").keyup(function(){               //vanaf er in de searchbar iets verandert 
                 var name = $("#searchBar").val();           //komt het hier in de variabele te stan
-                $.post("doSearchStuff.php", {               //de php word uitgevoerd en de variabele word gePOST
+                $.post("searchBar.php", {               //de php word uitgevoerd en de variabele word gePOST
                     suggestion: name
                 }, function(data, status){                  //gaat de data van doSearchStuff opvragen en gebruiken
                     $("#output").html(data);                //de opgevraagde data word in de html getoond
