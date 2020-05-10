@@ -40,15 +40,12 @@ if (isset($_SESSION['user'])) {
     }
 
     if(isset($sameGames) && isset($sameFilms) && isset($sameBooks) && isset($sameMusic)) {
-        $optionOne = "games(" . $sameGames . ") films( " . $sameFilms .") books(" . $sameBooks . ") and music(". $sameMusic . ").";
+        $optionOne = "games(" . $sameGames . "), films(" . $sameFilms ."), books(" . $sameBooks . ") and music(". $sameMusic . ").";
     }
-
-
-   
 
     $allReactions = reaction::getAll($databaseId['id']);
     $showemojis= showReaction::showReactions();
-}else{
+}else {
     header("Location: feature2.php");
 }
 ?>
@@ -76,14 +73,14 @@ if (isset($_SESSION['user'])) {
         <?php endif; ?>
         
         <div class="chatbox">
-            <?php foreach ($chatHistory as $chatMessage): ?>
+            <?php foreach ($chatHistory as $chatMessage) : ?>
             <div class="messageContainer row"> 
                 <div class="messageBox col-lg-6" id="<?php echo $chatMessage['id']?>" >
                     <strong class="names" ><?php echo htmlspecialchars($chatMessage['fromUser']) . ": "; ?></strong>
                     <p><?php echo htmlspecialchars($chatMessage['message']) ?></p>
                     
                         <span class="givedReactionBox" id=""><img alt="" class="_1ift _5m3a img gived" id="" 
-                        src="<?php foreach($allReactions as $givedReaction){echo $givedReaction['src'];}?>"></span>
+                        src="<?php foreach($allReactions as $givedReaction) {echo $givedReaction['src'];}?>"></span>
                   
                 </div>
                 <div class="reactionsBox col-lg-2" id="">
@@ -93,7 +90,7 @@ if (isset($_SESSION['user'])) {
                 </div>
                 <div class="emojisBox" id="">
               <div role='listbox' aria-orientation='horizontal' class='_1z8q _fy2'>
-               <?php foreach($showemojis as $emojis):?>
+               <?php foreach($showemojis as $emojis) :?>
                <span class='iconn'><img id='<?php echo $emojis['id']?>' alt='<?php echo $emojis['name']?>' class='_1ift _5m3a img' src='<?php echo $emojis['src']?>'></span>
                <?php endforeach;?>
                </div>

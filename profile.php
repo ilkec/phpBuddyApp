@@ -46,7 +46,6 @@ try {
 
 
 <body>
-    
     <div class="full">
         <a href="sortBuddy.php">
             <img class='back-btn'  src="img/back.png" alt="">
