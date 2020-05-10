@@ -17,7 +17,7 @@ public function setReactionId($reactionId)
 {
    $this->reactionId=$reactionId;
   return $this;
-  }
+  } 
 
  public function getMessageId()
  {
